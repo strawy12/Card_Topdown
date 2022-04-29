@@ -12,19 +12,20 @@ public class HoldCard : MonoBehaviour
     private CardData _cardData;
 
     private bool _holdCard;
+    private bool _isReturnCard;
 
     private void Start()
     {
-        PEventManager.StartListening(Constant.SELECT_CARD, Init);
+        PEventManager.StartListening(Constant.POINTDOWN_CARD, Init);
     }
 
     private void Update()
     {
-        if(_holdCard)
+        if (_holdCard)
         {
             transform.position = Define.MousePos;
 
-                
+
             if (Input.GetMouseButtonUp(0))
             {
                 OnPointerUp();
@@ -36,8 +37,15 @@ public class HoldCard : MonoBehaviour
 
     private void Init(Param param)
     {
+        if (_isReturnCard)
+        {
+
+        }
+
         if (_cardImage == null)
+        {
             _cardImage = GetComponent<Image>();
+        }
 
         _returnPos = param.vParam;
         _cardData = GameManager.Inst.FindCardDataWithID(param.sParam);
@@ -54,18 +62,27 @@ public class HoldCard : MonoBehaviour
         Param param = new Param();
         param.vParam = transform.position;
 
-        ReturnCardPos();
-        PEventManager.TriggerEvent(Constant.UNSELECT_CARD, param);
+        ReturnCard();
+        PEventManager.TriggerEvent(Constant.POINTUP_CARD, param);
     }
 
-    private void ReturnCardPos()
+    private void ReturnCard()
     {
-        transform.DOMove(_returnPos, 0.8f).OnComplete(()=> _cardImage.enabled = false);
+        _isReturnCard = true;
+        transform.DOMove(_returnPos, 0.8f).OnComplete(EndReturnCard);
+    }
+
+    private void EndReturnCard()
+    {
+        _returnPos = Vector3.zero;
+        _cardImage.enabled = false;
+        _cardData = null;
+        _isReturnCard = false;
     }
 
     private void OnDestroy()
     {
-        PEventManager.StopListening(Constant.SELECT_CARD, Init);
+        PEventManager.StopListening(Constant.POINTDOWN_CARD, Init);
     }
 
 }

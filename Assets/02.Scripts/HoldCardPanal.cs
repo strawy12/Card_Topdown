@@ -9,7 +9,7 @@ public class HoldCardPanal : CardPanal, IPointerDownHandler
 {
     protected override void ChildStart()
     {
-        PEventManager.StartListening(UNSELECT_CARD, ActiveShowInfo);
+        PEventManager.StartListening(POINTUP_CARD, ActiveShowInfo);
     }
 
     protected override void ChildInit()
@@ -30,7 +30,7 @@ public class HoldCardPanal : CardPanal, IPointerDownHandler
         param.vParam = transform.position;
         param.sParam = _currentCard.ID;
 
-        PEventManager.TriggerEvent(SELECT_CARD, param);
+        PEventManager.TriggerEvent(POINTDOWN_CARD, param);
 
         EmptyCard();
     }

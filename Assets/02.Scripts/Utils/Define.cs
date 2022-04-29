@@ -61,8 +61,8 @@ public class Define
 
 public static class Constant
 {
-    public const string SELECT_CARD = "SL_CD";
-    public const string UNSELECT_CARD = "USL_CD";
+    public const string POINTDOWN_CARD = "PD_CD";
+    public const string POINTUP_CARD = "PU_CD";
 
     public const string ENTER_CARDPANAL = "ET_CDP";
     public const string EXIT_CARDPANAL = "EX_CDP";
