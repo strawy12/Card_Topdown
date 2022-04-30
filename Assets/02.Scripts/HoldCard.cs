@@ -9,6 +9,7 @@ public class HoldCard : MonoBehaviour
 {
     private Image _cardImage;
     private Vector3 _returnPos;
+    private int _returnPanalIndex;
     private CardData _cardData;
 
     private bool _holdCard;
@@ -17,6 +18,8 @@ public class HoldCard : MonoBehaviour
     private void Start()
     {
         PEventManager.StartListening(Constant.POINTDOWN_CARD, Init);
+        EventManager.StartListening(Constant.ENTER_MOUNTING_UI, ResetHoldCard);
+        EventManager.StartListening(Constant.NOT_ENTER_MOUNTING_UI, ReturnCard);
     }
 
     private void Update()
@@ -30,7 +33,6 @@ public class HoldCard : MonoBehaviour
             {
                 OnPointerUp();
             }
-
         }
 
     }
@@ -39,7 +41,7 @@ public class HoldCard : MonoBehaviour
     {
         if (_isReturnCard)
         {
-
+            ImmatiateReturn();
         }
 
         if (_cardImage == null)
@@ -49,7 +51,7 @@ public class HoldCard : MonoBehaviour
 
         _returnPos = param.vParam;
         _cardData = GameManager.Inst.FindCardDataWithID(param.sParam);
-
+        _returnPanalIndex = param.iParam;
         _cardImage.sprite = _cardData.CardSprite;
         _cardImage.enabled = true;
         _holdCard = true;
@@ -57,23 +59,45 @@ public class HoldCard : MonoBehaviour
 
     public void OnPointerUp()
     {
-        _holdCard = false;
-
         Param param = new Param();
-        param.vParam = transform.position;
+        param.sParam = _cardData.ID;
+        param.iParam = _returnPanalIndex;
+        
+        _cardImage.enabled = false;
 
-        ReturnCard();
         PEventManager.TriggerEvent(Constant.POINTUP_CARD, param);
     }
 
     private void ReturnCard()
     {
+        _cardImage.enabled = true;
+
+        _holdCard = false;
         _isReturnCard = true;
+        transform.DOKill();
         transform.DOMove(_returnPos, 0.8f).OnComplete(EndReturnCard);
     }
 
-    private void EndReturnCard()
+    private void ImmatiateReturn()
     {
+        transform.DOKill();
+        EndReturnCard();
+    }
+
+    private void EndReturnCard() 
+    {
+        Param param = new Param();
+        param.sParam = _cardData.ID;
+        param.iParam = _returnPanalIndex;
+
+        PEventManager.TriggerEvent(Constant.RETURN_CARD, param);
+
+        ResetHoldCard();
+    }
+
+    private void ResetHoldCard()
+    {
+        _holdCard = false;
         _returnPos = Vector3.zero;
         _cardImage.enabled = false;
         _cardData = null;

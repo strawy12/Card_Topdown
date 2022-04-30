@@ -14,8 +14,8 @@ public class CardInfoPanal : MonoBehaviour
     private void Awake()
     {
         _infoText = transform.Find("InfoText").GetComponent<Text>();
-        PEventManager.StartListening(ENTER_CARDPANAL, ShowInfo);
-        EventManager.StartListening(EXIT_CARDPANAL, UnShowInfo);
+        PEventManager.StartListening(ENTER_CARD_PANAL, ShowInfo);
+        EventManager.StartListening(EXIT_CARD_PANAL, UnShowInfo);
     }
 
     void ShowInfo(Param param)
@@ -52,13 +52,13 @@ public class CardInfoPanal : MonoBehaviour
 
         _infoText.text = "";
 
-        string info = $"종류 : {Define.GetCardInfo(_currentCard.CardNum)}\n 월 : {_currentCard.CardNum}";
+        string info = $"종류 : {Define.GetCardInfo(_currentCard.CardNum)}\n {_currentCard.CardNum}월";
         _infoText.DOText(info, 0.5f);
     }
 
     private void OnDestroy()
     {
-        PEventManager.StopListening(ENTER_CARDPANAL, ShowInfo);
-        EventManager.StopListening(EXIT_CARDPANAL, UnShowInfo);
+        PEventManager.StopListening(ENTER_CARD_PANAL, ShowInfo);
+        EventManager.StopListening(EXIT_CARD_PANAL, UnShowInfo);
     }
 }

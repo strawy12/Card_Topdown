@@ -46,50 +46,50 @@ MonoBehaviour:
     _cardNum: 4
     _cardSprite: {fileID: 21300000, guid: a1c01d1e8ecd7fb4aa52109da7755fd3, type: 3}
   - _cardName: "\uCC3D\uD3EC"
-    _cardID: 
+    _cardID: H5_1
     _cardNum: 5
     _cardSprite: {fileID: 21300000, guid: f88d6858b99131844bd05bebbea5f776, type: 3}
   - _cardName: "\uB2E4\uB9AC"
-    _cardID: 
+    _cardID: H5_2
     _cardNum: 5
     _cardSprite: {fileID: 21300000, guid: 8a486cfc73fba1e40ab2665d7795705b, type: 3}
   - _cardName: "\uB098\uBE44"
-    _cardID: 
+    _cardID: H6_1
     _cardNum: 6
     _cardSprite: {fileID: 21300000, guid: 82c976ecdd228a4499561cfdacceefa9, type: 3}
   - _cardName: "\uBAA8\uB780"
-    _cardID: 
+    _cardID: H6_2
     _cardNum: 6
     _cardSprite: {fileID: 21300000, guid: ed412dc4a603a434b94a81e4b506722d, type: 3}
   - _cardName: "\uBA67\uB3FC\uC9C0"
-    _cardID: 
+    _cardID: H7_1
     _cardNum: 7
     _cardSprite: {fileID: 21300000, guid: 6ef66a8ff7f6e6748be1895c25a42333, type: 3}
   - _cardName: "\uC2F8\uB9AC\uB098\uBB34"
-    _cardID: 
+    _cardID: H7_2
     _cardNum: 7
     _cardSprite: {fileID: 21300000, guid: 67fe104b046b98448a8f1162eaeea1b2, type: 3}
   - _cardName: "\uC77C\uCD98"
-    _cardID: 
+    _cardID: H8_1
     _cardNum: 8
     _cardSprite: {fileID: 21300000, guid: 1ce3f5e5b2ab3314da3113cf8337393a, type: 3}
   - _cardName: "\uAE30\uB7EC\uAE30"
-    _cardID: 
+    _cardID: H8_2
     _cardNum: 8
     _cardSprite: {fileID: 21300000, guid: 881dbb1a3726cf440903da7592dc6b76, type: 3}
   - _cardName: "\uC220\uC794"
-    _cardID: 
+    _cardID: H9_1
     _cardNum: 9
     _cardSprite: {fileID: 21300000, guid: f568136127a0d8f4fb6bab69864e1e6c, type: 3}
   - _cardName: "\uAD6D\uD654"
-    _cardID: 
+    _cardID: H9_2
     _cardNum: 9
     _cardSprite: {fileID: 21300000, guid: 50a6ecdead9f88a4eaf8a78c2ca82d21, type: 3}
   - _cardName: "\uC0AC\uC2B4"
-    _cardID: 
+    _cardID: H10_1
     _cardNum: 10
     _cardSprite: {fileID: 21300000, guid: a298abb5707c70841b4c9a2e3a32b148, type: 3}
   - _cardName: "\uB2E8\uD48D"
-    _cardID: 
+    _cardID: H10_2
     _cardNum: 10
     _cardSprite: {fileID: 21300000, guid: 71d25237988b0de4ab4bd21bf6d20223, type: 3}

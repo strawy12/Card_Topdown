@@ -94,6 +94,7 @@ public class PEventManager
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent?.Invoke(param);
+            EventManager.TriggerEvent(eventName);
         }
     }
 }

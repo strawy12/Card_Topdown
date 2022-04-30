@@ -4,45 +4,62 @@ using UnityEngine.EventSystems;
 
 public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    protected static CardInventoryManager _cardInventoryManager;
     private static bool _stopShowInfo;
+    private static int _panalCount;
 
-    protected bool _isHoldPanal;
+    protected bool _isDeferPanal;
 
-    protected CardData _currentCard;
+    protected CardData _currentCard { get; private set; }
+
     protected Image _currentImage;
-    protected int _currentIdx;
+    protected int _currentID;
 
     protected bool _isEmpty;
+
+    #region 프로퍼티
+    public CardData CurrentCard
+    {
+        get => _currentCard;
+    }
     public bool IsEmpty
     {
         get => _isEmpty;
     }
 
+    public bool IsDeferPanal
+    {
+        get => _isDeferPanal;
+    }
+
+    public int ID
+    {
+        get => _currentID;
+    }
+
+    #endregion
+
     private void Start()
     {
-        Init(GameManager.Inst.GetCardData(0), 0);
+
+
         ChildStart();
     }
 
     protected abstract void ChildStart();
 
-    public void Init(CardData cardData, int idx)
+    public void Init()
     {
-        _currentIdx = idx;
-
-        if (cardData == null)
+        if (_cardInventoryManager == null)
         {
-            EmptyCard();
+            _cardInventoryManager = FindObjectOfType<CardInventoryManager>();
         }
 
-        else
-        {
-            _currentCard = new CardData(cardData);
-            _currentImage = GetComponent<Image>();
-            _currentImage.sprite = _currentCard.CardSprite;
-        }
-
+        _currentID = _panalCount++;
+        _currentImage = GetComponent<Image>();
+        EmptyCard();
         ChildInit();
+        _cardInventoryManager.AddCardPanalList(this);
     }
 
     protected abstract void ChildInit();
@@ -50,30 +67,43 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void ChangeCard(CardData cardData)
     {
         _currentCard = cardData;
+
         _currentImage.sprite = _currentCard.CardSprite;
+
+        if (_isEmpty)
+        {
+
+            _isEmpty = false;
+            ChangeAlpha(1f);
+
+            if (!_isDeferPanal)
+            {
+                _cardInventoryManager.FormActivePanal(this);
+            }
+        }
     }
 
     protected void EmptyCard()
     {
         _currentCard = null;
         _currentImage.sprite = null;
-        ChangeAlpha(false);
-        _isEmpty = false;
+        ChangeAlpha(0f);
+        _isEmpty = true;
     }
 
-    protected void ChangeAlpha(bool isActive)
+    public void ChangeAlpha(float alpha)
     {
         Color color = _currentImage.color;
-        color.a = isActive ? 1f : 0f;
+        color.a = alpha;
         _currentImage.color = color;
     }
 
     protected void SetShowInfo(bool isStop)
     {
-        if(isStop)
+        if (isStop)
         {
             _stopShowInfo = true;
-            EventManager.TriggerEvent(Constant.EXIT_CARDPANAL);
+            EventManager.TriggerEvent(Constant.EXIT_CARD_PANAL);
         }
 
         else
@@ -81,23 +111,42 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
             _stopShowInfo = false;
         }
     }
+    public void AcitvePanal(bool isActive)
+    {
+        if (_currentImage.raycastTarget == isActive) return;
+        if (_isEmpty) return;
 
-    public void OnPointerEnter(PointerEventData eventData)
+        _currentImage.raycastTarget = isActive;
+
+        if (isActive)
+        {
+            ChangeAlpha(1f);
+            _currentImage.color = Color.white;
+        }
+
+        else
+        {
+            ChangeAlpha(0.5f);
+            _currentImage.color = Color.gray;
+        }
+    }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (_isEmpty || _stopShowInfo) return;
 
         Param param = new Param();
         param.sParam = _currentCard.ID;
-        param.iParam = _currentIdx;
+        param.iParam = _currentID;
         param.vParam = transform.position;
 
-        PEventManager.TriggerEvent(Constant.ENTER_CARDPANAL, param);
+        PEventManager.TriggerEvent(Constant.ENTER_CARD_PANAL, param);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (_isEmpty || _stopShowInfo) return;
-        
-        EventManager.TriggerEvent(Constant.EXIT_CARDPANAL);
+
+        EventManager.TriggerEvent(Constant.EXIT_CARD_PANAL);
     }
 }

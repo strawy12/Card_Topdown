@@ -3,14 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class MountCardPanal : CardPanal
+
+public class MountCardPanal : CardPanal, IPointerClickHandler
 {
+    private static MountingUI _moutingUI;
     protected override void ChildInit()
     {
-        _isHoldPanal = false;
+        if(_moutingUI == null)
+        {
+            _moutingUI = transform.GetComponentInParent<MountingUI>();
+        }
+        _isDeferPanal = false;
     }
 
     protected override void ChildStart()
     {
     }
+
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (_isEmpty) return;
+
+
+    }
+
+
 }
