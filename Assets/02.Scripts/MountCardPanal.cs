@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+//using UnityEngine.EventSystems;
 
-public class MountCardPanal : CardPanal, IPointerClickHandler
+public class MountCardPanal : CardPanal//, IPointerClickHandler
 {
     private static MountingUI _moutingUI;
     protected override void ChildInit()
@@ -21,12 +21,16 @@ public class MountCardPanal : CardPanal, IPointerClickHandler
     }
 
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (_isEmpty) return;
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    if (_isEmpty || !_isEventActive) return;
 
-
-    }
+    //    Param param = new Param();
+    //    param.iParam = _currentID;
+    //    param.sParam = _currentCard.ID;
+       
+    //    PEventManager.TriggerEvent(Constant.CLICK_CARD, param);
+    //}
 
 
 }

@@ -7,26 +7,31 @@ using static Constant;
 public class CardInventoryManager : MonoBehaviour
 {
     [SerializeField] private int _initPickCnt = 2;
+    //[SerializeField] private ChangeCard _changeCardPref;
     private List<CardPanal> _cardPanalList;
-    private MountCardPanal[] _canChangeCardPanals;
+    //private MountCardPanal[] _canChangeCardPanals;
+    //private DeferCardPanal _selectDeferCardPanal;
 
     private void Awake()
     {
         _cardPanalList = new List<CardPanal>();
-        _canChangeCardPanals = new MountCardPanal[2];
-
+        //_canChangeCardPanals = new MountCardPanal[2];
     }
     private void Start()
     {
-        PEventManager.StartListening(ENTER_MOUNTING_UI, ChangeMountingCard);
-        PickInitCard();
+        PEventManager.StartListening(ENTER_MOUNTING_UI, MountCard);
+        
+        //PickInitCard();
     }
 
     public void AddCardPanalList(CardPanal panal)
     {
-        if(panal.IsDeferPanal)
+        if (panal.IsDeferPanal)
         {
-            _cardPanalList.Insert(0, panal);
+            bool isExist = _cardPanalList.Count != 0 && _cardPanalList[0].IsDeferPanal;
+            int idx = isExist ? 1 : 0;
+
+            _cardPanalList.Insert(idx, panal);
         }
         else
         {
@@ -34,78 +39,114 @@ public class CardInventoryManager : MonoBehaviour
         }
     }
 
-    public void FormActivePanal(CardPanal panal)
-    {
-        if (_canChangeCardPanals.Length == 2)
-        {
-            _canChangeCardPanals = new MountCardPanal[2];
-            _canChangeCardPanals[0] = (MountCardPanal)panal;
-        }
+    // 쓸모없는 함수
+    //public void FormActivePanal(CardPanal panal)
+    //{
+    //    if (_canChangeCardPanals[1] != null)
+    //    {
+    //        _canChangeCardPanals = new MountCardPanal[2];
+    //        _canChangeCardPanals[0] = (MountCardPanal)panal;
+    //    }
 
-        else
-        {
-            int idx = _canChangeCardPanals.Length;
-            _canChangeCardPanals[idx] = (MountCardPanal)panal;
-        }
-    }
-    private void ChangeTwoCardPanal(int idx1, int idx2)
-    {
+    //    else
+    //    {
+    //        int idx = _canChangeCardPanals[0] == null ? 0 : 1;
+    //        _canChangeCardPanals[idx] = (MountCardPanal)panal;
+    //    }
+    //}
 
-    }
+    // 클릭한 애가 들어온다면
+    //private void ChangeTwoCardPanal(Param param)
+    //{
+        //AcitveAllCardPanal(true);
 
-    private void ChangeMountingCard(Param param)
-    {
-        if (_canChangeCardPanals[0] == null)
-        { 
-            CardData card = GameManager.Inst.FindCardDataWithID(param.sParam);
-            _cardPanalList[2].ChangeCard(card);
+        //CardPanal panal = System.Array.Find(_canChangeCardPanals, panal => panal.ID == param.iParam);
 
-            return;
-        }
+        //GenerateChangeCard(panal, _selectDeferCardPanal);
+        //GenerateChangeCard(_selectDeferCardPanal, panal);
+    //}
 
-        ActiveChangePanals();
-    }
+    //private void GenerateChangeCard(CardPanal currentPanal, CardPanal targetPanal)
+    //{
+    //    ChangeCard cardObject = Instantiate(_changeCardPref, transform);
 
-    private void ActiveChangePanals()
-    {
-        int id1 = _canChangeCardPanals[0].ID;
-        int id2 = -1;
+    //    currentPanal.ChangeAlpha(0f);
+    //    cardObject.Init(currentPanal.transform.position, targetPanal, currentPanal.CurrentCard);
 
-        if (_canChangeCardPanals[1] != null)
-        {
-            id2 = _canChangeCardPanals[1].ID;
-        }
+    //}
 
-        for (int i = 2; i < _cardPanalList.Count; i++)
-        {
-            CardPanal panal = _cardPanalList[i];
+    //private void ChangeMountingCard(Param param)
+    //{
+    //    if (_canChangeCardPanals[0] == null)
+    //    {
+    //        CardData card = GameManager.Inst.FindCardDataWithID(param.sParam);
+    //        _cardPanalList[2].ChangeCard(card);
+    //        EventManager.TriggerEvent(TRIGGER_MOUNTING_EVENT);
 
-            if (panal.ID == id1 || panal.ID == id2)
-            {
-                panal.AcitvePanal(true);
-            }
+    //        return;
+    //    }
 
-            else
-            {
-                panal.AcitvePanal(false);
-            }
-        }
-    }
+    //    EventManager.TriggerEvent(TRIGGER_CHANGE_EVENT);
 
-    public void AcitveAllCardPanal()
+    //    _selectDeferCardPanal = (DeferCardPanal)_cardPanalList.Find(panal => panal.ID == param.iParam);
+
+    //    ActiveChangePanals();
+
+    //}
+
+    //private void ActiveChangePanals()
+    //{
+    //    AcitveAllCardPanal(false);
+
+    //    for (int i = 0; i < 2; i++)
+    //    {
+    //        if(_canChangeCardPanals[i] != null)
+    //            _canChangeCardPanals[i].AcitvePanal(true, true);
+
+    //        if(_cardPanalList[i].ID == _selectDeferCardPanal.ID)
+    //            _selectDeferCardPanal.AcitvePanal(true, true);
+
+    //    }
+
+    //}
+
+    public void AcitveAllCardPanal(bool isActive)
     {
         foreach (CardPanal panal in _cardPanalList)
         {
-            panal.AcitvePanal(true);
+            if (panal.IsEmpty) continue;
+
+            panal.AcitvePanal(isActive, false);
         }
     }
 
-    private void PickInitCard()
+    private void MountCard(Param param)
     {
-        for (int i = 0; i < _initPickCnt; i++)
+        foreach (CardPanal panal in _cardPanalList)
         {
-            CardData card = GameManager.Inst.GetRandomCardData();
-            _cardPanalList[i].ChangeCard(card);
+            if (panal.IsEmpty && !panal.IsDeferPanal)
+            {
+                CardData card = GameManager.Inst.FindCardDataWithID(param.sParam);
+                EventManager.TriggerEvent(TRIGGER_MOUNTING_EVENT);
+                panal.ChangeCard(card);
+                return;
+            }
         }
+
+        PEventManager.TriggerEvent(RETURN_CARD_EFFECT, param);
+    }
+
+    public void PickCard()
+    {
+        foreach(CardPanal panal in _cardPanalList)
+        {
+            if(panal.IsEmpty)
+            {
+                CardData card = GameManager.Inst.GetRandomCardData();
+                panal.ChangeCard(card);
+                return;
+            }
+        }
+
     }
 }

@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
-public class CheckEnterUI : MonoBehaviour, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.IPointerExitHandler
+public class CheckEnterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IUIEvent
 {
-    private UnityEngine.UI.Image _currentImage;
+    private Image _currentImage;
+
+    public Action OnPointerUIEnter { get; set; }
+    public Action OnPointerUIExit { get; set; }
+
+
     private void Start()
     {
-        _currentImage = GetComponent<UnityEngine.UI.Image>();
+        _currentImage = GetComponent<Image>();
         EventManager.StartListening(Constant.POINTDOWN_CARD, () => _currentImage.raycastTarget = true);
         EventManager.StartListening(Constant.POINTUP_CARD, () => _currentImage.raycastTarget = false);
     }
@@ -16,12 +23,12 @@ public class CheckEnterUI : MonoBehaviour, UnityEngine.EventSystems.IPointerEnte
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        EventManager.TriggerEvent(Constant.ENTER_UI); 
+        OnPointerUIEnter?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        EventManager.TriggerEvent(Constant.EXIT_UI);
+        OnPointerUIExit?.Invoke();
     }
 
 }

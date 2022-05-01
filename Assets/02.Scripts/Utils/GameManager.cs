@@ -15,25 +15,9 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         ShuffleCardDeck();
-        ASV();
     }
 
-    private void ASV()
-    {
-        int cnt = 1;
-        int cnt2 = 1;
-        for(int i = 0; i < _cardDataSO.CardDataList.Count; i++)
-        {
-            if(cnt == 3)
-            {
-                cnt = 1;
-                cnt2++;
-            }
-
-            _cardDataSO.CardDataList[i].ID = $"H{cnt2}_{cnt}";
-            cnt++;
-        }
-    }
+   
 
     private void ShuffleCardDeck()
     {

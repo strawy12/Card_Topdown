@@ -17,8 +17,9 @@ public class HoldCard : MonoBehaviour
 
     private void Start()
     {
-        PEventManager.StartListening(Constant.POINTDOWN_CARD, Init);
-        EventManager.StartListening(Constant.ENTER_MOUNTING_UI, ResetHoldCard);
+        PEventManager.StartListening(Constant.POINTDOWN_CARD, StartHold);
+        PEventManager.StartListening(Constant.RETURN_CARD_EFFECT, ReturnCardEffect);
+        EventManager.StartListening(Constant.TRIGGER_MOUNTING_EVENT, ResetHoldCard);
         EventManager.StartListening(Constant.NOT_ENTER_MOUNTING_UI, ReturnCard);
     }
 
@@ -37,13 +38,31 @@ public class HoldCard : MonoBehaviour
 
     }
 
-    private void Init(Param param)
+    private void StartHold(Param param)
     {
         if (_isReturnCard)
         {
             ImmatiateReturn();
         }
 
+        Init(param);
+        _holdCard = true;
+    }
+
+    public void OnPointerUp()
+    {
+        Param param = new Param();
+        param.sParam = _cardData.ID;
+        param.iParam = _returnPanalIndex;
+        param.vParam = Define.MousePos;
+
+        _holdCard = false;
+
+        PEventManager.TriggerEvent(Constant.POINTUP_CARD, param);
+    }
+
+    private void Init(Param param)
+    {
         if (_cardImage == null)
         {
             _cardImage = GetComponent<Image>();
@@ -54,18 +73,18 @@ public class HoldCard : MonoBehaviour
         _returnPanalIndex = param.iParam;
         _cardImage.sprite = _cardData.CardSprite;
         _cardImage.enabled = true;
-        _holdCard = true;
     }
 
-    public void OnPointerUp()
+    private void ReturnCardEffect(Param param)
     {
-        Param param = new Param();
-        param.sParam = _cardData.ID;
-        param.iParam = _returnPanalIndex;
-        
-        _cardImage.enabled = false;
+        _holdCard = false;
+        _returnPos = param.vParam;
+        _cardData = GameManager.Inst.FindCardDataWithID(param.sParam);
+        _returnPanalIndex = param.iParam;
+        _cardImage.sprite = _cardData.CardSprite;
+        _cardImage.enabled = true;
 
-        PEventManager.TriggerEvent(Constant.POINTUP_CARD, param);
+        ReturnCard();
     }
 
     private void ReturnCard()

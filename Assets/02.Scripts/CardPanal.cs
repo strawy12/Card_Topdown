@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -8,7 +9,7 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
     private static bool _stopShowInfo;
     private static int _panalCount;
 
-    protected bool _isDeferPanal;
+    protected CardOutLineEffect _outLineEffect;
 
     protected CardData _currentCard { get; private set; }
 
@@ -16,6 +17,8 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
     protected int _currentID;
 
     protected bool _isEmpty;
+    protected bool _isDeferPanal;
+    protected bool _isEventActive;
 
     #region 프로퍼티
     public CardData CurrentCard
@@ -37,12 +40,12 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
         get => _currentID;
     }
 
+
     #endregion
 
     private void Start()
     {
-
-
+        _outLineEffect = GetComponent<CardOutLineEffect>();
         ChildStart();
     }
 
@@ -67,23 +70,26 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void ChangeCard(CardData cardData)
     {
         _currentCard = cardData;
-
         _currentImage.sprite = _currentCard.CardSprite;
+
 
         if (_isEmpty)
         {
-
             _isEmpty = false;
-            ChangeAlpha(1f);
-
-            if (!_isDeferPanal)
-            {
-                _cardInventoryManager.FormActivePanal(this);
-            }
+            // HoldCard가 커지고 하게 하기
+            transform.DOScale(Vector3.one * 3f, 0f);
+            transform.DOScale(Vector3.one, 0.3f);
         }
+
+        ChangeAlpha(1f);
     }
 
-    protected void EmptyCard()
+    public void ChangeCard(CardData cardData, Vector3 targetPos)
+    {
+        ChangeCard(cardData);
+    }
+
+    public void EmptyCard()
     {
         _currentCard = null;
         _currentImage.sprite = null;
@@ -111,23 +117,33 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
             _stopShowInfo = false;
         }
     }
-    public void AcitvePanal(bool isActive)
-    {
-        if (_currentImage.raycastTarget == isActive) return;
-        if (_isEmpty) return;
 
+    public void AcitvePanal(bool isActive, bool isChangeEvent)
+    {
+        if (_isEmpty) return;
         _currentImage.raycastTarget = isActive;
 
         if (isActive)
         {
             ChangeAlpha(1f);
             _currentImage.color = Color.white;
+            transform.DOScale(Vector3.one, 0.35f);
+            _isEventActive = false;
+
+            if (isChangeEvent)
+            {
+                transform.DOScale(Vector3.one * 1.3f, 0.5f);
+                _outLineEffect.EffectStart();
+                _isEventActive = true;
+            }
         }
 
         else
         {
+
             ChangeAlpha(0.5f);
             _currentImage.color = Color.gray;
+            _isEventActive = false;
         }
     }
 

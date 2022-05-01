@@ -20,15 +20,13 @@ public class DeferCardPanal : CardPanal, IPointerDownHandler
     private void ActiveShowInfo(Param param)
     {
         if (_currentID != param.iParam) return;
-        CardData card = GameManager.Inst.FindCardDataWithID(param.sParam);
-        ChangeCard(card);
-
+        ChangeAlpha(1f);
         SetShowInfo(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (_isEmpty) return;
+        if (_isEmpty || _isEventActive) return;
 
         SetShowInfo(true);
 
@@ -39,7 +37,7 @@ public class DeferCardPanal : CardPanal, IPointerDownHandler
 
         PEventManager.TriggerEvent(POINTDOWN_CARD, param);
 
-        EmptyCard();
+        ChangeAlpha(0f);
     }
 
 }

@@ -6,8 +6,6 @@ public class GeneratePanals : MonoBehaviour
 {
     [SerializeField] private CardPanal _panalTemp;
     [SerializeField] private int _generateCnt;
-    private CardPanal[] cardPanals;
-
 
     private void Start()
     {
@@ -16,13 +14,16 @@ public class GeneratePanals : MonoBehaviour
 
     public void Generate()
     {
-        cardPanals = new CardPanal[_generateCnt];
-
+        CardPanal panal;
         for (int i = 0; i < _generateCnt; i++)
         {
-            cardPanals[i] = Instantiate(_panalTemp, _panalTemp.transform.parent);
-            cardPanals[i].gameObject.SetActive(true);
-            cardPanals[i].Init();
+            panal = Instantiate(_panalTemp, _panalTemp.transform.parent);
+            ChildSettingPanal(panal);
+            panal.gameObject.SetActive(true);
+            panal.Init();
         }
     }
+
+    protected virtual void ChildSettingPanal(CardPanal panal) { }
+
 }

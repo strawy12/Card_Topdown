@@ -13,9 +13,15 @@ public class MountingUI : MonoBehaviour
     {
         _isEnterUI = false;
         PEventManager.StartListening(Constant.POINTUP_CARD, ActiveMountingCard);
-        EventManager.StartListening(Constant.ENTER_UI, ()=>_isEnterUI = true);
-        EventManager.StartListening(Constant.EXIT_UI, () => _isEnterUI = false);
+        SubscribeEvent();
         GeneratePedigreePanals();
+    }
+
+    private void SubscribeEvent()
+    {
+        IUIEvent uiEvent = transform.Find("CheckEnterUI").GetComponent<IUIEvent>();
+        uiEvent.OnPointerUIEnter += () => _isEnterUI = true;
+        uiEvent.OnPointerUIExit += () => _isEnterUI = false;
     }
 
     private void GeneratePedigreePanals()
@@ -39,7 +45,6 @@ public class MountingUI : MonoBehaviour
         else
         {
             EventManager.TriggerEvent(Constant.NOT_ENTER_MOUNTING_UI);
-
         }
 
     }

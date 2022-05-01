@@ -16,9 +16,11 @@ public class CardInfoPanal : MonoBehaviour
         _infoText = transform.Find("InfoText").GetComponent<Text>();
         PEventManager.StartListening(ENTER_CARD_PANAL, ShowInfo);
         EventManager.StartListening(EXIT_CARD_PANAL, UnShowInfo);
+        EventManager.StartListening(CLICK_CARD, ImmediateUnShow);
+
     }
 
-    void ShowInfo(Param param)
+    private void ShowInfo(Param param)
     {
         ProcessCardData(param.sParam);
 
@@ -29,9 +31,18 @@ public class CardInfoPanal : MonoBehaviour
         WriteCardInfo();
     }
 
-    void UnShowInfo()
+    private void UnShowInfo()
     {
         transform.DOScaleX(0f, 0.5f);
+        _infoText.text = "";
+        _currentCard = null;
+    }
+
+    private void ImmediateUnShow()
+    {
+        if (transform.localScale.x == 0f) return;
+
+        transform.DOScaleX(0f, 0f);
         _infoText.text = "";
         _currentCard = null;
     }

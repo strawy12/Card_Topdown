@@ -63,7 +63,9 @@ public static class Constant
 {
     public const string POINTDOWN_CARD = "PD_CD";
     public const string POINTUP_CARD = "PU_CD";
+    public const string CLICK_CARD = "CL_CD";
     public const string RETURN_CARD = "RT_CD";
+    public const string RETURN_CARD_EFFECT = "RT_CD_EF";
 
     public const string ENTER_MOUNTING_UI = "ET_MT_UI";
     public const string NOT_ENTER_MOUNTING_UI = "N_ET_MT_UI";
@@ -73,5 +75,9 @@ public static class Constant
 
     public const string ENTER_CARD_PANAL = "ET_CD_PL";
     public const string EXIT_CARD_PANAL = "EX_CD_PL";
+
+    public const string TRIGGER_CHANGE_EVENT = "TG_CG_EV";
+
+    public const string TRIGGER_MOUNTING_EVENT = "TG_MT_EV";
 
 }
