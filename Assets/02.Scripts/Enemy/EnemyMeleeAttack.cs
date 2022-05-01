@@ -13,8 +13,6 @@ public class EnemyMeleeAttack : EnemyAttack
             hitable?.GetHit(damage: damage, damageDealer: gameObject);
             AttackFeedback?.Invoke();
             StartCoroutine(WaitBeforeAttackCoroutine());
-
-            Debug.Log("¿Í±×ÀÛ!");
         }
     }
 }

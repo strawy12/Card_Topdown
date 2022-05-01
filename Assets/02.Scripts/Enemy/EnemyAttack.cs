@@ -32,6 +32,7 @@ public abstract class EnemyAttack : MonoBehaviour
     {
         _waitBeforeNextAttack = true;
         yield return new WaitForSeconds(attackDelay);
+        Debug.Log("¼­°Æ!");
         _waitBeforeNextAttack = false;
     }
     public void Reset()
