@@ -203,7 +203,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 10992876}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -440,8 +440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51d6326c7e4b6e4297462acc01575ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panalTemp: {fileID: 0}
-  _generateCnt: 0
+  _panalTemp: {fileID: 1995303382926736692}
+  _generateCnt: 2
 --- !u!1 &279656171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1041119699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2856,8 +2856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51d6326c7e4b6e4297462acc01575ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panalTemp: {fileID: 0}
-  _generateCnt: 0
+  _panalTemp: {fileID: 1995303381983029405}
+  _generateCnt: 2
 --- !u!114 &8833417522945792507
 MonoBehaviour:
   m_ObjectHideFlags: 0
