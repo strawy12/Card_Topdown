@@ -9,15 +9,17 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private CardDataSO _cardDataSO;
-
+    private UIManager _uiManager;
     private List<CardData> _randomCardDeck;
+
+    public UIManager UI { get => _uiManager; }
 
     private void Awake()
     {
+        _uiManager = GetComponent<UIManager>();
         ShuffleCardDeck();
     }
 
-   
 
     private void ShuffleCardDeck()
     {

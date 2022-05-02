@@ -89,7 +89,9 @@ public static class Constant
 
     public const string TRIGGER_MOUNTING_EVENT = "TG_MT_EV";
     
-    public const string SHOW_MESSAGE = "SH_MS";
+    public const string CLOSE_MESSAGE= "CL_MS";
+
+    public const string MESSAGE_MOUNTING = "정말로 장착하시겠습니까?";
 
 
 

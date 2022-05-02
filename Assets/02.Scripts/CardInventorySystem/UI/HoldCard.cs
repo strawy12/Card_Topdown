@@ -54,8 +54,9 @@ public class HoldCard : MonoBehaviour
         Param param = new Param();
         param.sParam = _cardData.ID;
         param.iParam = _returnPanalIndex;
-        param.vParam = Define.MousePos;
+        param.vParam = _returnPos;
 
+        _cardImage.enabled = false;
         _holdCard = false;
 
         PEventManager.TriggerEvent(Constant.POINTUP_CARD, param);

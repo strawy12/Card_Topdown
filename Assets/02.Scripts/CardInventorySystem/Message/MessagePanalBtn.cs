@@ -8,12 +8,11 @@ public class MessagePanalBtn : Button
     private Text _buttonText;
     public Text ButtonText
     {
-        get => _buttonText;
-    }
+        get
+        {
+            _buttonText ??= transform.Find("Text").GetComponent<Text>();
 
-    protected override void Start()
-    {
-        base.Start();
-        _buttonText = transform.Find("Text").GetComponent<Text>();
+            return _buttonText;
+        }
     }
 }

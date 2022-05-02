@@ -67,7 +67,7 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     protected abstract void ChildInit();
 
-    public void ChangeCard(CardData cardData)
+    public void ChangeCard(CardData cardData, bool isEffect = true)
     {
         _currentCard = cardData;
         _currentImage.sprite = _currentCard.CardSprite;
@@ -77,8 +77,12 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             _isEmpty = false;
             // HoldCard가 커지고 하게 하기
-            transform.DOScale(Vector3.one * 3f, 0f);
-            transform.DOScale(Vector3.one, 0.3f);
+
+            if(isEffect)
+            {
+                transform.DOScale(Vector3.one * 3f, 0f);
+                transform.DOScale(Vector3.one, 0.3f);
+            }
         }
 
         ChangeAlpha(1f);

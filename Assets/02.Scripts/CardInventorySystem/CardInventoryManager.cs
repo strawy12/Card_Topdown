@@ -19,7 +19,7 @@ public class CardInventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        PEventManager.StartListening(ENTER_MOUNTING_UI, MountCard);
+        PEventManager.StartListening(ENTER_MOUNTING_UI, MountingMessage);
         
         //PickInitCard();
     }
@@ -118,6 +118,21 @@ public class CardInventoryManager : MonoBehaviour
 
             panal.AcitvePanal(isActive, false);
         }
+    }
+
+    private void MountingMessage(Param param)
+    {
+        ButtonStyle btn1 = new ButtonStyle(Define.EButtonStyle.Okay, () =>
+        {
+            MountCard(param);
+        });
+
+        ButtonStyle btn2 = new ButtonStyle(Define.EButtonStyle.Cancel, () =>
+        {
+            PEventManager.TriggerEvent(RETURN_CARD_EFFECT, param);
+        });
+
+        GameManager.Inst.UI.TriggerMessage(MESSAGE_MOUNTING, btn1, btn2);
     }
 
     private void MountCard(Param param)

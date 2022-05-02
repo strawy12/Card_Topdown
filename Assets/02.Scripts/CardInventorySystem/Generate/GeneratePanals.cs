@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeneratePanals : MonoBehaviour
 {
-    [SerializeField] private CardPanal _panalTemp;
+    [SerializeField] private GameObject _panalTemp;
     [SerializeField] private int _generateCnt;
 
     private void Start()
@@ -14,16 +14,15 @@ public class GeneratePanals : MonoBehaviour
 
     public void Generate()
     {
-        CardPanal panal;
+        GameObject panal;
         for (int i = 0; i < _generateCnt; i++)
         {
             panal = Instantiate(_panalTemp, _panalTemp.transform.parent);
-            ChildSettingPanal(panal);
             panal.gameObject.SetActive(true);
-            panal.Init();
+            ChildSettingPanal(panal);
         }
     }
 
-    protected virtual void ChildSettingPanal(CardPanal panal) { }
+    protected virtual void ChildSettingPanal(GameObject panal) { }
 
 }
