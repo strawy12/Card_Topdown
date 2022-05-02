@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Define
 {
+    public enum EButtonStyle
+    {
+        None = -1,
+        Okay,
+        Cancel,
+        Close
+    }
+
+
     private static Camera mainCam;
     public static Camera MainCam
     {
@@ -79,5 +88,9 @@ public static class Constant
     public const string TRIGGER_CHANGE_EVENT = "TG_CG_EV";
 
     public const string TRIGGER_MOUNTING_EVENT = "TG_MT_EV";
+    
+    public const string SHOW_MESSAGE = "SH_MS";
+
+
 
 }
