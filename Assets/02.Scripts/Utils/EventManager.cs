@@ -50,13 +50,14 @@ public class EventManager
     }
 }
 
-public class EventManager<T>
-{
-    private static Dictionary<string, Action<T>> eventDictionary = new Dictionary<string, Action<T>>();
 
-    public static void StartListening(string eventName, Action<T> listener)
+public class PEventManager
+{
+    private static Dictionary<string, Action<Param>> eventDictionary = new Dictionary<string, Action<Param>>();
+
+    public static void StartListening(string eventName, Action<Param> listener)
     {
-        Action<T> thisEvent;
+        Action<Param> thisEvent;
 
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
@@ -70,9 +71,9 @@ public class EventManager<T>
         }
     }
 
-    public static void StopListening(string eventName, Action<T> listener)
+    public static void StopListening(string eventName, Action<Param> listener)
     {
-        Action<T> thisEvent;
+        Action<Param> thisEvent;
 
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
@@ -86,13 +87,14 @@ public class EventManager<T>
         }
     }
 
-    public static void TriggerEvent(string eventName, T param)
+    public static void TriggerEvent(string eventName, Param param)
     {
-        Action<T> thisEvent;
+        Action<Param> thisEvent;
 
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent?.Invoke(param);
+            EventManager.TriggerEvent(eventName);
         }
     }
 }
