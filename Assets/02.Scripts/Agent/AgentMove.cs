@@ -15,6 +15,7 @@ public class AgentMove : MonoBehaviour
     private Rigidbody2D rb2D;
     private BoxCollider2D boxCol2D;
 
+    private bool isDashing = false;
     private bool isStop = false;
 
     private void Start()
@@ -54,7 +55,8 @@ public class AgentMove : MonoBehaviour
 
     public void OnDash(Vector2 mouseWorldPosition)
     {
-        isStop = true;
+        if (isDashing == true) return;
+        isDashing = true;
         rb2D.velocity = mouseWorldPosition.normalized * 40f;
 
         StartCoroutine(DashTimeCheck());
@@ -67,13 +69,20 @@ public class AgentMove : MonoBehaviour
         yield return new WaitForSecondsRealtime(time);
 
         rb2D.velocity = Vector2.zero;
-        isStop = false;
+        isDashing = false;
     }
 
     private void FixedUpdate()
     {
         OnVelocityChange?.Invoke(moveSpeed);
+        if (isDashing == true) return;
         if (isStop == true) return;
         rb2D.velocity = nowMoveDirection * moveSpeed;
+    }
+
+    public void StopImmediatelly()
+    {
+        moveSpeed = 0;
+        rb2D.velocity = Vector2.zero;
     }
 }

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class AgentAnimation : MonoBehaviour
 {
-    public Animator animator;
+    protected Animator animator;
 
-    protected readonly int walkingHashString = Animator.StringToHash("Walk");
-
-    protected readonly int deathHashString = Animator.StringToHash("Death");
+    protected readonly int _walkHashStr = Animator.StringToHash("Walk");
+    protected readonly int _deathHashStr = Animator.StringToHash("Death");
 
     private void Awake()
     {
@@ -18,16 +18,21 @@ public class AgentAnimation : MonoBehaviour
 
     protected virtual void ChildAwake()
     {
-        
+
     }
 
     public void SetWalkAnimation(bool value)
     {
-        animator.SetBool(walkingHashString, value);
+        animator.SetBool(_walkHashStr, value);
     }
 
     public void AnimatePlayer(float velocity)
     {
         SetWalkAnimation(velocity > 0);
+    }
+
+    public void PlayDeathAnimation()
+    {
+        animator.SetTrigger(_deathHashStr);
     }
 }

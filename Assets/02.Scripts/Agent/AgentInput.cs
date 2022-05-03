@@ -16,7 +16,6 @@ public class AgentInput : MonoBehaviour
         GetMoveInput();
         GetMousePointInput();
         GetDashButtonInput();
-        //GetMouseButtonInput();
     }
 
     private void GetMoveInput()
@@ -45,9 +44,6 @@ public class AgentInput : MonoBehaviour
 
     private void GetMouseButtonInput()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnPlayerMousePressEvent?.Invoke();
-        }
+
     }
 }
