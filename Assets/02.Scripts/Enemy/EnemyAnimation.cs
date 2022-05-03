@@ -23,7 +23,7 @@ public class EnemyAnimation : MonoBehaviour
     {
         _animator.SetTrigger("Attack");
     }
-    public void FaceDirection(Vector2 pointerInput)
+    public virtual void FaceDirection(Vector2 pointerInput)
     {
         Vector3 dir = (Vector3)pointerInput - transform.position;
         Vector3 result = Vector3.Cross(Vector2.up, dir);

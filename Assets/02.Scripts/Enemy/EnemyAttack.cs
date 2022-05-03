@@ -8,7 +8,6 @@ public abstract class EnemyAttack : MonoBehaviour
     protected EnemyAIBrain _enemyBrain;
     protected Enemy _enemy;
 
-    public float attackDelay = 1;
 
     protected bool _waitBeforeNextAttack;
 
@@ -31,8 +30,7 @@ public abstract class EnemyAttack : MonoBehaviour
     protected IEnumerator WaitBeforeAttackCoroutine()
     {
         _waitBeforeNextAttack = true;
-        yield return new WaitForSeconds(attackDelay);
-        Debug.Log("¼­°Æ!");
+        yield return new WaitForSeconds(_enemy.EnemyData.attackDelay);
         _waitBeforeNextAttack = false;
     }
     public void Reset()
@@ -53,4 +51,5 @@ public abstract class EnemyAttack : MonoBehaviour
         return _enemyBrain.target;
     }
     public abstract void Attack(float damage);
+
 }
