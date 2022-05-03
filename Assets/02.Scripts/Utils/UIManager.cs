@@ -6,15 +6,11 @@ using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private MessagePanal _messagePanal;
+
+    public void TriggerMessage(string message, ButtonStyle btnStyle, ButtonStyle btnStyle2 = null)
     {
-        
+        _messagePanal.ShowMessagePanal(message, btnStyle, btnStyle2);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
