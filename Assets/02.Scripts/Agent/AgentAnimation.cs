@@ -5,14 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class AgentAnimation : MonoBehaviour
 {
-    protected Animator animator;
+    protected Animator _animator;
 
     protected readonly int _walkHashStr = Animator.StringToHash("Walk");
     protected readonly int _deathHashStr = Animator.StringToHash("Death");
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         ChildAwake();
     }
 
@@ -23,7 +23,7 @@ public class AgentAnimation : MonoBehaviour
 
     public void SetWalkAnimation(bool value)
     {
-        animator.SetBool(_walkHashStr, value);
+        _animator.SetBool(_walkHashStr, value);
     }
 
     public void AnimatePlayer(float velocity)
@@ -33,6 +33,6 @@ public class AgentAnimation : MonoBehaviour
 
     public void PlayDeathAnimation()
     {
-        animator.SetTrigger(_deathHashStr);
+        _animator.SetTrigger(_deathHashStr);
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemyRenderer : EnemyAnimation
+public class MeleeEnemyRenderer : AgentRenderer
 {
-    public override void FaceDirection(Vector2 pointerInput)
+    public override void ChangeFace(Vector2 pointerInput)
     {
 
         Vector3 dir = (Vector3)pointerInput - transform.position;

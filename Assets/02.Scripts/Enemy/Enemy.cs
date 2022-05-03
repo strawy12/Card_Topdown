@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour, IHittable
 {
     [SerializeField] private EnemyDataSO _enemyData;
     public EnemyDataSO EnemyData => _enemyData;
-    private AIMove _aiMove;
+    private AgentMove _aiMove;
     private EnemyAttack _enemyAttack;
 
     private bool _isDead = false;
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour, IHittable
     }
     private void Awake()
     {
-        _aiMove = GetComponent<AIMove>();
+        _aiMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
     }
     public void EnemyAttack()

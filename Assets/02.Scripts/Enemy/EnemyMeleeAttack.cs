@@ -29,10 +29,10 @@ public class EnemyMeleeAttack : EnemyAttack
             }
         }
     }
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(pos.position, boxsize);
-    }
+    //public void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawCube(pos.position, boxsize);
+    //}
 
 }

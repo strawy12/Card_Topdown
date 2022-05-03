@@ -10,7 +10,7 @@ public class AgentRenderer : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    public void ChangeFace(Vector2 mousePosition)
+    public virtual void ChangeFace(Vector2 mousePosition)
     {
         if (mousePosition.x > transform.position.x)
         {
