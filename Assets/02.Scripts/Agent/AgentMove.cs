@@ -16,8 +16,7 @@ public class AgentMove : MonoBehaviour
     private BoxCollider2D boxCol2D;
 
     private bool isDashing = false;
-    private bool isStop = false;
-
+    public static bool isStop = false;
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -26,38 +25,40 @@ public class AgentMove : MonoBehaviour
 
     public void OnMove(Vector2 plyaerVec)
     {
-        if (plyaerVec.sqrMagnitude > 0) // 값이 0이 아니면 모두 확인가능
+        if (plyaerVec.sqrMagnitude > 0)
         {
-            if (Vector2.Dot(plyaerVec, nowMoveDirection) < 0) // 플레이어 방향이 지금움직이는 방향과 90도 초과해서 움직였는지 판단
+            if (Vector2.Dot(plyaerVec, nowMoveDirection) < 0)
             {
-                Debug.Log("멈춤");
-                moveSpeed = 0f; // 잠시 멈춤
+                moveSpeed = 0f;
             }
-            nowMoveDirection = plyaerVec.normalized; // 현재 움직임 방향을 플레이어의 방향벡터로 바꿈
+            nowMoveDirection = plyaerVec.normalized;
         }
         moveSpeed = ChangeSpeed(plyaerVec);
     }
 
     private float ChangeSpeed(Vector2 playerVec)
     {
-        if (playerVec.sqrMagnitude > 0) // 플레이어가 움직이고 있다면
+        if (playerVec.sqrMagnitude > 0)
         {
-            Debug.Log("가속중");
-            moveSpeed += moveData.acceleration * Time.deltaTime; // 가속
+            moveSpeed += moveData.acceleration * Time.deltaTime;
         }
-        else // 움직이고 있지 않다면
+        else
         {
-            Debug.Log("감속중");
-            moveSpeed -= moveData.deceleration * Time.deltaTime; // 감속
+            moveSpeed -= moveData.deceleration * Time.deltaTime;
         }
-        return Mathf.Clamp(moveSpeed, 0, moveData.maxSpeed); // 최소값과 최대값을 Clamp로 제한해줌
+        return Mathf.Clamp(moveSpeed, 0, moveData.maxSpeed);
     }
 
     public void OnDash(Vector2 mouseWorldPosition)
     {
         if (isDashing == true) return;
+        if (isStop == true) return;
         isDashing = true;
-        rb2D.velocity = mouseWorldPosition.normalized * 40f;
+        Vector2 playerPos = new Vector2(
+            GameManager.Inst.PlayerTrm.position.x,
+            GameManager.Inst.PlayerTrm.position.y);
+        Vector2 dashDir = mouseWorldPosition - playerPos;
+        rb2D.velocity = dashDir.normalized * 40f;
 
         StartCoroutine(DashTimeCheck());
     }
@@ -84,5 +85,6 @@ public class AgentMove : MonoBehaviour
     {
         moveSpeed = 0;
         rb2D.velocity = Vector2.zero;
+        isStop = true;
     }
 }

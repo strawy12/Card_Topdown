@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class AttackAnimation : AgentAnimation
 {
-    protected bool isAttack = false;
+    public static bool isAttack = false;
 
     protected readonly int _atkHashStr = Animator.StringToHash("Atk");
 
     public void StartAttack()
     {
+        if (isAttack == true) return;
         isAttack = true;
-        animator.SetTrigger(_atkHashStr);
+        _animator.Play("Attack1");
+        StartCoroutine(Delay());
+    }
 
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isAttack = false;
+        AgentMove.isStop = false;
+        _animator.Play("Idle");
     }
 }
