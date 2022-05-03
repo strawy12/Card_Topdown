@@ -12,6 +12,23 @@ public class Define
         Close
     }
 
+    public enum EPedigree
+    {
+        None,
+        Rest,
+        Pair,
+        GuSa,
+        PairHunter,
+        ESibal,
+        SeRyuk,
+        Jangsa,
+        BBing,
+        Doksa,
+        Ali,
+        GabO,
+        LightDDang
+    };
+
 
     private static Camera mainCam;
     public static Camera MainCam
