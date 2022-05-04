@@ -1,48 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static Define;
 
 public class PedigreeCardPanel : MonoBehaviour
 {
     private CardPanal[] _cardPanals = new CardPanal[2];
+    private Text _pedigreeText;
 
-    private EPedigree _pedigreeType = EPedigree.None;
+    private PedigreeData _pedigreeData = null;
 
-    public EPedigree Pedigree
+    public PedigreeData Pedigree
     {
         get
         {
-            return _pedigreeType;
+            return _pedigreeData;
         }
     }
 
-    private void Start()
+    public void Init()
     {
-        Init();
+        _cardPanals = new CardPanal[2];
+        _pedigreeText = transform.Find("PedigreeText").GetComponent<Text>();
+        _pedigreeText.text = "";
     }
 
-    private void Init()
+    public void AddCardPanal(CardPanal panal)
     {
-        _cardPanals = GetComponentsInChildren<CardPanal>();
-        
+        int idx = _cardPanals[0] == null ? 0 : 1;
+        _cardPanals[idx] = panal;
 
+        _cardPanals[idx].OnChangeCardEvent += ChangePanal;
     }
-    // ¾Õ¸Ó¸®°¡ ±æ°í ¾È°æ ½è°í
-    // µ¿À±ÀÌ¶û ºñ½ÁÇÏ°Ô »ý±è
-    // 
+
     private void ChangePanal()
     {
+        if (_cardPanals[1].IsEmpty) return;
+
         CalcPedigree(_cardPanals[0].CurrentCard, _cardPanals[1].CurrentCard);
+
+        if(_pedigreeData != null)
+        {
+            string pedi = GetPedigreeInfo(_pedigreeData.pedigreeType);
+            string numStr = "";
+            if (_pedigreeData.pedigreeType == EPedigree.LightDDang)
+            {
+                 numStr = NumberToString(_pedigreeData.pedigreeNum);
+            }
+            else
+            {
+                 numStr = NumberToString(_pedigreeData.pedigreeNum);
+            }
+
+            _pedigreeText.text = $"{numStr}{pedi}";
+            _pedigreeText.gameObject.SetActive(true);
+        }
+
+        else
+        {
+            _pedigreeText.gameObject.SetActive(false);
+            _pedigreeText.text = "";
+        }
     }
 
     private void CalcPedigree(CardData cardData1, CardData cardData2)
     {
+        bool isSelect = false;
         int num1 = cardData1.CardNum;
         int num2 = cardData2.CardNum;
 
-        if(num1 > num2)
+        int pedigreeNum = 0;
+        EPedigree pedigreeType = EPedigree.None;
+
+        if (num1 > num2)
         {
+            Debug.Log(num1 + " "+ num2);
             int temp = num1;
             num1 = num2;
             num2 = temp;
@@ -50,50 +83,77 @@ public class PedigreeCardPanel : MonoBehaviour
 
         if (num1 == num2)
         {
-            _pedigreeType = EPedigree.Pair;
+            pedigreeType = EPedigree.Pair;
+            pedigreeNum = num1;
+            isSelect = true;
         }
 
         else if(cardData1.IsLight && cardData2.IsLight)
         {
-            _pedigreeType = EPedigree.LightDDang;
+            pedigreeType = EPedigree.LightDDang;
+            pedigreeNum = num1+num2;
+            isSelect = true;
         }
 
         else if(num1 == 4 && num2 == 6)
         {
-            _pedigreeType = EPedigree.SeRyuk;
+            pedigreeType = EPedigree.SeRyuk;
+            isSelect = true;
         }
 
-        else if(num1 == 4 && num2 == 10)
+        else if(num1 == 4 && num2 == 7)
         {
-            _pedigreeType = EPedigree.Jangsa;
+            pedigreeType = EPedigree.ESibal;
+            isSelect = true;
         }
 
         else if (num1 == 4 && num2 == 10)
         {
-            _pedigreeType = EPedigree.Jangsa;
+            pedigreeType = EPedigree.Jangsa;
+            isSelect = true;
         }
 
         else if(num1 == 1)
         {
             if(num2 == 9 || num2 == 10)
             {
-                _pedigreeType = EPedigree.BBing;
+                pedigreeType = EPedigree.BBing;
+                pedigreeNum = num2;
+                isSelect = true;
             }
 
             else if(num2 == 2)
             {
-                _pedigreeType = EPedigree.Ali;
+                pedigreeType = EPedigree.Ali;
+                isSelect = true;
             }
 
             else if(num2 == 4)
             {
-                _pedigreeType = EPedigree.Doksa;
+                pedigreeType = EPedigree.Doksa;
+                isSelect = true;
             }
+
         }
 
-        else
+        if(!isSelect)
         {
-            _pedigreeType = EPedigree.Rest;
+            if ((num1 + num2) == 10)
+            {
+                pedigreeType = EPedigree.MangTong;
+            }
+
+            else
+            {
+                pedigreeType = EPedigree.Rest;
+                pedigreeNum = (num1 + num2) % 10;
+            }
         }
-    }    
+      
+
+        _pedigreeData = new PedigreeData(pedigreeType, pedigreeNum);
+
+        GameManager.Inst.Data.SetPedigreeData(_pedigreeData);
+    }
+
 }

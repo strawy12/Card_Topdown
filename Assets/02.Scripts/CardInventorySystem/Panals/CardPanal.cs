@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -6,10 +7,13 @@ using DG.Tweening;
 public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     protected static CardInventoryManager _cardInventoryManager;
+
     private static bool _stopShowInfo;
     private static int _panalCount;
 
     protected CardOutLineEffect _outLineEffect;
+
+    public Action OnChangeCardEvent { get; set; }
 
     protected CardData _currentCard { get; private set; }
 
@@ -58,11 +62,23 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
             _cardInventoryManager = FindObjectOfType<CardInventoryManager>();
         }
 
+
         _currentID = _panalCount++;
         _currentImage = GetComponent<Image>();
         EmptyCard();
         ChildInit();
+
+        AddedToPedigreePanal();
+
         _cardInventoryManager.AddCardPanalList(this);
+    }
+
+    private void AddedToPedigreePanal()
+    {
+        if (_isDeferPanal) return;
+
+        PedigreeCardPanel panal = GetComponentInParent<PedigreeCardPanel>();
+        panal.AddCardPanal(this);
     }
 
     protected abstract void ChildInit();
@@ -72,19 +88,19 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
         _currentCard = cardData;
         _currentImage.sprite = _currentCard.CardSprite;
 
-
         if (_isEmpty)
         {
             _isEmpty = false;
             // HoldCard가 커지고 하게 하기
 
-            if(isEffect)
+            if (isEffect)
             {
                 transform.DOScale(Vector3.one * 3f, 0f);
                 transform.DOScale(Vector3.one, 0.3f);
             }
         }
 
+        OnChangeCardEvent?.Invoke();
         ChangeAlpha(1f);
     }
 

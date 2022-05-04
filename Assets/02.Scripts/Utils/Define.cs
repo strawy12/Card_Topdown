@@ -26,6 +26,7 @@ public class Define
         Doksa,
         Ali,
         GabO,
+        MangTong,
         LightDDang
     };
 
@@ -50,37 +51,109 @@ public class Define
         }
     }
 
-    private static Dictionary<int, string> _cardInfoDict;
+    private static Dictionary<EPedigree, string> _pedigreInfoDict;
+    private static string[] _cardInfoDatas;
+    private static Dictionary<int, string> _numberToStringArray;
+
+    public static string NumberToString(int num)
+    {
+        if (num > 10 || num < 1)
+        {
+            return "";
+        }
+
+        num--;
+        if (_numberToStringArray == null)
+        {
+            InitNumberToStringArray();
+        }
+
+
+        return _numberToStringArray[num];
+    }
 
     public static string GetCardInfo(int num)
     {
-        if(_cardInfoDict == null)
+        if (num > 10 || num < 1)
         {
-            InitDict();
+            return "";
         }
 
-        if(!_cardInfoDict.ContainsKey(num))
+        num--;
+
+        if (_cardInfoDatas == null)
         {
-            Debug.LogError("1~10ÀÇ ¼ýÀÚ ¿ÜÀÇ ´Ù¸¥ ¼ýÀÚ¸¦ ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+            InitCardInfoDatas();
+        }
+
+        
+
+        return _cardInfoDatas[num];
+    }
+
+    public static string GetPedigreeInfo(EPedigree pedigree)
+    {
+        if (_pedigreInfoDict == null)
+        {
+            InitPedigreeInfoDict();
+        }
+
+        if (!_pedigreInfoDict.ContainsKey(pedigree))
+        {
             return null;
         }
 
-        return _cardInfoDict[num];
+        return _pedigreInfoDict[pedigree];
     }
-    
-    public static void InitDict()
+    private static void InitNumberToStringArray()
     {
-        _cardInfoDict = new Dictionary<int, string>();
-        _cardInfoDict.Add(1, "¼Ö");
-        _cardInfoDict.Add(2, "¸ÅÁ¶");
-        _cardInfoDict.Add(3, "»çÄí¶ó");
-        _cardInfoDict.Add(4, "Èæ½Î¸®");
-        _cardInfoDict.Add(5, "ÃÊ");
-        _cardInfoDict.Add(6, "¸ñ´Ü");
-        _cardInfoDict.Add(7, "È«½Î¸®");
-        _cardInfoDict.Add(8, "°ø»ê");
-        _cardInfoDict.Add(9, "±¹Áø");
-        _cardInfoDict.Add(10, "Ç³");
+        _numberToStringArray = new Dictionary<int, string>();
+
+        _numberToStringArray.Add(0, "ÀÏ");
+        _numberToStringArray[1] = "ÀÌ";
+        _numberToStringArray[2] = "»ï";
+        _numberToStringArray[3] = "»ç";
+        _numberToStringArray[4] = "¿À";
+        _numberToStringArray[5] = "À°";
+        _numberToStringArray[6] = "Ä¥";
+        _numberToStringArray[7] = "ÆÈ";
+        _numberToStringArray[8] = "±¸";
+        _numberToStringArray[9] = "Àå";
+    }
+
+
+    private static void InitPedigreeInfoDict()
+    {
+        _pedigreInfoDict = new Dictionary<EPedigree, string>();
+        _pedigreInfoDict.Add(EPedigree.Pair, "¶¯");
+        _pedigreInfoDict.Add(EPedigree.PairHunter, "¶¯ÀâÀÌ");
+        _pedigreInfoDict.Add(EPedigree.Rest, "²ý");
+        _pedigreInfoDict.Add(EPedigree.SeRyuk, "¼¼·ú");
+        _pedigreInfoDict.Add(EPedigree.Ali, "¾Ë¸®");
+        _pedigreInfoDict.Add(EPedigree.BBing, "»æ");
+        _pedigreInfoDict.Add(EPedigree.Doksa, "µ¶»ç");
+        _pedigreInfoDict.Add(EPedigree.ESibal, "¾ÏÇà¾î»ç");
+        _pedigreInfoDict.Add(EPedigree.GabO, "°©¿À");
+        _pedigreInfoDict.Add(EPedigree.GuSa, "±¸»ç");
+        _pedigreInfoDict.Add(EPedigree.Jangsa, "Àå»ç");
+        _pedigreInfoDict.Add(EPedigree.LightDDang, "±¤¶¯");
+        _pedigreInfoDict.Add(EPedigree.MangTong, "¸ÁÅë");
+    }
+
+    private static void InitCardInfoDatas()
+    {
+        _cardInfoDatas = new string[10];
+
+        _cardInfoDatas[0] = "¼Ö";
+        _cardInfoDatas[1] = "¸ÅÁ¶";
+        _cardInfoDatas[2] = "»çÄí¶ó";
+        _cardInfoDatas[3] = "Èæ½Î¸®";
+        _cardInfoDatas[4] = "ÃÊ";
+        _cardInfoDatas[5] =  "¸ñ´Ü";
+        _cardInfoDatas[6] = "È«½Î¸®";
+        _cardInfoDatas[7] = "°ø»ê";
+        _cardInfoDatas[8] = "±¹Áø";
+        _cardInfoDatas[9] = "Ç³";
     }
 
 }

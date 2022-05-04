@@ -9,10 +9,14 @@ public class PlayerData
 
     public bool isTutorial;
 
+    public PedigreeData[] pedigreeDatas;
+
     public PlayerData(float soundVolume)
     {
         effectSoundVolume = soundVolume;
         bgmSoundVolume = soundVolume;
         isTutorial = false;
+
+        pedigreeDatas = new PedigreeData[5];
     }
 }

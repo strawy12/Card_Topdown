@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
-public class DataManager : MonoSingleton<DataManager>
+public class DataManager : MonoBehaviour
 {
     [SerializeField] private float defaultSound = 0.5f;
     [SerializeField] private PlayerData player;
@@ -15,16 +15,7 @@ public class DataManager : MonoSingleton<DataManager>
     private const string SAVE_FILE = "/SaveFile.Json";
 
     private void Awake()
-    {
-        DataManager[] dmanagers = FindObjectsOfType<DataManager>();
-        if (dmanagers.Length != 1)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(this);
-
+    { 
         SAVE_PATH = Application.dataPath + "/Save";
 
         if (!Directory.Exists(SAVE_PATH))
@@ -49,6 +40,19 @@ public class DataManager : MonoSingleton<DataManager>
         }
         SaveToJson();
     }
+
+    public void SetPedigreeData(PedigreeData data)
+    {
+        for (int i = 0; i < player.pedigreeDatas.Length; i++)
+        {
+            if (player.pedigreeDatas[i].pedigreeType == Define.EPedigree.None)
+            {
+                player.pedigreeDatas[i] = data;
+                return;
+            }
+        }
+    }
+
     public void SaveToJson()
     {
         string stringJson = JsonUtility.ToJson(player, true);
