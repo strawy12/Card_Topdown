@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AttackAnimation : AgentAnimation
 {
+    // isAttack 이거도 static고쳐야함
     public static bool isAttack = false;
 
     protected readonly int _atkHashStr = Animator.StringToHash("Atk");

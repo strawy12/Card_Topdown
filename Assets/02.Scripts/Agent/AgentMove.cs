@@ -8,6 +8,7 @@ public class AgentMove : MonoBehaviour
     public MoveDataSO moveData;
 
     public UnityEvent<float> OnVelocityChange;
+    public UnityEvent<Vector2> OnVectorChange;
 
     private float moveSpeed = 5f;
     private Vector2 nowMoveDirection;
@@ -15,7 +16,9 @@ public class AgentMove : MonoBehaviour
     private Rigidbody2D rb2D;
     private BoxCollider2D boxCol2D;
 
-    private bool isDashing = false;
+    public static bool isDashing = false;
+
+    // static 고쳐야함 ㄹㅇ
     public static bool isStop = false;
     private void Start()
     {
@@ -76,6 +79,7 @@ public class AgentMove : MonoBehaviour
     private void FixedUpdate()
     {
         OnVelocityChange?.Invoke(moveSpeed);
+        OnVectorChange?.Invoke(rb2D.velocity.normalized);
         if (isDashing == true) return;
         if (isStop == true) return;
         rb2D.velocity = nowMoveDirection * moveSpeed;
@@ -86,5 +90,10 @@ public class AgentMove : MonoBehaviour
         moveSpeed = 0;
         rb2D.velocity = Vector2.zero;
         isStop = true;
+    }
+
+    public void EndMoveStop()
+    {
+        isStop = false;
     }
 }
