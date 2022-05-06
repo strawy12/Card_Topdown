@@ -22,9 +22,20 @@ public class Enemy : MonoBehaviour, IHittable
     public void GetHit(float damage, GameObject damageDealer)
     {
         if (_isDead) return;
+        float critical = Random.value;
+        bool isCritical = false;
+
+        if(critical <= 0.5f) // 플레이어가 가진 크리티컬 확률 값으로 변경 예정
+        {
+            float ratio = 1.5f; // 플레이어가 가진 크리티컬 추가 데미지로 변경 예정
+            damage = Mathf.CeilToInt((float)damage * ratio);
+            isCritical = true;
+        }
         Health -= damage;   
         HitPoint = damageDealer.transform.position;
         OnGetHit?.Invoke();
+        DamagePopup popup = Instantiate(new DamagePopup());
+        popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
         if (Health <= 0)
         {
             _isDead = true;
@@ -55,8 +66,15 @@ public class Enemy : MonoBehaviour, IHittable
     {
         Health = _enemyData.maxHealth;
     }
+    private void Update()
+    {
+        if (_enemyAttack.IsAttacking)
+        {
+            _aiMove.StopImmediatelly();
+        }
+    }
     public void Die()
     {
-
+        Destroy(gameObject);//풀매니저 구현시 변경
     }
 }
