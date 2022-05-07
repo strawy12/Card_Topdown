@@ -3121,7 +3121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4805c998f081d7943b2c539de5638f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTrm: {fileID: 0}
+  _cardDataSO: {fileID: 11400000, guid: fb324694ec5e34e449257998de7c135e, type: 2}
 --- !u!4 &797824035
 Transform:
   m_ObjectHideFlags: 0
@@ -3352,19 +3352,7 @@ MonoBehaviour:
         m_CallState: 2
   OnVectorChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 619098420}
-        m_TargetAssemblyTypeName: AgentRenderer, Assembly-CSharp
-        m_MethodName: ChangeFace
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1482410780
 GameObject:
   m_ObjectHideFlags: 0
