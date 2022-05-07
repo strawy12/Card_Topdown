@@ -5,12 +5,12 @@ using UnityEngine;
 public class AgentRenderer : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    public void ChangeFace(Vector2 playerVec)
+    public virtual void ChangeFace(Vector2 playerVec)
     {
         if (Vector2.Dot(playerVec, Vector2.right) > 0)
         {

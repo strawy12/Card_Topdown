@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class AttackAnimation : AgentAnimation
 {
-    // isAttack ÀÌ°Åµµ static°íÃÄ¾ßÇÔ
+    // isAttack ï¿½Ì°Åµï¿½ staticï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
     public static bool isAttack = false;
 
     protected readonly int _atkHashStr = Animator.StringToHash("Atk");
