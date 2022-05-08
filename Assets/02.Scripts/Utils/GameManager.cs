@@ -18,7 +18,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
-        _uiManager = GetComponent<UIManager>();
+        _uiManager = FindObjectOfType<UIManager>();
         _dataManager = GetComponent<DataManager>();
         ShuffleCardDeck();
     }
