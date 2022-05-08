@@ -2,26 +2,6 @@
     "effectSoundVolume": 0.5,
     "bgmSoundVolume": 0.5,
     "isTutorial": false,
-    "pedigreeDatas": [
-        {
-            "pedigreeType": 0,
-            "pedigreeNum": 0
-        },
-        {
-            "pedigreeType": 0,
-            "pedigreeNum": 0
-        },
-        {
-            "pedigreeType": 0,
-            "pedigreeNum": 0
-        },
-        {
-            "pedigreeType": 0,
-            "pedigreeNum": 0
-        },
-        {
-            "pedigreeType": 0,
-            "pedigreeNum": 0
-        }
-    ]
+    "genealogyDatas": [],
+    "genealogySaveCnt": 0
 }

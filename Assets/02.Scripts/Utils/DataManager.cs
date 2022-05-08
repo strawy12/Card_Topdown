@@ -27,6 +27,7 @@ public class DataManager : MonoBehaviour
 
         LoadFromJson();
         //SoundVolumeUpdate();
+        StartCoroutine(SyneargyDataDownLoad());
     }
 
     private void LoadFromJson()
@@ -64,69 +65,73 @@ public class DataManager : MonoBehaviour
         Application.Quit();
     }
 
-    private void InitSyneargyInfoDict()
+
+    private IEnumerator SyneargyDataDownLoad()
     {
-        int[] datas;
 
+        const string URL = "https://docs.google.com/spreadsheets/d/1xcHXDI1P4fY2vODt-s3mA51y1kgPkx9c-_dPHs7LYKw/export?format=tsv&gid=0&range=C2:12";
+        UnityWebRequest www = UnityWebRequest.Get(URL);
+        yield return www.SendWebRequest();
 
+        SetSyneargyData(www.downloadHandler.text);
     }
 
-    //private IEnumerator SyneargyDataDownLoad()
-    //{
+    private void SetSyneargyData(string data)
+    {
+        Debug.Log(data);
+        string[] row = data.Split('\n');
+        string[] column;
+        int rowSize = row.Length;
 
-    //    const string URL = "https://docs.google.com/spreadsheets/d/1xcHXDI1P4fY2vODt-s3mA51y1kgPkx9c-_dPHs7LYKw/export?format=tsv&gid=0&range=C2:12";
-    //    UnityWebRequest www = UnityWebRequest.Get(URL);
-    //    yield return www.SendWebRequest();
+        int rowCnt = 0;
 
-    //    SetSyneargyData(www.downloadHandler.text);
-    //}
+        SynergyInfo synergyInfo;
 
-    //private void SetMonsterDatas(string data)
-    //{
-    //    string[] row = data.Split('\n');
-    //    string[] column;
-    //    int rowSize = row.Length;
-    //    int colummSize = row[0].Split('\t').Length;
-    //    MonsterBase monsterBase = null;
+        int maxLevel;
+        int count;
 
-    //    string id = "";
-    //    string name = "";
-    //    string itemId = "";
-    //    PropertyType type;
-    //    ItemBase item = null;
+        for (int i = 0; i < rowSize; i++)
+        {
+            column = row[i].Split('\t');
+            if (column[0] == "") continue;
+            Debug.Log(column[0]);
+            synergyInfo = new SynergyInfo();
 
-    //    for (int i = 0; i < rowSize; i++)
-    //    {
-    //        column = row[i].Split('\t');
-    //        for (int j = 0; j < colummSize; j++)
-    //        {
-    //            id = column[0];
-    //            name = column[1];
-    //            type = (PropertyType)Enum.Parse(typeof(PropertyType), column[2]);
-    //            column[3] = Regex.Replace(column[3], "[^a-zA-Z_]", "");
-    //            item = FindItemBase(column[3]);
+            maxLevel = int.Parse(column[0]);
+            count = int.Parse(column[1]);
 
-    //            if (i >= monsterDatas.monsterDatas.Count)
-    //            {
+            for (int j = 0; j < count; j++)
+            {
+                synergyInfo.Add(SetSynergyInfoList(column, maxLevel));
+            }
 
-    //                monsterDatas.monsterDatas.Add(new MonsterBase(id, name, type, item));
-    //            }
+            synergyInfo.type = (ESynergy)rowCnt;
 
-    //            else
-    //            {
-    //                monsterBase = monsterDatas.monsterDatas[i];
-    //                monsterBase.monsterId = id;
-    //                monsterBase.monsterName = name;
-    //                monsterBase.monsterType = type;
-    //                monsterBase.dropItem = item;
-    //            }
-    //        }
-    //    }
-    //}
+            _synergyInfoDataSO[rowCnt] = synergyInfo;
+
+            rowCnt++;
+        }
+    }
+
+    private SynergyDataList SetSynergyInfoList(string[] column, int cnt)
+    {
+        int idx = 0;
+        SynergyDataList dataList = new SynergyDataList();
+
+        for (int i = 0; i < cnt; i++)
+        {
+            if (column[2 + idx] == "") continue;
+
+            dataList.dataList.Add(int.Parse(column[2 + idx]));
+            idx++;
+        }
+
+        return dataList;
+    }
 
     private void AddSynergyInfo(ESynergy type, int[] datas)
-{
+    {
 
-}
+    }
 
 }

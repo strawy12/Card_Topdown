@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbfaa6451589c44bb48b9cb8204b183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pedigreeCardPanalTemp: {fileID: 1995303382956268669}
+  _genealogyCardPanalTemp: {fileID: 1995303382956268669}
 --- !u!1 &220870676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,7 +1448,7 @@ GameObject:
   - component: {fileID: 1541428799}
   - component: {fileID: 1541428798}
   m_Layer: 5
-  m_Name: PedigreeText
+  m_Name: GenealogyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2550,7 +2550,9 @@ MonoBehaviour:
     effectSoundVolume: 0
     bgmSoundVolume: 0
     isTutorial: 0
-    pedigreeDatas: []
+    genealogyDatas: []
+    genealogySaveCnt: 0
+  _synergyInfoDataSO: {fileID: 11400000, guid: 2e92ea813e222b740bd7deb801f4d1d6, type: 2}
 --- !u!222 &1995303381752482256
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2824,7 +2826,7 @@ GameObject:
   - component: {fileID: 1995303382956268669}
   - component: {fileID: 1995303382956268670}
   m_Layer: 5
-  m_Name: PedigreeCardPanel
+  m_Name: GenealogyCardPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

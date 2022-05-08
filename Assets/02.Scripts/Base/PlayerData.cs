@@ -127,7 +127,6 @@ public class PlayerData
             {
                 int percent = 10 * syneargyDict[type].Count;
                 float atkPower = UtilDefine.CalcPercent(playerStats.atkPower, percent);
-                float 
                 playerStats.atkPower += atkPower;
 
                 break;
