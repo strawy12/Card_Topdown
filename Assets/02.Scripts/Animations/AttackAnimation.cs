@@ -5,24 +5,28 @@ using UnityEngine.Events;
 
 public class AttackAnimation : AgentAnimation
 {
-    // isAttack �̰ŵ� static���ľ���
     public static bool isAttack = false;
 
     protected readonly int _atkHashStr = Animator.StringToHash("Atk");
 
     public void StartAttack()
     {
-        if (isAttack == true) return;
-        isAttack = true;
-        _animator.Play("Attack1");
-        StartCoroutine(Delay());
+        _animator.Play("Attack");
     }
 
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        isAttack = false;
-        AgentMove.isStop = false;
-        _animator.Play("Idle");
-    }
+    //public void StartAttack()
+    //{
+    //    if (isAttack == true) return;
+    //    isAttack = true;
+    //    _animator.Play("Attack1");
+    //    StartCoroutine(Delay());
+    //}
+
+    //IEnumerator Delay()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+    //    isAttack = false;
+    //    AgentMove.isStop = false;
+    //    _animator.Play("Idle");
+    //}
 }
