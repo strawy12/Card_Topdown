@@ -68,16 +68,16 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
         EmptyCard();
         ChildInit();
 
-        AddedToPedigreePanal();
+        AddedToGenealogyPanal();
 
         _cardInventoryManager.AddCardPanalList(this);
     }
 
-    private void AddedToPedigreePanal()
+    private void AddedToGenealogyPanal()
     {
         if (_isDeferPanal) return;
 
-        PedigreeCardPanel panal = GetComponentInParent<PedigreeCardPanel>();
+        GenealogyCardPanel panal = GetComponentInParent<GenealogyCardPanel>();
         panal.AddCardPanal(this);
     }
 

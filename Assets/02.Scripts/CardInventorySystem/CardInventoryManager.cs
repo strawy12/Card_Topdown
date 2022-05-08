@@ -122,12 +122,12 @@ public class CardInventoryManager : MonoBehaviour
 
     private void MountingMessage(Param param)
     {
-        ButtonStyle btn1 = new ButtonStyle(Define.EButtonStyle.Okay, () =>
+        ButtonStyle btn1 = new ButtonStyle(UtilDefine.EButtonStyle.Okay, () =>
         {
             MountCard(param);
         });
 
-        ButtonStyle btn2 = new ButtonStyle(Define.EButtonStyle.Cancel, () =>
+        ButtonStyle btn2 = new ButtonStyle(UtilDefine.EButtonStyle.Cancel, () =>
         {
             PEventManager.TriggerEvent(RETURN_CARD_EFFECT, param);
         });

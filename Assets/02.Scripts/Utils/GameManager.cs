@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Define;
+using static UtilDefine;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoSingleton<GameManager>

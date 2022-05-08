@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MountingUI : MonoBehaviour
 {
-    [SerializeField] private PedigreeCardPanel _pedigreeCardPanalTemp;
+    [SerializeField] private GenealogyCardPanel _genealogyCardPanalTemp;
     private bool _isEnterUI;
 
 
@@ -14,7 +14,7 @@ public class MountingUI : MonoBehaviour
         _isEnterUI = false;
         PEventManager.StartListening(Constant.POINTUP_CARD, ActiveMountingCard);
         SubscribeEvent();
-        GeneratePedigreePanals();
+        GenerateGenealogyPanals();
     }
 
     private void SubscribeEvent()
@@ -24,12 +24,12 @@ public class MountingUI : MonoBehaviour
         uiEvent.OnPointerUIExit += () => _isEnterUI = false;
     }
 
-    private void GeneratePedigreePanals()
+    private void GenerateGenealogyPanals()
     {
-        PedigreeCardPanel panal;
+        GenealogyCardPanel panal;
         for (int i = 0; i < 5; i++)
         {
-            panal = Instantiate(_pedigreeCardPanalTemp, _pedigreeCardPanalTemp.transform.parent);
+            panal = Instantiate(_genealogyCardPanalTemp, _genealogyCardPanalTemp.transform.parent);
             panal.transform.SetSiblingIndex(0);
             panal.Init();
             panal.gameObject.SetActive(true);

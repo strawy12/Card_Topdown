@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Define
+
+
+public class UtilDefine
 {
     public enum EButtonStyle
     {
@@ -11,25 +13,6 @@ public class Define
         Cancel,
         Close
     }
-
-    public enum EPedigree
-    {
-        None,
-        Rest,
-        Pair,
-        GuSa,
-        PairHunter,
-        ESibal,
-        SeRyuk,
-        Jangsa,
-        BBing,
-        Doksa,
-        Ali,
-        GabO,
-        MangTong,
-        LightDDang
-    };
-
 
     private static Camera mainCam;
     public static Camera MainCam
@@ -51,7 +34,44 @@ public class Define
         }
     }
 
-    private static Dictionary<EPedigree, string> _pedigreInfoDict;
+    public static float CalcPercent(float value, float percent)
+    {
+        return (value * 100) / percent;
+    }
+}
+
+public class GenealogyDefine
+{
+    public enum EGenealogy
+    {
+        None = -1,
+        Rest,
+        Pair,
+        GuSa,
+        PairHunter,
+        ESibal,
+        SeRyuk,
+        Jangsa,
+        BBing,
+        Doksa,
+        Ali,
+        GabO,
+        Mangtong,
+        LightPair
+    };
+
+    public enum ESynergy
+    {
+        None = -1,
+        Rest,
+        Pair,
+        LightPair,
+        Middle,
+        Special,
+        Mangtong,
+    }
+
+    private static Dictionary<EGenealogy, string> _pedigreInfoDict;
     private static string[] _cardInfoDatas;
     private static Dictionary<int, string> _numberToStringArray;
 
@@ -72,6 +92,24 @@ public class Define
         return _numberToStringArray[num];
     }
 
+    public static string LightDDangToString(int num)
+    {
+        switch(num)
+        {
+
+            case 4:
+                return "ÀÏ»ï";
+
+            case 9:
+                return "ÀÏÆÈ";
+
+            case 11:
+                return "»ïÆÈ";
+        }
+
+        return "";
+    }
+
     public static string GetCardInfo(int num)
     {
         if (num > 10 || num < 1)
@@ -86,58 +124,60 @@ public class Define
             InitCardInfoDatas();
         }
 
-        
+
 
         return _cardInfoDatas[num];
     }
 
-    public static string GetPedigreeInfo(EPedigree pedigree)
+    public static string GetGenealogyInfo(EGenealogy Genealogy)
     {
         if (_pedigreInfoDict == null)
         {
-            InitPedigreeInfoDict();
+            InitGenealogyInfoDict();
         }
 
-        if (!_pedigreInfoDict.ContainsKey(pedigree))
+        if (!_pedigreInfoDict.ContainsKey(Genealogy))
         {
             return null;
         }
 
-        return _pedigreInfoDict[pedigree];
+        return _pedigreInfoDict[Genealogy];
     }
+
+    
+
     private static void InitNumberToStringArray()
     {
         _numberToStringArray = new Dictionary<int, string>();
 
         _numberToStringArray.Add(0, "ÀÏ");
-        _numberToStringArray[1] = "ÀÌ";
-        _numberToStringArray[2] = "»ï";
-        _numberToStringArray[3] = "»ç";
-        _numberToStringArray[4] = "¿À";
-        _numberToStringArray[5] = "À°";
-        _numberToStringArray[6] = "Ä¥";
-        _numberToStringArray[7] = "ÆÈ";
-        _numberToStringArray[8] = "±¸";
-        _numberToStringArray[9] = "Àå";
+        _numberToStringArray.Add(1, "ÀÌ");
+        _numberToStringArray.Add(2, "»ï");
+        _numberToStringArray.Add(3, "»ç");
+        _numberToStringArray.Add(4, "¿À");
+        _numberToStringArray.Add(5, "À°");
+        _numberToStringArray.Add(6, "Ä¥");
+        _numberToStringArray.Add(7, "ÆÈ");
+        _numberToStringArray.Add(8, "±¸");
+        _numberToStringArray.Add(9, "Àå");
     }
 
-
-    private static void InitPedigreeInfoDict()
+        private static void InitGenealogyInfoDict()
     {
-        _pedigreInfoDict = new Dictionary<EPedigree, string>();
-        _pedigreInfoDict.Add(EPedigree.Pair, "¶¯");
-        _pedigreInfoDict.Add(EPedigree.PairHunter, "¶¯ÀâÀÌ");
-        _pedigreInfoDict.Add(EPedigree.Rest, "²ý");
-        _pedigreInfoDict.Add(EPedigree.SeRyuk, "¼¼·ú");
-        _pedigreInfoDict.Add(EPedigree.Ali, "¾Ë¸®");
-        _pedigreInfoDict.Add(EPedigree.BBing, "»æ");
-        _pedigreInfoDict.Add(EPedigree.Doksa, "µ¶»ç");
-        _pedigreInfoDict.Add(EPedigree.ESibal, "¾ÏÇà¾î»ç");
-        _pedigreInfoDict.Add(EPedigree.GabO, "°©¿À");
-        _pedigreInfoDict.Add(EPedigree.GuSa, "±¸»ç");
-        _pedigreInfoDict.Add(EPedigree.Jangsa, "Àå»ç");
-        _pedigreInfoDict.Add(EPedigree.LightDDang, "±¤¶¯");
-        _pedigreInfoDict.Add(EPedigree.MangTong, "¸ÁÅë");
+        _pedigreInfoDict = new Dictionary<EGenealogy, string>();
+        _pedigreInfoDict.Add(EGenealogy.Pair, "¶¯");
+        _pedigreInfoDict.Add(EGenealogy.PairHunter, "¶¯ÀâÀÌ");
+        _pedigreInfoDict.Add(EGenealogy.Rest, "²ý");
+        _pedigreInfoDict.Add(EGenealogy.SeRyuk, "¼¼·ú");
+        _pedigreInfoDict.Add(EGenealogy.Ali, "¾Ë¸®");
+        _pedigreInfoDict.Add(EGenealogy.BBing, "»æ");
+        _pedigreInfoDict.Add(EGenealogy.Doksa, "µ¶»ç");
+        _pedigreInfoDict.Add(EGenealogy.ESibal, "¾ÏÇà¾î»ç");
+        _pedigreInfoDict.Add(EGenealogy.GabO, "°©¿À");
+        _pedigreInfoDict.Add(EGenealogy.GuSa, "±¸»ç");
+        _pedigreInfoDict.Add(EGenealogy.Jangsa, "Àå»ç");
+        _pedigreInfoDict.Add(EGenealogy.LightPair, "±¤¶¯");
+        _pedigreInfoDict.Add(EGenealogy.Mangtong, "¸ÁÅë");
     }
 
     private static void InitCardInfoDatas()
@@ -149,13 +189,12 @@ public class Define
         _cardInfoDatas[2] = "»çÄí¶ó";
         _cardInfoDatas[3] = "Èæ½Î¸®";
         _cardInfoDatas[4] = "ÃÊ";
-        _cardInfoDatas[5] =  "¸ñ´Ü";
+        _cardInfoDatas[5] = "¸ñ´Ü";
         _cardInfoDatas[6] = "È«½Î¸®";
         _cardInfoDatas[7] = "°ø»ê";
         _cardInfoDatas[8] = "±¹Áø";
         _cardInfoDatas[9] = "Ç³";
     }
-
 }
 
 public static class Constant

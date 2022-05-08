@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static Define;
+using static UtilDefine;
 
 public class AgentInput : MonoBehaviour
 {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using DG.Tweening;
-using static Define;
+using static UtilDefine;
 
 public class ButtonStyle
 {

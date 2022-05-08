@@ -27,7 +27,7 @@ public class HoldCard : MonoBehaviour
     {
         if (_holdCard)
         {
-            transform.position = Define.MousePos;
+            transform.position = UtilDefine.MousePos;
 
 
             if (Input.GetMouseButtonUp(0))
