@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 1381443075}
   - component: {fileID: 1381443074}
   - component: {fileID: 1381443073}
-  - component: {fileID: 4955998923995081399}
   - component: {fileID: 7611630245719012850}
   - component: {fileID: 8404084930331324073}
+  - component: {fileID: 7184116008075754238}
   m_Layer: 0
   m_Name: visualSprite
   m_TagString: Enemy
@@ -136,20 +136,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &4955998923995081399
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381443071}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5163126
-  m_Height: 1.6875
-  m_Direction: 1
-  m_Center: {x: 0.01716137, y: 0, z: 0}
 --- !u!114 &7611630245719012850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +205,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0abd24657d69a94ba47ba144733ed95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &7184116008075754238
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381443071}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.25, y: 1.6875}
+  m_Direction: 0
 --- !u!1 &1738437757
 GameObject:
   m_ObjectHideFlags: 0
