@@ -7,7 +7,7 @@ public class GeneratePanals : MonoBehaviour
     [SerializeField] private GameObject _panalTemp;
     [SerializeField] private int _generateCnt;
 
-    private void Awake()
+    private void Start()
     {
         Generate();
     }

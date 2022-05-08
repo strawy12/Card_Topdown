@@ -63,7 +63,7 @@ public class CardInfoPanal : MonoBehaviour
 
         _infoText.text = "";
 
-        string info = $"종류 : {Define.GetCardInfo(_currentCard.CardNum)}\n {_currentCard.CardNum}월";
+        string info = $"종류 : {GenealogyDefine.GetCardInfo(_currentCard.CardNum)}\n {_currentCard.CardNum}월";
         _infoText.DOText(info, 0.5f);
     }
 

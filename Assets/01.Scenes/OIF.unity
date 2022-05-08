@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbfaa6451589c44bb48b9cb8204b183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pedigreeCardPanalTemp: {fileID: 1995303382956268666}
+  _genealogyCardPanalTemp: {fileID: 1995303382956268669}
 --- !u!1 &220870676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,7 +1448,7 @@ GameObject:
   - component: {fileID: 1541428799}
   - component: {fileID: 1541428798}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GenealogyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1579,7 +1579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2485,6 +2485,7 @@ GameObject:
   - component: {fileID: 2124278981}
   - component: {fileID: 2124278980}
   - component: {fileID: 2124278982}
+  - component: {fileID: 2124278983}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2532,6 +2533,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _messagePanal: {fileID: 1692840279}
+--- !u!114 &2124278983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124278979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fefbaa23aeb0e429b122a540c23394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSound: 0.5
+  player:
+    effectSoundVolume: 0
+    bgmSoundVolume: 0
+    isTutorial: 0
+    genealogyDatas: []
+    genealogySaveCnt: 0
+  _synergyInfoDataSO: {fileID: 11400000, guid: 2e92ea813e222b740bd7deb801f4d1d6, type: 2}
 --- !u!222 &1995303381752482256
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2805,7 +2826,7 @@ GameObject:
   - component: {fileID: 1995303382956268669}
   - component: {fileID: 1995303382956268670}
   m_Layer: 5
-  m_Name: PedigreeCardPanel
+  m_Name: GenealogyCardPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,20 +3,23 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Define;
+using static UtilDefine;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private CardDataSO _cardDataSO;
     private UIManager _uiManager;
+    private DataManager _dataManager;
     private List<CardData> _randomCardDeck;
 
     public UIManager UI { get => _uiManager; }
+    public DataManager Data { get => _dataManager; }
 
     private void Awake()
     {
         _uiManager = GetComponent<UIManager>();
+        _dataManager = GetComponent<DataManager>();
         ShuffleCardDeck();
     }
 
