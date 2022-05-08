@@ -162,6 +162,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ce37b63f641804caad9547438aea15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EndDieAnimation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7445775410248193909}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndAttackAnimation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 338309305}
+        m_TargetAssemblyTypeName: EnemyAttack, Assembly-CSharp
+        m_MethodName: EndOfAttackAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HittableAttackAnimation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 338309305}
+        m_TargetAssemblyTypeName: EnemyMeleeAttack, Assembly-CSharp
+        m_MethodName: MeleeAttackCollider
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8404084930331324073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,6 +639,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnVectorChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &7445775410248193908
 Rigidbody2D:
   serializedVersion: 4
@@ -602,7 +650,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7445775410248193904}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -614,7 +662,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7445775410248193914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +720,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 230740124166279526}
+        m_TargetAssemblyTypeName: AgentMove, Assembly-CSharp
+        m_MethodName: StopImmediatelly
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   target: {fileID: 0}
   _currentState: {fileID: 1859506100523746694}
 --- !u!114 &7445775410248193909
@@ -689,7 +749,19 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: 7a31c68935a5cef4a87a4b7e25818e47, type: 2}
   <OnDie>k__BackingField:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7611630245719012850}
+        m_TargetAssemblyTypeName: AgentAnimation, Assembly-CSharp
+        m_MethodName: PlayDeathAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <OnGetHit>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
