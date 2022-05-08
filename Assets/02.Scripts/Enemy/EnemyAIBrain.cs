@@ -10,6 +10,10 @@ public class EnemyAIBrain : MonoBehaviour
     public Transform target;
 
     [SerializeField] private AIState _currentState;
+    private void Awake()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     public void Attack()
     {
         OnAttack?.Invoke();
