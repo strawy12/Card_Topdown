@@ -16,14 +16,16 @@ public class AgentMove : MonoBehaviour
     private Rigidbody2D rb2D;
     private BoxCollider2D boxCol2D;
 
-    public static bool isDashing = false;
+    private AgentStateCheck agentStateCheck;
 
-    // static 고쳐야함 ㄹㅇ
-    public static bool isStop = false;
+    //public static bool isDashing = false;
+    //public static bool isStop = false;
+
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         boxCol2D = GetComponentInChildren<BoxCollider2D>();
+        agentStateCheck = GetComponent<AgentStateCheck>();
     }
 
     public void OnMove(Vector2 plyaerVec)
@@ -54,9 +56,9 @@ public class AgentMove : MonoBehaviour
 
     public void OnDash(Vector2 mouseWorldPosition)
     {
-        if (isDashing == true) return;
-        if (isStop == true) return;
-        isDashing = true;
+        if (agentStateCheck.IsDashing == true) return;
+        if (agentStateCheck.IsStop == true) return;
+        agentStateCheck.IsDashing = true;
         Vector2 playerPos = new Vector2(
             GameManager.Inst.PlayerTrm.position.x,
             GameManager.Inst.PlayerTrm.position.y);
@@ -73,16 +75,15 @@ public class AgentMove : MonoBehaviour
         yield return new WaitForSecondsRealtime(time);
 
         rb2D.velocity = Vector2.zero;
-        isDashing = false;
+        agentStateCheck.IsDashing = false;
     }
 
     private void FixedUpdate()
     {
         OnVelocityChange?.Invoke(moveSpeed);
         OnVectorChange?.Invoke(rb2D.velocity.normalized);
-        if (isDashing == true) return;
-        if (isStop == true) return;
-        Debug.Log(rb2D.velocity);
+        if (agentStateCheck.IsDashing == true) return;
+        if (agentStateCheck.IsStop == true) return;
         rb2D.velocity = nowMoveDirection * moveSpeed;
     }
 
@@ -90,11 +91,11 @@ public class AgentMove : MonoBehaviour
     {
         moveSpeed = 0;
         rb2D.velocity = Vector2.zero;
-        isStop = true;
+        agentStateCheck.IsStop = true;
     }
 
     public void EndMoveStop()
     {
-        isStop = false;
+        agentStateCheck.IsStop = false;
     }
 }
