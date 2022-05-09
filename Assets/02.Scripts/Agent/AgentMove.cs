@@ -82,7 +82,6 @@ public class AgentMove : MonoBehaviour
         OnVectorChange?.Invoke(rb2D.velocity.normalized);
         if (isDashing == true) return;
         if (isStop == true) return;
-        Debug.Log(rb2D.velocity);
         rb2D.velocity = nowMoveDirection * moveSpeed;
     }
 

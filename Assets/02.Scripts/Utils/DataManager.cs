@@ -78,7 +78,6 @@ public class DataManager : MonoBehaviour
 
     private void SetSyneargyData(string data)
     {
-        Debug.Log(data);
         string[] row = data.Split('\n');
         string[] column;
         int rowSize = row.Length;
@@ -132,6 +131,16 @@ public class DataManager : MonoBehaviour
     private void AddSynergyInfo(ESynergy type, int[] datas)
     {
 
+    }
+
+    private void OnDestroy()
+    {
+        SaveToJson();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveToJson();
     }
 
 }

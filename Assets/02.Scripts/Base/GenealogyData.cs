@@ -13,4 +13,10 @@ public class GenealogyData
         genealogyType = type;
         genealogyNum = num;
     }
+
+    public GenealogyData()
+    {
+        genealogyType = GenealogyDefine.EGenealogy.None;
+        genealogyNum = 0;
+    }
 }

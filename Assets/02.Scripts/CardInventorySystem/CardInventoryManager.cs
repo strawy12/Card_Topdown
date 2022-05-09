@@ -11,6 +11,7 @@ public class CardInventoryManager : MonoBehaviour
     //[SerializeField] private ChangeCard _changeCardPref;
     private List<CardPanal> _cardPanalList;
     private CanvasGroup _currentPanal;
+    private bool _activePanalSelf = false;
     //private MountCardPanal[] _canChangeCardPanals;
     //private DeferCardPanal _selectDeferCardPanal;
 
@@ -29,8 +30,9 @@ public class CardInventoryManager : MonoBehaviour
 
     public void OnActivePanal()
     {
-        bool isActive = _currentPanal.alpha == 0f;
-        _currentPanal.DOFade(isActive ? 1f : 0f, 0.5f);
+        _activePanalSelf = !_activePanalSelf;
+        _currentPanal.DOKill();
+        _currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f);
     }
 
     public void AddCardPanalList(CardPanal panal)

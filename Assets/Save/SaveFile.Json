@@ -1,7 +1,75 @@
 ﻿{
     "effectSoundVolume": 0.5,
     "bgmSoundVolume": 0.5,
+    "syneargyDict": [
+        {
+            "_syneargyType": 0,
+            "_genealogylist": [
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 9
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 4
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 3
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 9
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 5
+                }
+            ]
+        },
+        {
+            "_syneargyType": 1,
+            "_genealogylist": []
+        },
+        {
+            "_syneargyType": 2,
+            "_genealogylist": []
+        },
+        {
+            "_syneargyType": 3,
+            "_genealogylist": []
+        },
+        {
+            "_syneargyType": 4,
+            "_genealogylist": []
+        },
+        {
+            "_syneargyType": 5,
+            "_genealogylist": []
+        }
+    ],
     "isTutorial": false,
-    "genealogyDatas": [],
-    "genealogySaveCnt": 0
+    "genealogyDatas": [
+        {
+            "genealogyType": 0,
+            "genealogyNum": 9
+        },
+        {
+            "genealogyType": 0,
+            "genealogyNum": 4
+        },
+        {
+            "genealogyType": 0,
+            "genealogyNum": 3
+        },
+        {
+            "genealogyType": 0,
+            "genealogyNum": 9
+        },
+        {
+            "genealogyType": 0,
+            "genealogyNum": 5
+        }
+    ],
+    "genealogySaveCnt": 5
 }
