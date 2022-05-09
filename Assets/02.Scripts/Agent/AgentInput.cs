@@ -16,7 +16,7 @@ public class AgentInput : MonoBehaviour
         GetMoveInput();
         GetMousePointInput();
         GetDashButtonInput();
-        GetMouseButtonInput();
+         GetMouseButtonInput();
     }
 
     private void GetMoveInput()

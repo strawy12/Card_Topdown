@@ -69,6 +69,7 @@ public class GenealogyDefine
         Middle,
         Special,
         Mangtong,
+        Count
     }
 
     private static Dictionary<EGenealogy, string> _pedigreInfoDict;

@@ -78,7 +78,6 @@ public class DataManager : MonoBehaviour
 
     private void SetSyneargyData(string data)
     {
-        Debug.Log(data);
         string[] row = data.Split('\n');
         string[] column;
         int rowSize = row.Length;
@@ -94,15 +93,15 @@ public class DataManager : MonoBehaviour
         {
             column = row[i].Split('\t');
             if (column[0] == "") continue;
-            Debug.Log(column[0]);
+
             synergyInfo = new SynergyInfo();
 
             maxLevel = int.Parse(column[0]);
             count = int.Parse(column[1]);
 
-            for (int j = 0; j < count; j++)
+            for (int j = 1; j <= count; j++)
             {
-                synergyInfo.Add(SetSynergyInfoList(column, maxLevel));
+                synergyInfo.Add(SetSynergyInfoList(column, j, maxLevel));
             }
 
             synergyInfo.type = (ESynergy)rowCnt;
@@ -113,16 +112,16 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private SynergyDataList SetSynergyInfoList(string[] column, int cnt)
+    private SynergyDataList SetSynergyInfoList(string[] column, int idx, int maxLevel)
     {
-        int idx = 0;
         SynergyDataList dataList = new SynergyDataList();
 
-        for (int i = 0; i < cnt; i++)
+        for (int i = 0; i < maxLevel; i++)
         {
-            if (column[2 + idx] == "") continue;
+            // 여기의 로직을 변경해야됨
+            if (column[2 + i] == "") continue;
 
-            dataList.dataList.Add(int.Parse(column[2 + idx]));
+            dataList.dataList.Add(int.Parse(column[2 + i]));
             idx++;
         }
 
@@ -132,6 +131,16 @@ public class DataManager : MonoBehaviour
     private void AddSynergyInfo(ESynergy type, int[] datas)
     {
 
+    }
+
+    private void OnDestroy()
+    {
+        SaveToJson();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveToJson();
     }
 
 }

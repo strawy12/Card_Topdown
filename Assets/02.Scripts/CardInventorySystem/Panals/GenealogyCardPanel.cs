@@ -93,7 +93,7 @@ public class GenealogyCardPanel : MonoBehaviour
             genealogyType = EGenealogy.LightPair;
             genealogyNum = num1+num2;
             isSelect = true;
-        }
+        }   
 
         else if(num1 == 4 && num2 == 6)
         {

@@ -13,6 +13,28 @@ public struct PlayerStat
     public float criticalPower;
     public float decreaseCooldown;
 }
+ 
+[System.Serializable]
+public class SyneargyElement
+{
+    public ESynergy _syneargyType;
+    public List<GenealogyData> _genealogylist;
+
+    public void Add(GenealogyData data)
+    {
+        if (data == null) return;
+
+        _genealogylist.Add(data);
+    }
+
+    public void Remove(GenealogyData data)
+    {
+        if (data == null) return;
+
+        _genealogylist.Remove(data);
+    }
+
+}
 
 [System.Serializable]
 public class PlayerData
@@ -20,7 +42,7 @@ public class PlayerData
     public float effectSoundVolume;
     public float bgmSoundVolume;
 
-    private Dictionary<ESynergy, List<GenealogyData>> syneargyDict;
+   [SerializeField] private List<SyneargyElement> syneargyDict;
 
     public bool isTutorial;
 
@@ -33,10 +55,23 @@ public class PlayerData
         effectSoundVolume = soundVolume;
         bgmSoundVolume = soundVolume;
         isTutorial = false;
-        syneargyDict = new Dictionary<ESynergy, List<GenealogyData>>();
+        syneargyDict = new List<SyneargyElement>();
         genealogyDatas = new GenealogyData[5];
-
+        genealogySaveCnt = 0;
         playerStats = new PlayerStat();
+        InitSyneargyDict();
+    }
+
+    private void InitSyneargyDict()
+    {
+        for(ESynergy type = ESynergy.Rest; type < ESynergy.Count; type++)
+        {
+            SyneargyElement element = new SyneargyElement();
+            element._syneargyType = type;
+            element._genealogylist = new List<GenealogyData>();
+
+            syneargyDict.Add(element);
+        }
     }
 
     public void SetPlayerSynergy(GenealogyData data, bool isAdd = true)
@@ -86,16 +121,15 @@ public class PlayerData
 
     private void SetSynergy(ESynergy type, GenealogyData data, bool isAdd)
     {
-        if (syneargyDict.ContainsKey(type))
         {
             if (isAdd)
             {
-                syneargyDict[type].Add(data);
+                syneargyDict[(int)type].Add(data);
             }
 
             else
             {
-                syneargyDict[type].Remove(data);
+                syneargyDict[(int)type].Remove(data);
             }
 
             SetStatFromSynergy(type);
@@ -109,25 +143,11 @@ public class PlayerData
             case ESynergy.Rest:
             {
 
-                float atkPower = 0f;
-                foreach (GenealogyData data in syneargyDict[type])
-                {
-                    atkPower += data.genealogyNum;
-                }
-
-                atkPower -=  (atkPower % 10);
-
-                atkPower *= syneargyDict[type].Count;
-
-                playerStats.atkPower += atkPower;
                 break;
             }
 
             case ESynergy.Pair:
             {
-                int percent = 10 * syneargyDict[type].Count;
-                float atkPower = UtilDefine.CalcPercent(playerStats.atkPower, percent);
-                playerStats.atkPower += atkPower;
 
                 break;
             }
