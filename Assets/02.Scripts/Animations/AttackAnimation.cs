@@ -11,7 +11,7 @@ public class AttackAnimation : AgentAnimation
 
     public void StartAttack()
     {
-        _animator.Play("Attack");
+        _animator.SetTrigger(_atkHashStr);
     }
 
     //public void StartAttack()
