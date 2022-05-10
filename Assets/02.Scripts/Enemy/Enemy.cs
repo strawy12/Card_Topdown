@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Enemy : MonoBehaviour, IHittable
+public class Enemy : PoolableMono, IHittable
 {
     [SerializeField] private EnemyDataSO _enemyData;
     public EnemyDataSO EnemyData => _enemyData;
@@ -34,8 +34,8 @@ public class Enemy : MonoBehaviour, IHittable
         Health -= damage;   
         HitPoint = damageDealer.transform.position;
         OnGetHit?.Invoke();
-        DamagePopup popup = Instantiate(new DamagePopup());
-        popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
+        //DamagePopup popup = Instantiate(new DamagePopup());
+        //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
         if (Health <= 0)
         {
             _isDead = true;
@@ -56,18 +56,22 @@ public class Enemy : MonoBehaviour, IHittable
                 _enemyAttack.Attack(_enemyData.damage);
             }
     }
-    //public override void Reset()
-    //{
-    //    Health = maxHealth;
-    //    _isDead = false;
-    //    _agentMovement.enabled = true;
-    //} // 풀매니저 구현시 적용 시킬예정
+    public override void Reset()
+    {
+        Health = _enemyData.maxHealth;
+        _isDead = false;
+        _aiMove.enabled = true;
+    }
     private void Start()
     {
         Health = _enemyData.maxHealth;
     }
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            GetHit(5, GameObject.Find("Player"));
+        }
         if (_enemyAttack.IsAttacking)
         {
             _aiMove.StopImmediatelly();
@@ -77,4 +81,6 @@ public class Enemy : MonoBehaviour, IHittable
     {
         Destroy(gameObject);//풀매니저 구현시 변경
     }
+
+
 }

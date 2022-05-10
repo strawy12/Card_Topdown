@@ -13,6 +13,6 @@ public abstract class Feedback : MonoBehaviour
     }
     private void OnDisable()
     {
-        CreateFeedback();
+        CompleteFeedback();
     }
 }
