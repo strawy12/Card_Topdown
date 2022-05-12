@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using static Constant;
 
 public class CardInventoryManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class CardInventoryManager : MonoBehaviour
     [SerializeField] private int _initPickCnt = 2;
     //[SerializeField] private ChangeCard _changeCardPref;
     private List<CardPanal> _cardPanalList;
+    private CanvasGroup _currentPanal;
+    private bool _activePanalSelf = false;
     //private MountCardPanal[] _canChangeCardPanals;
     //private DeferCardPanal _selectDeferCardPanal;
 
@@ -20,8 +23,16 @@ public class CardInventoryManager : MonoBehaviour
     private void Start()
     {
         PEventManager.StartListening(ENTER_MOUNTING_UI, MountingMessage);
-        
+        _currentPanal = GetComponent<CanvasGroup>();
+
         //PickInitCard();
+    }
+
+    public void OnActivePanal()
+    {
+        _activePanalSelf = !_activePanalSelf;
+        _currentPanal.DOKill();
+        _currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f);
     }
 
     public void AddCardPanalList(CardPanal panal)

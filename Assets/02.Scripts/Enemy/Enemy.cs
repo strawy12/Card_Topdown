@@ -10,8 +10,9 @@ public class Enemy : PoolableMono, IHittable
     private AgentMove _aiMove;
     private EnemyAttack _enemyAttack;
 
-    private bool _isDead = false;
     public float Health { get; private set; }
+
+    private AgentStateCheck _agentStateCheck;
 
     [field: SerializeField] public UnityEvent OnDie { get; set; }
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
@@ -21,7 +22,8 @@ public class Enemy : PoolableMono, IHittable
     public Vector3 HitPoint { get; private set; }
     public void GetHit(float damage, GameObject damageDealer)
     {
-        if (_isDead) return;
+      
+        if (_agentStateCheck.IsDead == true) return;
         float critical = Random.value;
         bool isCritical = false;
 
@@ -38,7 +40,7 @@ public class Enemy : PoolableMono, IHittable
         //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
         if (Health <= 0)
         {
-            _isDead = true;
+            _agentStateCheck.IsDead = true;
             _aiMove.StopImmediatelly();
             _aiMove.enabled = false;
             OnDie?.Invoke();
@@ -48,10 +50,11 @@ public class Enemy : PoolableMono, IHittable
     {
         _aiMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
+        _agentStateCheck = GetComponent<AgentStateCheck>();
     }
     public void EnemyAttack()
     { 
-            if (!_isDead)
+            if (_agentStateCheck.IsDead == false)
             {
                 _enemyAttack.Attack(_enemyData.damage);
             }
@@ -59,7 +62,7 @@ public class Enemy : PoolableMono, IHittable
     public override void Reset()
     {
         Health = _enemyData.maxHealth;
-        _isDead = false;
+        _agentStateCheck.IsDead = false;
         _aiMove.enabled = true;
     }
     private void Start()

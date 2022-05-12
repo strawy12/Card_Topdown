@@ -27,7 +27,8 @@ public class Weapon : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("공격 성공");
+            IHittable hittable = collision.GetComponent<IHittable>();
+            hittable.GetHit(damage: 10, damageDealer: gameObject);
             boxCol2D.isTrigger = false;
             // 대충 맞는 유니티 이벤트
         }

@@ -2,11 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface AgentStateCheck
+public class AgentStateCheck : MonoBehaviour
 {
-    public bool IsDead { get; set; }
+    [SerializeField]
+    private bool _isDead = false;
+    public bool IsDead
+    {
+        get => _isDead;
+        set => _isDead = value;
+    }
 
-    public bool IsDashing { get; set; }
+    [SerializeField]
+    private bool _isDashing = false;
+    public bool IsDashing
+    {
+        get => _isDashing;
+        set => _isDashing = value;
+    }
 
-    public bool IsStop { get; set; }
+    [SerializeField]
+    private bool _isStop = false;
+    public bool IsStop
+    {
+        get => _isStop;
+        set => _isStop = value;
+    }
 }

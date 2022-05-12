@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 3331124398576119048}
   - component: {fileID: 5291222363545832132}
   - component: {fileID: 3331124399031841769}
+  - component: {fileID: 772684347}
   m_Layer: 0
   m_Name: bat
   m_TagString: Enemy
@@ -437,6 +438,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 0.5}
   m_Direction: 0
+--- !u!114 &772684347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331124398576119053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2611d8cce150afc41875180ce1df6027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDead: 0
+  _isDashing: 0
+  _isStop: 0
 --- !u!1 &3373700967275483603
 GameObject:
   m_ObjectHideFlags: 0

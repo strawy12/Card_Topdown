@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 using static GenealogyDefine;
 using UnityEngine.Networking;
+using System.Text.RegularExpressions;
 
 public class DataManager : MonoBehaviour
 {
@@ -78,7 +80,6 @@ public class DataManager : MonoBehaviour
 
     private void SetSyneargyData(string data)
     {
-        Debug.Log(data);
         string[] row = data.Split('\n');
         string[] column;
         int rowSize = row.Length;
@@ -94,7 +95,7 @@ public class DataManager : MonoBehaviour
         {
             column = row[i].Split('\t');
             if (column[0] == "") continue;
-            Debug.Log(column[0]);
+
             synergyInfo = new SynergyInfo();
 
             maxLevel = int.Parse(column[0]);
@@ -102,7 +103,7 @@ public class DataManager : MonoBehaviour
 
             for (int j = 0; j < count; j++)
             {
-                synergyInfo.Add(SetSynergyInfoList(column, maxLevel));
+                synergyInfo.Add(SetSynergyInfoList(column, j, maxLevel));
             }
 
             synergyInfo.type = (ESynergy)rowCnt;
@@ -113,25 +114,40 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private SynergyDataList SetSynergyInfoList(string[] column, int cnt)
+    private SynergyDataList SetSynergyInfoList(string[] column, int cnt, int maxLevel)
     {
-        int idx = 0;
         SynergyDataList dataList = new SynergyDataList();
 
-        for (int i = 0; i < cnt; i++)
+        for (int i = 0; i < maxLevel; i++)
         {
-            if (column[2 + idx] == "") continue;
+            // 여기의 로직을 변경해야됨
+            int dataIndex = 2 + (cnt * maxLevel) + i;
+            if (dataIndex >= column.Length) continue;
 
-            dataList.dataList.Add(int.Parse(column[2 + idx]));
-            idx++;
+            column[dataIndex] = Regex.Replace(column[dataIndex], @"\D", "");
+
+            if (column[dataIndex] == "") continue;
+
+            dataList.dataList.Add(int.Parse(column[dataIndex]));
+            dataIndex++;
         }
 
         return dataList;
     }
 
-    private void AddSynergyInfo(ESynergy type, int[] datas)
+    public int GetSynergyInfoData(ESynergy type, int idx, int level)
     {
+        return _synergyInfoDataSO[type][idx][level];
+    }
 
+    private void OnDestroy()
+    {
+        SaveToJson();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveToJson();
     }
 
 }

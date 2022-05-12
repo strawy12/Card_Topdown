@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class AgentRenderer : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    private Transform _transform;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _transform = GetComponent<Transform>();
     }
     public virtual void ChangeFace(Vector2 playerVec)
     {
         if (Vector2.Dot(playerVec, Vector2.right) > 0)
         {
-            spriteRenderer.flipX = false;
+            _transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (Vector2.Dot(playerVec, Vector2.right) < 0)
         {
-            spriteRenderer.flipX = true;
+            _transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }
