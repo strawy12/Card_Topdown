@@ -71,13 +71,14 @@ public class Enemy : PoolableMono, IHittable
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             GetHit(5, GameObject.Find("Player"));
         }
         if (_enemyAttack.IsAttacking)
         {
             _aiMove.StopImmediatelly();
+            _aiMove.EndMoveStop();
         }
     }
     public void Die()

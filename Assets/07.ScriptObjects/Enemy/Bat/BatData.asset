@@ -16,5 +16,5 @@ MonoBehaviour:
   prefab: {fileID: 3331124398576119053, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
   maxHealth: 10
   damage: 5
-  attackDelay: 1.3
+  attackDelay: 0.8
   defence: 0

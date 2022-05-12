@@ -24,8 +24,8 @@ public class EnemyMeleeAttack : EnemyAttack
         {
             if (collider.CompareTag("Player"))
             {
-                //플레이어 맞는 함수 혹은 이벤트
-                Debug.Log("Attack success");
+                //IHittable hittable = collider.GetComponent<IHittable>();
+                //hittable.GetHit(_enemy.EnemyData.damage, _enemy.gameObject);
             }
         }
     }
