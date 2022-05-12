@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 using static GenealogyDefine;
 using UnityEngine.Networking;
+using System.Text.RegularExpressions;
 
 public class DataManager : MonoBehaviour
 {
@@ -99,7 +101,7 @@ public class DataManager : MonoBehaviour
             maxLevel = int.Parse(column[0]);
             count = int.Parse(column[1]);
 
-            for (int j = 1; j <= count; j++)
+            for (int j = 0; j < count; j++)
             {
                 synergyInfo.Add(SetSynergyInfoList(column, j, maxLevel));
             }
@@ -112,25 +114,30 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private SynergyDataList SetSynergyInfoList(string[] column, int idx, int maxLevel)
+    private SynergyDataList SetSynergyInfoList(string[] column, int cnt, int maxLevel)
     {
         SynergyDataList dataList = new SynergyDataList();
 
         for (int i = 0; i < maxLevel; i++)
         {
             // 여기의 로직을 변경해야됨
-            if (column[2 + i] == "") continue;
+            int dataIndex = 2 + (cnt * maxLevel) + i;
+            if (dataIndex >= column.Length) continue;
 
-            dataList.dataList.Add(int.Parse(column[2 + i]));
-            idx++;
+            column[dataIndex] = Regex.Replace(column[dataIndex], @"\D", "");
+
+            if (column[dataIndex] == "") continue;
+
+            dataList.dataList.Add(int.Parse(column[dataIndex]));
+            dataIndex++;
         }
 
         return dataList;
     }
 
-    private void AddSynergyInfo(ESynergy type, int[] datas)
+    public int GetSynergyInfoData(ESynergy type, int idx, int level)
     {
-
+        return _synergyInfoDataSO[type][idx][level];
     }
 
     private void OnDestroy()

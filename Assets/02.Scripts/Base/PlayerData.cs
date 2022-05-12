@@ -13,12 +13,20 @@ public struct PlayerStat
     public float criticalPower;
     public float decreaseCooldown;
 }
- 
+
 [System.Serializable]
 public class SyneargyElement
 {
     public ESynergy _syneargyType;
     public List<GenealogyData> _genealogylist;
+
+    public int Level { get => _genealogylist.Count; }
+
+    public GenealogyData this[int idx]
+    {
+        get => _genealogylist[idx];
+    }
+
 
     public void Add(GenealogyData data)
     {
@@ -42,13 +50,15 @@ public class PlayerData
     public float effectSoundVolume;
     public float bgmSoundVolume;
 
-   [SerializeField] private List<SyneargyElement> syneargyDict;
+    [SerializeField] private List<SyneargyElement> syneargyDict;
 
     public bool isTutorial;
 
     public PlayerStat playerStats;
     public GenealogyData[] genealogyDatas;
     public int genealogySaveCnt;
+
+    public bool beingAddedCard;
 
     public PlayerData(float soundVolume)
     {
@@ -64,7 +74,7 @@ public class PlayerData
 
     private void InitSyneargyDict()
     {
-        for(ESynergy type = ESynergy.Rest; type < ESynergy.Count; type++)
+        for (ESynergy type = ESynergy.Rest; type < ESynergy.Count; type++)
         {
             SyneargyElement element = new SyneargyElement();
             element._syneargyType = type;
@@ -141,17 +151,59 @@ public class PlayerData
         switch (type)
         {
             case ESynergy.Rest:
-            {
+                {
+                    int restSum = 0;
+                    foreach (GenealogyData data in syneargyDict[(int)type]._genealogylist)
+                    {
+                        restSum += data.genealogyNum;
+                    }
+                    restSum -= (restSum % 10);
 
-                break;
-            }
+                    int level = syneargyDict[(int)ESynergy.Rest].Level;
+
+                    playerStats.atkPower += restSum * GameManager.Inst.Data.GetSynergyInfoData(ESynergy.Rest, 0, level);
+                    break;
+                }
 
             case ESynergy.Pair:
-            {
+                {
+                    int level = syneargyDict[(int)ESynergy.Pair].Level;
+                    int percent = GameManager.Inst.Data.GetSynergyInfoData(ESynergy.Pair, 0, level);
+                    playerStats.atkPower += UtilDefine.CalcPercent(playerStats.atkPower, percent) * level;
 
-                break;
-            }
+                    percent = GameManager.Inst.Data.GetSynergyInfoData(ESynergy.Pair, 1, level);
+                    playerStats.atkSpeed += UtilDefine.CalcPercent(playerStats.atkSpeed, percent) * level * genealogySaveCnt;
+                    break;
+                }
+
+            case ESynergy.LightPair:
+                {
+                    int numSum = syneargyDict[(int)ESynergy.LightPair][0].genealogyNum;
+                    int level = -1;
+                    switch (numSum)
+                    {
+                        case 4:
+                            level = 0;
+                            break;
+
+                        case 9:
+                            level = 1;
+                            break;
+
+                        case 11:
+                            level = 2;
+                            break;
+                    }
+
+                    if (level == -1) return;
+
+                    playerStats.atkPower += UtilDefine.CalcPercent(playerStats.atkPower,
+                                                        (numSum * (5 + genealogySaveCnt)));
+
+                    break;
+                }
 
         }
     }
+
 }
