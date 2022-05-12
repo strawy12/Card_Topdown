@@ -71,5 +71,6 @@
             "genealogyNum": 5
         }
     ],
-    "genealogySaveCnt": 5
+    "genealogySaveCnt": 5,
+    "beingAddedCard": false
 }
