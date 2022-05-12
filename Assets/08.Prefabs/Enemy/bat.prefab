@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b1534507c1ce54f973ec42c72457d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: 7a31c68935a5cef4a87a4b7e25818e47, type: 2}
+  _enemyData: {fileID: 11400000, guid: d2f2bd38c2c2f194f8a9e414527e7b2e, type: 2}
   <OnDie>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -419,7 +419,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  boxsize: {x: 2, y: 1.7}
+  boxsize: {x: 1, y: 0.8}
   pos: {fileID: 5291222364159382062}
 --- !u!70 &3331124399031841769
 CapsuleCollider2D:
@@ -435,7 +435,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.25, y: 1.6875}
+  m_Size: {x: 0.5, y: 0.5}
   m_Direction: 0
 --- !u!1 &3373700967275483603
 GameObject:
@@ -644,7 +644,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5291222364159382063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.149, y: -0.02, z: 0}
+  m_LocalPosition: {x: 0.22, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5291222364518718590}
@@ -1051,6 +1051,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.43}
-  m_Size: {x: 0.9, y: 0.1}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.7, y: 0.1}
   m_Direction: 1
