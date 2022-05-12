@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [SerializeField] private PoolListSo _initList = null;
     [SerializeField] private CardDataSO _cardDataSO;
     private UIManager _uiManager;
     private DataManager _dataManager;
@@ -18,11 +19,21 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
+        new PoolManager(transform);
+
+        
+
         _uiManager = FindObjectOfType<UIManager>();
         _dataManager = GetComponent<DataManager>();
         ShuffleCardDeck();
+        CreatePool();
     }
 
+    private void CreatePool()
+    {
+        foreach (PoolingPair pair in _initList.list)
+            PoolManager.inst.CreatePool(pair.prefab, pair.poolCnt);
+    }
 
     private void ShuffleCardDeck()
     {
