@@ -95,7 +95,7 @@ public class HoldCard : MonoBehaviour
         _holdCard = false;
         _isReturnCard = true;
         transform.DOKill();
-        transform.DOMove(_returnPos, 0.8f).OnComplete(EndReturnCard);
+        transform.DOMove(_returnPos, 0.8f).OnComplete(EndReturnCard).SetUpdate(true);
     }
 
     private void ImmatiateReturn()

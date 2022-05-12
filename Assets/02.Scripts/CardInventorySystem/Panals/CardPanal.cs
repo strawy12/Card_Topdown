@@ -95,11 +95,10 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
 
             if (isEffect)
             {
-                transform.DOScale(Vector3.one * 3f, 0f);
-                transform.DOScale(Vector3.one, 0.3f);
+                transform.DOScale(Vector3.one * 3f, 0f).SetUpdate(true);
+                transform.DOScale(Vector3.one, 0.3f).SetUpdate(true);
             }
         }
-
         OnChangeCardEvent?.Invoke();
         ChangeAlpha(1f);
     }

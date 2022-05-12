@@ -50,12 +50,16 @@ public class MessagePanal : MonoBehaviour
         InstatiateBtn(btn);
         InstatiateBtn(btn2);
 
-        _background.DOScale(Vector3.one, 0.5f);
+        Sequence seq = DOTween.Sequence();
+        seq.SetUpdate(true);
+        seq.Append(_background.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.InOutBounce));
+
+        seq.Play();
     }
 
     private void ClosePanal()
     {
-        _background.DOScale(Vector3.zero, 0.3f).OnComplete(ResetPanal);
+        _background.DOScale(Vector3.zero, 0.3f).OnComplete(ResetPanal).SetUpdate(true);
     }
 
     private void ResetPanal()
