@@ -81,7 +81,6 @@ public class AgentMove : MonoBehaviour
     private void FixedUpdate()
     {
         OnVelocityChange?.Invoke(moveSpeed);
-        OnVectorChange?.Invoke(rb2D.velocity.normalized);
         if (agentStateCheck.IsDashing == true) return;
         if (agentStateCheck.IsStop == true) return;
         rb2D.velocity = nowMoveDirection * moveSpeed;

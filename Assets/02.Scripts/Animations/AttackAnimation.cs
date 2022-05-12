@@ -12,6 +12,7 @@ public class AttackAnimation : AgentAnimation
     public void StartAttack()
     {
         _animator.SetTrigger(_atkHashStr);
+        StartCoroutine(Delay());
     }
 
     //public void StartAttack()
@@ -22,11 +23,10 @@ public class AttackAnimation : AgentAnimation
     //    StartCoroutine(Delay());
     //}
 
-    //IEnumerator Delay()
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-    //    isAttack = false;
-    //    AgentMove.isStop = false;
-    //    _animator.Play("Idle");
-    //}
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isAttack = false;
+        _agentStateCheck.IsStop = false;
+    }
 }

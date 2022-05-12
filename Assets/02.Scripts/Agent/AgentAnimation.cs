@@ -10,9 +10,12 @@ public class AgentAnimation : MonoBehaviour
     protected readonly int _runHashStr = Animator.StringToHash("Run");
     protected readonly int _deathHashStr = Animator.StringToHash("Death");
 
+    protected AgentStateCheck _agentStateCheck = null;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _agentStateCheck = GetComponent<AgentStateCheck>();
         ChildAwake();
     }
 
