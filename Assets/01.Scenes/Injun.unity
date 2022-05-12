@@ -3815,11 +3815,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5291222363545832132, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
       propertyPath: boxsize.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5291222363545832132, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
       propertyPath: boxsize.y
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5291222364159382062, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
       propertyPath: m_LocalPosition.x
