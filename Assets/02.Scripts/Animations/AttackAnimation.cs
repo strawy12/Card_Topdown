@@ -12,7 +12,6 @@ public class AttackAnimation : AgentAnimation
     public void StartAttack()
     {
         _animator.SetTrigger(_atkHashStr);
-
         StartCoroutine(Delay());
     }
 
