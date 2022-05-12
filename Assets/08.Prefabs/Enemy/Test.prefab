@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 1381443075}
   - component: {fileID: 1381443074}
   - component: {fileID: 1381443073}
-  - component: {fileID: 4955998923995081399}
   - component: {fileID: 7611630245719012850}
   - component: {fileID: 8404084930331324073}
   m_Layer: 0
@@ -136,20 +135,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &4955998923995081399
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381443071}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5163126
-  m_Height: 1.6875
-  m_Direction: 1
-  m_Center: {x: 0.01716137, y: 0, z: 0}
 --- !u!114 &7611630245719012850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +572,7 @@ GameObject:
   - component: {fileID: 7445775410248193914}
   - component: {fileID: 7445775410248193909}
   - component: {fileID: 338309305}
+  - component: {fileID: 7445775410698602900}
   m_Layer: 0
   m_Name: Test
   m_TagString: Enemy
@@ -794,6 +780,22 @@ MonoBehaviour:
         m_CallState: 2
   boxsize: {x: 2, y: 1.7}
   pos: {fileID: 1236805715}
+--- !u!70 &7445775410698602900
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7445775410248193904}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.25, y: 1.6875}
+  m_Direction: 0
 --- !u!1 &7475968317257313198
 GameObject:
   m_ObjectHideFlags: 0
