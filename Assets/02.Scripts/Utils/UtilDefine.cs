@@ -204,7 +204,8 @@ public static class Constant
     public const string POINTUP_CARD = "PU_CD";
     public const string CLICK_CARD = "CL_CD";
     public const string RETURN_CARD = "RT_CD";
-    public const string TRIGGER_ADD_CARD = "TR_AD_CD";
+
+
     public const string RETURN_CARD_EFFECT = "RT_CD_EF";
 
     public const string ENTER_MOUNTING_UI = "ET_MT_UI";
@@ -217,12 +218,19 @@ public static class Constant
     public const string EXIT_CARD_PANAL = "EX_CD_PL";
 
     public const string TRIGGER_CHANGE_EVENT = "TG_CG_EV";
-
     public const string TRIGGER_MOUNTING_EVENT = "TG_MT_EV";
-    
+    public const string TRIGGER_MONSTER_DEAD = "TR_MS_DD";
+    public const string TRIGGER_ADD_CARD = "TR_AD_CD";
+    public const string TRIGGER_PICK_CARD = "TR_PC_CD";
+
     public const string CLOSE_MESSAGE= "CL_MS";
 
     public const string MESSAGE_MOUNTING = "정말로 장착하시겠습니까?";
+
+    public const string OPEN_INVENTORY = "OP_IV";
+    public const string PLAYER_ATTACK_START = "PL_AT_ST";
+    public const string PLAYER_ATTACK_END = "PL_AT_ED";
+
 
 
 

@@ -26,7 +26,7 @@ public class AgentAnimation : MonoBehaviour
 
     public void SetRunAnimation(bool value)
     {
-        _animator.SetBool(_runHashStr, value);
+        _animator.SetBool("Run", value);
     }
 
     public void AnimatePlayer(float velocity)

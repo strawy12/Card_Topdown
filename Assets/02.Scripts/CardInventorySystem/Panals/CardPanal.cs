@@ -93,12 +93,13 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
             _isEmpty = false;
             // HoldCard가 커지고 하게 하기
 
-            if (isEffect)
+            if (isEffect&& _cardInventoryManager.IsActive)
             {
                 transform.DOScale(Vector3.one * 3f, 0f).SetUpdate(true);
                 transform.DOScale(Vector3.one, 0.3f).SetUpdate(true);
             }
         }
+
         OnChangeCardEvent?.Invoke();
         ChangeAlpha(1f);
     }

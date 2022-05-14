@@ -10,12 +10,24 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private PoolListSo _initList = null;
     [SerializeField] private CardDataSO _cardDataSO;
+    [SerializeField] private GameObject _monsterPref;
+    private Transform _playerTrm;
     private UIManager _uiManager;
     private DataManager _dataManager;
     private List<CardData> _randomCardDeck;
 
     public UIManager UI { get => _uiManager; }
     public DataManager Data { get => _dataManager; }
+
+    public Transform PlayerTrm
+    {
+        get
+        {
+            if (_playerTrm == null)
+                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
+            return _playerTrm;
+        }
+    }
 
     private void Awake()
     {
@@ -25,6 +37,24 @@ public class GameManager : MonoSingleton<GameManager>
         _dataManager = GetComponent<DataManager>();
         ShuffleCardDeck();
         CreatePool();
+    }
+
+    private void Start()
+    {
+        EventManager.StartListening(Constant.TRIGGER_MONSTER_DEAD, PickCardEvent);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnMonster();
+        }
+    }
+
+    private void SpawnMonster()
+    {
+        Instantiate(_monsterPref);
     }
 
     public void OnUI()
@@ -91,15 +121,13 @@ public class GameManager : MonoSingleton<GameManager>
         _randomCardDeck.Insert(idx, card);
     }
 
-    private Transform _playerTrm;
-
-    public Transform PlayerTrm
+    public void PickCardEvent()
     {
-        get
-        {
-            if (_playerTrm == null)
-                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
-            return _playerTrm;
-        }
+        //if (Random.Range(0, 100) > 20) return;
+
+        EventManager.TriggerEvent(Constant.TRIGGER_PICK_CARD);
+
     }
+
+    
 }

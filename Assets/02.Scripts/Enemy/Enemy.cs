@@ -20,6 +20,7 @@ public class Enemy : PoolableMono, IHittable
     public bool IsEnemy => true;
 
     public Vector3 HitPoint { get; private set; }
+
     public void GetHit(float damage, GameObject damageDealer)
     {
       
@@ -71,10 +72,11 @@ public class Enemy : PoolableMono, IHittable
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            GetHit(5, GameObject.Find("Player"));
-        }
+        //if(Input.GetKeyDown(KeyCode.T))
+        //{
+        //    GetHit(5, GameObject.Find("Player"));
+        //}
+
         if (_enemyAttack.IsAttacking)
         {
             _aiMove.StopImmediatelly();
@@ -82,6 +84,7 @@ public class Enemy : PoolableMono, IHittable
     }
     public void Die()
     {
+        EventManager.TriggerEvent(Constant.TRIGGER_MONSTER_DEAD);
         Destroy(gameObject);//풀매니저 구현시 변경
     }
 

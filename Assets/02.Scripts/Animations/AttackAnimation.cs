@@ -30,4 +30,15 @@ public class AttackAnimation : AgentAnimation
         isAttack = false;
         _agentStateCheck.IsStop = false;
     }
+
+    // 임시용으로 만들어둔 코드 추후에 스크립트 나눠서 짜야함
+
+    public void AttackStartEvent()
+    {
+        EventManager.TriggerEvent(Constant.PLAYER_ATTACK_START);
+    }
+    public void AttackEndEvent()
+    {
+        EventManager.TriggerEvent(Constant.PLAYER_ATTACK_END);
+    }
 }
