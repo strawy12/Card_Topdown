@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2076af721f2f294f9b6f9217622a9ec, type: 3}
-  m_Name: PoolList
+  m_Script: {fileID: 11500000, guid: cbe53cec57d8ecf4a997813b4ca17663, type: 3}
+  m_Name: BatMoveData
   m_EditorClassIdentifier: 
-  list:
-  - prefab: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-    poolCnt: 10
+  maxSpeed: 7
+  acceleration: 50
+  deceleration: 50

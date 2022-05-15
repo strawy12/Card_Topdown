@@ -349,10 +349,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 946909040172353413, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: distance
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 3331124398576119050, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -400,18 +396,6 @@ PrefabInstance:
     - target: {fileID: 3331124398576119053, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
       propertyPath: m_Name
       value: bat
-      objectReference: {fileID: 0}
-    - target: {fileID: 5291222363148030856, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: distance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5291222364866268674, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: distance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311375360188355862, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: distance
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
