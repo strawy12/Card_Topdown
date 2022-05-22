@@ -15,6 +15,7 @@ public class GameManager : MonoSingleton<GameManager>
     private UIManager _uiManager;
     private DataManager _dataManager;
     private List<CardData> _randomCardDeck;
+    private bool[] _existCard;
 
     public UIManager UI { get => _uiManager; }
     public DataManager Data { get => _dataManager; }
@@ -34,7 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
         new PoolManager(transform);
 
         _uiManager = FindObjectOfType<UIManager>();
-        _dataManager = GetComponent<DataManager>();
+        _dataManager = GetComponentInChildren<DataManager>();
         ShuffleCardDeck();
         CreatePool();
     }
@@ -42,11 +43,13 @@ public class GameManager : MonoSingleton<GameManager>
     private void Start()
     {
         EventManager.StartListening(Constant.TRIGGER_MONSTER_DEAD, PickCardEvent);
+
+        _existCard = Enumerable.Repeat(true, 10).ToArray();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnMonster();
         }
@@ -57,9 +60,9 @@ public class GameManager : MonoSingleton<GameManager>
         Instantiate(_monsterPref);
     }
 
-    public void OnUI()
+    public void OnUI(bool onUI)
     {
-        Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
+        Time.timeScale = onUI ? 0f : 1f;
     }
 
     private void CreatePool()
@@ -94,9 +97,30 @@ public class GameManager : MonoSingleton<GameManager>
         return new CardData(_cardDataSO.FindCardData(cardID));
     }
 
-    public CardData GetCardData(int idx)
+    public CardData GetWantCardData(int cardNum)
     {
-        return new CardData(_cardDataSO[idx]);
+        var cards = _randomCardDeck.FindAll(x => x.CardNum == cardNum);
+        CardData card = null;
+
+        if (cards.Count <= 0)
+        {
+            return null;
+        }
+
+        else if (cards.Count == 1)
+        {
+            card = cards[0];
+            _existCard[cardNum - 1] = false;
+        }
+        else
+        {
+            int idx = Random.Range(0, 2);
+            card = cards[idx];
+        }
+
+        _randomCardDeck.Remove(card);
+
+        return new CardData(card);
     }
 
     public CardData GetRandomCardData()
@@ -111,7 +135,20 @@ public class GameManager : MonoSingleton<GameManager>
 
         CardData randCard = _randomCardDeck[idx];
         _randomCardDeck.RemoveAt(idx);
+
+        ExistCardCheck(randCard.CardNum);
+
         return randCard;
+    }
+
+    private void ExistCardCheck(int num)
+    {
+       int cnt = _randomCardDeck.FindAll(x => x.CardNum == num).Count;
+
+        if(cnt == 0)
+        {
+            _existCard[num - 1] = false;
+        }
     }
 
     public void AddCardDeck(CardData card)
@@ -129,5 +166,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     }
 
-    
+    public bool ExistCard(int cardNum)
+    {
+        return _existCard[cardNum - 1];
+    }
+
 }

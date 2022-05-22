@@ -137,7 +137,6 @@ public class DataManager : MonoBehaviour
 
     public int GetSynergyInfoData(ESynergy type, int idx, int level)
     {
-        Debug.Log($"{type} : {idx} : {level}");
         return _synergyInfoDataSO[type][idx][level - 1];
     }
 

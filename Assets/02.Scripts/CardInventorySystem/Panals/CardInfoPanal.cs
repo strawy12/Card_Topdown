@@ -8,7 +8,7 @@ using static Constant;
 public class CardInfoPanal : MonoBehaviour
 {
     [SerializeField] private Vector2 _offset;
-    private Text _infoText;
+    private Text _infoText; 
     private CardData _currentCard;
 
     private void Awake()

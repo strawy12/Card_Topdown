@@ -25,7 +25,9 @@ public class CardInventoryManager : MonoBehaviour
     private void Start()
     {
         PEventManager.StartListening(ENTER_MOUNTING_UI, MountingMessage);
-        EventManager.StartListening(TRIGGER_PICK_CARD, PickCard);
+        PEventManager.StartListening(TRIGGER_WANT_PICK, WantPickCard);
+        EventManager.StartListening(TRIGGER_RANDOM_PICK, RandomPickCard); 
+
         _currentPanal = GetComponent<CanvasGroup>();
 
         //PickInitCard();
@@ -33,10 +35,35 @@ public class CardInventoryManager : MonoBehaviour
 
     public void OnActivePanal()
     {
+        if(!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+
         _activePanalSelf = !_activePanalSelf;
         _currentPanal.DOKill();
-        _currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f).SetUpdate(true);
-       EventManager.TriggerEvent(OPEN_INVENTORY);
+
+        Sequence seq = DOTween.Sequence();
+        seq.SetUpdate(true);
+        seq.Append(_currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f));
+
+        if(_activePanalSelf == false)
+        {
+            seq.AppendCallback(CloseInventory);
+        }
+
+        seq.Play();
+        // TODO : 변경해야하는 코드
+        GameManager.Inst.UI.OnUI?.Invoke(_activePanalSelf);
+
+        //EventManager.TriggerEvent(OPEN_INVENTORY);
+
+    }
+
+    private void CloseInventory()
+    {
+        gameObject.SetActive(false);
+        GameManager.Inst.UI.ClosePanalAll();
 
     }
 
@@ -169,18 +196,43 @@ public class CardInventoryManager : MonoBehaviour
         PEventManager.TriggerEvent(RETURN_CARD_EFFECT, param);
     }
 
-    public void PickCard()
+    public void WantPickCard(Param param)
     {
-        foreach(CardPanal panal in _cardPanalList)
+        foreach (CardPanal panal in _cardPanalList)
         {
-            if(panal.IsEmpty)
+            if (panal.IsEmpty)
             {
-                CardData card = GameManager.Inst.GetRandomCardData();
+                CardData card = GameManager.Inst.GetWantCardData(param.iParam);
+                Debug.Log($"{param.iParam} : {card}");
                 panal.ChangeCard(card);
-                EventManager.TriggerEvent(TRIGGER_ADD_CARD);
                 return;
             }
         }
-
     }
+
+
+
+    private void RandomPickCard()
+    {
+        int pickCnt = 0;
+        foreach (CardPanal panal in _cardPanalList)
+        {
+            if (panal.IsEmpty)
+            {
+                CardData card = GameManager.Inst.GetRandomCardData();
+                panal.ChangeCard(card);
+                pickCnt++;
+            }
+
+            if (pickCnt >= 2)
+            {
+                return;
+            }
+        }
+    }
+
+    public void DrawPickCard()
+    {
+    }
+
 }

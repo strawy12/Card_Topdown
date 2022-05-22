@@ -13,9 +13,9 @@ public class AgentInput : MonoBehaviour
 
     private bool _onUI;
 
-    public void OnUI()
+    public void OnUI(bool onUI)
     {
-        _onUI = !_onUI;
+        _onUI = onUI;
     }
 
     private void Update()

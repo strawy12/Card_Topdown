@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MountingUI : MonoBehaviour
 {
-    [SerializeField] private GenealogyCardPanel _genealogyCardPanalTemp;
+    [SerializeField] private GenealogyCardPanal _genealogyCardPanalTemp;
     private bool _isEnterUI;
 
 
@@ -26,7 +26,7 @@ public class MountingUI : MonoBehaviour
 
     private void GenerateGenealogyPanals()
     {
-        GenealogyCardPanel panal;
+        GenealogyCardPanal panal;
         for (int i = 0; i < 5; i++)
         {
             panal = Instantiate(_genealogyCardPanalTemp, _genealogyCardPanalTemp.transform.parent);
