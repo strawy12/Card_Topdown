@@ -251,15 +251,15 @@ public class CardInventoryManager : MonoBehaviour
 
     public CardPanal GetLastCardPanal()
     {
-        for(int i = 0; i < _cardPanalList.Count; i++)
+        for (int i = _cardPanalList.Count - 1; i >= 0; i--)
         {
-            if(_cardPanalList[i].CurrentCard == null)
+            if (_cardPanalList[i].CurrentCard != null)
             {
-                return _cardPanalList[i - 1 < 0 ? 0 : i - 1];
+                return _cardPanalList[i];
             }
         }
 
-        return _cardPanalList[_cardPanalList.Count - 1];
+        return _cardPanalList[0];
     }
 
 }

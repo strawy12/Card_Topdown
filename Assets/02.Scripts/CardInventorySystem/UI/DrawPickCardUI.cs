@@ -72,15 +72,15 @@ public class DrawPickCardUI : MonoCardUI
         {
             if (list[i].CurrentCard != null)
             {
-                _selectPanalList[i].InitPanal(list[i].CurrentCard, DrawCardSelectPanal.ECardType.Defer, SelectCard);
+                _selectPanalList[cnt].InitPanal(list[i].CurrentCard, DrawCardSelectPanal.ECardType.Defer, SelectCard, cnt, list[i]);
                 cnt++;
             }
         }
 
         CardData newCard = GameManager.Inst.GetRandomCardData();
-        _selectPanalList[cnt].InitPanal(newCard, DrawCardSelectPanal.ECardType.NewPick, SelectCard);
+        _selectPanalList[cnt].InitPanal(newCard, DrawCardSelectPanal.ECardType.NewPick, SelectCard, cnt);
 
-        for (int i = cnt; i < 2; i++)
+        for (int i = 2; i > cnt; i--)
         {
             _selectPanalList[i].gameObject.SetActive(false);
         }
@@ -88,7 +88,6 @@ public class DrawPickCardUI : MonoCardUI
 
     private void SelectCard(int idx)
     {
-        Debug.Log(idx);
         if (_selectPanalList[idx].CurrentCard == null)
         {
             return;
@@ -111,10 +110,11 @@ public class DrawPickCardUI : MonoCardUI
         if (_currentSelectPanal == null && _currentCardPanal == null) return;
 
         InventoryManager.DrawCardMount(_currentSelectPanal.CurrentCard, _currentCardPanal);
+        _currentSelectPanal.CurrentCardPanal?.EmptyCard();
 
         _currentCardPanal = null;
         _currentSelectPanal = null;
-        _selectPanalList.ForEach(panal => panal.CurrentCard = null);
+        _selectPanalList.ForEach(panal => panal.ReleasePanal());
         UnActiveUI();
     }
 }
