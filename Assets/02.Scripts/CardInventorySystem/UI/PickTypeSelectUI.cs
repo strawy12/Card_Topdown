@@ -22,12 +22,13 @@ public class PickTypeSelectUI : PanalUI
                 break;
 
             case PickType.Draw:
-                eventName = Constant.ACTIVE_WANTPICK_UI;
-                Debug.Log("Draw~");
+                eventName = Constant.ACTIVE_DRAWPICK_UI;
                 break;
         }
 
         UnActiveUI();
         EventManager.TriggerEvent(eventName);
     }
+
+   
 }

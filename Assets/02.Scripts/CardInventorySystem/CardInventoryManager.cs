@@ -14,6 +14,7 @@ public class CardInventoryManager : MonoBehaviour
     private bool _activePanalSelf = false;
 
     public bool IsActive { get => _activePanalSelf; }
+    public int PanalCount { get => _cardPanalList.Count; }
     //private MountCardPanal[] _canChangeCardPanals;
     //private DeferCardPanal _selectDeferCardPanal;
 
@@ -26,7 +27,7 @@ public class CardInventoryManager : MonoBehaviour
     {
         PEventManager.StartListening(ENTER_MOUNTING_UI, MountingMessage);
         PEventManager.StartListening(TRIGGER_WANT_PICK, WantPickCard);
-        EventManager.StartListening(TRIGGER_RANDOM_PICK, RandomPickCard); 
+        EventManager.StartListening(TRIGGER_RANDOM_PICK, () => RandomPickCard(2)); 
 
         _currentPanal = GetComponent<CanvasGroup>();
 
@@ -40,8 +41,10 @@ public class CardInventoryManager : MonoBehaviour
             gameObject.SetActive(true);
         }
 
-        _activePanalSelf = !_activePanalSelf;
         _currentPanal.DOKill();
+
+        _activePanalSelf = !_activePanalSelf;
+        
 
         Sequence seq = DOTween.Sequence();
         seq.SetUpdate(true);
@@ -50,6 +53,11 @@ public class CardInventoryManager : MonoBehaviour
         if(_activePanalSelf == false)
         {
             seq.AppendCallback(CloseInventory);
+        }
+
+        else
+        {
+            GameManager.Inst.UI.ClosePanalAll();
         }
 
         seq.Play();
@@ -62,6 +70,8 @@ public class CardInventoryManager : MonoBehaviour
 
     private void CloseInventory()
     {
+        if (_activePanalSelf) return;
+
         gameObject.SetActive(false);
         GameManager.Inst.UI.ClosePanalAll();
 
@@ -203,36 +213,53 @@ public class CardInventoryManager : MonoBehaviour
             if (panal.IsEmpty)
             {
                 CardData card = GameManager.Inst.GetWantCardData(param.iParam);
-                Debug.Log($"{param.iParam} : {card}");
                 panal.ChangeCard(card);
                 return;
             }
         }
     }
 
-
-
-    private void RandomPickCard()
+    private void RandomPickCard(int pickCnt = 1)
     {
-        int pickCnt = 0;
         foreach (CardPanal panal in _cardPanalList)
         {
             if (panal.IsEmpty)
             {
                 CardData card = GameManager.Inst.GetRandomCardData();
                 panal.ChangeCard(card);
-                pickCnt++;
+                pickCnt--;
             }
 
-            if (pickCnt >= 2)
+            if(pickCnt <= 0)
             {
                 return;
             }
         }
     }
 
-    public void DrawPickCard()
+    public void DrawCardMount(CardData cardData, CardPanal panal)
     {
+        GameManager.Inst.AddCardDeck(panal.CurrentCard);
+        panal.EmptyCard();
+        panal.ChangeCard(cardData);
+    }
+
+    public List<CardPanal> GetDeferCardPanals()
+    {
+        return _cardPanalList.FindAll(panal => panal.IsDeferPanal);
+    }
+
+    public CardPanal GetLastCardPanal()
+    {
+        for(int i = 0; i < _cardPanalList.Count; i++)
+        {
+            if(_cardPanalList[i].CurrentCard == null)
+            {
+                return _cardPanalList[i - 1 < 0 ? 0 : i - 1];
+            }
+        }
+
+        return _cardPanalList[_cardPanalList.Count - 1];
     }
 
 }

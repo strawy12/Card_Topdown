@@ -131,10 +131,9 @@ public class GameManager : MonoSingleton<GameManager>
             return null;
         }
 
-        int idx = Random.Range(0, _randomCardDeck.Count);
 
-        CardData randCard = _randomCardDeck[idx];
-        _randomCardDeck.RemoveAt(idx);
+        CardData randCard = _randomCardDeck[0];
+        _randomCardDeck.RemoveAt(0);
 
         ExistCardCheck(randCard.CardNum);
 

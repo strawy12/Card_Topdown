@@ -234,6 +234,7 @@ public static class Constant
     public const string      PLAYER_ATTACK_END = "PL_AT_ED";
 
     public const string     ACTIVE_WANTPICK_UI = "AC_WP_UI";
+    public const string     ACTIVE_DRAWPICK_UI = "AC_DP_UI";
 
     public const string  ACTIVE_PICK_SELECT_UI = "AC_PK_SL_UI";
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public abstract class PanalUI : MonoBehaviour
+public class PanalUI : MonoBehaviour
 {
     public void ActiveUI()
     {
