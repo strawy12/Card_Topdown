@@ -34,6 +34,18 @@ public class UtilDefine
         }
     }
 
+    private static Transform _playerTrm;
+
+    public static Transform PlayerTrm
+    {
+        get
+        {
+            if (_playerTrm == null)
+                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
+            return _playerTrm;
+        }
+    }
+
     public static float CalcPercent(float value, float percent)
     {
         return (value * 100) / percent;

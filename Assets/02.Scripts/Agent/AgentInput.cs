@@ -10,13 +10,15 @@ public class AgentInput : MonoBehaviour
     public UnityEvent<Vector2> OnPlayerMousePointEvent;
     public UnityEvent<Vector2> OnPlayerDashButtonPressEvent;
     public UnityEvent OnPlayerMousePressEvent;
+    public UnityEvent OnESkillButtonPressEvent;
 
     private void Update()
     {
         GetMoveInput();
         GetMousePointInput();
         GetDashButtonInput();
-         GetMouseButtonInput();
+        GetMouseButtonInput();
+        GetESkillButtonInput();
     }
 
     private void GetMoveInput()
@@ -26,26 +28,24 @@ public class AgentInput : MonoBehaviour
 
     private void GetMousePointInput()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 0;
-
-        Vector2 mouseWorldPosition = MainCam.ScreenToWorldPoint(mousePosition);
-        OnPlayerMousePointEvent?.Invoke(mouseWorldPosition);
+        OnPlayerMousePointEvent?.Invoke(MousePos);
     }
 
     private void GetDashButtonInput()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 0;
-
-        Vector2 mouseWorldPosition = MainCam.ScreenToWorldPoint(mousePosition);
         if (Input.GetKeyDown(KeyCode.LeftShift))
-            OnPlayerDashButtonPressEvent?.Invoke(mouseWorldPosition);
+            OnPlayerDashButtonPressEvent?.Invoke(MousePos);
     }
 
     private void GetMouseButtonInput()
     {
         if (Input.GetMouseButtonDown(0))
             OnPlayerMousePressEvent?.Invoke();
+    }
+
+    private void GetESkillButtonInput()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+            OnESkillButtonPressEvent?.Invoke();
     }
 }

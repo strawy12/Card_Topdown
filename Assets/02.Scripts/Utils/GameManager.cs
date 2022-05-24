@@ -19,6 +19,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
+
         new PoolManager(transform);
 
         
@@ -86,17 +87,5 @@ public class GameManager : MonoSingleton<GameManager>
         int idx = Random.Range(0, _randomCardDeck.Count);
 
         _randomCardDeck.Insert(idx, card);
-    }
-
-    private Transform _playerTrm;
-
-    public Transform PlayerTrm
-    {
-        get
-        {
-            if (_playerTrm == null)
-                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
-            return _playerTrm;
-        }
     }
 }
