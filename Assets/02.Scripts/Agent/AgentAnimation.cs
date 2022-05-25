@@ -15,7 +15,7 @@ public class AgentAnimation : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _agentStateCheck = GetComponent<AgentStateCheck>();
+        _agentStateCheck = GetComponentInParent<AgentStateCheck>();
         ChildAwake();
     }
 

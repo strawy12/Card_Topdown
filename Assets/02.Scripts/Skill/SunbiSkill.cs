@@ -3,33 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SunbiSkill : AgentSkill
+public class SunbiSkill : BuffSkill
 {
+    [SerializeField] private float attackIncrement = 0;
+
     [SerializeField] private AgentStatusSO _originalPlayerStatus;
     [SerializeField] private AgentStatusSO _dynamicPlayerStatus;
 
-    [SerializeField] private float attackIncrement = 0;
-    // 스킬 쿨다운 체크할거임
-    private float skillCoolDownTimeCheck = 0;
+    protected BuffSkillState skillState;
 
-    protected SkillState skillState;
-
-    [field: SerializeField] protected float SunbiSkillCoolDown { get; set; }
-    [field: SerializeField] protected float SunbiSkillDuration { get; set; }
-    [field: SerializeField] protected bool SunbiIsPassive { get; set; }
-
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
         _originalPlayerStatus = GetComponent<PlayerStatus>().OriginalPlayerStatus;
         _dynamicPlayerStatus = GetComponent<PlayerStatus>().DynamicPlayerStatus;
-        InitSkill();
-    }
-
-    private void InitSkill()
-    {
-        skillState = SkillState.READY;
-        skillCoolDownTimeCheck = SunbiSkillCoolDown;
+        ResetSkill();
     }
 
     protected void Update()
@@ -39,26 +26,33 @@ public class SunbiSkill : AgentSkill
 
     public void KnowLedgeIsPower()
     {
-        // 스킬 쿨타임 돌았는지 체크
-        if (SunbiSkillCoolDown >= skillCoolDownTimeCheck) return;
-        if (skillState == SkillState.READY) // 스킬 안쓰는 상태
-        {
-            skillState = SkillState.ING;
-            skillCoolDownTimeCheck = 0;
-            _dynamicPlayerStatus.attackDamage += attackIncrement;
-        }
-        else if (skillState == SkillState.ING) // 스킬 쓰고있음
-        {
-            return;
-        }
-        StartCoroutine(SkillUsing(SunbiSkillDuration));
+        if (SkillCoolDown >= skillCoolDownTimeCheck) return; // 스킬 쿨타임 돌았는지 체크
+        skillCoolDownTimeCheck = 0;                               // 쿨타임 다시 돌림
+        _dynamicPlayerStatus.attackDamage += attackIncrement;     // 공격력 증가
+        StartCoroutine(SkillUsing(SkillDuration));           // 코루틴 실행
     }
 
     protected override IEnumerator SkillUsing(float skillDuration)
     {
-        yield return StartCoroutine(base.SkillUsing(skillDuration));
-        skillState = SkillState.READY;
-        _dynamicPlayerStatus.attackDamage = _originalPlayerStatus.attackDamage;
+        yield return new WaitForSeconds(skillDuration);           // 지속시간 끝난 뒤 
+        ResetStatus();
+        _dynamicPlayerStatus.attackDamage = _originalPlayerStatus.attackDamage; // 원래 공격력으로 돌리기
     }
 
+    private void ResetSkill()
+    {
+        skillCoolDownTimeCheck = SkillCoolDown;
+    }
+
+    private void ResetStatus()
+    {
+        _dynamicPlayerStatus.attackDamage = _originalPlayerStatus.attackDamage; // 원래 공격력으로 돌리기
+    }
+
+    protected override void Reset() // 캐릭터 바꿀 때 할듯?
+    {
+        ResetStatus();
+        ResetSkill();
+        StopAllCoroutines();
+    }
 }

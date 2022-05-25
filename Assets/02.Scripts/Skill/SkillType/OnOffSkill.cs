@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class OnOffSkill : MonoBehaviour
+public abstract class OnOffSkill : AgentSkill
 {
     protected enum OnOffSkillState
     {
@@ -13,23 +13,14 @@ public abstract class OnOffSkill : MonoBehaviour
 
     // 스킬 켜고 끄는거에 쿨타임 있으면 사용
     protected virtual float SkillCoolDown { get; set; }
+    protected virtual float SkillCoolDownTimeCheck { get; set; }
+    protected virtual bool IsSkillOn { get; set; }
 
-    protected virtual void Awake()
+    protected virtual void SkillUsing()
     {
-        ChildAwake();
-    }
-
-    protected virtual void ChildAwake()
-    {
-
-    }
-
-    protected virtual void SkillUsing(OnOffSkillState skillState)
-    {
-        if (skillState == OnOffSkillState.WAIT) return;
-        if (skillState == OnOffSkillState.READY)
+        if (IsSkillOn == false)
             SkillOn();
-        else if (skillState == OnOffSkillState.ING)
+        else if (IsSkillOn == true)
             SkillOff();
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BuffSkill : MonoBehaviour
+public abstract class BuffSkill : AgentSkill
 {
     protected enum BuffSkillState
     {
@@ -11,13 +11,16 @@ public abstract class BuffSkill : MonoBehaviour
         WAIT
     }
 
-    protected virtual float SkillCoolDown { get; set; }
-    protected virtual float SkillDuration { get; set; }
+    [field: SerializeField] protected virtual float SkillCoolDown { get; set; }
+    [field: SerializeField] protected virtual float SkillDuration { get; set; }
+    [field: SerializeField] protected virtual float skillCoolDownTimeCheck { get; set; }
 
     protected virtual void Awake()
     {
         ChildAwake();
     }
+
+
 
     protected virtual void ChildAwake()
     {

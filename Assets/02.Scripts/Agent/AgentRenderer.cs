@@ -12,11 +12,12 @@ public class AgentRenderer : MonoBehaviour
     }
     public virtual void ChangeFace(Vector2 playerVec)
     {
-        if (Vector2.Dot(playerVec, Vector2.right) > 0)
+        Vector2 nowDir = playerVec - (Vector2)transform.position;
+        if (Vector2.Dot(nowDir, Vector2.right) > 0)
         {
             _transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (Vector2.Dot(playerVec, Vector2.right) < 0)
+        else if (Vector2.Dot(nowDir, Vector2.right) < 0)
         {
             _transform.localScale = new Vector3(1, 1, 1);
         }

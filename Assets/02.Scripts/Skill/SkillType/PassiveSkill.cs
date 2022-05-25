@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PassiveSkill : MonoBehaviour
+public abstract class PassiveSkill : AgentSkill
 {
 
 }

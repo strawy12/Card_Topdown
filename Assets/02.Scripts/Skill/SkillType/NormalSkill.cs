@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class NormalSkill : MonoBehaviour
+public abstract class NormalSkill : AgentSkill
 {
 
     
@@ -10,7 +10,8 @@ public abstract class NormalSkill : MonoBehaviour
     {
         READY,
         ING,
-        WAIT
+        WAIT,
+        CHARGING
     }
 
     protected virtual float SkillCoolDown { get; set; }

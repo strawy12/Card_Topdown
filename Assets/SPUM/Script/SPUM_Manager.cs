@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,32 +73,32 @@ public class SPUM_Manager : MonoBehaviour
         }
         else
         {
-            SetSpriteList(0,"0_Hair"); //헤어 연결
-            SetSpriteList(1,"1_FaceHair"); //수염 연결
-            SetSpriteList(2,"4_Helmet"); //투구 연결
-            SetSpriteList(3,"2_Cloth"); //옷 연결
-            SetSpriteList(4,"3_Pant"); //헤어 연결
-            SetSpriteList(5,"5_Armor"); //갑옷 연결
-            SetSpriteList(6,"7_Back"); //뒤 아이템 연결
-            SetSpriteList(7,"6_Weapons"); //오른쪽 무기 연결
-            SetSpriteList(8,"6_Weapons"); //왼쪽 무기 연결
-            SetSpriteList(9,"Eye"); //눈 연결
+            SetSpriteList(0,"0_Hair"); //?ㅼ뼱 ?곌껐
+            SetSpriteList(1,"1_FaceHair"); //?섏뿼 ?곌껐
+            SetSpriteList(2,"4_Helmet"); //?ш뎄 ?곌껐
+            SetSpriteList(3,"2_Cloth"); //???곌껐
+            SetSpriteList(4,"3_Pant"); //?ㅼ뼱 ?곌껐
+            SetSpriteList(5,"5_Armor"); //媛묒샆 ?곌껐
+            SetSpriteList(6,"7_Back"); //???꾩씠???곌껐
+            SetSpriteList(7,"6_Weapons"); //?ㅻⅨ履?臾닿린 ?곌껐
+            SetSpriteList(8,"6_Weapons"); //?쇱そ 臾닿린 ?곌껐
+            SetSpriteList(9,"Eye"); //???곌껐
 
-            //추가 패키지 연결
+            //異붽? ?⑦궎吏 ?곌껐
             AddPackageSprite();
 
             yield return StartCoroutine(GetPrefabList());
-            //프리팹 연동
-            ShowNowUnitNumber(); //프리팹 숫자 연동
+            //?꾨━???곕룞
+            ShowNowUnitNumber(); //?꾨━???レ옄 ?곕룞
 
             SetInit();
-            //기본 색 연동
-            //UI연동.
+            //湲곕낯 ???곕룞
+            //UI?곕룞.
 
             _unitCode.text = GetFileName();
 
-            //데이터 인증 부분
-            //패키지 데이터 저장
+            //?곗씠???몄쬆 遺遺?
+            //?⑦궎吏 ?곗씠?????
             if(SoonsoonData.Instance._soonData2.packageList.Count > 0)
             {
                 SoonsoonData.Instance.LoadPackageData();
@@ -115,7 +115,7 @@ public class SPUM_Manager : MonoBehaviour
         _spriteObj._hairList[0].color = _basicColor;
         SetInitColor();
         _spriteObj.Reset(); 
-        //눈도 초기화
+        //?덈룄 珥덇린??
         SetSprite(9,null,"",-1);
 
         for(var i = 0 ; i < _textureList.Count;i++)
@@ -173,7 +173,7 @@ public class SPUM_Manager : MonoBehaviour
         
     }
 
-    //패키지 추가
+    //?⑦궎吏 異붽?
     public void AddPackageSprite()
     {
         string packagePath = "Assets/Resources/SPUM/SPUM_Sprites/Packages";
@@ -219,15 +219,15 @@ public class SPUM_Manager : MonoBehaviour
                      _textureList[j]._packageNameList.Add(pName);
                 }
                
-                // SetSpritePackageList(0,"0_Hair",pName); //헤어 연결
-                // SetSpritePackageList(1,"1_FaceHair",pName); //수염 연결
-                // SetSpritePackageList(2,"4_Helmet",pName); //투구 연결
-                // SetSpritePackageList(3,"2_Cloth",pName); //옷 연결
-                // SetSpritePackageList(4,"3_Pant",pName); //헤어 연결
-                // SetSpritePackageList(5,"5_Armor",pName); //갑옷 연결
-                // SetSpritePackageList(6,"7_Back",pName); //뒤 아이템 연결
-                // SetSpritePackageList(7,"6_Weapons",pName); //오른쪽 무기 연결
-                // SetSpritePackageList(8,"6_Weapons",pName); //왼쪽 무기 연결
+                // SetSpritePackageList(0,"0_Hair",pName); //?ㅼ뼱 ?곌껐
+                // SetSpritePackageList(1,"1_FaceHair",pName); //?섏뿼 ?곌껐
+                // SetSpritePackageList(2,"4_Helmet",pName); //?ш뎄 ?곌껐
+                // SetSpritePackageList(3,"2_Cloth",pName); //???곌껐
+                // SetSpritePackageList(4,"3_Pant",pName); //?ㅼ뼱 ?곌껐
+                // SetSpritePackageList(5,"5_Armor",pName); //媛묒샆 ?곌껐
+                // SetSpritePackageList(6,"7_Back",pName); //???꾩씠???곌껐
+                // SetSpritePackageList(7,"6_Weapons",pName); //?ㅻⅨ履?臾닿린 ?곌껐
+                // SetSpritePackageList(8,"6_Weapons",pName); //?쇱そ 臾닿린 ?곌껐
             }
         }
     }
@@ -307,7 +307,7 @@ public class SPUM_Manager : MonoBehaviour
             switch(listNum)
             {
                 case 0: 
-                // 헤어
+                // ?ㅼ뼱
                 _spriteObj._hairList[0].sprite = tSprite;
                 _spriteObj._hairList[1].sprite = null;
 
@@ -321,7 +321,7 @@ public class SPUM_Manager : MonoBehaviour
                 break;
 
                 case 1: 
-                //수염
+                //?섏뿼
                 _spriteObj._hairList[3].sprite = tSprite;
 
                 if(EmptyChk())
@@ -332,7 +332,7 @@ public class SPUM_Manager : MonoBehaviour
                 break;
 
                 case 2: 
-                //헬멧
+                //?щĸ
                 _spriteObj._hairList[1].sprite = tSprite;
                 _spriteObj._hairList[0].sprite = null;
                 if(EmptyChk())
@@ -344,7 +344,7 @@ public class SPUM_Manager : MonoBehaviour
                 break;
 
                 case 3: 
-                // 옷
+                // ??
                 _spriteObj._clothList[0].sprite = null;
                 _spriteObj._clothList[1].sprite = null;
                 _spriteObj._clothList[2].sprite = null;
@@ -377,7 +377,7 @@ public class SPUM_Manager : MonoBehaviour
                 break;
 
                 case 4: 
-                //바지
+                //諛붿?
                 for(var i = 0; i < tObj.Length;i++)
                 {
                     switch(tObj[i].name)
@@ -402,7 +402,7 @@ public class SPUM_Manager : MonoBehaviour
                 
 
                 case 5: 
-                // 갑옷
+                // 媛묒샆
                 _spriteObj._armorList[0].sprite = null;
                 _spriteObj._armorList[1].sprite = null;
                 _spriteObj._armorList[2].sprite = null;
@@ -435,7 +435,7 @@ public class SPUM_Manager : MonoBehaviour
                 break;
 
                 case 6: 
-                //뒤 아이템
+                //???꾩씠??
                 _spriteObj._backList[0].sprite = tSprite;
                 if(EmptyChk())
                 {
@@ -445,11 +445,11 @@ public class SPUM_Manager : MonoBehaviour
                 break;
 
                 case 7: 
-                //오른손 무기
+                //?ㅻⅨ??臾닿린
                 string tRWName = tSprite.name;
                 if(tRWName.Contains("Shield"))
                 {
-                    //방패
+                    //諛⑺뙣
                     _spriteObj._weaponList[0].sprite = null;
                     _spriteObj._weaponList[1].sprite = tSprite;
                 }
@@ -467,11 +467,11 @@ public class SPUM_Manager : MonoBehaviour
                 break;
 
                 case 8: 
-                //왼손 무기
+                //?쇱넀 臾닿린
                 string tLWName = tSprite.name;
                 if(tLWName.Contains("Shield"))
                 {
-                    //방패
+                    //諛⑺뙣
                     _spriteObj._weaponList[2].sprite = null;
                     _spriteObj._weaponList[3].sprite = tSprite;
                 }
@@ -493,63 +493,63 @@ public class SPUM_Manager : MonoBehaviour
         {
             _textureList[listNum].SetUse(false);
 
-            // 없을때 초기화 구문
+            // ?놁쓣??珥덇린??援щЦ
             switch(listNum)
             {
                 case 0: 
-                // 헤어
+                // ?ㅼ뼱
                 _spriteObj._hairList[0].sprite = null;
                 break;
 
                 case 1: 
-                //수염
+                //?섏뿼
                 _spriteObj._hairList[3].sprite = null;
                 break;
 
                 case 2: 
-                //헬멧
+                //?щĸ
                 _spriteObj._hairList[1].sprite = null;
                 break;
 
                 case 3: 
-                // 옷
+                // ??
                 _spriteObj._clothList[0].sprite = null;
                 _spriteObj._clothList[1].sprite = null;
                 _spriteObj._clothList[2].sprite = null;
                 break;
 
                 case 4: 
-                //바지
+                //諛붿?
                 _spriteObj._pantList[0].sprite = null;
                 _spriteObj._pantList[1].sprite = null;
                 break;
 
                 case 5: 
-                // 갑옷
+                // 媛묒샆
                 _spriteObj._armorList[0].sprite = null;
                 _spriteObj._armorList[1].sprite = null;
                 _spriteObj._armorList[2].sprite = null;
                 break;
 
                 case 6: 
-                //뒤 아이템
+                //???꾩씠??
                 _spriteObj._backList[0].sprite = null;
                 break;
 
                 case 7: 
-                //오른손 무기
+                //?ㅻⅨ??臾닿린
                 _spriteObj._weaponList[0].sprite = null;
                 _spriteObj._weaponList[1].sprite = null;
                 break;
 
                 case 8: 
-                //왼손 무기
+                //?쇱넀 臾닿린
                 _spriteObj._weaponList[2].sprite = null;
                 _spriteObj._weaponList[3].sprite = null;
                 break;
 
                 case 9: 
-                //왼손 무기
+                //?쇱넀 臾닿린
                 
                 break;
 
@@ -576,9 +576,9 @@ public class SPUM_Manager : MonoBehaviour
         float tValue = Random.Range(0,0.7f);
         if(tValue <= 0.1f)
         {
-            //대머리
+            //?癒몃━
         }
-        else if(tValue <= 0.4f) //머리를 설치
+        else if(tValue <= 0.4f) //癒몃━瑜??ㅼ튂
         {
             RandomSelect(0); 
         }
@@ -595,69 +595,69 @@ public class SPUM_Manager : MonoBehaviour
         // if(!_SPButtonList[4]._toggle.isOn) RandomObjColor(2);
     }
 
-    //랜덤 메이킹
+    //?쒕뜡 硫붿씠??
     public void RandomSelect(int num)
     {
         switch(num)
         {
             case 0:
-            //헤어 종류
+            //?ㅼ뼱 醫낅쪟
             if(!_textureList[0]._LockBtn[1].activeInHierarchy) SetSpriteItem(0,-1,true);
             if(!_textureList[0]._LockBtn[1].activeInHierarchy) RandomObjColor(0);
             _panelTitle.text = "Hair Items";
             break;
 
             case 1:
-            //수염
+            //?섏뿼
             if(!_textureList[1]._LockBtn[1].activeInHierarchy) SetSpriteItem(1,-1,true);
             if(!_textureList[1]._LockBtn[1].activeInHierarchy) RandomObjColor(1);
             _panelTitle.text = "Mustache Items";
             break;
 
             case 2:
-            //헬멧 종류
+            //?щĸ 醫낅쪟
             if(!_textureList[2]._LockBtn[1].activeInHierarchy) SetSpriteItem(2,-1,true);
             _panelTitle.text = "Helmet Items";
             break;
 
             case 3:
-            //옷 종류
+            //??醫낅쪟
             if(!_textureList[3]._LockBtn[1].activeInHierarchy) SetSpriteItem(3,-1,true);
             _panelTitle.text = "Cloths Items";
             break;
 
             case 4:
-            //바지 종류
+            //諛붿? 醫낅쪟
             if(!_textureList[4]._LockBtn[1].activeInHierarchy) SetSpriteItem(4,-1,true);
             _panelTitle.text = "Pants Items";
             break;
 
             case 5:
-            //갑옷 종류
+            //媛묒샆 醫낅쪟
             if(!_textureList[5]._LockBtn[1].activeInHierarchy) SetSpriteItem(5,-1,true);
             _panelTitle.text = "Armor Items";
             break;
 
             case 6:
-            //뒤 종류
+            //??醫낅쪟
             if(!_textureList[6]._LockBtn[1].activeInHierarchy) SetSpriteItem(6,-1,true);
             _panelTitle.text = "Back Items";
             break;
 
             case 7:
-            //오른손 무기 종류
+            //?ㅻⅨ??臾닿린 醫낅쪟
             if(!_textureList[7]._LockBtn[1].activeInHierarchy) SetSpriteItem(7,-1,true);
             _panelTitle.text = "Right Weapons";
             break;
 
             case 8:
-            //왼손 무기 종류
+            //?쇱넀 臾닿린 醫낅쪟
             if(!_textureList[8]._LockBtn[1].activeInHierarchy) SetSpriteItem(8,-1,true);
             _panelTitle.text = "Left Weapons";
             break;
 
             case 9:
-            //눈 색
+            //????
             if(!_textureList[9]._LockBtn[1].activeInHierarchy) SetSpriteItem(9,-1,true);
             if(!_textureList[9]._LockBtn[1].activeInHierarchy) RandomObjColor(9);
             _panelTitle.text = "Eye Color";
@@ -682,57 +682,57 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 0:
-            //헤어 종류
+            //?ㅼ뼱 醫낅쪟
             _panelTitle.text = "Hair Items";
             break;
 
             case 1:
-            //수염
+            //?섏뿼
             _panelTitle.text = "Mustache Items";
             break;
 
             case 2:
-            //헬멧 종류
+            //?щĸ 醫낅쪟
             _panelTitle.text = "Helmet Items";
             break;
 
             case 3:
-            //옷 종류
+            //??醫낅쪟
             _panelTitle.text = "Cloths Items";
             break;
 
             case 4:
-            //바지 종류
+            //諛붿? 醫낅쪟
             _panelTitle.text = "Pants Items";
             break;
 
             case 5:
-            //갑옷 종류
+            //媛묒샆 醫낅쪟
             _panelTitle.text = "Armor Items";
             break;
 
             case 6:
-            //뒤 종류
+            //??醫낅쪟
             _panelTitle.text = "Back Items";
             break;
 
             case 7:
-            //오른손 무기 종류
+            //?ㅻⅨ??臾닿린 醫낅쪟
             _panelTitle.text = "Right Weapons";
             break;
 
             case 8:
-            //왼손 무기 종류
+            //?쇱넀 臾닿린 醫낅쪟
             _panelTitle.text = "Left Weapons";
             break;
 
             case 9:
-            //눈 색
+            //????
             _panelTitle.text = "Eye Color";
             break;
 
             case 10:
-            //말 선택
+            //留??좏깮
             _panelTitle.text = "Horse Select";
             break;
         }
@@ -743,7 +743,7 @@ public class SPUM_Manager : MonoBehaviour
 
     public void DrawItemProcess()
     {
-        //차일드 삭제
+        //李⑥씪????젣
         if(_childPool.childCount > 0)
         {
             for(var i=0; i < _childPool.childCount;i++)
@@ -763,7 +763,7 @@ public class SPUM_Manager : MonoBehaviour
         ttObjST2._itemType = _drawItemIndex;
         ttObjST2._sprite = null;
 
-        if( _drawItemIndex == 9 ) //눈의 경우
+        if( _drawItemIndex == 9 ) //?덉쓽 寃쎌슦
         {
             string path = AssetDatabase.GetAssetPath(_mainBody);
             string tName = _mainBody.name + ".png";
@@ -818,7 +818,7 @@ public class SPUM_Manager : MonoBehaviour
                 }
             }
         }
-        else if(_drawItemIndex == -1 ) //몸
+        else if(_drawItemIndex == -1 ) //紐?
         {
             string path = "Assets/SPUM/SPUM_Sprites/BodySource/Species/";
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -899,7 +899,7 @@ public class SPUM_Manager : MonoBehaviour
                 }
             }
         }
-        else if(_drawItemIndex == 10) // 말의 경우
+        else if(_drawItemIndex == 10) // 留먯쓽 寃쎌슦
         {
             string path = "Assets/SPUM/SPUM_Sprites/RideSource/";
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -1045,48 +1045,48 @@ public class SPUM_Manager : MonoBehaviour
                         switch(_drawItemIndex)
                         {
                             case 0:
-                            //헤어 종류
-                            SetSpriteList(0,"0_Hair"); //헤어 연결
+                            //?ㅼ뼱 醫낅쪟
+                            SetSpriteList(0,"0_Hair"); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 1:
-                            //수염
-                            SetSpriteList(1,"1_FaceHair"); //수염 연결
+                            //?섏뿼
+                            SetSpriteList(1,"1_FaceHair"); //?섏뿼 ?곌껐
                             break;
 
                             case 2:
-                            //헬멧 종류
-                            SetSpriteList(2,"4_Helmet"); //투구 연결
+                            //?щĸ 醫낅쪟
+                            SetSpriteList(2,"4_Helmet"); //?ш뎄 ?곌껐
                             break;
 
                             case 3:
-                            //옷 종류
-                            SetSpriteList(3,"2_Cloth"); //옷 연결
+                            //??醫낅쪟
+                            SetSpriteList(3,"2_Cloth"); //???곌껐
                             break;
 
                             case 4:
-                            //바지 종류
-                             SetSpriteList(4,"3_Pant"); //헤어 연결
+                            //諛붿? 醫낅쪟
+                             SetSpriteList(4,"3_Pant"); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 5:
-                            //갑옷 종류
-                            SetSpriteList(5,"5_Armor"); //갑옷 연결
+                            //媛묒샆 醫낅쪟
+                            SetSpriteList(5,"5_Armor"); //媛묒샆 ?곌껐
                             break;
 
                             case 6:
-                            //뒤 종류
-                            SetSpriteList(6,"7_Back"); //뒤 아이템 연결
+                            //??醫낅쪟
+                            SetSpriteList(6,"7_Back"); //???꾩씠???곌껐
                             break;
 
                             case 7:
-                            //오른손 무기 종류
-                            SetSpriteList(7,"6_Weapons"); //오른쪽 무기 연결
+                            //?ㅻⅨ??臾닿린 醫낅쪟
+                            SetSpriteList(7,"6_Weapons"); //?ㅻⅨ履?臾닿린 ?곌껐
                             break;
 
                             case 8:
-                            //왼손 무기 종류
-                            SetSpriteList(8,"6_Weapons"); //왼쪽 무기 연결
+                            //?쇱넀 臾닿린 醫낅쪟
+                            SetSpriteList(8,"6_Weapons"); //?쇱そ 臾닿린 ?곌껐
                             break;
                         }
                     }
@@ -1098,48 +1098,48 @@ public class SPUM_Manager : MonoBehaviour
                         switch(_drawItemIndex)
                         {
                             case 0:
-                            //헤어 종류
-                            SetSpritePackageList(0,"0_Hair",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //?ㅼ뼱 醫낅쪟
+                            SetSpritePackageList(0,"0_Hair",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 1:
-                            //수염
-                            SetSpritePackageList(1,"1_FaceHair",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //?섏뿼
+                            SetSpritePackageList(1,"1_FaceHair",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 2:
-                            //헬멧 종류
-                            SetSpritePackageList(2,"4_Helmet",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //?щĸ 醫낅쪟
+                            SetSpritePackageList(2,"4_Helmet",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 3:
-                            //옷 종류
-                            SetSpritePackageList(3,"2_Cloth",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //??醫낅쪟
+                            SetSpritePackageList(3,"2_Cloth",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 4:
-                            //바지 종류
-                            SetSpritePackageList(4,"3_Pant",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //諛붿? 醫낅쪟
+                            SetSpritePackageList(4,"3_Pant",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 5:
-                            //갑옷 종류
-                            SetSpritePackageList(5,"5_Armor",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //媛묒샆 醫낅쪟
+                            SetSpritePackageList(5,"5_Armor",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 6:
-                            //뒤 종류
-                            SetSpritePackageList(6,"7_Back",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //??醫낅쪟
+                            SetSpritePackageList(6,"7_Back",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 7:
-                            //오른손 무기 종류
-                            SetSpritePackageList(7,"6_Weapons",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //?ㅻⅨ??臾닿린 醫낅쪟
+                            SetSpritePackageList(7,"6_Weapons",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 8:
-                            //왼손 무기 종류
-                            SetSpritePackageList(8,"6_Weapons",_textureList[_drawItemIndex]._packageNameList[i]); //헤어 연결
+                            //?쇱넀 臾닿린 醫낅쪟
+                            SetSpritePackageList(8,"6_Weapons",_textureList[_drawItemIndex]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
                         }
                     }
@@ -1202,7 +1202,7 @@ public class SPUM_Manager : MonoBehaviour
                         switch(_drawItemIndex)
                         {
                             case 3:
-                            //옷 종류
+                            //??醫낅쪟
                             ttObjST._clothList[0].gameObject.SetActive(false);
                             ttObjST._clothList[1].gameObject.SetActive(false);
                             ttObjST._clothList[2].gameObject.SetActive(false);
@@ -1236,10 +1236,10 @@ public class SPUM_Manager : MonoBehaviour
                             break;
 
                             case 4:
-                            //바지 종류
+                            //諛붿? 醫낅쪟
                             ttObjST._pantList[0].sprite=null;
                             ttObjST._pantList[1].sprite=null;
-                            //바지
+                            //諛붿?
                             Sprite[] tSpritePant = Resources.LoadAll<Sprite>( _textureList[_drawItemIndex]._textureList[i]);
                             for(var j = 0; j < tSpritePant.Length;j++)
                             {
@@ -1260,7 +1260,7 @@ public class SPUM_Manager : MonoBehaviour
                             break;
 
                             case 5:
-                            //갑옷 종류
+                            //媛묒샆 醫낅쪟
                             ttObjST._armorList[0].gameObject.SetActive(false);
                             ttObjST._armorList[1].gameObject.SetActive(false);
                             ttObjST._armorList[2].gameObject.SetActive(false);
@@ -1356,25 +1356,25 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 0:
-            //헤어 종류
+            //?ㅼ뼱 醫낅쪟
             _spriteObj._hairList[0].sprite = sprite;
             _spriteObj._hairList[1].sprite = null;
             break;
             
             case 1:
-            //수염
+            //?섏뿼
             _spriteObj._hairList[3].sprite = sprite;
             break;
             
             case 2:
-            //헬멧 종류
+            //?щĸ 醫낅쪟
             _spriteObj._hairList[1].sprite = sprite;
             _spriteObj._hairList[0].sprite = null;
             break;
 
             case 3:
-            //옷 종류
-            // 옷
+            //??醫낅쪟
+            // ??
             _spriteObj._clothList[0].sprite = null;
             _spriteObj._clothList[1].sprite = null;
             _spriteObj._clothList[2].sprite = null;
@@ -1404,8 +1404,8 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 4:
-            //바지 종류
-            //바지
+            //諛붿? 醫낅쪟
+            //諛붿?
             _spriteObj._pantList[0].sprite = null;
             _spriteObj._pantList[1].sprite = null;
             if(name.Length > 0)
@@ -1428,7 +1428,7 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 5:
-            //갑옷 종류
+            //媛묒샆 醫낅쪟
             _spriteObj._armorList[0].sprite = null;
             _spriteObj._armorList[1].sprite = null;
             _spriteObj._armorList[2].sprite = null;
@@ -1456,12 +1456,12 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 6:
-            //뒷 아이템
+            //???꾩씠??
             _spriteObj._backList[0].sprite = sprite;
             break;
 
             case 7:
-            //오른손 무기 종류
+            //?ㅻⅨ??臾닿린 醫낅쪟
             if(sprite==null)
             {
                 _spriteObj._weaponList[0].sprite = null;
@@ -1471,7 +1471,7 @@ public class SPUM_Manager : MonoBehaviour
             {
                 if((sprite.name).Contains("Shield"))
                 {
-                    //방패
+                    //諛⑺뙣
                     _spriteObj._weaponList[0].sprite = null;
                     _spriteObj._weaponList[1].sprite = sprite;
                 }
@@ -1485,7 +1485,7 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 8:
-            //왼손 무기 종류
+            //?쇱넀 臾닿린 醫낅쪟
             if(sprite==null)
             {
                 _spriteObj._weaponList[2].sprite = null;
@@ -1495,7 +1495,7 @@ public class SPUM_Manager : MonoBehaviour
             {
                 if((sprite.name).Contains("Shield"))
                 {
-                    //방패
+                    //諛⑺뙣
                     _spriteObj._weaponList[2].sprite = null;
                     _spriteObj._weaponList[3].sprite = sprite;
                 }
@@ -1508,7 +1508,7 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 9:
-            //눈 기본으로 리셋
+            //??湲곕낯?쇰줈 由ъ뀑
 
             if(name.Length > 0)
             {
@@ -1560,7 +1560,7 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 10:
-            //말
+            //留?
             if(name.Length ==0)
             {
                 SetHorse(false,name);
@@ -1575,7 +1575,7 @@ public class SPUM_Manager : MonoBehaviour
             
 
             case 11:
-            //풀셋
+            //???
             editObjNum = index;
             LoadUnitDataName(index);
             LoadButtonSet(true);
@@ -1663,45 +1663,45 @@ public class SPUM_Manager : MonoBehaviour
 
         switch(num)
         {
-            case 0: //머리의 경우
+            case 0: //癒몃━??寃쎌슦
             if(_spriteObj._hairList[0].sprite != null ) available = true;
             break;
 
-            case 1: //수염의 경우
+            case 1: //?섏뿼??寃쎌슦
             if(_spriteObj._hairList[3].sprite != null ) available = true;
             break;
 
-            case 2: //헬멧
+            case 2: //?щĸ
             if(_spriteObj._hairList[1].sprite != null ) available = true;
             break;
 
-            case 3: //옷
+            case 3: //??
             if(_spriteObj._bodyList[0].sprite != null ) available = true;
             break;
 
-            case 4: //바지
+            case 4: //諛붿?
             if(_spriteObj._pantList[0].sprite != null ) available = true;
             break;
 
-            case 5: //아머
+            case 5: //?꾨㉧
             if(_spriteObj._armorList[0].sprite != null ) available = true;
             break;
 
-            case 6: //뒤
+            case 6: //??
             if(_spriteObj._backList[0].sprite != null ) available = true;
             break;
 
-            case 7: //오른손
+            case 7: //?ㅻⅨ??
             if(_spriteObj._weaponList[0].sprite!=null) available = true;
             if(_spriteObj._weaponList[1].sprite!=null) available = true;
             break;
 
-            case 8: //왼손
+            case 8: //?쇱넀
             if(_spriteObj._weaponList[2].sprite!=null) available = true;
             if(_spriteObj._weaponList[3].sprite!=null) available = true;
             break;
 
-            case 9: //눈의 경우
+            case 9: //?덉쓽 寃쎌슦
             available = true;
             _spriteObj._eyeList[2].color = _nowColor;
             _spriteObj._eyeList[3].color = _nowColor;
@@ -1752,51 +1752,51 @@ public class SPUM_Manager : MonoBehaviour
     {
         switch(_nowColorNum)
         {
-            case 0: //머리의 경우
+            case 0: //癒몃━??寃쎌슦
             _spriteObj._hairList[0].color = _nowColor;
             
             break;
 
-            case 1: //수염의 경우
+            case 1: //?섏뿼??寃쎌슦
             _spriteObj._hairList[3].color = _nowColor;
             break;
 
-            case 2: //헬멧
+            case 2: //?щĸ
             _spriteObj._hairList[1].color = _nowColor;
             break;
 
-            case 3: //옷
+            case 3: //??
             _spriteObj._clothList[0].color = _nowColor;
             _spriteObj._clothList[1].color = _nowColor;
             _spriteObj._clothList[2].color = _nowColor;
             break;
 
-            case 4: //바지
+            case 4: //諛붿?
             _spriteObj._pantList[0].color = _nowColor;
             _spriteObj._pantList[1].color = _nowColor;
             break;
 
-            case 5: //아머
+            case 5: //?꾨㉧
             _spriteObj._armorList[0].color = _nowColor;
             _spriteObj._armorList[1].color = _nowColor;
             _spriteObj._armorList[2].color = _nowColor;
             break;
 
-            case 6: //뒤
+            case 6: //??
             _spriteObj._backList[0].color = _nowColor;
             break;
 
-            case 7: //오른손
+            case 7: //?ㅻⅨ??
             if(_spriteObj._weaponList[0]!=null) _spriteObj._weaponList[0].color = _nowColor;
             if(_spriteObj._weaponList[1]!=null) _spriteObj._weaponList[1].color = _nowColor;
             break;
 
-            case 8: //왼손
+            case 8: //?쇱넀
             if(_spriteObj._weaponList[2]!=null) _spriteObj._weaponList[2].color = _nowColor;
             if(_spriteObj._weaponList[3]!=null) _spriteObj._weaponList[3].color = _nowColor;
             break;
 
-            case 9: //눈의 경우
+            case 9: //?덉쓽 寃쎌슦
             _spriteObj._eyeList[2].color = _nowColor;
             _spriteObj._eyeList[3].color = _nowColor;
             break;
@@ -1819,50 +1819,50 @@ public class SPUM_Manager : MonoBehaviour
         
         switch(num)
         {
-            case 0: //머리의 경우
+            case 0: //癒몃━??寃쎌슦
             _spriteObj._hairList[0].color = tColor;
             break;
 
-            case 1: //수염의 경우
+            case 1: //?섏뿼??寃쎌슦
             _spriteObj._hairList[3].color = tColor;
             break;
 
-            case 2: //헬멧
+            case 2: //?щĸ
             _spriteObj._hairList[1].color = tColor;
             break;
 
-            case 3: //옷
+            case 3: //??
             _spriteObj._clothList[0].color = tColor;
             _spriteObj._clothList[1].color = tColor;
             _spriteObj._clothList[2].color = tColor;
             break;
 
-            case 4: //바지
+            case 4: //諛붿?
             _spriteObj._pantList[0].color = tColor;
             _spriteObj._pantList[1].color = tColor;
             break;
 
-            case 5: //아머
+            case 5: //?꾨㉧
             _spriteObj._armorList[0].color = tColor;
             _spriteObj._armorList[1].color = tColor;
             _spriteObj._armorList[2].color = tColor;
             break;
 
-            case 6: //뒤
+            case 6: //??
             _spriteObj._backList[0].color = tColor;
             break;
 
-            case 7: //오른손
+            case 7: //?ㅻⅨ??
             if(_spriteObj._weaponList[0]!=null) _spriteObj._weaponList[0].color = tColor;
             if(_spriteObj._weaponList[1]!=null) _spriteObj._weaponList[1].color = tColor;
             break;
 
-            case 8: //왼손
+            case 8: //?쇱넀
             if(_spriteObj._weaponList[2]!=null) _spriteObj._weaponList[2].color = tColor;
             if(_spriteObj._weaponList[3]!=null) _spriteObj._weaponList[3].color = tColor;
             break;
 
-            case 9: //눈의 경우
+            case 9: //?덉쓽 寃쎌슦
             _spriteObj._eyeList[2].color = tColor;
             _spriteObj._eyeList[3].color = tColor;
             break;
@@ -1882,12 +1882,12 @@ public class SPUM_Manager : MonoBehaviour
             {
                 string path = unitPath + fileInfo.Name;
                 GameObject prefab = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) as GameObject;
-                //데이터 싱크 부분
+                //?곗씠???깊겕 遺遺?
                 SPUM_Prefabs tST = prefab.GetComponent<SPUM_Prefabs>();
                 SPUM_SpriteList tObjST = tST._spriteOBj;
                 _spriteObj.LoadSprite(tObjST);
 
-                //UI연동.
+                //UI?곕룞.
                 // _colorButton[0].color = tObjST._eyeList[0].color;
                 // _colorButton[1].color = tObjST._hairList[3].color;
                 // _colorButton[2].color = tObjST._hairList[0].color;
@@ -1959,7 +1959,7 @@ public class SPUM_Manager : MonoBehaviour
             {
                 string path = unitPath + fileInfo.Name;
                 GameObject prefab = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) as GameObject;
-                //데이터 싱크 부분
+                //?곗씠???깊겕 遺遺?
                 SPUM_Prefabs tST = prefab.GetComponent<SPUM_Prefabs>();
                 // Debug.Log(tST._version);
                 // Debug.Log(_version);
@@ -1967,7 +1967,7 @@ public class SPUM_Manager : MonoBehaviour
                 if(tST._version == 0 || tST._version < _version)
                 {
                     Debug.Log("Old Version data found.. Now sync version data..");
-                    //이 경우는 데이터를 싱크해줘야한다.
+                    //??寃쎌슦???곗씠?곕? ?깊겕?댁쨾?쇳븳??
                     SPUM_SpriteList tObjST = tST._spriteOBj;
                     if(tObjST._spHorseSPList !=null)
                     {
@@ -1979,7 +1979,7 @@ public class SPUM_Manager : MonoBehaviour
                     }
                     _spriteObj.LoadSprite(tObjST);
 
-                    //UI연동.
+                    //UI?곕룞.
                     // _colorButton[0].color = tObjST._eyeList[0].color;
                     // _colorButton[1].color = tObjST._hairList[3].color;
                     // _colorButton[2].color = tObjST._hairList[0].color;
@@ -2014,7 +2014,7 @@ public class SPUM_Manager : MonoBehaviour
 
         
     }
-    //프리팹 저장 부분
+    //?꾨━?????遺遺?
     public void SavePrefabs()
     {
         if(_prefabUnitList.Count < _maxNumber)
@@ -2212,7 +2212,7 @@ public class SPUM_Manager : MonoBehaviour
 
             SPUM_PreviewItem ttObjST = ttObj.GetComponent<SPUM_PreviewItem>();
             ttObjST.ShowObj(5);
-            //아이템 연동 부분
+            //?꾩씠???곕룞 遺遺?
             ttObjST._fullSetList[0].sprite = tObjST._bodyList[0].sprite;
             if(tObjST._bodyList[0].sprite!=null) ttObjST._fullSetList[0].color = tObjST._bodyList[0].color;
             ttObjST._fullSetList[1].sprite = tObjST._bodyList[1].sprite;
@@ -2270,10 +2270,10 @@ public class SPUM_Manager : MonoBehaviour
             ttObjST._fullSetList[23].sprite = tObjST._backList[0].sprite;
             if(tObjST._backList[0].sprite!=null) ttObjST._fullSetList[23].color = tObjST._backList[0].color;
 
-            //string 연동
+            //string ?곕룞
 
             
-            //색연동
+            //?됱뿰??
             if(!tObjST._eyeList[0].gameObject.activeInHierarchy) 
             {
                 ttObjST._fullSetList[6].gameObject.SetActive(true);
@@ -2316,7 +2316,7 @@ public class SPUM_Manager : MonoBehaviour
                 else ttObjST._fullSetList[i].gameObject.SetActive(false);
             }
 
-            // 말 데이터가 있는지.
+            // 留??곗씠?곌? ?덈뒗吏.
             if(tObj.GetComponent<SPUM_Prefabs>()._horse)
             {
                 ttObjST._objList[7].SetActive(true);
@@ -2449,10 +2449,10 @@ public class SPUM_Manager : MonoBehaviour
         _spriteObj.LoadSprite(tObjST);
         _unitCode.text = (_prefabUnitList[index].name).Split('.')[0];
 
-        //데이터 유효성 체크
+        //?곗씠???좏슚??泥댄겕
         if(tPrefabST._version == 0 || tPrefabST._version < _version)
         {
-            //버젼이 존재하지 않거나 없으면 Resync 실행
+            //踰꾩졏??議댁옱?섏? ?딄굅???놁쑝硫?Resync ?ㅽ뻾
             tObjST.ResyncData();
             tPrefabST._version = _version;
             Debug.Log(unitPath+_prefabUnitList[index].name+".prefab");
@@ -2509,7 +2509,7 @@ public class SPUM_Manager : MonoBehaviour
     }
 
 
-    //애니메이션 컨트롤러를 연동해줍니다.
+    //?좊땲硫붿씠??而⑦듃濡ㅻ윭瑜??곕룞?댁쨳?덈떎.
     public void AnimContCheck()
     {
         // RuntimeAnimatorController tC;
@@ -2552,7 +2552,7 @@ public class SPUM_Manager : MonoBehaviour
         _noticeText.text = text;
         callbackNum = callback;
 
-        if(type == 0 ) //버튼 사용 선택
+        if(type == 0 ) //踰꾪듉 ?ъ슜 ?좏깮
         {
             _buttonSet[0].SetActive(true);
             _buttonSet[1].SetActive(false);
@@ -2583,12 +2583,12 @@ public class SPUM_Manager : MonoBehaviour
         _noticeObj.SetActive(false);
     }
 
-    //인스톨 관련
+    //?몄뒪??愿??
     
     public void InstallSpriteData()
     {
         bool Chk = false;
-        //기본 폴더 제작
+        //湲곕낯 ?대뜑 ?쒖옉
         if(Directory.Exists("Assets/Resources/SPUM/SPUM_Sprites/Items"))
         {
             Debug.Log("Found Resources Folder Success!!");
@@ -2604,7 +2604,7 @@ public class SPUM_Manager : MonoBehaviour
             Directory.CreateDirectory("Assets/Resources/SPUM/SPUM_Sprites/");
         }
 
-        //패키지 데이터 제작
+        //?⑦궎吏 ?곗씠???쒖옉
         if(Directory.Exists("Assets/Resources/SPUM/SPUM_Sprites/Packages"))
         {
             Debug.Log("Found Package Folder Success!!");
@@ -2615,7 +2615,7 @@ public class SPUM_Manager : MonoBehaviour
             }
         }
 
-        //어셋 카피
+        //?댁뀑 移댄뵾
 
         if(AssetDatabase.CopyAsset("Assets/SPUM/SPUM_Sprites/Items","Assets/Resources/SPUM/SPUM_Sprites/Items"))
         {
@@ -2777,53 +2777,53 @@ public class SPUM_Manager : MonoBehaviour
                         switch(k)
                         {
                             case 0:
-                            //헤어 종류
-                            SetSpriteList(0,"0_Hair"); //헤어 연결
+                            //?ㅼ뼱 醫낅쪟
+                            SetSpriteList(0,"0_Hair"); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 1:
-                            //수염
-                            SetSpriteList(1,"1_FaceHair"); //수염 연결
+                            //?섏뿼
+                            SetSpriteList(1,"1_FaceHair"); //?섏뿼 ?곌껐
                             break;
 
                             case 2:
-                            //헬멧 종류
-                            SetSpriteList(2,"4_Helmet"); //투구 연결
+                            //?щĸ 醫낅쪟
+                            SetSpriteList(2,"4_Helmet"); //?ш뎄 ?곌껐
                             break;
 
                             case 3:
-                            //옷 종류
-                            SetSpriteList(3,"2_Cloth"); //옷 연결
+                            //??醫낅쪟
+                            SetSpriteList(3,"2_Cloth"); //???곌껐
                             break;
 
                             case 4:
-                            //바지 종류
-                                SetSpriteList(4,"3_Pant"); //헤어 연결
+                            //諛붿? 醫낅쪟
+                                SetSpriteList(4,"3_Pant"); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 5:
-                            //갑옷 종류
-                            SetSpriteList(5,"5_Armor"); //갑옷 연결
+                            //媛묒샆 醫낅쪟
+                            SetSpriteList(5,"5_Armor"); //媛묒샆 ?곌껐
                             break;
 
                             case 6:
-                            //뒤 종류
-                            SetSpriteList(6,"7_Back"); //뒤 아이템 연결
+                            //??醫낅쪟
+                            SetSpriteList(6,"7_Back"); //???꾩씠???곌껐
                             break;
 
                             case 7:
-                            //오른손 무기 종류
-                            SetSpriteList(7,"6_Weapons"); //오른쪽 무기 연결
+                            //?ㅻⅨ??臾닿린 醫낅쪟
+                            SetSpriteList(7,"6_Weapons"); //?ㅻⅨ履?臾닿린 ?곌껐
                             break;
 
                             case 8:
-                            //왼손 무기 종류
-                            SetSpriteList(8,"6_Weapons"); //왼쪽 무기 연결
+                            //?쇱넀 臾닿린 醫낅쪟
+                            SetSpriteList(8,"6_Weapons"); //?쇱そ 臾닿린 ?곌껐
                             break;
 
                             case 9:
-                            //왼손 무기 종류
-                            SetSpriteList(9,"Eye"); //눈 연결
+                            //?쇱넀 臾닿린 醫낅쪟
+                            SetSpriteList(9,"Eye"); //???곌껐
                             break;
                         }
                     }
@@ -2835,53 +2835,53 @@ public class SPUM_Manager : MonoBehaviour
                         switch(k)
                         {
                             case 0:
-                            //헤어 종류
-                            SetSpritePackageList(0,"0_Hair",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //?ㅼ뼱 醫낅쪟
+                            SetSpritePackageList(0,"0_Hair",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 1:
-                            //수염
-                            SetSpritePackageList(1,"1_FaceHair",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //?섏뿼
+                            SetSpritePackageList(1,"1_FaceHair",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 2:
-                            //헬멧 종류
-                            SetSpritePackageList(2,"4_Helmet",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //?щĸ 醫낅쪟
+                            SetSpritePackageList(2,"4_Helmet",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 3:
-                            //옷 종류
-                            SetSpritePackageList(3,"2_Cloth",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //??醫낅쪟
+                            SetSpritePackageList(3,"2_Cloth",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 4:
-                            //바지 종류
-                            SetSpritePackageList(4,"3_Pant",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //諛붿? 醫낅쪟
+                            SetSpritePackageList(4,"3_Pant",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 5:
-                            //갑옷 종류
-                            SetSpritePackageList(5,"5_Armor",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //媛묒샆 醫낅쪟
+                            SetSpritePackageList(5,"5_Armor",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 6:
-                            //뒤 종류
-                            SetSpritePackageList(6,"7_Back",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //??醫낅쪟
+                            SetSpritePackageList(6,"7_Back",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 7:
-                            //오른손 무기 종류
-                            SetSpritePackageList(7,"6_Weapons",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //?ㅻⅨ??臾닿린 醫낅쪟
+                            SetSpritePackageList(7,"6_Weapons",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 8:
-                            //왼손 무기 종류
-                            SetSpritePackageList(8,"6_Weapons",_textureList[k]._packageNameList[i]); //헤어 연결
+                            //?쇱넀 臾닿린 醫낅쪟
+                            SetSpritePackageList(8,"6_Weapons",_textureList[k]._packageNameList[i]); //?ㅼ뼱 ?곌껐
                             break;
 
                             case 9:
-                            //왼손 무기 종류
-                            SetSpritePackageList(9,"Eye",_textureList[k]._packageNameList[i]); //눈 연결
+                            //?쇱넀 臾닿린 醫낅쪟
+                            SetSpritePackageList(9,"Eye",_textureList[k]._packageNameList[i]); //???곌껐
                             break;
                         }
                     }
