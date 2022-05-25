@@ -32,6 +32,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
+
         new PoolManager(transform);
 
         _uiManager = FindObjectOfType<UIManager>();
@@ -156,6 +157,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         _randomCardDeck.Insert(idx, card);
     }
+<<<<<<< HEAD
 
     public void PickCardEvent()
     {
@@ -170,4 +172,6 @@ public class GameManager : MonoSingleton<GameManager>
         return _existCard[cardNum - 1];
     }
 
+=======
+>>>>>>> origin/gaon
 }
