@@ -24,7 +24,7 @@ public class AgentMove : MonoBehaviour
 
     private void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponentInParent<Rigidbody2D>();
         boxCol2D = GetComponentInChildren<BoxCollider2D>();
         agentStateCheck = GetComponent<AgentStateCheck>();
     }

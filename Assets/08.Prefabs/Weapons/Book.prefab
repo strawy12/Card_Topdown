@@ -45,13 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cec032ecf73b440ab66de2ac9fde1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponData: {fileID: 0}
-  _currentAngle: 0
-  _isRight: 1
-  _rotateSpeed: 300
-  _maxRadius: 1.2
   _playerOrder: 5
-  _offset: {x: 0, y: 0.5, z: 0}
 --- !u!212 &6737615315183148138
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,7 +107,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0056913644, y: 0.16787486}

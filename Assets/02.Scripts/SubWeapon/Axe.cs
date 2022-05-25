@@ -12,19 +12,12 @@ public class Axe : MonoBehaviour
         _rigid.gravityScale = 0f;
     }
 
-    [ContextMenu("Ω√¿€")]
     public void StartAttack()
     {
-
         float randRot = Random.Range(-0.5f, 0.5f);
         Vector2 dir = new Vector2(randRot, 1f);
         _rigid.AddForce(dir.normalized * _throwForce);
         _rigid.gravityScale = 1f;
-
-
-
-
-
 
 
         _rigid.AddTorque(randRot * _throwForce);

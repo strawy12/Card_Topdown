@@ -8,7 +8,5 @@ public class SubWeaponSO : ScriptableObject
     public float delayTime;
     public float damage;
 
-    public bool isEnemy;
-    public bool attackWeapon;
-
+    public float lifeTime;
 }

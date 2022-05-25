@@ -43,8 +43,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        EventManager.StartListening(Constant.TRIGGER_MONSTER_DEAD, PickCardEvent);
-
         _existCard = Enumerable.Repeat(true, 10).ToArray();
     }
 
@@ -157,21 +155,10 @@ public class GameManager : MonoSingleton<GameManager>
 
         _randomCardDeck.Insert(idx, card);
     }
-<<<<<<< HEAD
-
-    public void PickCardEvent()
-    {
-        //if (Random.Range(0, 100) > 20) return;
-
-        EventManager.TriggerEvent(Constant.TRIGGER_PICK_CARD);
-
-    }
 
     public bool ExistCard(int cardNum)
     {
         return _existCard[cardNum - 1];
     }
 
-=======
->>>>>>> origin/gaon
 }
