@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe53cec57d8ecf4a997813b4ca17663, type: 3}
-  m_Name: DefaultTestEnemyMoveData
+  m_Script: {fileID: 11500000, guid: fdd6fdf75d255b847833666d2c05f118, type: 3}
+  m_Name: FireMagicianData
   m_EditorClassIdentifier: 
-  maxSpeed: 3
-  acceleration: 50
-  deceleration: 50
+  enemyName: 
+  prefab: {fileID: 8620321401439369762, guid: 1037eb0252536eb45a291d652527cd31, type: 3}
+  maxHealth: 15
+  damage: 8
+  attackDelay: 2
+  defence: 0

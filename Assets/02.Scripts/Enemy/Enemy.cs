@@ -53,15 +53,14 @@ public class Enemy : PoolableMono, IHittable
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
         _hpBar = transform.Find("HpBar").GetComponent<EnemyHpBar>();
-        Debug.Log(_hpBar.gameObject.name);
 
     }
     public void EnemyAttack()
     { 
-            if (_agentStateCheck.IsDead == false)
-            {
-                _enemyAttack.Attack(_enemyData.damage);
-            }
+      if (_agentStateCheck.IsDead == false)
+      {
+           _enemyAttack.Attack(_enemyData.damage);
+      }
     }
     public override void Reset()
     {
