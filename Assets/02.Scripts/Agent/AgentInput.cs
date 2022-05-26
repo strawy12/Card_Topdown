@@ -12,8 +12,17 @@ public class AgentInput : MonoBehaviour
     public UnityEvent OnPlayerMousePressEvent;
     public UnityEvent OnESkillButtonPressEvent;
 
+    private bool _onUI;
+
+    public void OnUI(bool onUI)
+    {
+        _onUI = onUI;
+    }
+
     private void Update()
     {
+        if (_onUI) return;
+
         GetMoveInput();
         GetMousePointInput();
         GetDashButtonInput();

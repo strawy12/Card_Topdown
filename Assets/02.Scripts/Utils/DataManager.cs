@@ -34,24 +34,24 @@ public class DataManager : MonoBehaviour
 
     private void LoadFromJson()
     {
-        if (File.Exists(SAVE_PATH + SAVE_FILE))
-        {
-            string stringJson = File.ReadAllText(SAVE_PATH + SAVE_FILE);
-            player = JsonUtility.FromJson<PlayerData>(stringJson);
-        }
-        else
-        {
+        //if (File.Exists(SAVE_PATH + SAVE_FILE))
+        //{
+        //    string stringJson = File.ReadAllText(SAVE_PATH + SAVE_FILE);
+        //    player = JsonUtility.FromJson<PlayerData>(stringJson);
+        //}
+       // else
+       // {
             player = new PlayerData(defaultSound);
-        }
-        SaveToJson();
+       // }
+       // SaveToJson();
+       // SaveToJson();
     }
 
     public void SetGenealogyData(GenealogyData data)
     {
-        if (player.genealogySaveCnt >= 5) return;
+        if (player.GenealogyCnt >= 5) return;
 
-        player.genealogyDatas[player.genealogySaveCnt++] = data;
-
+        player.genealogyDatas[player.GenealogyCnt] = data;
         player.SetPlayerSynergy(data);
     }
 
@@ -137,17 +137,17 @@ public class DataManager : MonoBehaviour
 
     public int GetSynergyInfoData(ESynergy type, int idx, int level)
     {
-        return _synergyInfoDataSO[type][idx][level];
+        return _synergyInfoDataSO[type][idx][level - 1];
     }
 
     private void OnDestroy()
     {
-        SaveToJson();
+      //  SaveToJson();
     }
 
     private void OnApplicationQuit()
     {
-        SaveToJson();
+     //   SaveToJson();
     }
 
 }

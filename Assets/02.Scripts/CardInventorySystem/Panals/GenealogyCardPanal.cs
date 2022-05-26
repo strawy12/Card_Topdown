@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static GenealogyDefine;
 
-public class GenealogyCardPanel : MonoBehaviour
+public class GenealogyCardPanal : MonoBehaviour
 {
     private CardPanal[] _cardPanals = new CardPanal[2];
     private Text _genealogyText;
@@ -37,6 +37,8 @@ public class GenealogyCardPanel : MonoBehaviour
     private void ChangePanal()
     {
         if (_cardPanals[1].IsEmpty) return;
+
+
 
         CalcGenealogy(_cardPanals[0].CurrentCard, _cardPanals[1].CurrentCard);
 
@@ -75,7 +77,6 @@ public class GenealogyCardPanel : MonoBehaviour
 
         if (num1 > num2)
         {
-            Debug.Log(num1 + " "+ num2);
             int temp = num1;
             num1 = num2;
             num2 = temp;

@@ -12,6 +12,9 @@ public class CardInventoryManager : MonoBehaviour
     private List<CardPanal> _cardPanalList;
     private CanvasGroup _currentPanal;
     private bool _activePanalSelf = false;
+
+    public bool IsActive { get => _activePanalSelf; }
+    public int PanalCount { get => _cardPanalList.Count; }
     //private MountCardPanal[] _canChangeCardPanals;
     //private DeferCardPanal _selectDeferCardPanal;
 
@@ -23,6 +26,9 @@ public class CardInventoryManager : MonoBehaviour
     private void Start()
     {
         PEventManager.StartListening(ENTER_MOUNTING_UI, MountingMessage);
+        PEventManager.StartListening(TRIGGER_WANT_PICK, WantPickCard);
+        EventManager.StartListening(TRIGGER_RANDOM_PICK, () => RandomPickCard(2)); 
+
         _currentPanal = GetComponent<CanvasGroup>();
 
         //PickInitCard();
@@ -30,9 +36,45 @@ public class CardInventoryManager : MonoBehaviour
 
     public void OnActivePanal()
     {
-        _activePanalSelf = !_activePanalSelf;
+        if(!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+
         _currentPanal.DOKill();
-        _currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f);
+
+        _activePanalSelf = !_activePanalSelf;
+        
+
+        Sequence seq = DOTween.Sequence();
+        seq.SetUpdate(true);
+        seq.Append(_currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f));
+
+        if(_activePanalSelf == false)
+        {
+            seq.AppendCallback(CloseInventory);
+        }
+
+        else
+        {
+            GameManager.Inst.UI.ClosePanalAll();
+        }
+
+        seq.Play();
+        // TODO : 변경해야하는 코드
+        GameManager.Inst.UI.OnUI?.Invoke(_activePanalSelf);
+
+        //EventManager.TriggerEvent(OPEN_INVENTORY);
+
+    }
+
+    private void CloseInventory()
+    {
+        if (_activePanalSelf) return;
+
+        gameObject.SetActive(false);
+        GameManager.Inst.UI.ClosePanalAll();
+
     }
 
     public void AddCardPanalList(CardPanal panal)
@@ -50,6 +92,7 @@ public class CardInventoryManager : MonoBehaviour
         }
     }
 
+    #region 주석
     // 쓸모없는 함수
     //public void FormActivePanal(CardPanal panal)
     //{
@@ -69,12 +112,12 @@ public class CardInventoryManager : MonoBehaviour
     // 클릭한 애가 들어온다면
     //private void ChangeTwoCardPanal(Param param)
     //{
-        //AcitveAllCardPanal(true);
+    //AcitveAllCardPanal(true);
 
-        //CardPanal panal = System.Array.Find(_canChangeCardPanals, panal => panal.ID == param.iParam);
+    //CardPanal panal = System.Array.Find(_canChangeCardPanals, panal => panal.ID == param.iParam);
 
-        //GenerateChangeCard(panal, _selectDeferCardPanal);
-        //GenerateChangeCard(_selectDeferCardPanal, panal);
+    //GenerateChangeCard(panal, _selectDeferCardPanal);
+    //GenerateChangeCard(_selectDeferCardPanal, panal);
     //}
 
     //private void GenerateChangeCard(CardPanal currentPanal, CardPanal targetPanal)
@@ -120,6 +163,7 @@ public class CardInventoryManager : MonoBehaviour
     //    }
 
     //}
+    #endregion
 
     public void AcitveAllCardPanal(bool isActive)
     {
@@ -162,17 +206,60 @@ public class CardInventoryManager : MonoBehaviour
         PEventManager.TriggerEvent(RETURN_CARD_EFFECT, param);
     }
 
-    public void PickCard()
+    public void WantPickCard(Param param)
     {
-        foreach(CardPanal panal in _cardPanalList)
+        foreach (CardPanal panal in _cardPanalList)
         {
-            if(panal.IsEmpty)
+            if (panal.IsEmpty)
             {
-                CardData card = GameManager.Inst.GetRandomCardData();
+                CardData card = GameManager.Inst.GetWantCardData(param.iParam);
                 panal.ChangeCard(card);
                 return;
             }
         }
-
     }
+
+    private void RandomPickCard(int pickCnt = 1)
+    {
+        foreach (CardPanal panal in _cardPanalList)
+        {
+            if (panal.IsEmpty)
+            {
+                CardData card = GameManager.Inst.GetRandomCardData();
+                panal.ChangeCard(card);
+                pickCnt--;
+            }
+
+            if(pickCnt <= 0)
+            {
+                return;
+            }
+        }
+    }
+
+    public void DrawCardMount(CardData cardData, CardPanal panal)
+    {
+        GameManager.Inst.AddCardDeck(panal.CurrentCard);
+        panal.EmptyCard();
+        panal.ChangeCard(cardData);
+    }
+
+    public List<CardPanal> GetDeferCardPanals()
+    {
+        return _cardPanalList.FindAll(panal => panal.IsDeferPanal);
+    }
+
+    public CardPanal GetLastCardPanal()
+    {
+        for (int i = _cardPanalList.Count - 1; i >= 0; i--)
+        {
+            if (_cardPanalList[i].CurrentCard != null)
+            {
+                return _cardPanalList[i];
+            }
+        }
+
+        return _cardPanalList[0];
+    }
+
 }

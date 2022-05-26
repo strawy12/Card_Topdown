@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
     {
         boxCol2D = GetComponent<BoxCollider2D>();
         boxCol2D.enabled = false;
+        EventManager.StartListening(Constant.PLAYER_ATTACK_START, AttackAction);
+        EventManager.StartListening(Constant.PLAYER_ATTACK_END, AttackStop);
     }
 
     public void AttackAction()
@@ -28,7 +30,7 @@ public class Weapon : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             IHittable hittable = collision.GetComponent<IHittable>();
-            hittable.GetHit(damage: 10, damageDealer: gameObject);
+            hittable.GetHit(damage: 1, damageDealer: gameObject);
             boxCol2D.isTrigger = false;
             // 대충 맞는 유니티 이벤트
         }

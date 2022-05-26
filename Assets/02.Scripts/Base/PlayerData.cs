@@ -56,7 +56,11 @@ public class PlayerData
 
     public PlayerStat playerStats;
     public GenealogyData[] genealogyDatas;
-    public int genealogySaveCnt;
+    public int saveCardCnt;
+    public int GenealogyCnt
+    {
+        get => saveCardCnt / 2;
+    }
 
     public bool beingAddedCard;
 
@@ -67,7 +71,7 @@ public class PlayerData
         isTutorial = false;
         syneargyDict = new List<SyneargyElement>();
         genealogyDatas = new GenealogyData[5];
-        genealogySaveCnt = 0;
+        saveCardCnt = 0;
         playerStats = new PlayerStat();
         InitSyneargyDict();
     }
@@ -134,7 +138,7 @@ public class PlayerData
         {
             if (isAdd)
             {
-                syneargyDict[(int)type].Add(data);
+;                syneargyDict[(int)type].Add(data);
             }
 
             else
@@ -153,14 +157,14 @@ public class PlayerData
             case ESynergy.Rest:
                 {
                     int restSum = 0;
-                    foreach (GenealogyData data in syneargyDict[(int)type]._genealogylist)
+                    foreach (GenealogyData data in syneargyDict[(int)ESynergy.Rest]._genealogylist)
                     {
                         restSum += data.genealogyNum;
                     }
                     restSum -= (restSum % 10);
 
                     int level = syneargyDict[(int)ESynergy.Rest].Level;
-
+                    
                     playerStats.atkPower += restSum * GameManager.Inst.Data.GetSynergyInfoData(ESynergy.Rest, 0, level);
                     break;
                 }
@@ -172,7 +176,7 @@ public class PlayerData
                     playerStats.atkPower += UtilDefine.CalcPercent(playerStats.atkPower, percent) * level;
 
                     percent = GameManager.Inst.Data.GetSynergyInfoData(ESynergy.Pair, 1, level);
-                    playerStats.atkSpeed += UtilDefine.CalcPercent(playerStats.atkSpeed, percent) * level * genealogySaveCnt;
+                    playerStats.atkSpeed += UtilDefine.CalcPercent(playerStats.atkSpeed, percent) * level * GenealogyCnt;
                     break;
                 }
 
@@ -198,8 +202,9 @@ public class PlayerData
                     if (level == -1) return;
 
                     playerStats.atkPower += UtilDefine.CalcPercent(playerStats.atkPower,
-                                                        (numSum * (5 + genealogySaveCnt)));
-
+                                                        (numSum * (5 + GenealogyCnt)));
+                    playerStats.criticalPercent += UtilDefine.CalcPercent(playerStats.criticalPercent,
+                                                        (15 * (5 + saveCardCnt)));
                     break;
                 }
 
