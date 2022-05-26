@@ -11,6 +11,8 @@ public class SubWeapon : PoolableMono
     protected float _damage;
     protected float _lifeTime;
 
+    protected bool _attackStart;
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,13 +35,24 @@ public class SubWeapon : PoolableMono
 
     public virtual void StartAttack()
     {
-
+        _attackStart = true;
     }
 
+    /// <summary>
+    /// true 일때 해당 order보다 앞, false 일때 뒤
+    /// </summary>
     protected void SetOrderInLayer(bool isFront)
     {
         int order = _playerOrder + (isFront ? 1 : -1);
         _spriteRenderer.sortingOrder = order;
+    }
+
+    protected virtual void ResetObject()
+    {
+        _attackStart = false;
+        _collider.enabled = false;
+        gameObject.SetActive(false);
+        PoolManager.inst.Push(this);
     }
 
     public override void Reset()

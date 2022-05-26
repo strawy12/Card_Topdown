@@ -21,6 +21,7 @@ public class Book : SubWeapon
 
     public override void StartAttack()
     {
+        base.StartAttack();
         transform.localScale = Vector3.zero;
 
         Sequence seq = DOTween.Sequence();
@@ -49,16 +50,15 @@ public class Book : SubWeapon
         seq.Play();
     }
 
-    private void ResetObject()
+    protected override void ResetObject()
     {
         _currentRadius = 0f;
-        _collider.enabled = false;
-        gameObject.SetActive(false);
-        PoolManager.inst.Push(this);
+        base.ResetObject();
     }
 
     void FixedUpdate()
     {
+        if (!_attackStart) return;
         _currentAngle += (Time.fixedDeltaTime * _rotateSpeed) * (_isRight ? 1f : -1f);
         _currentAngle %= 360f;
 
@@ -78,6 +78,9 @@ public class Book : SubWeapon
             SetOrderInLayer(false);
         }
     }
+
+
+
 
     public void InitBook(float speed, float radius, float angle, bool isRight, Transform trs, Vector2 offset)
     {

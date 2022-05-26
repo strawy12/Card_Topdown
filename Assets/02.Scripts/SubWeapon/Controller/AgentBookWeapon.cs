@@ -26,6 +26,7 @@ public class AgentBookWeapon : AgentSubWeapon
 
             float angle = Mathf.Lerp(0f, 360f, (float)i / spawnCnt);
             book.InitBook(_rotateSpeed,_radius, angle, _isRight, GameManager.Inst.PlayerTrm, _offset);
+            book.gameObject.SetActive(true);
             book.StartAttack();
         }
     }
