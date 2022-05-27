@@ -36,6 +36,7 @@ public class SubWeapon : PoolableMono
     public virtual void StartAttack()
     {
         _attackStart = true;
+        _collider.enabled = true;
     }
 
     /// <summary>
@@ -53,6 +54,16 @@ public class SubWeapon : PoolableMono
         _collider.enabled = false;
         gameObject.SetActive(false);
         PoolManager.inst.Push(this);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        CollisionEnter(collision);
+    }
+
+    protected virtual void CollisionEnter(Collision2D col)
+    {
+
     }
 
     public override void Reset()

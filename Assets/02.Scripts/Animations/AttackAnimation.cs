@@ -26,6 +26,7 @@ public class AttackAnimation : AgentAnimation
     IEnumerator Delay()
     {
         yield return new WaitForSeconds(0.3f);
+
         isAttack = false;
         _agentStateCheck.IsStop = false;
     }
