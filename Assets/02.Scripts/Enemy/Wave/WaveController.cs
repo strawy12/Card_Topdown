@@ -41,8 +41,9 @@ public class WaveController : MonoBehaviour
                 Enemy monster = PoolManager.inst.Pop(pattern.monster.prefab.name) as Enemy;
                 monster.transform.SetPositionAndRotation(pos, Quaternion.identity);
 
-                yield return new WaitForSeconds(pattern.spawnDelayTime);
+                yield return new WaitForSeconds(pattern.spawnDelay);
             }
+            yield return new WaitForSeconds(pattern.nextPatternDelay);
         }
     }
 }

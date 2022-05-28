@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patterns:
   - monster: {fileID: 11400000, guid: f9d0f193e32f7c64aadb7493b9b9fcb4, type: 2}
-    spawnDelayTime: 3
+    spawnDelay: 3
     count: 5
+    nextPatternDelay: 5
+    isRandomPos: 1
+  - monster: {fileID: 11400000, guid: d2f2bd38c2c2f194f8a9e414527e7b2e, type: 2}
+    spawnDelay: 2
+    count: 10
+    nextPatternDelay: 5
     isRandomPos: 1
