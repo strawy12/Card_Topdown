@@ -23,6 +23,7 @@ public class MagicWand : SubWeapon
         FindEnemy();
         SetOrderInLayer(false);
         StartCoroutine(DelayOrderLayer());
+        Invoke(nameof(ResetObject), _lifeTime);
     }
 
     private void FindEnemy()

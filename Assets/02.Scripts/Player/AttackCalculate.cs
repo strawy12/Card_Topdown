@@ -6,6 +6,7 @@ using static UtilDefine;
 
 public class AttackCalculate : MonoBehaviour
 {
+
     public float beforeDelay = 0.25f;
 
     public void StartDelay()
@@ -29,12 +30,5 @@ public class AttackCalculate : MonoBehaviour
         attackEffect.transform.position = new Vector2(PlayerTrm.position.x, PlayerTrm.position.y + 0.75f);
         attackEffect.transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
         attackEffect.transform.position = attackEffect.transform.position - attackEffect.transform.up;
-        CalculateAttack();
     }
-
-    public void CalculateAttack() // 공격 계산 오버랩박스로
-    {
-        // 공격을 계산할거임
-    }
-
 }

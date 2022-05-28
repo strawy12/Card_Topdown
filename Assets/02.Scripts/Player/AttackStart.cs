@@ -6,6 +6,9 @@ using static UtilDefine;
 
 public class AttackStart : PoolableMono
 {
+    [SerializeField]
+    private LayerMask _enemyLayer;
+
     private void OnEnable()
     {
         Vector2 direction = MousePos - transform.position;
@@ -33,11 +36,34 @@ public class AttackStart : PoolableMono
         {
             PoolManager.inst.Push(this);
         });
-
     }
 
     public override void Reset()
     {
         transform.DOKill();
     }
+
+    public void CalculateAttack()
+    {
+        Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, 1f, _enemyLayer);
+        foreach (Collider2D enemy in enemys)
+        {
+            IHittable hitable = enemy.GetComponent<IHittable>();
+            // 데미지는 스테이터스에서 받아올거임
+            hitable.GetHit(damage: 20, damageDealer: gameObject);
+        }
+
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (UnityEditor.Selection.activeObject == gameObject)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, 1f);
+            Gizmos.color = Color.white;
+        }
+    }
+#endif
 }
