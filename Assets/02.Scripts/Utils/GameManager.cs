@@ -35,7 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         new PoolManager(transform);
 
-        _uiManager = FindObjectOfType<UIManager>();
+        _uiManager = GetComponentInChildren<UIManager>();
         _dataManager = GetComponentInChildren<DataManager>();
         ShuffleCardDeck();
         CreatePool();

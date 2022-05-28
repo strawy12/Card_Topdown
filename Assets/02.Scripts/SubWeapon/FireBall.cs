@@ -43,14 +43,14 @@ public class FireBall : SubWeapon
         _attackStart = false;
     }
 
-    protected override void CollisionEnter(Collision2D col)
+    protected override void TriggerEnter(Collider2D col)
     {
-        Vector3 spawnPos = col.GetContact(0).point;
+        base.TriggerEnter(col);
 
-        GameObject effect = Instantiate(_explosionEffect, spawnPos, Quaternion.identity);
+        GameObject effect = Instantiate(_explosionEffect, transform.position, Quaternion.identity);
         effect.transform.localScale = new Vector3(_explosionRange, _explosionRange, _explosionRange);
 
-        Collider2D[] cols = Physics2D.OverlapCircleAll(spawnPos, _explosionRange);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, _explosionRange);
 
         foreach (var c in cols)
         {

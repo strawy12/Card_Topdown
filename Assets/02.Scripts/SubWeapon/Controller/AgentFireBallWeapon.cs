@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentFireBallWeapon : AgentSubWeapon
+public class AgentFireBallWeapon : SubWeaponController
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _explosionRange;
@@ -28,6 +28,8 @@ public class AgentFireBallWeapon : AgentSubWeapon
 
     public void SetTargetDir(Vector2 mousePos)
     {
+        if (enabled == false) return;
+
         _targetDir = mousePos - (Vector2)transform.position;
     }
 }

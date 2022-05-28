@@ -20,7 +20,7 @@ public class Axe : SubWeapon
         base.StartAttack();
         float x = Random.Range(-_spreadRange, _spreadRange);
         SetOrderInLayer(false);
-        transform.DOJump(transform.position + new Vector3(x, -_dropForce), _throwForce, 1, _lifeTime).SetEase(Ease.InOutCubic).OnComplete(ResetObject);
+        transform.DOJump(transform.position + new Vector3(x, -_dropForce), _throwForce, 1, _lifeTime).SetEase(Ease.InOutCubic);
         StartCoroutine(DelayOrderLayer());
     }
 

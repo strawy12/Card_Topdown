@@ -11,6 +11,7 @@ public class GenealogyCardPanal : MonoBehaviour
 
     private GenealogyData _genealogyData = null;
 
+    private static int _genealogyCnt = 0;
     public GenealogyData Genealogy
     {
         get
@@ -89,20 +90,20 @@ public class GenealogyCardPanal : MonoBehaviour
             isSelect = true;
         }
 
-        else if(cardData1.IsLight && cardData2.IsLight)
+        else if (cardData1.IsLight && cardData2.IsLight)
         {
             genealogyType = EGenealogy.LightPair;
-            genealogyNum = num1+num2;
+            genealogyNum = num1 + num2;
             isSelect = true;
-        }   
+        }
 
-        else if(num1 == 4 && num2 == 6)
+        else if (num1 == 4 && num2 == 6)
         {
             genealogyType = EGenealogy.SeRyuk;
             isSelect = true;
         }
 
-        else if(num1 == 4 && num2 == 7)
+        else if (num1 == 4 && num2 == 7)
         {
             genealogyType = EGenealogy.ESibal;
             isSelect = true;
@@ -114,22 +115,22 @@ public class GenealogyCardPanal : MonoBehaviour
             isSelect = true;
         }
 
-        else if(num1 == 1)
+        else if (num1 == 1)
         {
-            if(num2 == 9 || num2 == 10)
+            if (num2 == 9 || num2 == 10)
             {
                 genealogyType = EGenealogy.BBing;
                 genealogyNum = num2;
                 isSelect = true;
             }
 
-            else if(num2 == 2)
+            else if (num2 == 2)
             {
                 genealogyType = EGenealogy.Ali;
                 isSelect = true;
             }
 
-            else if(num2 == 4)
+            else if (num2 == 4)
             {
                 genealogyType = EGenealogy.Doksa;
                 isSelect = true;
@@ -137,7 +138,7 @@ public class GenealogyCardPanal : MonoBehaviour
 
         }
 
-        if(!isSelect)
+        if (!isSelect)
         {
             if ((num1 + num2) == 10)
             {
@@ -150,11 +151,24 @@ public class GenealogyCardPanal : MonoBehaviour
                 genealogyNum = (num1 + num2) % 10;
             }
         }
-      
+
 
         _genealogyData = new GenealogyData(genealogyType, genealogyNum);
 
         GameManager.Inst.Data.SetGenealogyData(_genealogyData);
+
+        if(_genealogyCnt++ != 0)
+        {
+            Param param = new Param();
+            //param.iParam = (int)genealogyType;
+            param.iParam = _genealogyCnt;
+
+            PEventManager.TriggerEvent("CardAdd", param);
+        }
     }
 
+    private void CloseMessage()
+    {
+
+    }
 }
