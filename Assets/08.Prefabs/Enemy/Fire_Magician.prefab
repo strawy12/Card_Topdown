@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 8620321400849458374}
   - component: {fileID: 6456771367969205524}
   - component: {fileID: 866101270}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Fire_Magician
   m_TagString: Enemy
   m_Icon: {fileID: 0}
