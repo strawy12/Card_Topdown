@@ -15,7 +15,7 @@ public class AgentAnimation : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _agentStateCheck = GetComponent<AgentStateCheck>();
+        _agentStateCheck = GetComponentInParent<AgentStateCheck>();
         ChildAwake();
     }
 
@@ -28,6 +28,9 @@ public class AgentAnimation : MonoBehaviour
     {
         _animator.SetBool(_runHashStr, value);
         _animator.SetBool(_walkHashStr, value);
+
+        _animator.SetBool("Run", value);
+
     }
 
     public void AnimatePlayer(float velocity)

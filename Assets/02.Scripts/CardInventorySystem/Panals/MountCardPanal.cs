@@ -28,7 +28,7 @@ public class MountCardPanal : CardPanal//, IPointerClickHandler
     //    Param param = new Param();
     //    param.iParam = _currentID;
     //    param.sParam = _currentCard.ID;
-       
+
     //    PEventManager.TriggerEvent(Constant.CLICK_CARD, param);
     //}
 

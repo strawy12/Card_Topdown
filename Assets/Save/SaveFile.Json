@@ -24,12 +24,41 @@
                 {
                     "genealogyType": 0,
                     "genealogyNum": 5
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 1
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 7
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 2
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 9
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 3
+                },
+                {
+                    "genealogyType": 0,
+                    "genealogyNum": 3
                 }
             ]
         },
         {
             "_syneargyType": 1,
-            "_genealogylist": []
+            "_genealogylist": [
+                {
+                    "genealogyType": 1,
+                    "genealogyNum": 2
+                }
+            ]
         },
         {
             "_syneargyType": 2,
@@ -37,7 +66,12 @@
         },
         {
             "_syneargyType": 3,
-            "_genealogylist": []
+            "_genealogylist": [
+                {
+                    "genealogyType": 9,
+                    "genealogyNum": 0
+                }
+            ]
         },
         {
             "_syneargyType": 4,
@@ -52,7 +86,7 @@
     "genealogyDatas": [
         {
             "genealogyType": 0,
-            "genealogyNum": 9
+            "genealogyNum": 3
         },
         {
             "genealogyType": 0,

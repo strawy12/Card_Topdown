@@ -138,7 +138,7 @@ public class PlayerData
         {
             if (isAdd)
             {
-                syneargyDict[(int)type].Add(data);
+;                syneargyDict[(int)type].Add(data);
             }
 
             else
@@ -157,14 +157,14 @@ public class PlayerData
             case ESynergy.Rest:
                 {
                     int restSum = 0;
-                    foreach (GenealogyData data in syneargyDict[(int)type]._genealogylist)
+                    foreach (GenealogyData data in syneargyDict[(int)ESynergy.Rest]._genealogylist)
                     {
                         restSum += data.genealogyNum;
                     }
                     restSum -= (restSum % 10);
 
                     int level = syneargyDict[(int)ESynergy.Rest].Level;
-
+                    
                     playerStats.atkPower += restSum * GameManager.Inst.Data.GetSynergyInfoData(ESynergy.Rest, 0, level);
                     break;
                 }

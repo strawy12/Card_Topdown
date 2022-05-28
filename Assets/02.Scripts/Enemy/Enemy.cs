@@ -20,6 +20,7 @@ public class Enemy : PoolableMono, IHittable
     public bool IsEnemy => true;
 
     public Vector3 HitPoint { get; private set; }
+
     public void GetHit(float damage, GameObject damageDealer)
     {
       
@@ -100,6 +101,7 @@ public class Enemy : PoolableMono, IHittable
     public void Die()
     {
         PoolManager.inst.Push(this);
+        //EventManager.TriggerEvent(Constant.TRIGGER_MONSTER_DEAD);
     }
 
 
