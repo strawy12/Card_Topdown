@@ -345,6 +345,8 @@ GameObject:
   - component: {fileID: 558950621939418684}
   - component: {fileID: 3740341410931765912}
   - component: {fileID: 3669769983155807993}
+  - component: {fileID: 387626707}
+  - component: {fileID: 387626708}
   m_Layer: 0
   m_Name: Clown
   m_TagString: Player
@@ -379,10 +381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ac21711b0ec40a0812d33a586eb7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _version: 0
+  _version: 1
   _spriteOBj: {fileID: 6193760252809030158}
   EditChk: 0
-  _code: Unit001
+  _code: Unit002
   _anim: {fileID: 6036619389334540592}
   _horse: 0
   _horseString: 
@@ -492,7 +494,7 @@ MonoBehaviour:
   OnPlayerMousePointEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 178024350}
+      - m_Target: {fileID: 387626708}
         m_TargetAssemblyTypeName: AgentRenderer, Assembly-CSharp
         m_MethodName: ChangeFace
         m_Mode: 0
@@ -548,7 +550,19 @@ MonoBehaviour:
         m_CallState: 2
   OnESkillButtonPressEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 387626707}
+        m_TargetAssemblyTypeName: ClownSkill, Assembly-CSharp
+        m_MethodName: WorkStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3740341410931765912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +610,33 @@ MonoBehaviour:
   _isDashing: 0
   _isStop: 0
   _isInvincibility: 0
+--- !u!114 &387626707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286438493170017106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdf10a49740852448c918bfc018b4da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _originalPlayerStatus: {fileID: 0}
+  _dynamicPlayerStatus: {fileID: 0}
+  _moveData: {fileID: 11400000, guid: 409eed479620422459240e4d68f18df8, type: 2}
+--- !u!114 &387626708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286438493170017106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b17e1cab464bac449f3879366d75e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1328957615933386590
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,9 +891,7 @@ GameObject:
   - component: {fileID: 6036619389334540592}
   - component: {fileID: 3312389689604226823}
   - component: {fileID: 1770522816333600299}
-  - component: {fileID: 8606317125821654703}
   - component: {fileID: 7142835229384992415}
-  - component: {fileID: 178024350}
   m_Layer: 0
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -931,18 +970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beforeDelay: 0.25
---- !u!114 &8606317125821654703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801492369414885016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354cb7d8dc2c0574792f1457e35d3d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7142835229384992415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,18 +980,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aac26dc856d3f1458e6d1f5bc55f526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &178024350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801492369414885016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b17e1cab464bac449f3879366d75e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1826756655599786058
