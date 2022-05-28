@@ -17,6 +17,13 @@ public class GameManager : MonoSingleton<GameManager>
     private List<CardData> _randomCardDeck;
     private bool[] _existCard;
 
+    private bool _onUI;
+
+    public bool OnUI
+    {
+        get => _onUI;
+    }
+
     public UIManager UI { get => _uiManager; }
     public DataManager Data { get => _dataManager; }
 
@@ -59,7 +66,7 @@ public class GameManager : MonoSingleton<GameManager>
         Instantiate(_monsterPref);
     }
 
-    public void OnUI(bool onUI)
+    public void OnTriggerUI(bool onUI)
     {
         Time.timeScale = onUI ? 0f : 1f;
     }

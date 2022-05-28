@@ -14,13 +14,14 @@ public class SubWeapon : PoolableMono
 
     protected bool _attackStart;
 
-    private LayerMask _targetLayer;
+    protected int _targetLayer;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
 
+        _targetLayer = LayerMask.NameToLayer("Enemy");
         ChildAwake();
 
     }
@@ -63,7 +64,7 @@ public class SubWeapon : PoolableMono
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == _targetLayer)
+        if (collision.gameObject.layer == _targetLayer)
         {
             TriggerEnter(collision);
         }

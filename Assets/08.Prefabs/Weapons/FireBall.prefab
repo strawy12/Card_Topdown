@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 913912872883099225}
   - component: {fileID: 913912872883099224}
   - component: {fileID: 913912872883099231}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerOrder: 5
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
   _explosionEffect: {fileID: 4894952050934284314, guid: 91f548c652f92804f83f3cee991f5994, type: 3}
 --- !u!61 &913912872883099231
 BoxCollider2D:

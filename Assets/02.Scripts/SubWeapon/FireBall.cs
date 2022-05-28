@@ -47,7 +47,7 @@ public class FireBall : SubWeapon
     {
         base.TriggerEnter(col);
 
-        GameObject effect = Instantiate(_explosionEffect, transform.position, Quaternion.identity);
+        GameObject effect = Instantiate(_explosionEffect, col.transform.position, Quaternion.identity);
         effect.transform.localScale = new Vector3(_explosionRange, _explosionRange, _explosionRange);
 
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, _explosionRange);
@@ -57,7 +57,7 @@ public class FireBall : SubWeapon
             // 대충 공격
         }
 
-        //Destroy(effect, 1f);
+        Destroy(effect, 1f);
         _throughCnt--;
 
         if (_throughCnt <= 0)

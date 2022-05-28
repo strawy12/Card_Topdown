@@ -8,7 +8,7 @@ public class SunbiSkill : BuffSkill
     [SerializeField] private float attackIncrement = 0;
 
     [SerializeField] private AgentStatusSO _originalPlayerStatus;
-    [SerializeField] private AgentStatusSO _dynamicPlayerStatus;
+    [SerializeField] private PlayerStat _dynamicPlayerStatus;
 
     protected BuffSkillState skillState;
 

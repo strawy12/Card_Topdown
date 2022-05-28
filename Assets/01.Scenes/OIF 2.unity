@@ -8987,18 +8987,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1337059367}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1354863305
 GameObject:
   m_ObjectHideFlags: 0
@@ -12836,12 +12824,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1538a91ac9de25f49a482f384d1b3d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SkillCoolDown>k__BackingField: 0
+  <SkillDuration>k__BackingField: 0
+  <skillCoolDownTimeCheck>k__BackingField: 0
+  attackIncrement: 15
   _originalPlayerStatus: {fileID: 0}
   _dynamicPlayerStatus: {fileID: 0}
-  attackIncrement: 15
-  <SunbiSkillCoolDown>k__BackingField: 0
-  <SunbiSkillDuration>k__BackingField: 0
-  <SunbiIsPassive>k__BackingField: 0
 --- !u!1 &2129752996
 GameObject:
   m_ObjectHideFlags: 0

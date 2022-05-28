@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentMagicWandWeapon : AgentSubWeapon
+public class AgentMagicWandWeapon : SubWeaponController
 {
     [SerializeField] private int moveSpeed;
     [SerializeField] private int spawnCnt;

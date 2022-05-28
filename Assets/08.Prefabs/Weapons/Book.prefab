@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerOrder: 5
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!212 &6737615315183148138
 SpriteRenderer:
   m_ObjectHideFlags: 0

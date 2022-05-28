@@ -16,6 +16,7 @@ public class AgentSubWeapon : MonoBehaviour
         Axe,
         Fireball,
         MagicWand,
+        Whip,
         WeaponCnt
     }
 
@@ -39,7 +40,7 @@ public class AgentSubWeapon : MonoBehaviour
 
     private void ActiveAttack(Param param)
     {
-        ESubWeaponType type = ESubWeaponType.Book;
+        ESubWeaponType type = ESubWeaponType.None;
 
         #region 추후 변경 예정
         //switch ((EGenealogy)param.iParam)
@@ -78,7 +79,7 @@ public class AgentSubWeapon : MonoBehaviour
         switch(param.iParam)
         {
             case 1:
-                type = ESubWeaponType.Book;
+                type =Random.Range(0, 2)== 0? ESubWeaponType.Whip : ESubWeaponType.Book;
                 break;
 
             case 2:
@@ -86,18 +87,20 @@ public class AgentSubWeapon : MonoBehaviour
                 break;
 
             case 3:
-                type = ESubWeaponType.Fireball;
+                type = ESubWeaponType.MagicWand;
                 break;
 
             case 4:
-                // 매직 완드
+                type = ESubWeaponType.Fireball;
                 break;
 
             default:
                 return;
         }
 
+        if (type == ESubWeaponType.None) return;
 
+        type = ESubWeaponType.Fireball;
         var weapon = _subWeapons.Find(x => x.Type == type);
 
         weapon.IsActive = true;

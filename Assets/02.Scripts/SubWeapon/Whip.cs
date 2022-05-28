@@ -6,8 +6,6 @@ using static UtilDefine;
 
 public class Whip : SubWeapon
 {
-    [SerializeField]
-    private LayerMask _enemyLayer;
     private Vector3 _originPos;
     
     private bool _isTurn;

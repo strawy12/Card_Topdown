@@ -6,7 +6,7 @@ using UnityEngine;
 public class ClownSkill : OnOffSkill
 {
     [SerializeField] private AgentStatusSO _originalPlayerStatus;
-    [SerializeField] private AgentStatusSO _dynamicPlayerStatus;
+    [SerializeField] private PlayerStat _dynamicPlayerStatus;
     [SerializeField] private MoveDataSO _moveData;
 
     private float _attackDamageChangeValue;
@@ -80,7 +80,7 @@ public class ClownSkill : OnOffSkill
         _dynamicPlayerStatus.attackDamage += _attackDamageChangeValue;
         _dynamicPlayerStatus.attackSpeed += _attackSpeedChangeValue;
         _dynamicPlayerStatus.defence += _defenceChagneValue;
-        _dynamicPlayerStatus.criticalPercentage += _criticalPercentageChangeValue;
+        _dynamicPlayerStatus.criticalDamage += _criticalPercentageChangeValue;
         _dynamicPlayerStatus.criticalDamage += _criticalDamageChangeValue;
     }
 
@@ -91,7 +91,7 @@ public class ClownSkill : OnOffSkill
         _moveData.maxSpeed -= _speedChangeValue;
         _dynamicPlayerStatus.attackDamage -= _attackDamageChangeValue;
         _dynamicPlayerStatus.attackSpeed -= _attackSpeedChangeValue;
-        _dynamicPlayerStatus.criticalPercentage -= _criticalPercentageChangeValue;
+        _dynamicPlayerStatus.criticalDamage -= _criticalPercentageChangeValue;
         _dynamicPlayerStatus.criticalDamage -= _criticalDamageChangeValue;
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentWhipWeapon : AgentSubWeapon
+public class AgentWhipWeapon : SubWeaponController
 {
     [SerializeField] private int spawnCnt;
     [SerializeField] private Vector3 _offset;

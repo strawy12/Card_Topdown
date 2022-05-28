@@ -8,8 +8,6 @@ using Random = UnityEngine.Random;
 public class MagicWand : SubWeapon
 {
     private float _moveSpeed;
-    [SerializeField]
-    private LayerMask _enemyLayer;
     private Vector3 _originPos;
 
     private float _distance; // 적과의 거리
@@ -29,10 +27,10 @@ public class MagicWand : SubWeapon
     private void FindEnemy()
     {
         // 적 방향 구하기
-        Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, 5f, _enemyLayer);
+        Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, 5f, _targetLayer);
         if (enemys.Length <= 0) // 아무것도 안들어왔네 범위안에 없음
         {
-            Debug.Log("안들어옴 ");
+             Debug.Log("안들어옴 ");
             // 무작위 방향으로 발사
             _moveDir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             transform.rotation = Quaternion.LookRotation(_moveDir.normalized);
