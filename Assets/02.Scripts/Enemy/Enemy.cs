@@ -64,15 +64,21 @@ public class Enemy : PoolableMono, IHittable
     }
     public override void Reset()
     {
-        Health = _enemyData.maxHealth;
+        ResetHP();
         _agentStateCheck.IsDead = false;
         _aiMove.enabled = true;
     }
     private void Start()
     {
+        ResetHP();
+    }
+
+    private void ResetHP()
+    {
         Health = _enemyData.maxHealth;
         _hpBar.HpBarGaugeSetting(Health / _enemyData.maxHealth);
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))

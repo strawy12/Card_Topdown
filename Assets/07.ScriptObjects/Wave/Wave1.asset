@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd6fdf75d255b847833666d2c05f118, type: 3}
-  m_Name: FireMagicianData
+  m_Script: {fileID: 11500000, guid: d4e1874737c24d64d82403f4abafac41, type: 3}
+  m_Name: Wave1
   m_EditorClassIdentifier: 
-  enemyName: Fire_Magician
-  prefab: {fileID: 8620321401439369762, guid: 1037eb0252536eb45a291d652527cd31, type: 3}
-  maxHealth: 15
-  damage: 8
-  attackDelay: 2
-  defence: 0
-  cardGague: 1
+  patterns:
+  - monster: {fileID: 11400000, guid: f9d0f193e32f7c64aadb7493b9b9fcb4, type: 2}
+    spawnDelayTime: 3
+    count: 5
+    isRandomPos: 1
