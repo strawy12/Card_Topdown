@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class SubWeapon : PoolableMono
 {
     [SerializeField] protected int _playerOrder;
@@ -12,6 +13,8 @@ public class SubWeapon : PoolableMono
     protected float _lifeTime;
 
     protected bool _attackStart;
+
+    private LayerMask _targetLayer;
 
     private void Awake()
     {
@@ -36,6 +39,9 @@ public class SubWeapon : PoolableMono
     public virtual void StartAttack()
     {
         _attackStart = true;
+        _collider.enabled = true;
+
+        Invoke("ResetObject", _lifeTime);
     }
 
     /// <summary>
@@ -55,7 +61,24 @@ public class SubWeapon : PoolableMono
         PoolManager.inst.Push(this);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == _targetLayer)
+        {
+            TriggerEnter(collision);
+        }
+    }
+
+    protected virtual void TriggerEnter(Collider2D col)
+    {
+        IHittable hittable = col.GetComponent<IHittable>();
+
+        hittable?.GetHit(_damage, gameObject);
+    }
+
     public override void Reset()
     {
     }
 }
+
+

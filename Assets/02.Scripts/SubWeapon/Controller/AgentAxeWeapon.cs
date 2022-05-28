@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentAxeWeapon : AgentSubWeapon
+public class AgentAxeWeapon : SubWeaponController
 {
     [SerializeField] private float _throwForce;
     [SerializeField] private float _spreadRange;
