@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 5291222363545832132}
   - component: {fileID: 3331124399031841769}
   - component: {fileID: 772684347}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1083,6 +1083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0abd24657d69a94ba47ba144733ed95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isReversal: 0
 --- !u!1 &5291222364866268672
 GameObject:
   m_ObjectHideFlags: 0
