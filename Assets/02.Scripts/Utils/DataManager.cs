@@ -48,10 +48,9 @@ public class DataManager : MonoBehaviour
 
     public void SetGenealogyData(GenealogyData data)
     {
-        if (player.genealogySaveCnt >= 5) return;
+        if (player.GenealogyCnt >= 5) return;
 
-        player.genealogyDatas[player.genealogySaveCnt++] = data;
-
+        player.genealogyDatas[player.GenealogyCnt] = data;
         player.SetPlayerSynergy(data);
     }
 

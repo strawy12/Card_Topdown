@@ -204,6 +204,7 @@ public static class Constant
     public const string POINTUP_CARD = "PU_CD";
     public const string CLICK_CARD = "CL_CD";
     public const string RETURN_CARD = "RT_CD";
+    public const string TRIGGER_ADD_CARD = "TR_AD_CD";
     public const string RETURN_CARD_EFFECT = "RT_CD_EF";
 
     public const string ENTER_MOUNTING_UI = "ET_MT_UI";

@@ -32,7 +32,7 @@ public class CardInventoryManager : MonoBehaviour
     {
         _activePanalSelf = !_activePanalSelf;
         _currentPanal.DOKill();
-        _currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f);
+        _currentPanal.DOFade(_activePanalSelf ? 1f : 0f, 0.5f).SetUpdate(true);
     }
 
     public void AddCardPanalList(CardPanal panal)
@@ -170,6 +170,7 @@ public class CardInventoryManager : MonoBehaviour
             {
                 CardData card = GameManager.Inst.GetRandomCardData();
                 panal.ChangeCard(card);
+                EventManager.TriggerEvent(TRIGGER_ADD_CARD);
                 return;
             }
         }

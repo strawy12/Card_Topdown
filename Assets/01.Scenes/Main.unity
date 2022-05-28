@@ -1790,6 +1790,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 950364143}
+        m_TargetAssemblyTypeName: AgentInput, Assembly-CSharp
+        m_MethodName: OnUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1468809867}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &875780920
 Transform:
   m_ObjectHideFlags: 0
@@ -4593,6 +4617,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.7}
   m_EdgeRadius: 0
+--- !u!114 &950364143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 512662492, guid: f0f8e43d8a2b23447899a514f8feecd7, type: 3}
+  m_PrefabInstance: {fileID: 1825382355}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950364138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f1fcedd8c57dc42a18a736471a1a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1120393230
 GameObject:
   m_ObjectHideFlags: 0
@@ -5375,7 +5410,7 @@ MonoBehaviour:
     syneargyDict: []
     isTutorial: 0
     genealogyDatas: []
-    genealogySaveCnt: 0
+    saveCardCnt: 0
     beingAddedCard: 0
   _synergyInfoDataSO: {fileID: 11400000, guid: 2e92ea813e222b740bd7deb801f4d1d6, type: 2}
 --- !u!1 &1605841053

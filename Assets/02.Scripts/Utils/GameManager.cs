@@ -21,12 +21,15 @@ public class GameManager : MonoSingleton<GameManager>
     {
         new PoolManager(transform);
 
-        
-
         _uiManager = FindObjectOfType<UIManager>();
         _dataManager = GetComponent<DataManager>();
         ShuffleCardDeck();
         CreatePool();
+    }
+
+    public void OnUI()
+    {
+        Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
     }
 
     private void CreatePool()

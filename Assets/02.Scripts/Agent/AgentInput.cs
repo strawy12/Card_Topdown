@@ -11,8 +11,17 @@ public class AgentInput : MonoBehaviour
     public UnityEvent<Vector2> OnPlayerDashButtonPressEvent;
     public UnityEvent OnPlayerMousePressEvent;
 
+    private bool _onUI;
+
+    public void OnUI()
+    {
+        _onUI = !_onUI;
+    }
+
     private void Update()
     {
+        if (_onUI) return;
+
         GetMoveInput();
         GetMousePointInput();
         GetDashButtonInput();
