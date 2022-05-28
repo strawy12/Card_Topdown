@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class WaveController : MonoBehaviour
 {
     [Header("Wave의 종류 레벨 순서 대로 넣어주면 됨")]
@@ -23,6 +23,7 @@ public class WaveController : MonoBehaviour
         wavesArr = waves.ToArray();
         StartWave();
     }
+
     private void StartWave()
     {
         if (isWaveProcessing) return;
@@ -38,12 +39,16 @@ public class WaveController : MonoBehaviour
                 float posX = Random.Range(MinPos.x, MaxPos.x);
                 float posY = Random.Range(MinPos.y, MaxPos.y);
                 Vector2 pos = new Vector2(posX, posY);
-                Enemy monster = PoolManager.inst.Pop(pattern.monster.prefab.name) as Enemy;
-                monster.transform.SetPositionAndRotation(pos, Quaternion.identity);
+                SpawnEnemy(pattern.monster.prefab.name, pos);
 
                 yield return new WaitForSeconds(pattern.spawnDelay);
             }
             yield return new WaitForSeconds(pattern.nextPatternDelay);
         }
+    }
+    public void SpawnEnemy(string monsterName,Vector2 pos)
+    {
+        Enemy monster = PoolManager.inst.Pop(monsterName) as Enemy;
+        monster.transform.SetPositionAndRotation(pos, Quaternion.identity);
     }
 }
