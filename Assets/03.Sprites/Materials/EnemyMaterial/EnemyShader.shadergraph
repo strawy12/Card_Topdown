@@ -2691,7 +2691,7 @@
     },
     "m_Name": "MakeSolidColor",
     "m_DefaultReferenceName": "Boolean_b733d107839c4ac9a7383e67e1872c9b",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MakeSolidColor",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

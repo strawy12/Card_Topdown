@@ -93,7 +93,7 @@ public class Enemy : PoolableMono, IHittable
 
     public void Die()
     {
-        Destroy(gameObject);//풀매니저 구현시 변경
+        PoolManager.inst.Push(this);
     }
 
 
