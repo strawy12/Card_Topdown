@@ -9,7 +9,7 @@ public class Enemy : PoolableMono, IHittable
     public EnemyDataSO EnemyData => _enemyData;
     private AgentMove _aiMove;
     private EnemyAttack _enemyAttack;
-    public EnemyHpBar _hpBar;
+    public HpBar _hpBar;
     public float Health { get; private set; }
 
     private AgentStateCheck _agentStateCheck;
@@ -53,7 +53,7 @@ public class Enemy : PoolableMono, IHittable
         _aiMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
-        _hpBar = transform.Find("HpBar").GetComponent<EnemyHpBar>();
+        _hpBar = transform.Find("HpBar").GetComponent<HpBar>();
 
     }
     public void EnemyAttack()
@@ -101,7 +101,10 @@ public class Enemy : PoolableMono, IHittable
     public void Die()
     {
         PoolManager.inst.Push(this);
-        //EventManager.TriggerEvent(Constant.TRIGGER_MONSTER_DEAD);
+        Param param = new Param();
+
+        param.fParam = _enemyData.cardGague;
+        PEventManager.TriggerEvent(Constant.TRIGGER_MONSTER_DEAD, param);
     }
 
 
