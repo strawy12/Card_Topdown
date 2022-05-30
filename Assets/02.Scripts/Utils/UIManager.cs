@@ -4,15 +4,16 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine;
 using DG.Tweening;
-
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private MessagePanal _messagePanal;
-
+    [SerializeField] private TextMeshProUGUI _waveCountText;
+    [SerializeField] private TextMeshProUGUI _remainMonsetText;
     public UnityEvent<bool> OnUI;
 
     private Stack<GameObject> _panalStack = new Stack<GameObject>();
-    //[SerializeField] private
+    //[SerializeField] private 
 
     public void TriggerMessage(string message, ButtonStyle btnStyle, ButtonStyle btnStyle2 = null)
     {
@@ -92,5 +93,13 @@ public class UIManager : MonoBehaviour
 
 
         }
+    }
+    public void UpdateWaveInfo(int count, int maxCount)
+    {
+        _waveCountText.SetText($"Wave {count}/{maxCount}");
+    }
+    public void UpdateRemainMonsterInfo(int count, int maxCount)
+    {
+        _remainMonsetText.SetText($"Monster {count}/{maxCount}");
     }
 }

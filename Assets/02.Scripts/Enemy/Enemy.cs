@@ -84,7 +84,7 @@ public class Enemy : PoolableMono, IHittable
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            GetHit(5, GameObject.Find("UnitRoot"));
+            GetHit(5, GameObject.FindGameObjectWithTag("Player"));
         }
         StopDuetoAttack();
     }
