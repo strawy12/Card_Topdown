@@ -13,8 +13,7 @@ public class SpriteGroupFade : MonoBehaviour
     private float _duration;
     private float _endValue;
 
-    [HideInInspector]
-    public float alpha = -1f;
+    public float alpha;
     private float _startValue;
     private bool _fadeOn;
 
@@ -124,13 +123,17 @@ public class SpriteGroupFade : MonoBehaviour
 
     public void Reset()
     {
-        _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        alpha = 1f;
+        if (_spriteRenderers == null || _spriteRenderers.Length <= 0)
+        {
+            _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        }
 
-        foreach (var renderer in _spriteRenderers)
+        alpha = Mathf.Clamp(alpha, 0f, 1f);
+
+        foreach (var renderer in _spriteRenderers) 
         {
             Color color = renderer.color;
-            color.a = 1f;
+            color.a = alpha;
             renderer.color = color;
         }
     }

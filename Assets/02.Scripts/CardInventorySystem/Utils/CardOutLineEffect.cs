@@ -13,8 +13,8 @@ public class CardOutLineEffect : MonoBehaviour
     
     void Start()
     {
-        material = GetComponent<Image>().material;
-        EventManager.StartListening(Constant.CLICK_CARD, EffectStop);
+        return;
+        material = GetComponent<SpriteRenderer>().material;
     }
 
     public void EffectStart()
@@ -29,17 +29,17 @@ public class CardOutLineEffect : MonoBehaviour
         material.SetFloat("_Thickness", 0f);
     }
 
-    void Update()
-    {
-        if (!_shouldEffect) return;
+    //void Update()
+    //{
+    //    if (!_shouldEffect) return;
 
-        _currentAngle += _effectSpeed * Time.deltaTime;
+    //    _currentAngle += _effectSpeed * Time.deltaTime;
 
-        if(_currentAngle >= 360f)
-        {
-            _currentAngle = 0f;
-        }
+    //    if(_currentAngle >= 360f)
+    //    {
+    //        _currentAngle = 0f;
+    //    }
 
-        material.SetFloat("_Angle", _currentAngle);
-    }
+    //    material.SetFloat("_Angle", _currentAngle);
+    //}
 }

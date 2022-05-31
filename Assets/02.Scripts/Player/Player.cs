@@ -9,9 +9,11 @@ public class Player : MonoBehaviour, IAgent, IHittable
     private AgentStateCheck _agentStateCheck;
 
     [SerializeField]
-    private float _initHp;
+    private float _initHp = 100f;
 
     private float _health;
+    private float _cardGuage;
+
 
     public float Health
     {
@@ -23,25 +25,33 @@ public class Player : MonoBehaviour, IAgent, IHittable
         }
     }
 
+    public float CardGauge
+    {
+        get => _cardGuage;
+    }
+
 
     public bool IsEnemy => false;
     public Vector3 HitPoint { get; private set; }
-    [field:SerializeField]
+    [field: SerializeField]
     public UnityEvent OnDie { get; set; }
 
     [field: SerializeField]
     public UnityEvent OnGetHit { get; set; }
 
     [SerializeField]
-    private HpBar _playerHpBar = null;
+    private BarUI _playerHpBar = null;
+
+    [SerializeField]
+    private BarUI _cardGaugeBar = null;
 
     private void Awake()
     {
         _agentStateCheck = GetComponent<AgentStateCheck>();
 
-        if(_playerHpBar == null)
+        if (_playerHpBar == null)
         {
-            _playerHpBar = transform.Find("HpBar").GetComponent<HpBar>();
+            _playerHpBar = transform.Find("HpBar").GetComponent<BarUI>();
         }
     }
 
@@ -49,6 +59,13 @@ public class Player : MonoBehaviour, IAgent, IHittable
     {
         _health = _initHp;
         //Health = _agentStatus.maxHp;
+
+        PEventManager.StartListening(Constant.ADD_CARD_GAUGE, AddCardGauge);
+    }
+
+    private void Update()
+    {
+        CardGaugeCheck();
     }
 
     public void GetHit(float damage, GameObject damageDealer)
@@ -59,8 +76,7 @@ public class Player : MonoBehaviour, IAgent, IHittable
 
         Health -= damage;
         OnGetHit?.Invoke();
-
-        _playerHpBar.HpBarGaugeSetting(_health / _initHp);
+        _playerHpBar.GaugeBarGaugeSetting(_health / _initHp);
 
         if (Health <= 0)
         {
@@ -74,4 +90,42 @@ public class Player : MonoBehaviour, IAgent, IHittable
     {
 
     }
+
+    private void AddCardGauge(Param param)
+    {
+        _cardGuage += param.fParam;
+
+        _cardGaugeBar.GaugeBarGaugeSetting(_cardGuage / Constant.MAX_CARDGAUGE);
+
+        if (_cardGuage >= Constant.MAX_CARDGAUGE)
+        {
+            GameManager.Inst.CardPickCnt++;
+            _cardGaugeBar.FillAmout = 0f;
+        }
+
+        _cardGuage %= Constant.MAX_CARDGAUGE;
+    }
+
+    //변경할 예정(위치, 코드내용 등등)
+
+    [SerializeField] private float _overapDistance = 3f;
+    public void CardGaugeCheck()
+    {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, _overapDistance, 1 << 6);
+
+        foreach (var col in cols)
+        {
+            if (col.CompareTag("CardGauge"))
+            {
+                CardGauge gauge = col.GetComponent<CardGauge>();
+
+                if(gauge != null)
+                {
+                    gauge.Despawn(transform);
+                }
+
+            }
+        }
+    }
+
 }

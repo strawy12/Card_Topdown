@@ -6,7 +6,6 @@ using static UtilDefine;
 
 public class AttackCalculate : MonoBehaviour
 {
-
     public float beforeDelay = 0.25f;
 
     public void StartDelay()

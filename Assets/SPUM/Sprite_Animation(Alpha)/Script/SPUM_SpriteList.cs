@@ -58,7 +58,6 @@ public class SPUM_SpriteList : MonoBehaviour
             if(_backList[i]!=null) _backList[i].sprite = null;
         }
     }
-
     public void LoadSpriteSting()
     {
 
