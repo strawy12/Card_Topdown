@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class UIInput : MonoBehaviour
 {
     public UnityEvent OnInventoryKeyInput = new UnityEvent();
+    public UnityEvent OnESCKeyInput = new UnityEvent();
     void Update()
     {
         OnKeyInput();
@@ -17,5 +18,11 @@ public class UIInput : MonoBehaviour
         {
             OnInventoryKeyInput?.Invoke();
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnESCKeyInput?.Invoke();
+        }
     }
+
 }

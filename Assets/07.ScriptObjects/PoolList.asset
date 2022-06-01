@@ -13,5 +13,15 @@ MonoBehaviour:
   m_Name: PoolList
   m_EditorClassIdentifier: 
   list:
-  - prefab: {fileID: 7445775410248193909, guid: 5f3ebe40465af344abc3a44cdf3249cf, type: 3}
+  - prefab: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
+    poolCnt: 10
+  - prefab: {fileID: 6303382399656805087, guid: 9df40ff595766144babbb67ffa60ea4e, type: 3}
+    poolCnt: 10
+  - prefab: {fileID: 8620321401439369767, guid: 1037eb0252536eb45a291d652527cd31, type: 3}
+    poolCnt: 10
+  - prefab: {fileID: 297811810420005757, guid: 98bf0ffec1cddf542ac7d197294f24c2, type: 3}
+    poolCnt: 10
+  - prefab: {fileID: 7535408954211020451, guid: 1ecb8b405f40a904baaddc2877d903aa, type: 3}
+    poolCnt: 10
+  - prefab: {fileID: 5215987328007452282, guid: 91f548c652f92804f83f3cee991f5994, type: 3}
     poolCnt: 10

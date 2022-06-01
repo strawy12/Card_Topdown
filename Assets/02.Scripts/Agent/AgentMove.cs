@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UtilDefine;
 
 public class AgentMove : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class AgentMove : MonoBehaviour
 
     private void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponentInParent<Rigidbody2D>();
         boxCol2D = GetComponentInChildren<BoxCollider2D>();
         agentStateCheck = GetComponent<AgentStateCheck>();
     }
@@ -60,8 +61,8 @@ public class AgentMove : MonoBehaviour
         if (agentStateCheck.IsStop == true) return;
         agentStateCheck.IsDashing = true;
         Vector2 playerPos = new Vector2(
-            GameManager.Inst.PlayerTrm.position.x,
-            GameManager.Inst.PlayerTrm.position.y);
+            PlayerTrm.position.x,
+            PlayerTrm.position.y);
         Vector2 dashDir = mouseWorldPosition - playerPos;
         rb2D.velocity = dashDir.normalized * 40f;
 

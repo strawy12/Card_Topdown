@@ -9,13 +9,13 @@ public class AgentAnimation : MonoBehaviour
 
     protected readonly int _runHashStr = Animator.StringToHash("Run");
     protected readonly int _deathHashStr = Animator.StringToHash("Death");
-
+    //protected readonly int _walkHashStr = Animator.StringToHash("Walk");
     protected AgentStateCheck _agentStateCheck = null;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _agentStateCheck = GetComponent<AgentStateCheck>();
+        _agentStateCheck = GetComponentInParent<AgentStateCheck>();
         ChildAwake();
     }
 
@@ -27,6 +27,9 @@ public class AgentAnimation : MonoBehaviour
     public void SetRunAnimation(bool value)
     {
         _animator.SetBool(_runHashStr, value);
+        //_animator.SetBool(_walkHashStr, value);
+
+        _animator.SetBool("Run", value);
     }
 
     public void AnimatePlayer(float velocity)

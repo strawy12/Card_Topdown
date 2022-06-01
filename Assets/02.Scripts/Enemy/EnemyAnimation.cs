@@ -8,7 +8,7 @@ public class EnemyAnimation : AgentAnimation
     public UnityEvent EndAttackAnimation;
     public UnityEvent HittableAttackAnimation;
     protected readonly int _attackHashStr = Animator.StringToHash("Attack");
-    public void StartAttackAnimation()
+    public void PlayAttackAnimation()
     {
         _animator.SetTrigger(_attackHashStr);
     }

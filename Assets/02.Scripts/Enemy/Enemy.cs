@@ -9,9 +9,9 @@ public class Enemy : PoolableMono, IHittable
     public EnemyDataSO EnemyData => _enemyData;
     private AgentMove _aiMove;
     private EnemyAttack _enemyAttack;
-
+    public BarUI _hpBar;
     public float Health { get; private set; }
-
+    private WaveController _waveController;
     private AgentStateCheck _agentStateCheck;
 
     [field: SerializeField] public UnityEvent OnDie { get; set; }
@@ -20,6 +20,7 @@ public class Enemy : PoolableMono, IHittable
     public bool IsEnemy => true;
 
     public Vector3 HitPoint { get; private set; }
+
     public void GetHit(float damage, GameObject damageDealer)
     {
       
@@ -38,12 +39,14 @@ public class Enemy : PoolableMono, IHittable
         OnGetHit?.Invoke();
         //DamagePopup popup = Instantiate(new DamagePopup());
         //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
+        _hpBar.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
         if (Health <= 0)
         {
             _agentStateCheck.IsDead = true;
             _aiMove.StopImmediatelly();
             _aiMove.enabled = false;
             OnDie?.Invoke();
+            _waveController.RemainEnemy--;
         }
     }
     private void Awake()
@@ -51,38 +54,53 @@ public class Enemy : PoolableMono, IHittable
         _aiMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
+        _waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
+        _hpBar = transform.Find("HpBar").GetComponent<BarUI>();
+
     }
     public void EnemyAttack()
     { 
-            if (_agentStateCheck.IsDead == false)
-            {
-                _enemyAttack.Attack(_enemyData.damage);
-            }
+      if (_agentStateCheck.IsDead == false)
+      {
+           _enemyAttack.Attack(_enemyData.damage);
+      }
     }
     public override void Reset()
     {
-        Health = _enemyData.maxHealth;
+        ResetHP();
         _agentStateCheck.IsDead = false;
         _aiMove.enabled = true;
     }
     private void Start()
     {
-        Health = _enemyData.maxHealth;
+        ResetHP();
     }
-    private void Update()
+
+    private void ResetHP()
     {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            GetHit(5, GameObject.Find("Player"));
-        }
+        Health = _enemyData.maxHealth;
+        _hpBar.GaugeBarGaugeSetting(Health / _enemyData.maxHealth);
+    }
+
+    private void Update()
+    { 
+        StopDuetoAttack();
+    }
+
+    private void StopDuetoAttack()
+    {
         if (_enemyAttack.IsAttacking)
         {
             _aiMove.StopImmediatelly();
+            _aiMove.EndMoveStop();
         }
     }
+
     public void Die()
     {
-        Destroy(gameObject);//풀매니저 구현시 변경
+        PoolManager.Inst.Push(this);
+
+        GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
 
 

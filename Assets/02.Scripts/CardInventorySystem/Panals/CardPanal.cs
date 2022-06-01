@@ -4,14 +4,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExitHandler
 {
-    protected static CardInventoryManager _cardInventoryManager;
 
     private static bool _stopShowInfo;
     private static int _panalCount;
-
-    protected CardOutLineEffect _outLineEffect;
 
     public Action OnChangeCardEvent { get; set; }
 
@@ -49,7 +46,6 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     private void Start()
     {
-        _outLineEffect = GetComponent<CardOutLineEffect>();
         ChildStart();
     }
 
@@ -57,11 +53,6 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void Init()
     {
-        if (_cardInventoryManager == null)
-        {
-            _cardInventoryManager = FindObjectOfType<CardInventoryManager>();
-        }
-
 
         _currentID = _panalCount++;
         _currentImage = GetComponent<Image>();
@@ -70,14 +61,14 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         AddedToGenealogyPanal();
 
-        _cardInventoryManager.AddCardPanalList(this);
+        InventoryManager.AddCardPanalList(this);
     }
 
     private void AddedToGenealogyPanal()
     {
         if (_isDeferPanal) return;
 
-        GenealogyCardPanel panal = GetComponentInParent<GenealogyCardPanel>();
+        GenealogyCardPanal panal = GetComponentInParent<GenealogyCardPanal>();
         panal.AddCardPanal(this);
     }
 
@@ -88,24 +79,33 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
         _currentCard = cardData;
         _currentImage.sprite = _currentCard.CardSprite;
 
+
         if (_isEmpty)
         {
+
             _isEmpty = false;
             // HoldCard가 커지고 하게 하기
 
-            if (isEffect)
+            if (isEffect&& InventoryManager.IsActive)
             {
-                transform.DOScale(Vector3.one * 3f, 0f).SetUpdate(true);
+
+                transform.localScale = (Vector3.one * 3f);
                 transform.DOScale(Vector3.one, 0.3f).SetUpdate(true);
+                GameManager.Inst.UI.PlayAddCardSound();
             }
         }
-        OnChangeCardEvent?.Invoke();
-        ChangeAlpha(1f);
-    }
 
-    public void ChangeCard(CardData cardData, Vector3 targetPos)
-    {
-        ChangeCard(cardData);
+        try
+        {
+            OnChangeCardEvent?.Invoke();
+        }
+
+        catch(Exception e)
+        {
+            Debug.LogError(e);
+        }
+
+        ChangeAlpha(1f);
     }
 
     public void EmptyCard()
@@ -152,7 +152,6 @@ public abstract class CardPanal : MonoBehaviour, IPointerEnterHandler, IPointerE
             if (isChangeEvent)
             {
                 transform.DOScale(Vector3.one * 1.3f, 0.5f);
-                _outLineEffect.EffectStart();
                 _isEventActive = true;
             }
         }

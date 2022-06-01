@@ -5,17 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - CardGauge
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Item
+  - Enemy
+  - EnemyProjectile
+  - EnemyBottom
   - 
   - 
   - 
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 2850729797
+    locked: 0
+  - name: Top
+    uniqueID: 3219589523
     locked: 0
   - name: UI
     uniqueID: 3852413155

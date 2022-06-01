@@ -8,6 +8,7 @@ public class EnemyAIBrain : MonoBehaviour
     [field: SerializeField] public UnityEvent<Vector2> OnPointerPositionChanged { get; set; }
     [field: SerializeField] public UnityEvent OnAttack { get; set; }
     public Transform target;
+    
 
     [SerializeField] private AIState _currentState;
     private void Awake()
@@ -16,7 +17,7 @@ public class EnemyAIBrain : MonoBehaviour
     }
     public void Attack()
     {
-        OnAttack?.Invoke();
+        OnAttack?.Invoke(); 
     }
     public void Move(Vector2 moveDir, Vector2 targetPos)
     {
@@ -30,6 +31,7 @@ public class EnemyAIBrain : MonoBehaviour
     }
     private void Update()
     {
+        //Debug.Log(_currentState);
         if(target == null)
         {
             OnMovement?.Invoke(Vector2.zero);
@@ -38,5 +40,6 @@ public class EnemyAIBrain : MonoBehaviour
         {
             _currentState.UpdateState();
         }
+        
     }
 }

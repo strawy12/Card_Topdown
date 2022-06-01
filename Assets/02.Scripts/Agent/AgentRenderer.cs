@@ -10,13 +10,15 @@ public class AgentRenderer : MonoBehaviour
     {
         _transform = GetComponent<Transform>();
     }
-    public virtual void ChangeFace(Vector2 playerVec)
+    public virtual void ChangeFace(Vector2 Vec)
     {
-        if (Vector2.Dot(playerVec, Vector2.right) > 0)
+
+        Vector2 nowDir = Vec - (Vector2)transform.position;
+        if (Vector2.Dot(nowDir, Vector2.right) > 0)
         {
             _transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (Vector2.Dot(playerVec, Vector2.right) < 0)
+        else if (Vector2.Dot(nowDir, Vector2.right) < 0)
         {
             _transform.localScale = new Vector3(1, 1, 1);
         }

@@ -5,29 +5,33 @@ using UnityEngine.Events;
 
 public class AttackAnimation : AgentAnimation
 {
-    public static bool isAttack = false;
+    [SerializeField] private float _delay = 0.8f;
+    public static bool IsAttack = false;
 
     protected readonly int _atkHashStr = Animator.StringToHash("Atk");
 
+    public UnityEvent OnTriggerAttack;
+
     public void StartAttack()
     {
+        if (IsAttack == true) return;
+        IsAttack = true;
         _animator.SetTrigger(_atkHashStr);
-
+        SpawnAttackEffect();
         StartCoroutine(Delay());
     }
 
-    //public void StartAttack()
-    //{
-    //    if (isAttack == true) return;
-    //    isAttack = true;
-    //    _animator.Play("Attack1");
-    //    StartCoroutine(Delay());
-    //}
+    public void SpawnAttackEffect()
+    {
+        OnTriggerAttack?.Invoke();
+    }
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.3f);
-        isAttack = false;
+        yield return new WaitForSeconds(_delay);
+
+        IsAttack = false;
         _agentStateCheck.IsStop = false;
     }
+
 }

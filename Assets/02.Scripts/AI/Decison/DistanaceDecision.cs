@@ -9,7 +9,6 @@ public class DistanaceDecision : AIDecision
     public override bool MakeDecision()
     {
         float calc = Vector2.Distance(_enemyAIBrain.target.position, transform.position);
-
         if(calc <= distance)
         {
             if(_actionData.targetSpotted == false)

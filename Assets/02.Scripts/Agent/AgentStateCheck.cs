@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AgentStateCheck : MonoBehaviour
 {
+    int index = 0;
+
     [SerializeField]
     private bool _isDead = false;
     public bool IsDead
@@ -26,5 +28,23 @@ public class AgentStateCheck : MonoBehaviour
     {
         get => _isStop;
         set => _isStop = value;
+    }
+
+    [SerializeField]
+    private bool _isInvincibility = false;
+    public bool IsInvincibility
+    {
+        get => _isInvincibility;
+        set
+        {
+            if (value == true)
+                index++;
+            else if (value == false && index == 0)
+                _isInvincibility = false;
+            else if (value == false && index != 0)
+                index--;
+            else
+                index = 0;
+        }
     }
 }

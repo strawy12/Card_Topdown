@@ -6,27 +6,28 @@ using UnityEngine.UI;
 public class CardOutLineEffect : MonoBehaviour
 {
     [SerializeField] private float _effectSpeed = 1.35f;   
-    private Material material;
+    private Material _material;
     private bool _shouldEffect;
 
     private float _currentAngle = 0f;
     
     void Start()
     {
-        material = GetComponent<Image>().material;
-        EventManager.StartListening(Constant.CLICK_CARD, EffectStop);
     }
 
     public void EffectStart()
     {
+        if(_material == null)
+        {
+            _material = GetComponent<Image>().material;
+        }
+
         _shouldEffect = true;
-        material.SetFloat("_Thickness", 10f);
     }
 
     public void EffectStop()
     {
         _shouldEffect = false;
-        material.SetFloat("_Thickness", 0f);
     }
 
     void Update()
@@ -35,11 +36,11 @@ public class CardOutLineEffect : MonoBehaviour
 
         _currentAngle += _effectSpeed * Time.deltaTime;
 
-        if(_currentAngle >= 360f)
+        if (_currentAngle >= 360f)
         {
             _currentAngle = 0f;
         }
 
-        material.SetFloat("_Angle", _currentAngle);
+        _material.SetFloat("_Angle", _currentAngle);
     }
 }
