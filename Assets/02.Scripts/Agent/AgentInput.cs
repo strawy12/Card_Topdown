@@ -15,7 +15,7 @@ public class AgentInput : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Inst.OnUI) return;
+        if (GameManager.Inst.OnUI || GameManager.Inst.GameEnd) return;
 
         GetMoveInput();
         GetMousePointInput();

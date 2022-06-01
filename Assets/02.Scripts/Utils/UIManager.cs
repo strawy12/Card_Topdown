@@ -128,7 +128,7 @@ public class UIManager : MonoBehaviour
     }
     public void ReStart()
     {
-        //SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main");
     }
     public void ExitGame()
     {

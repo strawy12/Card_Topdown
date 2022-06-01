@@ -42,7 +42,14 @@ public class SubWeaponController : MonoBehaviour
     {
         if (_isActive == false) return;
 
-        StartCoroutine(CoAttackLoop());
+        if(GameManager.Inst.OnUI)
+        {
+            GameManager.Inst.UI.OnUI.AddListener(WaitAttack);
+        }
+        else
+        {
+            StartCoroutine(CoAttackLoop());
+        }
     }
 
     protected virtual void ChildActiveAttack()
@@ -50,9 +57,18 @@ public class SubWeaponController : MonoBehaviour
 
     }
 
+    private void WaitAttack(bool onUI)
+    {
+        if(!onUI)
+        {
+            GameManager.Inst.UI.OnUI.RemoveListener(WaitAttack);
+            StartCoroutine(CoAttackLoop());
+        }
+    }
+
     private IEnumerator CoAttackLoop()
     {
-        while(_isActive)
+        while(_isActive && !GameManager.Inst.GameEnd)
         {
             ChildAttackLoop();
             yield return new WaitForSeconds(_weaponData.delayTime);

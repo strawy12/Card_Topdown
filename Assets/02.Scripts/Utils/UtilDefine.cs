@@ -54,7 +54,7 @@ public class UtilDefine
         {
             if (_cmVCam == null)
             {
-                _cmVCam = GameManager.FindObjectOfType<CinemachineVirtualCamera>();
+                _cmVCam = Object.FindObjectOfType<CinemachineVirtualCamera>();
             }
             return _cmVCam;
         }

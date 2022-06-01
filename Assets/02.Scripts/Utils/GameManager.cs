@@ -10,7 +10,6 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private PoolListSo _initList = null;
     [SerializeField] private CardDataSO _cardDataSO;
-    [SerializeField] private GameObject _monsterPref;
     private Transform _playerTrm;
     private UIManager _uiManager;
     private DataManager _dataManager;
@@ -24,6 +23,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         get => _onUI;
     }
+
+    public bool GameEnd;
 
     public int CardPickCnt
     {
@@ -57,25 +58,21 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
+        Time.timeScale =1f;
+        GameEnd = false;
+        _onUI = false;
         _existCard = Enumerable.Repeat(true, 10).ToArray();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnMonster();
-        }
-    }
-
-    private void SpawnMonster()
-    {
-        Instantiate(_monsterPref);
     }
 
     public void OnTriggerUI(bool onUI)
     {
         Time.timeScale = onUI ? 0f : 1f;
+    }
+
+    public void OnTriggrtGameEnd()
+    {
+        Time.timeScale = 0f;
+        GameEnd = true;
     }
 
     private void CreatePool()
@@ -183,8 +180,4 @@ public class GameManager : MonoSingleton<GameManager>
         gauge.transform.position = pos;
     }
 
-    public void GameClear()
-    {
-
-    }
 }

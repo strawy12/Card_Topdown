@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978b5d1715d3f6a42b166ef342d7a80c, type: 3}
   m_Name: SubWeapon_MagicWandSO
   m_EditorClassIdentifier: 
-  delayTime: 1
-  damage: 10
+  delayTime: 5
+  damage: 3
   lifeTime: 3

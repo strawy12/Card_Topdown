@@ -18,12 +18,12 @@ public class ShakeCameraFeedback : Feedback
     // ampulitude와 intencity가있는 클래스
     private CinemachineBasicMultiChannelPerlin _noise;
 
-    private void OnEnable()
+    private void Awake()
     {
         if (_cmVCam == null)
             _cmVCam = UtilDefine.VCam;
 
-        _noise = _cmVCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        _noise = _cmVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     public override void CompleteFeedback()

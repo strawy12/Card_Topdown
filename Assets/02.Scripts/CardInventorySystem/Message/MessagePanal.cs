@@ -97,6 +97,7 @@ public class MessagePanal : MonoBehaviour
 
         btn.ButtonText.text = str;
         btn.onClick.AddListener(btnStyle._action);
+        btn.onClick.AddListener(GameManager.Inst.UI.PlayBtnClickSound);
         btn.onClick.AddListener(ClosePanal);
     }
 }

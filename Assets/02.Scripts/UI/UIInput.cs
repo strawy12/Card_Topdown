@@ -9,6 +9,7 @@ public class UIInput : MonoBehaviour
     public UnityEvent OnESCKeyInput = new UnityEvent();
     void Update()
     {
+        if (GameManager.Inst.GameEnd) return;
         OnKeyInput();
     }
 
