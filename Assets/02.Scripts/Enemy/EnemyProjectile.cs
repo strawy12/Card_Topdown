@@ -101,6 +101,7 @@ public class EnemyProjectile : PoolableMono
         ParticleScript effect = PoolManager.Inst.Pop(_projectileData.particlePrefab.name) as ParticleScript;
         float _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         effect.transform.rotation = Quaternion.Euler(0, 0, _angle);
+        effect.transform.position = transform.position;
         effect.transform.localScale = new Vector3(_projectileData._explosionRange, _projectileData._explosionRange, _projectileData._explosionRange);
 
     }
