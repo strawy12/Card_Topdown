@@ -59,7 +59,7 @@ public class SubWeapon : PoolableMono
         _attackStart = false;
         _collider.enabled = false;
         gameObject.SetActive(false);
-        PoolManager.inst.Push(this);
+        PoolManager.Inst.Push(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

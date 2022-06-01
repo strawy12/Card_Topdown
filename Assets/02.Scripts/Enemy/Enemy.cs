@@ -98,7 +98,7 @@ public class Enemy : PoolableMono, IHittable
 
     public void Die()
     {
-        PoolManager.inst.Push(this);
+        PoolManager.Inst.Push(this);
 
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }

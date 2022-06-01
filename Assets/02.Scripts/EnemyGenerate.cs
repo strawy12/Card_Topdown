@@ -18,7 +18,7 @@ public class EnemyGenerate : MonoBehaviour
     {
         while(true)
         {
-            PoolableMono monster = PoolManager.inst.Pop(prefabs[Random.Range(0, prefabs.Length)].name);
+            PoolableMono monster = PoolManager.Inst.Pop(prefabs[Random.Range(0, prefabs.Length)].name);
             monster.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(delay);

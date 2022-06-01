@@ -5,11 +5,14 @@ using UnityEngine.Events;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private MessagePanal _messagePanal;
     [SerializeField] private TextMeshProUGUI _waveCountText;
     [SerializeField] private TextMeshProUGUI _remainMonsetText;
+    [SerializeField] private GameObject _winPanal;
+    [SerializeField] private GameObject _nextWavePanal;
     public UnityEvent<bool> OnUI;
 
     private Stack<GameObject> _panalStack = new Stack<GameObject>();
@@ -101,5 +104,21 @@ public class UIManager : MonoBehaviour
     public void UpdateRemainMonsterInfo(int count, int maxCount)
     {
         _remainMonsetText.SetText($"Monster {count}/{maxCount}");
+    }
+    public void OpenGameClearUI()
+    {
+        _winPanal.SetActive(true);
+    }
+    public void OnClearWaveUI()
+    {
+        _nextWavePanal.SetActive(true);
+    }
+    public void ReStart()
+    {
+        //SceneManager.LoadScene("Main");
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
