@@ -30,11 +30,13 @@ public class PoolManager
         }
         PoolableMono item = _pools[prefabName].Pop();
         item.Reset();
+        item.transform.SetParent(null);
         return item;
     }
 
     public void Push(PoolableMono obj)
     {
+        obj.transform.SetParent(_trmParent);
         _pools[obj.name.Trim()].Push(obj);
     }
 }

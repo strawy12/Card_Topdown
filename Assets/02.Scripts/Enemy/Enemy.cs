@@ -9,7 +9,7 @@ public class Enemy : PoolableMono, IHittable
     public EnemyDataSO EnemyData => _enemyData;
     private AgentMove _aiMove;
     private EnemyAttack _enemyAttack;
-    public HpBar _hpBar;
+    public BarUI _hpBar;
     public float Health { get; private set; }
     private WaveController _waveController;
     private AgentStateCheck _agentStateCheck;
@@ -39,7 +39,7 @@ public class Enemy : PoolableMono, IHittable
         OnGetHit?.Invoke();
         //DamagePopup popup = Instantiate(new DamagePopup());
         //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
-        _hpBar.HpBarGaugeSetting(Health/_enemyData.maxHealth);
+        _hpBar.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
         if (Health <= 0)
         {
             _agentStateCheck.IsDead = true;
@@ -54,8 +54,8 @@ public class Enemy : PoolableMono, IHittable
         _aiMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
-        _hpBar = transform.Find("HpBar").GetComponent<HpBar>();
         _waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
+        _hpBar = transform.Find("HpBar").GetComponent<BarUI>();
 
     }
     public void EnemyAttack()
@@ -79,7 +79,7 @@ public class Enemy : PoolableMono, IHittable
     private void ResetHP()
     {
         Health = _enemyData.maxHealth;
-        _hpBar.HpBarGaugeSetting(Health / _enemyData.maxHealth);
+        _hpBar.GaugeBarGaugeSetting(Health / _enemyData.maxHealth);
     }
 
     private void Update()
@@ -99,10 +99,8 @@ public class Enemy : PoolableMono, IHittable
     public void Die()
     {
         PoolManager.inst.Push(this);
-        Param param = new Param();
 
-        param.fParam = _enemyData.cardGague;
-        PEventManager.TriggerEvent(Constant.TRIGGER_MONSTER_DEAD, param);
+        GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
 
 

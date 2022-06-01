@@ -10,8 +10,6 @@ public class Weapon : MonoBehaviour
     {
         boxCol2D = GetComponent<BoxCollider2D>();
         boxCol2D.enabled = false;
-        EventManager.StartListening(Constant.PLAYER_ATTACK_START, AttackAction);
-        EventManager.StartListening(Constant.PLAYER_ATTACK_END, AttackStop);
     }
 
     public void AttackAction()

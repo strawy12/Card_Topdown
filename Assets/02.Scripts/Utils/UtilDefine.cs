@@ -212,6 +212,8 @@ public class GenealogyDefine
 
 public static class Constant
 {
+    public const float           MAX_CARDGAUGE = 100f;
+
     public const string         POINTDOWN_CARD = "PD_CD";
     public const string           POINTUP_CARD = "PU_CD";
     public const string             CLICK_CARD = "CL_CD";
@@ -231,7 +233,7 @@ public static class Constant
 
     public const string   TRIGGER_CHANGE_EVENT = "TG_CG_EV";
     public const string TRIGGER_MOUNTING_EVENT = "TG_MT_EV";
-    public const string   TRIGGER_MONSTER_DEAD = "TR_MS_DD";
+    public const string         ADD_CARD_GAUGE = "AD_CD_GG";
     public const string       TRIGGER_ADD_CARD = "TR_AD_CD";
     public const string      TRIGGER_PICK_CARD = "TR_PC_CD";
     public const string      TRIGGER_WANT_PICK = "TG_WT_PK";

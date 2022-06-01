@@ -16,12 +16,19 @@ public class GameManager : MonoSingleton<GameManager>
     private DataManager _dataManager;
     private List<CardData> _randomCardDeck;
     private bool[] _existCard;
+    private int _canCardPickCnt = 0;
 
     private bool _onUI;
 
     public bool OnUI
     {
         get => _onUI;
+    }
+
+    public int CardPickCnt
+    {
+        get => _canCardPickCnt;
+        set => _canCardPickCnt = value;
     }
 
     public UIManager UI { get => _uiManager; }
@@ -168,4 +175,11 @@ public class GameManager : MonoSingleton<GameManager>
         return _existCard[cardNum - 1];
     }
 
+    public void SpawnCardGauge(Vector3 pos, float  amout)
+    {
+        CardGauge gauge = PoolManager.inst.Pop("CardGauge") as CardGauge;
+
+        gauge.InitGauge(amout);
+        gauge.transform.position = pos;
+    }
 }

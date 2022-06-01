@@ -8,6 +8,7 @@ using static Constant;
 public class CardInventoryManager : MonoBehaviour
 {
     [SerializeField] private int _initPickCnt = 2;
+    [SerializeField] private Button _pickButton = null;
     //[SerializeField] private ChangeCard _changeCardPref;
     private List<CardPanal> _cardPanalList;
     private CanvasGroup _currentPanal;
@@ -30,20 +31,23 @@ public class CardInventoryManager : MonoBehaviour
         EventManager.StartListening(TRIGGER_RANDOM_PICK, () => RandomPickCard(2)); 
 
         _currentPanal = GetComponent<CanvasGroup>();
-
         //PickInitCard();
     }
 
     public void OnActivePanal()
     {
-        if(!gameObject.activeSelf)
+        _activePanalSelf = !_activePanalSelf;
+
+        if (_activePanalSelf)
         {
             gameObject.SetActive(true);
+            _pickButton.interactable = GameManager.Inst.CardPickCnt > 0;
+            _currentPanal.interactable = true;
+            _currentPanal.blocksRaycasts = true;
         }
 
         _currentPanal.DOKill();
 
-        _activePanalSelf = !_activePanalSelf;
         
 
         Sequence seq = DOTween.Sequence();
@@ -73,6 +77,8 @@ public class CardInventoryManager : MonoBehaviour
         if (_activePanalSelf) return;
 
         gameObject.SetActive(false);
+        _currentPanal.interactable = false;
+        _currentPanal.blocksRaycasts = false;
         GameManager.Inst.UI.ClosePanalAll();
 
     }
@@ -175,6 +181,12 @@ public class CardInventoryManager : MonoBehaviour
         }
     }
 
+    public void TriggerPickCard()
+    {
+        GameManager.Inst.CardPickCnt--;
+        _pickButton.interactable = GameManager.Inst.CardPickCnt > 0;
+    }
+
     private void MountingMessage(Param param)
     {
         ButtonStyle btn1 = new ButtonStyle(UtilDefine.EButtonStyle.Okay, () =>
@@ -214,6 +226,7 @@ public class CardInventoryManager : MonoBehaviour
             {
                 CardData card = GameManager.Inst.GetWantCardData(param.iParam);
                 panal.ChangeCard(card);
+                TriggerPickCard();
                 return;
             }
         }
@@ -221,6 +234,8 @@ public class CardInventoryManager : MonoBehaviour
 
     private void RandomPickCard(int pickCnt = 1)
     {
+        TriggerPickCard();
+
         foreach (CardPanal panal in _cardPanalList)
         {
             if (panal.IsEmpty)
@@ -239,6 +254,8 @@ public class CardInventoryManager : MonoBehaviour
 
     public void DrawCardMount(CardData cardData, CardPanal panal)
     {
+        TriggerPickCard();
+
         GameManager.Inst.AddCardDeck(panal.CurrentCard);
         panal.EmptyCard();
         panal.ChangeCard(cardData);

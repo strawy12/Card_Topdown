@@ -49,6 +49,6 @@ public class AgentInput : MonoBehaviour
     private void GetESkillButtonInput()
     {
         if (Input.GetKeyDown(KeyCode.E))
-            OnESkillButtonPressEvent?.Invoke();
+            OnESkillButtonPressEvent?.Invoke();     
     }
 }
