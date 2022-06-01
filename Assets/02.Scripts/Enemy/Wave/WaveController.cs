@@ -9,13 +9,22 @@ public class WaveController : MonoBehaviour
     public List<WaveDataSO> waves;
 
     public UnityEvent<int, int> OnWaveEnded;
-    public UnityEvent<int, int> OnEnemyDie;
+    public  UnityEvent<int, int> OnRemainEnemyUpdated;
     #region wave를 순서대로 나오게 하기 위한값
     //해당 부분은 웨이브가 랜덤으로 바뀌거나, 순서가 사라지면 수정될 수 있음.
     private WaveDataSO[] wavesArr;
     private int waveIndex = 0;
     private int waveMaxEnemy = 0, remainEnemy = 0;
 
+    public  int RemainEnemy
+    {
+        get => remainEnemy;
+        set
+        {
+            remainEnemy = value;
+            OnRemainEnemyUpdated?.Invoke(remainEnemy, waveMaxEnemy);
+        }
+    }
     private bool isWaveProcessing = false;
     #endregion
 
@@ -32,7 +41,7 @@ public class WaveController : MonoBehaviour
             waveMaxEnemy += pattern.count;
         }
         remainEnemy = waveMaxEnemy;
-        OnEnemyDie?.Invoke(remainEnemy, waveMaxEnemy);
+        OnRemainEnemyUpdated?.Invoke(remainEnemy, waveMaxEnemy);
     }
     private void StartWave()
     {
@@ -79,11 +88,5 @@ public class WaveController : MonoBehaviour
     {
         Enemy monster = PoolManager.inst.Pop(monsterName) as Enemy;
         monster.transform.SetPositionAndRotation(pos, Quaternion.identity);
-    }
-    public void EnemyDie()
-    {
-        Debug.Log(remainEnemy);
-        remainEnemy--;
-        OnEnemyDie?.Invoke(remainEnemy, waveMaxEnemy);
     }
 }

@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747646734}
   - component: {fileID: 1747646735}
+  - component: {fileID: 6382352145757973792}
   m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
@@ -128,6 +129,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 1862387590}
+  _spriteGroup: {fileID: 0}
+  _autoFadeOut: 0
+--- !u!114 &6382352145757973792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747646733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43ac79c5854f68458dfb58235f400c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alpha: 1
 --- !u!1 &1862387589
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3331124398576119050
 Transform:
   m_ObjectHideFlags: 0
@@ -633,6 +649,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WaveController, Assembly-CSharp
+        m_MethodName: EnemyDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <OnGetHit>k__BackingField:
     m_PersistentCalls:
       m_Calls:
@@ -708,6 +736,7 @@ MonoBehaviour:
   _isDead: 0
   _isDashing: 0
   _isStop: 0
+  _isInvincibility: 0
 --- !u!1 &3373700967275483603
 GameObject:
   m_ObjectHideFlags: 0

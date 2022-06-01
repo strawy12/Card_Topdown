@@ -11,7 +11,7 @@ public class Enemy : PoolableMono, IHittable
     private EnemyAttack _enemyAttack;
     public HpBar _hpBar;
     public float Health { get; private set; }
-
+    private WaveController _waveController;
     private AgentStateCheck _agentStateCheck;
 
     [field: SerializeField] public UnityEvent OnDie { get; set; }
@@ -46,6 +46,7 @@ public class Enemy : PoolableMono, IHittable
             _aiMove.StopImmediatelly();
             _aiMove.enabled = false;
             OnDie?.Invoke();
+            _waveController.RemainEnemy--;
         }
     }
     private void Awake()
@@ -54,6 +55,7 @@ public class Enemy : PoolableMono, IHittable
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
         _hpBar = transform.Find("HpBar").GetComponent<HpBar>();
+        _waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
 
     }
     public void EnemyAttack()
@@ -81,11 +83,7 @@ public class Enemy : PoolableMono, IHittable
     }
 
     private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            GetHit(5, GameObject.FindGameObjectWithTag("Player"));
-        }
+    { 
         StopDuetoAttack();
     }
 

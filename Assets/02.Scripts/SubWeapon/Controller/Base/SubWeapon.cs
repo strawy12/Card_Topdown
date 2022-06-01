@@ -79,6 +79,7 @@ public class SubWeapon : PoolableMono
 
     public override void Reset()
     {
+
     }
 }
 

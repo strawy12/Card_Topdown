@@ -377,33 +377,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
       propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 195631039}
-    - target: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: EnemyDie
-      objectReference: {fileID: 0}
-    - target: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: WaveController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 3331124398576119050, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1237,7 +1213,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnEnemyDie:
+  OnRemainEnemyUpdated:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 413551295}
@@ -17585,6 +17561,10 @@ PrefabInstance:
     - target: {fileID: 8620321401439369762, guid: 1037eb0252536eb45a291d652527cd31, type: 3}
       propertyPath: m_Name
       value: Fire_Magician
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620321401439369762, guid: 1037eb0252536eb45a291d652527cd31, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8620321401439369765, guid: 1037eb0252536eb45a291d652527cd31, type: 3}
       propertyPath: m_RootOrder
