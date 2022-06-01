@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 
 
 public class UtilDefine
@@ -43,6 +43,20 @@ public class UtilDefine
             if (_playerTrm == null)
                 _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
             return _playerTrm;
+        }
+    }
+
+    private static CinemachineVirtualCamera _cmVCam = null;
+    
+    public static CinemachineVirtualCamera VCam
+    {
+        get
+        {
+            if (_cmVCam == null)
+            {
+                _cmVCam = GameManager.FindObjectOfType<CinemachineVirtualCamera>();
+            }
+            return _cmVCam;
         }
     }
 
