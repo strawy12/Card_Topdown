@@ -9,20 +9,18 @@ public class AttackStart : PoolableMono
     [SerializeField]
     private LayerMask _enemyLayer;
 
-    private void OnEnable()
+    public void Attack()
     {
         Vector2 direction = MousePos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         if (angle <= 90f && angle >= -90f)
         {
             transform.localScale = new Vector3(1, 1, 1);
-            transform.Rotate(Vector3.forward, 180, Space.Self);
             Turn(false);
         }
         else
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            transform.Rotate(Vector3.forward, -180, Space.Self);
             Turn(true);
         }
     }
@@ -31,12 +29,11 @@ public class AttackStart : PoolableMono
     {
         Sequence seq = DOTween.Sequence();
         seq.Append(transform.DORotate(new Vector3(0, 0, 
-            dir == false ? -90 : 90), 0.25f, RotateMode.WorldAxisAdd)
+            dir == false ? -135 : 135), 0.25f, RotateMode.WorldAxisAdd)
            .SetEase(Ease.OutQuad)).OnComplete(() =>
         {
             PoolManager.Inst.Push(this);
         });
-
         CalculateAttack();
     }
 
@@ -54,7 +51,6 @@ public class AttackStart : PoolableMono
             // 데미지는 스테이터스에서 받아올거임
             hitable.GetHit(damage: 20, damageDealer: gameObject);
         }
-
     }
 
 #if UNITY_EDITOR
