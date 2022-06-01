@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoolManager
 {
-    public static PoolManager inst;
+    public static PoolManager Inst;
 
     private Dictionary<string, Pool<PoolableMono>> _pools = new Dictionary<string, Pool<PoolableMono>>();
 
@@ -13,7 +13,7 @@ public class PoolManager
     public PoolManager(Transform trmParent)
     {
         _trmParent = trmParent;
-        inst = this;
+        Inst = this;
     }
     public void CreatePool(PoolableMono prefab, int count = 10)
     {

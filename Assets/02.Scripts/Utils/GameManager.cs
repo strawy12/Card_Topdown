@@ -81,7 +81,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void CreatePool()
     {
         foreach (PoolingPair pair in _initList.list)
-            PoolManager.inst.CreatePool(pair.prefab, pair.poolCnt);
+            PoolManager.Inst.CreatePool(pair.prefab, pair.poolCnt);
     }
 
     private void ShuffleCardDeck()
@@ -177,9 +177,14 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SpawnCardGauge(Vector3 pos, float  amout)
     {
-        CardGauge gauge = PoolManager.inst.Pop("CardGauge") as CardGauge;
+        CardGauge gauge = PoolManager.Inst.Pop("CardGauge") as CardGauge;
 
         gauge.InitGauge(amout);
         gauge.transform.position = pos;
+    }
+
+    public void GameClear()
+    {
+
     }
 }

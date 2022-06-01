@@ -24,4 +24,5 @@ public class UIInput : MonoBehaviour
             OnESCKeyInput?.Invoke();
         }
     }
+
 }

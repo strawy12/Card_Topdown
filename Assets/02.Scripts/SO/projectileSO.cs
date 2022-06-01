@@ -11,4 +11,6 @@ public class projectileSO : ScriptableObject
     public float speed = 1;
     public Material material;
     public float lifeTime = 2f;
+    public GameObject particlePrefab;
+    public float _explosionRange;
 }

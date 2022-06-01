@@ -19,3 +19,5 @@ MonoBehaviour:
   speed: 5
   material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   lifeTime: 2
+  particlePrefab: {fileID: 4894952050934284314, guid: 91f548c652f92804f83f3cee991f5994, type: 3}
+  _explosionRange: 0.5

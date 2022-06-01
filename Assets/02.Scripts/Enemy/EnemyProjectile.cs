@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class EnemyProjectile : PoolableMono
 {
     [SerializeField] protected projectileSO _projectileData;
@@ -71,7 +71,7 @@ public class EnemyProjectile : PoolableMono
         if(_timeToLive >= _projectileData.lifeTime)
         {
             _isDead = true;
-            PoolManager.inst.Push(this);
+            PoolManager.Inst.Push(this);
         }
 
         if(_rigid != null && _projectileData != null)
@@ -87,13 +87,21 @@ public class EnemyProjectile : PoolableMono
             HitTarget(collision);
         }
         _isDead = true;
-        PoolManager.inst.Push(this);    
+
+       PoolManager.Inst.Push(this);    
     }
 
     private void HitTarget(Collider2D collision)
     {
         IHittable hittable = collision.GetComponent<IHittable>();
         hittable.GetHit(Damage, gameObject);
+
+        Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        ParticleScript effect = PoolManager.Inst.Pop(_projectileData.particlePrefab.name) as ParticleScript;
+        float _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        effect.transform.rotation = Quaternion.Euler(0, 0, _angle);
+        effect.transform.localScale = new Vector3(_projectileData._explosionRange, _projectileData._explosionRange, _projectileData._explosionRange);
+
     }
     public void CompleteCharging()
     {

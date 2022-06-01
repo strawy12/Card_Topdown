@@ -29,7 +29,7 @@ public class SubWeaponController : MonoBehaviour
 
     private void Start()
     {
-        PoolManager.inst.CreatePool(_subWeaponPrefab, _initCreateCnt);
+        PoolManager.Inst.CreatePool(_subWeaponPrefab, _initCreateCnt);
     }
 
     protected virtual void ChildStart()
@@ -67,7 +67,7 @@ public class SubWeaponController : MonoBehaviour
     public SubWeapon GetWeaponObject()
     {
 
-        SubWeapon weapon = PoolManager.inst.Pop(_subWeaponPrefab.name) as SubWeapon;
+        SubWeapon weapon = PoolManager.Inst.Pop(_subWeaponPrefab.name) as SubWeapon;
         weapon.InitWeapon(_weaponData.damage, _weaponData.lifeTime);
 
         

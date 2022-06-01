@@ -29,7 +29,7 @@ public class RangeEnemyAttack : EnemyAttack
 
     public void SpawnProjectile(Vector3 pos, Quaternion rot)
     {
-        EnemyProjectile projectile = PoolManager.inst.Pop(_projectileData.prefab.name) as EnemyProjectile;
+        EnemyProjectile projectile = PoolManager.Inst.Pop(_projectileData.prefab.name) as EnemyProjectile;
         projectile.SetPositionAndRotation(pos, rot);  
         projectile.ProjectileData = _projectileData;
         projectile._isChaging = true;

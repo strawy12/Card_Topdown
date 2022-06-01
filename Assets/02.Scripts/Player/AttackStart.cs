@@ -34,7 +34,7 @@ public class AttackStart : PoolableMono
             dir == false ? -90 : 90), 0.25f, RotateMode.WorldAxisAdd)
            .SetEase(Ease.OutQuad)).OnComplete(() =>
         {
-            PoolManager.inst.Push(this);
+            PoolManager.Inst.Push(this);
         });
 
         CalculateAttack();

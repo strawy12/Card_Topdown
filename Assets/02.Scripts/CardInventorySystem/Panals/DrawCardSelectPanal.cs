@@ -53,6 +53,7 @@ public class DrawCardSelectPanal : Button
                             type == ECardType.Defer ? "보류카드" : "뽑은 카드");
 
         onClick.AddListener(() => action?.Invoke(idx));
+        onClick.AddListener(GameManager.Inst.UI.PlayBtnClickSound);
 
         this.interactable = true;
         gameObject.SetActive(true);

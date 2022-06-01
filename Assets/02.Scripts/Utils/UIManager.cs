@@ -4,19 +4,41 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine;
 using DG.Tweening;
-
+using TMPro;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private MessagePanal _messagePanal;
-
+    [SerializeField] private TextMeshProUGUI _waveCountText;
+    [SerializeField] private TextMeshProUGUI _remainMonsetText;
+    [SerializeField] private GameObject _winPanal;
+    [SerializeField] private GameObject _nextWavePanal;
     public UnityEvent<bool> OnUI;
 
     private Stack<GameObject> _panalStack = new Stack<GameObject>();
-    //[SerializeField] private
+
+
+    private UIAudio _uiAudio;
+
+
+    private void Awake()
+    {
+        _uiAudio = GetComponent<UIAudio>();
+    }
 
     public void TriggerMessage(string message, ButtonStyle btnStyle, ButtonStyle btnStyle2 = null)
     {
         _messagePanal.ShowMessagePanal(message, btnStyle, btnStyle2);
+    }
+
+    public void PlayBtnClickSound()
+    {
+        _uiAudio.PlayButtonClickSound();
+    }
+
+    public void PlayAddCardSound()
+    {
+        _uiAudio.PlayAddCardSound();
     }
 
     public void PushPanal(GameObject panal)
@@ -34,11 +56,6 @@ public class UIManager : MonoBehaviour
                 {
                     obj.SetActive(false);
                     action?.Invoke();
-
-                    if(_panalStack.Count == 0)
-                    {
-                        OnUI?.Invoke(false);
-                    }
                 }
                 );
     }
@@ -92,5 +109,29 @@ public class UIManager : MonoBehaviour
 
 
         }
+    }
+    public void UpdateWaveInfo(int count, int maxCount)
+    {
+        _waveCountText.SetText($"Wave {count}/{maxCount}");
+    }
+    public void UpdateRemainMonsterInfo(int count, int maxCount)
+    {
+        _remainMonsetText.SetText($"Monster {count}/{maxCount}");
+    }
+    public void OpenGameClearUI()
+    {
+        _winPanal.SetActive(true);
+    }
+    public void OnClearWaveUI()
+    {
+        _nextWavePanal.SetActive(true);
+    }
+    public void ReStart()
+    {
+        //SceneManager.LoadScene("Main");
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

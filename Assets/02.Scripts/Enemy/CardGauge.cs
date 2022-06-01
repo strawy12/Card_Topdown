@@ -54,7 +54,7 @@ public class CardGauge : PoolableMono
 
         _triggerDespawn = false;
         _amout = 0f;
-        PoolManager.inst.Push(this);
+        PoolManager.Inst.Push(this);
     }
 
     public override void Reset()
