@@ -78,8 +78,11 @@ public class AgentSubWeapon : MonoBehaviour
 
         switch(param.iParam)
         {
+            case 0:
+                type = ESubWeaponType.Whip;
+                break;
             case 1:
-                type =Random.Range(0, 2)== 0? ESubWeaponType.Whip : ESubWeaponType.Book;
+                type = ESubWeaponType.Book;
                 break;
 
             case 2:
@@ -100,7 +103,6 @@ public class AgentSubWeapon : MonoBehaviour
 
         if (type == ESubWeaponType.None) return;
 
-        type = ESubWeaponType.Fireball;
         var weapon = _subWeapons.Find(x => x.Type == type);
 
         weapon.IsActive = true;

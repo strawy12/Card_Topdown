@@ -16,11 +16,29 @@ public class UIManager : MonoBehaviour
     public UnityEvent<bool> OnUI;
 
     private Stack<GameObject> _panalStack = new Stack<GameObject>();
-    //[SerializeField] private 
+
+
+    private UIAudio _uiAudio;
+
+
+    private void Awake()
+    {
+        _uiAudio = GetComponent<UIAudio>();
+    }
 
     public void TriggerMessage(string message, ButtonStyle btnStyle, ButtonStyle btnStyle2 = null)
     {
         _messagePanal.ShowMessagePanal(message, btnStyle, btnStyle2);
+    }
+
+    public void PlayBtnClickSound()
+    {
+        _uiAudio.PlayButtonClickSound();
+    }
+
+    public void PlayAddCardSound()
+    {
+        _uiAudio.PlayAddCardSound();
     }
 
     public void PushPanal(GameObject panal)
@@ -38,11 +56,6 @@ public class UIManager : MonoBehaviour
                 {
                     obj.SetActive(false);
                     action?.Invoke();
-
-                    if(_panalStack.Count == 0)
-                    {
-                        OnUI?.Invoke(false);
-                    }
                 }
                 );
     }

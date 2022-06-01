@@ -6,6 +6,8 @@ using UnityEngine;
 public class SubWeapon : PoolableMono
 {
     [SerializeField] protected int _playerOrder;
+
+    protected EffectAudio _audio;
     protected SpriteRenderer _spriteRenderer;
     protected Collider2D _collider;
 
@@ -20,6 +22,7 @@ public class SubWeapon : PoolableMono
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
+        _audio = GetComponentInChildren<EffectAudio>();
 
         _targetLayer = LayerMask.NameToLayer("Enemy");
         ChildAwake();
@@ -41,6 +44,7 @@ public class SubWeapon : PoolableMono
     {
         _attackStart = true;
         _collider.enabled = true;
+        _audio.PlaySound();
 
         Invoke("ResetObject", _lifeTime);
     }

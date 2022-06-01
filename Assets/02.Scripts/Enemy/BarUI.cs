@@ -7,23 +7,19 @@ using DG.Tweening;
 public class BarUI : MonoBehaviour
 {
     [SerializeField]
-    private Transform _fillBar;
+    protected Transform _fillBar;
 
     [SerializeField]
-    private SpriteGroupFade _spriteGroup;
+    protected SpriteGroupFade _spriteGroup;
 
     [SerializeField]
     private bool _autoFadeOut;
 
-    private Coroutine _fadeOutCoroutine;
+    protected Coroutine _fadeOutCoroutine;
 
     public float FillAmout
     {
         get => _fillBar.transform.localScale.x;
-        set
-        {
-            _fillBar.transform.localScale = new Vector3(value, 1f, 1f);
-        }
     }
 
     public void GaugeBarGaugeSetting(float value)
@@ -44,28 +40,14 @@ public class BarUI : MonoBehaviour
         }
     }
 
-    private void SetGuageUI(float value)
+    protected virtual void SetGuageUI(float value)
     {
-        if (value < 0)
-        {
-            value = 0;
-        }
-
-        if(value > 1f)
-        {
-            _fillBar.transform.DOScaleX(1f, 0.3f).OnComplete(() =>
-            {
-                _fillBar.transform.localScale = new Vector3(0f, 1f, 1f);
-                _fillBar.transform.DOScaleX(value - 1f, 0.3f).OnComplete(AutoFadeOut).SetDelay(0.1f);
-            });
-
-            return;
-        }
+        value = Mathf.Clamp(value, 0f, 1f);
 
         _fillBar.transform.DOScaleX(value, 0.3f).OnComplete(AutoFadeOut);
     }
 
-    private void AutoFadeOut()
+    protected void AutoFadeOut()
     {
         if (_autoFadeOut == false) return;
         if (gameObject.activeSelf == false) return;

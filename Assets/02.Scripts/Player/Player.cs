@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IAgent, IHittable
     private float _health;
     private float _cardGuage;
 
+    public UnityEvent OnAddCardGauge;
 
     public float Health
     {
@@ -94,13 +95,13 @@ public class Player : MonoBehaviour, IAgent, IHittable
     private void AddCardGauge(Param param)
     {
         _cardGuage += param.fParam;
-
+        OnAddCardGauge?.Invoke();
         _cardGaugeBar.GaugeBarGaugeSetting(_cardGuage / Constant.MAX_CARDGAUGE);
 
         if (_cardGuage >= Constant.MAX_CARDGAUGE)
         {
             GameManager.Inst.CardPickCnt++;
-            _cardGaugeBar.FillAmout = 0f;
+            EventManager.TriggerEvent(Constant.TRIGGER_PICK_CARD);
         }
 
         _cardGuage %= Constant.MAX_CARDGAUGE;

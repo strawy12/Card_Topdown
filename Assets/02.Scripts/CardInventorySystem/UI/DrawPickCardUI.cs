@@ -22,8 +22,6 @@ public class DrawPickCardUI : MonoCardUI
     {
         EventManager.StartListening(Constant.ACTIVE_DRAWPICK_UI, ActiveUI);
         // TODO : UI Panal Stack 구조 구현
-
-        gameObject.SetActive(false);
     }
 
     public void ActiveUI()
@@ -72,7 +70,8 @@ public class DrawPickCardUI : MonoCardUI
         {
             if (list[i].CurrentCard != null)
             {
-                _selectPanalList[cnt].InitPanal(list[i].CurrentCard, DrawCardSelectPanal.ECardType.Defer, SelectCard, cnt, list[i]);
+                int idx = cnt;
+                _selectPanalList[cnt].InitPanal(list[i].CurrentCard, DrawCardSelectPanal.ECardType.Defer, SelectCard, idx, list[i]);
                 cnt++;
             }
         }
