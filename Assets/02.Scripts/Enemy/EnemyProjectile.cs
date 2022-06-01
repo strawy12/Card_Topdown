@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class EnemyProjectile : PoolableMono
 {
+    [SerializeField] private float _explosionRange;
+
     [SerializeField] protected projectileSO _projectileData;
     protected Collider2D _collider = null;
     protected Rigidbody2D _rigid;
@@ -85,8 +87,16 @@ public class EnemyProjectile : PoolableMono
         if(collision.gameObject.layer == _playerLayer)
         {
             HitTarget(collision);
+            if (_projectileData.particlePrefab != null)
+            {
+                Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                GameObject effect = Instantiate(_projectileData.particlePrefab, transform.position, Quaternion.identity);
+                float _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                effect.transform.localScale = new Vector3(_explosionRange, _explosionRange, _explosionRange);
+            }
         }
         _isDead = true;
+
         PoolManager.inst.Push(this);    
     }
 
@@ -94,6 +104,7 @@ public class EnemyProjectile : PoolableMono
     {
         IHittable hittable = collision.GetComponent<IHittable>();
         hittable.GetHit(Damage, gameObject);
+
     }
     public void CompleteCharging()
     {
