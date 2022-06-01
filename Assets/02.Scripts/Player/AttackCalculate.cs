@@ -6,18 +6,35 @@ using static UtilDefine;
 
 public class AttackCalculate : MonoBehaviour
 {
+    [SerializeField] private AudioClip _attackClip;
+
+    private AudioSource _audioSource;
+
     public float beforeDelay = 0.25f;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     public void StartDelay()
     {
         StartCoroutine(BeforeDelay());
     }
 
+    private void PlayAttackSound()
+    {
+        _audioSource.Stop();
+        _audioSource.clip = _attackClip;
+        _audioSource.Play();
+    }
+
 
     IEnumerator BeforeDelay()
     {
+        PlayAttackSound();
         yield return new WaitForSeconds(beforeDelay);
-        
+
         StartSpawnEffect();
     }
 

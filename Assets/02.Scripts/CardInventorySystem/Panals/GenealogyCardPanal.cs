@@ -157,14 +157,11 @@ public class GenealogyCardPanal : MonoBehaviour
 
         GameManager.Inst.Data.SetGenealogyData(_genealogyData);
 
-        if(_genealogyCnt != 0)
-        {
             Param param = new Param();
             //param.iParam = (int)genealogyType;
             param.iParam = _genealogyCnt;
 
             PEventManager.TriggerEvent("CardAdd", param);
-        }
         _genealogyCnt++;
     }
 

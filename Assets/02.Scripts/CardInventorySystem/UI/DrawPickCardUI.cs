@@ -70,7 +70,8 @@ public class DrawPickCardUI : MonoCardUI
         {
             if (list[i].CurrentCard != null)
             {
-                _selectPanalList[cnt].InitPanal(list[i].CurrentCard, DrawCardSelectPanal.ECardType.Defer, SelectCard, cnt, list[i]);
+                int idx = cnt;
+                _selectPanalList[cnt].InitPanal(list[i].CurrentCard, DrawCardSelectPanal.ECardType.Defer, SelectCard, idx, list[i]);
                 cnt++;
             }
         }

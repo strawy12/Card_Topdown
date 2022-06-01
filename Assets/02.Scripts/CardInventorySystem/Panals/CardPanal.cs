@@ -10,8 +10,6 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
     private static bool _stopShowInfo;
     private static int _panalCount;
 
-    protected CardOutLineEffect _outLineEffect;
-
     public Action OnChangeCardEvent { get; set; }
 
     protected CardData _currentCard { get; private set; }
@@ -48,7 +46,6 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 
     private void Start()
     {
-        _outLineEffect = GetComponent<CardOutLineEffect>();
         ChildStart();
     }
 
@@ -94,6 +91,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 
                 transform.localScale = (Vector3.one * 3f);
                 transform.DOScale(Vector3.one, 0.3f).SetUpdate(true);
+                GameManager.Inst.UI.PlayAddCardSound();
             }
         }
 
@@ -154,7 +152,6 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
             if (isChangeEvent)
             {
                 transform.DOScale(Vector3.one * 1.3f, 0.5f);
-                _outLineEffect.EffectStart();
                 _isEventActive = true;
             }
         }
