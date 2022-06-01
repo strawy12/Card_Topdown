@@ -1,27 +1,60 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+using UnityEngine.UI;
 
-public class PickTypeSelectUI : PanalUI
+public class PickTypeSelectUI : MonoCardUI
 {
-    public enum PickType { Want, Random, Draw }
+    public enum EPickType { Want, Random, Draw }
 
-    public void OnClickSelectBtn(int type)
+    [SerializeField] private Button[] _pickTypeButtons = new Button[3];
+
+    private void Awake()
+    {
+        for(int i = 0; i < _pickTypeButtons.Length; i++)
+        {
+            EPickType type = (EPickType)i;
+            _pickTypeButtons[i].onClick.AddListener(() => OnClickSelectBtn(type));
+        }
+    }
+
+    public void ActiveUI()
+    {
+        CheckActiveButton();
+        gameObject.SetActive(true);
+        transform.DOScale(Vector3.one, 0.6f).SetUpdate(true).SetEase(Ease.InOutElastic);
+        GameManager.Inst.UI.PushPanal(gameObject);
+    }
+
+    private void CheckActiveButton()
+    {
+        _pickTypeButtons[(int)EPickType.Want].interactable = !InventoryManager.IsFull;
+        _pickTypeButtons[(int)EPickType.Random].interactable = InventoryManager.EmptyPanalCount >= 2;
+        _pickTypeButtons[(int)EPickType.Draw].interactable = InventoryManager.IsMounting;
+    }
+
+    public void UnActiveUI(System.Action action = null)
+    {
+        GameManager.Inst.UI.ClosePanal(gameObject, action);
+    }
+
+
+    public void OnClickSelectBtn(EPickType type)
     {
         string eventName = "";
 
-        switch ((PickType)type)
+        switch (type)
         {
-            case PickType.Want:
+            case EPickType.Want:
                 eventName = Constant.ACTIVE_WANTPICK_UI;
                 break;
 
-            case PickType.Random:
+            case EPickType.Random:
                 eventName = Constant.TRIGGER_RANDOM_PICK;
                 break;
 
-            case PickType.Draw:
+            case EPickType.Draw:
                 eventName = Constant.ACTIVE_DRAWPICK_UI;
                 break;
         }
@@ -30,5 +63,5 @@ public class PickTypeSelectUI : PanalUI
         EventManager.TriggerEvent(eventName);
     }
 
-   
+
 }

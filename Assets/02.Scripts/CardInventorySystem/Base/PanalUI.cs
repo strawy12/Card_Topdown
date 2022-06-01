@@ -11,6 +11,7 @@ public class PanalUI : MonoBehaviour
         gameObject.SetActive(true);
         transform.DOScale(Vector3.one, 0.6f).SetUpdate(true).SetEase(Ease.InOutElastic);
         GameManager.Inst.UI.PushPanal(gameObject);
+        Debug.Log(gameObject.activeSelf);
     }
 
     protected virtual void ChildActiveUI() { }

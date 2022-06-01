@@ -18,3 +18,4 @@ MonoBehaviour:
   damage: 5
   attackDelay: 1
   defence: 0
+  cardGague: 100

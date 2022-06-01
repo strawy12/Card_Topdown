@@ -98,7 +98,6 @@ public class EnemyProjectile : PoolableMono
     public void CompleteCharging()
     {
         _isChaging = false;
-        Debug.Log(_isChaging);
     }
     public override void Reset()
     {

@@ -36,6 +36,8 @@ public class AttackStart : PoolableMono
         {
             PoolManager.inst.Push(this);
         });
+
+        CalculateAttack();
     }
 
     public override void Reset()

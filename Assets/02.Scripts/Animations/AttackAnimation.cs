@@ -5,40 +5,33 @@ using UnityEngine.Events;
 
 public class AttackAnimation : AgentAnimation
 {
-    public static bool isAttack = false;
+    [SerializeField] private float _delay = 0.8f;
+    public static bool IsAttack = false;
 
     protected readonly int _atkHashStr = Animator.StringToHash("Atk");
 
+    public UnityEvent OnTriggerAttack;
+
     public void StartAttack()
     {
+        if (IsAttack == true) return;
+        IsAttack = true;
         _animator.SetTrigger(_atkHashStr);
+        SpawnAttackEffect();
         StartCoroutine(Delay());
     }
 
-    //public void StartAttack()
-    //{
-    //    if (isAttack == true) return;
-    //    isAttack = true;
-    //    _animator.Play("Attack1");
-    //    StartCoroutine(Delay());
-    //}
+    public void SpawnAttackEffect()
+    {
+        OnTriggerAttack?.Invoke();
+    }
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(_delay);
 
-        isAttack = false;
+        IsAttack = false;
         _agentStateCheck.IsStop = false;
     }
 
-    // 임시용으로 만들어둔 코드 추후에 스크립트 나눠서 짜야함
-
-    public void AttackStartEvent()
-    {
-        EventManager.TriggerEvent(Constant.PLAYER_ATTACK_START);
-    }
-    public void AttackEndEvent()
-    {
-        EventManager.TriggerEvent(Constant.PLAYER_ATTACK_END);
-    }
 }
