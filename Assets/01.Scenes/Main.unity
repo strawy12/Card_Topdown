@@ -559,7 +559,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -442554141
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c13dd620c25e6d349b117a7cb7c5d515, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -962,7 +962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &103418715
 RectTransform:
   m_ObjectHideFlags: 0
@@ -995,6 +995,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c35eb32b15122742a484d10bd966c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickTypeButtons:
+  - {fileID: 214042113}
+  - {fileID: 1504683893}
+  - {fileID: 1605935447}
 --- !u!114 &103418717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,9 +1320,9 @@ RectTransform:
   m_Father: {fileID: 2102066091}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -105.45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 210.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214042113
@@ -1364,19 +1368,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 214042114}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 103418716}
-        m_TargetAssemblyTypeName: PickTypeSelectUI, Assembly-CSharp
-        m_MethodName: OnClickSelectBtn
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &214042114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3358,6 +3350,7 @@ RectTransform:
   - {fileID: 103418715}
   - {fileID: 99992845}
   - {fileID: 1491730341}
+  - {fileID: 1513850857}
   m_Father: {fileID: 296636144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3390,8 +3383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4449cd54ae8214abd9a51d99c98e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initPickCnt: 2
   _pickButton: {fileID: 622214391}
+  _pickCountText: {fileID: 1513850858}
 --- !u!114 &491712534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11433,7 +11426,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -442554141
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 314b7a3b7df65cd4093d47577ae45a15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -13072,9 +13065,9 @@ RectTransform:
   m_Father: {fileID: 2102066091}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -105.45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 210.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1504683893
@@ -13120,19 +13113,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1504683894}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 103418716}
-        m_TargetAssemblyTypeName: PickTypeSelectUI, Assembly-CSharp
-        m_MethodName: OnClickSelectBtn
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1504683894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13249,6 +13230,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507842708}
+  m_CullTransparentMesh: 1
+--- !u!1 &1513850856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1513850857}
+  - component: {fileID: 1513850859}
+  - component: {fileID: 1513850858}
+  m_Layer: 5
+  m_Name: PickCntText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1513850857
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513850856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 491712531}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 686, y: -262.2}
+  m_SizeDelta: {x: 398.4, y: 53.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1513850858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513850856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 44
+    m_Alignment: 8
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uBF51\uAE30 \uD69F\uC218 : 12"
+--- !u!222 &1513850859
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513850856}
   m_CullTransparentMesh: 1
 --- !u!1 &1515583975
 GameObject:
@@ -13980,9 +14040,9 @@ RectTransform:
   m_Father: {fileID: 2102066091}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1000, y: -105.45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 210.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1605935447
@@ -14028,19 +14088,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1605935448}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 103418716}
-        m_TargetAssemblyTypeName: PickTypeSelectUI, Assembly-CSharp
-        m_MethodName: OnClickSelectBtn
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1605935448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17151,7 +17199,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 210.9}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2102066092
 MonoBehaviour:

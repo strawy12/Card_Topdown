@@ -15,8 +15,6 @@ public class WantPickCardUI : PanalUI
         // TODO : UI Panal Stack 구조 구현
 
         InitPanals();
-
-        gameObject.SetActive(false);
     }
 
     private void InitPanals()

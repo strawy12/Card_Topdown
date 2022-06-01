@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SynergyPanal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Image _synergyIcon;
+    [SerializeField] private Text _synergyNamText;
+    [SerializeField] private Text _synergyInfoText;
 
-    // Update is called once per frame
-    void Update()
+    public void SetPanal(GenealogyDefine.ESynergy type)
     {
-        
+
     }
 }

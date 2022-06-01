@@ -22,8 +22,6 @@ public class DrawPickCardUI : MonoCardUI
     {
         EventManager.StartListening(Constant.ACTIVE_DRAWPICK_UI, ActiveUI);
         // TODO : UI Panal Stack 구조 구현
-
-        gameObject.SetActive(false);
     }
 
     public void ActiveUI()

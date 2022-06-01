@@ -46,12 +46,16 @@ public class BarUI : MonoBehaviour
 
     private void SetGuageUI(float value)
     {
-        if (value < 0)
-        {
-            value = 0;
-        }
+        value = Mathf.Clamp(value, 0f, 1f);
 
-        if(value > 1f)
+
+
+        _fillBar.transform.DOScaleX(value, 0.3f).OnComplete(AutoFadeOut);
+    }
+
+    protected virtual void ChildSetGaugeUI(float value)
+    {
+        if (value > 1f)
         {
             _fillBar.transform.DOScaleX(1f, 0.3f).OnComplete(() =>
             {
@@ -61,11 +65,9 @@ public class BarUI : MonoBehaviour
 
             return;
         }
-
-        _fillBar.transform.DOScaleX(value, 0.3f).OnComplete(AutoFadeOut);
     }
 
-    private void AutoFadeOut()
+        private void AutoFadeOut()
     {
         if (_autoFadeOut == false) return;
         if (gameObject.activeSelf == false) return;
