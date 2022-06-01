@@ -56,11 +56,12 @@ public class EnemyProjectile : PoolableMono
             }
         }
     }
-
+    private EffectAudio _effectAudio;
     private void Awake()
     {
         _playerLayer = LayerMask.NameToLayer("Player");
         _damage = _projectileData.damage;
+        _effectAudio = transform.Find("EffectSound").GetComponent<EffectAudio>();
     }
 
     private void FixedUpdate()
@@ -106,6 +107,7 @@ public class EnemyProjectile : PoolableMono
     public void CompleteCharging()
     {
         _isChaging = false;
+        _effectAudio.PlaySound();
     }
     public override void Reset()
     {
