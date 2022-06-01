@@ -97,6 +97,7 @@ public class CardInventoryManager : MonoBehaviour
             SetPickEventUI();
             _currentPanal.interactable = true;
             _currentPanal.blocksRaycasts = true;
+            EventManager.TriggerEvent(Constant.OPEN_INVENTORY);
         }
 
         _currentPanal.DOKill();

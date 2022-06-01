@@ -20,10 +20,6 @@ public class BarUI : MonoBehaviour
     public float FillAmout
     {
         get => _fillBar.transform.localScale.x;
-        set
-        {
-            _fillBar.transform.localScale = new Vector3(value, 1f, 1f);
-        }
     }
 
     public void GaugeBarGaugeSetting(float value)
