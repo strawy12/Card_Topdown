@@ -12,4 +12,5 @@ public class EnemyDataSO : ScriptableObject
     public float attackDelay = 1f;
     public int defence = 0;
     public float cardGague = 1f;
+    public float knockbackRegist = 0f;
 }

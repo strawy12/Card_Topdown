@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Enemy : PoolableMono, IHittable
+public class Enemy : PoolableMono, IHittable, IKnockback
 {
     [SerializeField] private EnemyDataSO _enemyData;
     public EnemyDataSO EnemyData => _enemyData;
-    private AgentMove _aiMove;
+    private AgentMove _agentMove;
     private EnemyAttack _enemyAttack;
     public BarUI _hpBar;
     public float Health { get; private set; }
@@ -18,12 +18,12 @@ public class Enemy : PoolableMono, IHittable
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
 
     public bool IsEnemy => true;
-
+    public bool IsStiff = false;//°æÁ÷
     public Vector3 HitPoint { get; private set; }
 
     public void GetHit(float damage, GameObject damageDealer)
     {
-      
+        
         if (_agentStateCheck.IsDead == true) return;
         float critical = Random.value;
         bool isCritical = false;
@@ -40,27 +40,28 @@ public class Enemy : PoolableMono, IHittable
         //DamagePopup popup = Instantiate(new DamagePopup());
         //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
         _hpBar.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
+        Staff(0.1f);
         if (Health <= 0)
         {
             _agentStateCheck.IsDead = true;
-            _aiMove.StopImmediatelly();
-            _aiMove.enabled = false;
+            _agentMove.StopImmediatelly();
+            _agentMove.enabled = false;
             OnDie?.Invoke();
-            _waveController.RemainEnemy--;
+            //_waveController.RemainEnemy--;
         }
     }
+    
     private void Awake()
     {
-        _aiMove = GetComponent <AgentMove>();
+        _agentMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
         _waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
         _hpBar = transform.Find("HpBar").GetComponent<BarUI>();
-
     }
     public void EnemyAttack()
     { 
-      if (_agentStateCheck.IsDead == false)
+      if (_agentStateCheck.IsDead == false && !IsStiff)
       {
            _enemyAttack.Attack(_enemyData.damage);
       }
@@ -69,7 +70,7 @@ public class Enemy : PoolableMono, IHittable
     {
         ResetHP();
         _agentStateCheck.IsDead = false;
-        _aiMove.enabled = true;
+        _agentMove.enabled = true;
     }
     private void Start()
     {
@@ -91,17 +92,41 @@ public class Enemy : PoolableMono, IHittable
     {
         if (_enemyAttack.IsAttacking)
         {
-            _aiMove.StopImmediatelly();
-            _aiMove.EndMoveStop();
+            _agentMove.StopImmediatelly();
+            _agentMove.EndMoveStop();
         }
     }
 
     public void Die()
     {
+        _agentStateCheck.IsDead = true;
         PoolManager.Inst.Push(this);
 
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
 
+    public void KnockBack(Vector2 dir, float power, float duraction)
+    {
+        if (!_agentStateCheck.IsDead)
+        {
+            if(power > _enemyData.knockbackRegist)
+            {
+                _agentMove.Knockback(dir, power, duraction);
+            }
+        }
+    }
 
+    public void Staff(float duraction)
+    {
+        if(!_agentStateCheck.IsDead && !IsStiff)
+        {
+            StartCoroutine(StaffCoroutine(duraction));
+        }
+    }
+    private IEnumerator StaffCoroutine(float duraction)
+    {
+        IsStiff = true;
+        yield return new WaitForSeconds(duraction);
+        IsStiff = false;
+    }
 }

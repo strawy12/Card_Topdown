@@ -33,7 +33,6 @@ public class EnemyAIBrain : MonoBehaviour
     {
         if (GameManager.Inst.GameEnd || GameManager.Inst.OnUI) return;
 
-        //Debug.Log(_currentState);
         if(target == null)
         {
             OnMovement?.Invoke(Vector2.zero);

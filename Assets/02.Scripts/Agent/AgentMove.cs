@@ -18,7 +18,8 @@ public class AgentMove : MonoBehaviour
     private BoxCollider2D boxCol2D;
 
     private AgentStateCheck agentStateCheck;
-
+    private Coroutine knockbackCoroutine = null;
+    public bool _isKnockback = false;
     //public static bool isDashing = false;
     //public static bool isStop = false;
 
@@ -99,5 +100,26 @@ public class AgentMove : MonoBehaviour
     public void EndMoveStop()
     {
         agentStateCheck.IsStop = false;
+    }
+
+    public void Knockback(Vector2 dir, float power, float duraction)
+    {
+        if(!_isKnockback)
+        {
+            _isKnockback = true;
+            knockbackCoroutine = StartCoroutine(KnockbackCoroutine(dir, power, duraction));
+        }
+    }
+    public IEnumerator KnockbackCoroutine(Vector2 dir, float power, float duraction)
+    {
+        rb2D.AddForce(dir.normalized * power, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(duraction);
+        ResetKnockbackParam();
+    }
+    public void ResetKnockbackParam()
+    {
+        rb2D.velocity = Vector2.zero;
+        _isKnockback = false;
+        rb2D.gravityScale = 0;
     }
 }
