@@ -13,9 +13,8 @@ public class GameManager : MonoSingleton<GameManager>
     private Transform _playerTrm;
     private UIManager _uiManager;
     private DataManager _dataManager;
-    private List<CardData> _randomCardDeck;
-    private bool[] _existCard;
-    private int _canCardPickCnt = 0;
+    //private bool[] _existCard;
+    private int _canCardPickCnt = 12;
 
     private bool _onUI;
 
@@ -52,7 +51,6 @@ public class GameManager : MonoSingleton<GameManager>
 
         _uiManager = GetComponentInChildren<UIManager>();
         _dataManager = GetComponentInChildren<DataManager>();
-        ShuffleCardDeck();
         CreatePool();
     }
 
@@ -61,7 +59,7 @@ public class GameManager : MonoSingleton<GameManager>
         Time.timeScale =1f;
         GameEnd = false;
         _onUI = false;
-        _existCard = Enumerable.Repeat(true, 10).ToArray();
+       // _existCard = Enumerable.Repeat(true, 10).ToArray();
     }
 
     public void OnTriggerUI(bool onUI)
@@ -81,96 +79,66 @@ public class GameManager : MonoSingleton<GameManager>
             PoolManager.Inst.CreatePool(pair.prefab, pair.poolCnt);
     }
 
-    private void ShuffleCardDeck()
-    {
-        _randomCardDeck = _cardDataSO.CardDataList.ToList();
-
-        int idx1, idx2;
-        CardData temp;
-
-        int maxIdx = _randomCardDeck.Count;
-
-        for (int i = 0; i < 100; i++)
-        {
-            idx1 = Random.Range(0, maxIdx);
-            idx2 = Random.Range(0, maxIdx);
-
-            temp = _randomCardDeck[idx1];
-            _randomCardDeck[idx1] = _randomCardDeck[idx2];
-            _randomCardDeck[idx2] = temp;
-        }
-
-    }
-
     public CardData FindCardDataWithID(string cardID)
     {
         return new CardData(_cardDataSO.FindCardData(cardID));
     }
 
-    public CardData GetWantCardData(int cardNum)
-    {
-        var cards = _randomCardDeck.FindAll(x => x.CardNum == cardNum);
-        CardData card = null;
+    //public CardData GetWantCardData(int cardNum)
+    //{
+    //    var cards = _randomCardDeck.FindAll(x => x.CardNum == cardNum);
+    //    CardData card = null;
 
-        if (cards.Count <= 0)
-        {
-            return null;
-        }
+    //    if (cards.Count <= 0)
+    //    {
+    //        return null;
+    //    }
 
-        else if (cards.Count == 1)
-        {
-            card = cards[0];
-            _existCard[cardNum - 1] = false;
-        }
-        else
-        {
-            int idx = Random.Range(0, 2);
-            card = cards[idx];
-        }
+    //    else if (cards.Count == 1)
+    //    {
+    //        card = cards[0];
+    //        _existCard[cardNum - 1] = false;
+    //    }
+    //    else
+    //    {
+    //        int idx = Random.Range(0, 2);
+    //        card = cards[idx];
+    //    }
 
-        _randomCardDeck.Remove(card);
+    //    _randomCardDeck.Remove(card);
 
-        return new CardData(card);
-    }
+    //    return new CardData(card);
+    //}
 
     public CardData GetRandomCardData()
     {
-        if (_randomCardDeck.Count <= 0)
-        {
-            Debug.Log("모든 카드를 뽑았습니다.");
-            return null;
-        }
-
-
-        CardData randCard = _randomCardDeck[0];
-        _randomCardDeck.RemoveAt(0);
-
-        ExistCardCheck(randCard.CardNum);
+        int idx = Random.Range(0, _cardDataSO.CardDataList.Count);
+        CardData randCard = _cardDataSO[idx];
 
         return randCard;
     }
 
-    private void ExistCardCheck(int num)
-    {
-       int cnt = _randomCardDeck.FindAll(x => x.CardNum == num).Count;
+    //private void ExistCardCheck(int num)
+    //{
+    //   int cnt = _randomCardDeck.FindAll(x => x.CardNum == num).Count;
 
-        if(cnt == 0)
-        {
-            _existCard[num - 1] = false;
-        }
-    }
+    //    if(cnt == 0)
+    //    {
+    //        _existCard[num - 1] = false;
+    //    }
+    //}
 
-    public void AddCardDeck(CardData card)
-    {
-        int idx = Random.Range(0, _randomCardDeck.Count);
+    //public void AddCardDeck(CardData card)
+    //{
+    //    int idx = Random.Range(0, _randomCardDeck.Count);
 
-        _randomCardDeck.Insert(idx, card);
-    }
+    //    _randomCardDeck.Insert(idx, card);
+    //}
 
-    public bool ExistCard(int cardNum)
-    {
-        return _existCard[cardNum - 1];
-    }
+    //public bool ExistCard(int cardNum)
+    //{
+    //    return _existCard[cardNum - 1];
+    //}
 
     public void SpawnCardGauge(Vector3 pos, float  amout)
     {

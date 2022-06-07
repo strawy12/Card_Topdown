@@ -3,6 +3,6 @@ using System;
 
 public interface IUIEvent
 {
-    public Action OnPointerUIEnter { get; set; }
-    public Action OnPointerUIExit { get; set; } 
+    public Action<Param> OnPointerUpUIEnter { get; set; }
+    public Action<Param> OnPointerUpUINotEnter { get; set; }
 }

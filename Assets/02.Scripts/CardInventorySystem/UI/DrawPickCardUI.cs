@@ -108,7 +108,7 @@ public class DrawPickCardUI : MonoCardUI
     {
         if (_currentSelectPanal == null && _currentCardPanal == null) return;
 
-        InventoryManager.DrawCardMount(_currentSelectPanal.CurrentCard, _currentCardPanal);
+        //InventoryManager.DrawCardMount(_currentSelectPanal.CurrentCard, _currentCardPanal);
         _currentSelectPanal.CurrentCardPanal?.EmptyCard();
 
         _currentCardPanal = null;

@@ -6,22 +6,20 @@ using UnityEngine.UI;
 public class MountingUI : MonoBehaviour
 {
     [SerializeField] private GenealogyCardPanal _genealogyCardPanalTemp;
-    private bool _isEnterUI;
 
 
     void Start()
     {
-        _isEnterUI = false;
-        PEventManager.StartListening(Constant.POINTUP_CARD, ActiveMountingCard);
-        SubscribeEvent();
+        IUIEvent uIEvent = transform.Find("CheckEnterUI").GetComponent<IUIEvent>();
+        SubscribeEvent(uIEvent);
         GenerateGenealogyPanals();
     }
 
-    private void SubscribeEvent()
+    private void SubscribeEvent(IUIEvent uiEvent)
     {
-        IUIEvent uiEvent = transform.Find("CheckEnterUI").GetComponent<IUIEvent>();
-        uiEvent.OnPointerUIEnter += () => _isEnterUI = true;
-        uiEvent.OnPointerUIExit += () => _isEnterUI = false;
+        uiEvent.OnPointerUpUIEnter += ActiveMountingCard;
+        uiEvent.OnPointerUpUINotEnter += UnActiveMountingCard;
+
     }
 
     private void GenerateGenealogyPanals()
@@ -33,20 +31,18 @@ public class MountingUI : MonoBehaviour
             panal.transform.SetSiblingIndex(0);
             panal.Init();
             panal.gameObject.SetActive(true);
+            panal.OnPointerUpUIEnter += ActiveMountingCard;
+            panal.OnPointerUpUINotEnter += ActiveMountingCard;
         }
     }
 
     private void ActiveMountingCard(Param param)
     {
-        if (_isEnterUI)
-        {
-            PEventManager.TriggerEvent(Constant.ENTER_MOUNTING_UI, param);
-        }
+        PEventManager.TriggerEvent(Constant.ENTER_MOUNTING_UI, param);
+    }
 
-        else
-        {
-            EventManager.TriggerEvent(Constant.NOT_ENTER_MOUNTING_UI);
-        }
-
+    private void UnActiveMountingCard(Param param)
+    {
+        PEventManager.TriggerEvent(Constant.NOT_ENTER_MOUNTING_UI, param);
     }
 }

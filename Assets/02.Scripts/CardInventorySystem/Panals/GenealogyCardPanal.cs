@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using static GenealogyDefine;
+using System;
 
-public class GenealogyCardPanal : MonoBehaviour
+public class GenealogyCardPanal : MonoBehaviour, IUIEvent
 {
     private CardPanal[] _cardPanals = new CardPanal[2];
     private Text _genealogyText;
@@ -20,11 +22,43 @@ public class GenealogyCardPanal : MonoBehaviour
         }
     }
 
+    public bool IsEmpty
+    {
+        get => _genealogyData == null;
+    }
+
+    public bool CanEnForce
+    {
+        get
+        {
+            return _currentEnforceCnt >= _needEnforceCnt;
+        }
+    }
+
+
+    public Action<Param> OnPointerUpUIEnter { get; set; }
+    public Action<Param> OnPointerUpUINotEnter { get; set; }
+
+    private int _currentEnforceCnt = 0;
+    private int _needEnforceCnt = 0;
+
     public void Init()
     {
         _cardPanals = new CardPanal[2];
         _genealogyText = transform.Find("GenealogyText").GetComponent<Text>();
         _genealogyText.text = "";
+
+        SubscribeEvent();
+
+    }
+
+    private void SubscribeEvent()
+    {
+
+        IUIEvent uiEvent = transform.Find("CheckEnterUI").GetComponent<IUIEvent>();
+
+        uiEvent.OnPointerUpUIEnter += EnterUI;
+        uiEvent.OnPointerUpUINotEnter += OnPointerUpUINotEnter;
     }
 
     public void AddCardPanal(CardPanal panal)
@@ -43,21 +77,22 @@ public class GenealogyCardPanal : MonoBehaviour
 
         CalcGenealogy(_cardPanals[0].CurrentCard, _cardPanals[1].CurrentCard);
 
-        if(_genealogyData != null)
+        if (_genealogyData != null)
         {
+            SetGenealogyText();
+            _genealogyText.gameObject.SetActive(true);
+            return;
             string pedi = GetGenealogyInfo(_genealogyData.genealogyType);
             string numStr = "";
             if (_genealogyData.genealogyType == EGenealogy.LightPair)
             {
-                 numStr = LightDDangToString(_genealogyData.genealogyNum);
+                numStr = LightDDangToString(_genealogyData.genealogyNum);
             }
             else
             {
-                 numStr = NumberToString(_genealogyData.genealogyNum);
+                numStr = NumberToString(_genealogyData.genealogyNum);
             }
 
-            _genealogyText.text = $"{numStr}{pedi}";
-            _genealogyText.gameObject.SetActive(true);
         }
 
         else
@@ -65,6 +100,11 @@ public class GenealogyCardPanal : MonoBehaviour
             _genealogyText.gameObject.SetActive(false);
             _genealogyText.text = "";
         }
+    }
+
+    private void SetGenealogyText()
+    {
+        _genealogyText.text = $"+ {_currentEnforceCnt}";
     }
 
     private void CalcGenealogy(CardData cardData1, CardData cardData2)
@@ -90,12 +130,12 @@ public class GenealogyCardPanal : MonoBehaviour
             isSelect = true;
         }
 
-        else if (cardData1.IsLight && cardData2.IsLight)
-        {
-            genealogyType = EGenealogy.LightPair;
-            genealogyNum = num1 + num2;
-            isSelect = true;
-        }
+        //else if (cardData1.IsLight && cardData2.IsLight)
+        //{
+        //    genealogyType = EGenealogy.LightPair;
+        //    genealogyNum = num1 + num2;
+        //    isSelect = true;
+        //}
 
         else if (num1 == 4 && num2 == 6)
         {
@@ -155,18 +195,62 @@ public class GenealogyCardPanal : MonoBehaviour
 
         _genealogyData = new GenealogyData(genealogyType, genealogyNum);
 
-        GameManager.Inst.Data.SetGenealogyData(_genealogyData);
+        // GameManager.Inst.Data.SetGenealogyData(_genealogyData);
 
-            Param param = new Param();
-            //param.iParam = (int)genealogyType;
-            param.iParam = _genealogyCnt;
+        Param param = new Param();
+        //param.iParam = (int)genealogyType;
+        param.iParam = _genealogyCnt;
 
-            PEventManager.TriggerEvent("CardAdd", param);
+        PEventManager.TriggerEvent("CardAdd", param);
         _genealogyCnt++;
     }
 
     private void CloseMessage()
     {
 
+    }
+
+    private void EnterUI(Param param)
+    {
+        if (!IsEmpty && CheckEnforceMaterial(param.sParam))
+        {
+            EnForceMountMessage(param);
+        }
+
+        else
+        {
+            OnPointerUpUIEnter?.Invoke(param);
+        }
+
+
+    }
+
+    private bool CheckEnforceMaterial(string id)
+    {
+        for (int i = 0; i < _cardPanals.Length; i++)
+        {
+            if (!_cardPanals[i].IsEmpty && _cardPanals[i].CurrentCard.ID.Equals(id))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void EnForceMountMessage(Param param)
+    {
+        ButtonStyle btn1 = new ButtonStyle(UtilDefine.EButtonStyle.Okay, () =>
+        {
+            _currentEnforceCnt++;
+            SetGenealogyText();
+        });
+
+        ButtonStyle btn2 = new ButtonStyle(UtilDefine.EButtonStyle.Cancel, () =>
+        {
+            PEventManager.TriggerEvent(Constant.RETURN_CARD_EFFECT, param);
+        });
+
+        GameManager.Inst.UI.TriggerMessage(Constant.MESSAGE_MOUNTING, btn1, btn2);
     }
 }

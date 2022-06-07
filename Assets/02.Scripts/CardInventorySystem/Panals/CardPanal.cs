@@ -74,7 +74,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 
     protected abstract void ChildInit();
 
-    public void ChangeCard(CardData cardData, bool isEffect = true)
+    public virtual void ChangeCard(CardData cardData, bool isEffect = true)
     {
         _currentCard = cardData;
         _currentImage.sprite = _currentCard.CardSprite;
@@ -88,10 +88,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 
             if (isEffect&& InventoryManager.IsActive)
             {
-
-                transform.localScale = (Vector3.one * 3f);
-                transform.DOScale(Vector3.one, 0.3f).SetUpdate(true);
-                GameManager.Inst.UI.PlayAddCardSound();
+                CardAddEffect();
             }
         }
 
@@ -108,12 +105,25 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
         ChangeAlpha(1f);
     }
 
+    protected void CardAddEffect()
+    {
+        transform.localScale = (Vector3.one * 3f);
+        transform.DOScale(Vector3.one, 0.3f).SetUpdate(true);
+        GameManager.Inst.UI.PlayAddCardSound();
+    }
+
     public void EmptyCard()
     {
+        ChildEmptyCard();
         _currentCard = null;
         _currentImage.sprite = null;
         ChangeAlpha(0f);
         _isEmpty = true;
+    }
+
+    protected virtual void ChildEmptyCard()
+    {
+
     }
 
     public void ChangeAlpha(float alpha)
@@ -123,7 +133,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
         _currentImage.color = color;
     }
 
-    protected void SetShowInfo(bool isStop)
+    protected void SetShowInfoActive(bool isStop)
     {
         if (isStop)
         {

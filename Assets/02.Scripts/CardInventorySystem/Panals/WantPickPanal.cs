@@ -21,7 +21,7 @@ public class WantPickPanal : Button
 
     public void ActivePanal()
     {
-        this.interactable = GameManager.Inst.ExistCard(_currentIdx + 1);
+        //this.interactable = GameManager.Inst.ExistCard(_currentIdx + 1);
     }
 
     private void ClickPanal()
