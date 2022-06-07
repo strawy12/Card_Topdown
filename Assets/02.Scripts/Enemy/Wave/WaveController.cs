@@ -39,6 +39,7 @@ public class WaveController : MonoBehaviour
     private void Start()
     {
         wavesArr = waves.ToArray();
+        StartWave();
     }
     private void SetMaxEnemy()
     {
@@ -69,6 +70,8 @@ public class WaveController : MonoBehaviour
         isWaveProcessing = true;
         foreach (WavePattern pattern in wavesArr[waveIndex -1].patterns)
         {
+            if (GameManager.Inst.GameEnd) yield break;
+
             for (int i = 0; i < pattern.count; i++)
             {
                 Vector2 pos = RandomCameraSideVector();

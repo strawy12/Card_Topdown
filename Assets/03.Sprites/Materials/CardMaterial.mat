@@ -42,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaThreshold: 0
-    - _Angle: 125.848206
+    - _Angle: 253.57277
     - _ConnectedAlpha: 0
     - _EnableExternalAlpha: 0
     - _OutlineEnabled: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ClownStatus
   m_EditorClassIdentifier: 
   maxHp: 85
-  attackDamage: 20
+  attackDamage: 5
   attackSpeed: 1.25
   defence: -3
   criticalPercentage: 10

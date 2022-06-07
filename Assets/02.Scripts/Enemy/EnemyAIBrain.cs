@@ -31,6 +31,8 @@ public class EnemyAIBrain : MonoBehaviour
     }
     private void Update()
     {
+        if (GameManager.Inst.GameEnd || GameManager.Inst.OnUI) return;
+
         //Debug.Log(_currentState);
         if(target == null)
         {

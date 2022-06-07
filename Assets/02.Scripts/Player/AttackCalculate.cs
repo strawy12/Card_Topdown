@@ -46,5 +46,6 @@ public class AttackCalculate : MonoBehaviour
         attackEffect.transform.position = new Vector2(PlayerTrm.position.x, PlayerTrm.position.y + 0.75f);
         attackEffect.transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
         attackEffect.transform.position = attackEffect.transform.position - attackEffect.transform.up;
+        attackEffect.Attack();
     }
 }
