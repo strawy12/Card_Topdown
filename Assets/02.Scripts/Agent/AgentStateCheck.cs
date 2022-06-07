@@ -27,7 +27,23 @@ public class AgentStateCheck : MonoBehaviour
     public bool IsStop
     {
         get => _isStop;
-        set => _isStop = value;
+        set
+        {
+            if (value == true && index == 0)
+            {
+                _isStop = true;
+                index++;
+            }
+            else if (value == true && index >= 1)
+                index++;
+            else if (value == false && index == 1)
+            {
+                _isStop = false;
+                index--;
+            }
+            else if (value == false && index > 1)
+                index--;
+        }
     }
 
     [SerializeField]
@@ -37,14 +53,44 @@ public class AgentStateCheck : MonoBehaviour
         get => _isInvincibility;
         set
         {
-            if (value == true)
+            if (value == true && index == 0)
+            {
+                _isInvincibility = true;
                 index++;
-            else if (value == false && index == 0)
+            }
+            else if (value == true && index >= 1)
+                index++;
+            else if (value == false && index == 1)
+            {
                 _isInvincibility = false;
-            else if (value == false && index != 0)
                 index--;
-            else
-                index = 0;
+            }
+            else if (value == false && index > 1)
+                index--;
+        }
+    }
+
+    [SerializeField]
+    private bool _isAttack = false;
+    public bool IsAttack
+    {
+        get => _isAttack;
+        set
+        {
+            if (value == true && index == 0)
+            {
+                _isAttack = true;
+                index++;
+            }
+            else if (value == true && index >= 1)
+                index++;
+            else if (value == false && index == 1)
+            {
+                _isAttack = false;
+                index--;
+            }
+            else if (value == false && index > 1)
+                index--;
         }
     }
 }

@@ -7,6 +7,7 @@ public class AgentAnimation : MonoBehaviour
 {
     protected Animator _animator;
 
+    protected readonly int _atkHashStr = Animator.StringToHash("Atk");
     protected readonly int _runHashStr = Animator.StringToHash("Run");
     protected readonly int _deathHashStr = Animator.StringToHash("Death");
     //protected readonly int _walkHashStr = Animator.StringToHash("Walk");
@@ -28,8 +29,6 @@ public class AgentAnimation : MonoBehaviour
     {
         _animator.SetBool(_runHashStr, value);
         //_animator.SetBool(_walkHashStr, value);
-
-        _animator.SetBool("Run", value);
     }
 
     public void AnimatePlayer(float velocity)
@@ -40,5 +39,10 @@ public class AgentAnimation : MonoBehaviour
     public void PlayDeathAnimation()
     {
         _animator.SetTrigger(_deathHashStr);
+    }
+
+    public void PlayAttackAnimiation()
+    {
+        _animator.SetTrigger(_atkHashStr);
     }
 }

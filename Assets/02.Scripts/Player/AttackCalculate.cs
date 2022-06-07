@@ -9,7 +9,7 @@ public class AttackCalculate : MonoBehaviour
     [SerializeField] private AudioClip _attackClip;
 
     private AudioSource _audioSource;
-
+    public string attackEffectName = "DefaultAttackEffect";
     public float beforeDelay = 0.25f;
 
     private void Awake()
@@ -40,8 +40,8 @@ public class AttackCalculate : MonoBehaviour
 
     private void StartSpawnEffect()
     {
-        AttackStart attackEffect = PoolManager.Inst.Pop("DefaultAttackEffect") as AttackStart;
-        Vector2 direction = MousePos - attackEffect.transform.position;
+        AttackStart attackEffect = PoolManager.Inst.Pop(attackEffectName) as AttackStart;
+        Vector2 direction = MousePos - PlayerTrm.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         attackEffect.transform.position = new Vector2(PlayerTrm.position.x, PlayerTrm.position.y + 0.75f);
         attackEffect.transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
