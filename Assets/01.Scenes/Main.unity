@@ -5120,6 +5120,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 573045057}
+        m_TargetAssemblyTypeName: AgentAnimation, Assembly-CSharp
+        m_MethodName: PlayAttackAnimiation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &573045057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6244,6 +6256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackClip: {fileID: 8300000, guid: 1f306e83217c0d74c801c220ae3f3203, type: 3}
+  attackEffectName: DefaultAttackEffect
   beforeDelay: 0.25
 --- !u!1 &678770167
 GameObject:
@@ -10871,6 +10884,7 @@ MonoBehaviour:
   _isDashing: 0
   _isStop: 0
   _isInvincibility: 0
+  _isAttack: 0
 --- !u!114 &940005646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10887,7 +10901,7 @@ MonoBehaviour:
   OnVelocityChange:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 573045055}
+      - m_Target: {fileID: 573045057}
         m_TargetAssemblyTypeName: AgentAnimation, Assembly-CSharp
         m_MethodName: AnimatePlayer
         m_Mode: 0

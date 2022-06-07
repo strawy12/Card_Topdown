@@ -9,7 +9,7 @@ public class AttackOverlap : MonoBehaviour
 
     public void CalculateAttack()
     {
-        Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, 1f, _enemyLayer);
+        Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, 1.25f, _enemyLayer);
         foreach (Collider2D enemy in enemys)
         {
             IHittable hitable = enemy.GetComponent<IHittable>();
@@ -24,7 +24,7 @@ public class AttackOverlap : MonoBehaviour
         if (UnityEditor.Selection.activeObject == gameObject)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, 1f);
+            Gizmos.DrawWireSphere(transform.position, 1.25f);
             Gizmos.color = Color.white;
         }
     }
