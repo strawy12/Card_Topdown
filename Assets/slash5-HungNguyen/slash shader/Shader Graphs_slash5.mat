@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_slash5
+  m_Shader: {fileID: -6465566751694194690, guid: e16e789fa477e094084ad1ad4c5b7ce5, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2D_3d04907304ec461f897a6b85ed26a476_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 53c6dc8828070de408646b038d8d085f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_78cb21c744444cd1a07e4b79f030e632_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f7178b33dcd7a194a966f2aaf2d13dec, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_eea63dc9bdef4a18b72b4cfc30a18641_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 06e644989d22b994aac04cf115a2d047, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_f62c29f013de4da2b0acc598da4fe2e0_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 40e98087a8f911445b222673ac174b7e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - bolder_opacity: 5
+    - bolder_thickness: 0.2
+    - slash_distord: 0
+    - slash_opacity: 1
+    m_Colors:
+    - bolder_color: {r: 0.30188674, g: 0, b: 0, a: 0}
+    - color_main: {r: 1, g: 1, b: 1, a: 0}
+  m_BuildTextureStacks: []

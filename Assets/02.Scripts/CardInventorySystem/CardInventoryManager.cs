@@ -303,11 +303,18 @@ public class CardInventoryManager : MonoBehaviour
     {
         TriggerPickCard();
 
+        CardData card = GameManager.Inst.GetRandomCardData();
+
         foreach (CardPanal panal in _cardPanalList)
         {
             if (panal.IsEmpty)
             {
-                CardData card = GameManager.Inst.GetRandomCardData();
+                panal.ChangeCard(card);
+                return;
+            }
+
+            else if(panal.IsDeferPanal && panal.CurrentCard.ID.Equals(card.ID))
+            {
                 panal.ChangeCard(card);
                 return;
             }

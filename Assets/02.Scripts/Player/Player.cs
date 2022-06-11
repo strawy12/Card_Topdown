@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IAgent, IHittable
     private float _initHp = 100f;
 
     private float _health;
+    private float _maxCardGauge = 2;
     private float _cardGuage;
 
     public UnityEvent OnAddCardGauge;
@@ -96,15 +97,16 @@ public class Player : MonoBehaviour, IAgent, IHittable
     {
         _cardGuage += param.fParam;
         OnAddCardGauge?.Invoke();
-        _cardGaugeBar.GaugeBarGaugeSetting(_cardGuage / Constant.MAX_CARDGAUGE);
+        _cardGaugeBar.GaugeBarGaugeSetting(_cardGuage / _maxCardGauge);
 
-        if (_cardGuage >= Constant.MAX_CARDGAUGE)
+        if (_cardGuage >= _maxCardGauge)
         {
             GameManager.Inst.CardPickCnt++;
             EventManager.TriggerEvent(Constant.TRIGGER_PICK_CARD);
+            _cardGuage %= _maxCardGauge;
+            _maxCardGauge *= 1.5f;
         }
 
-        _cardGuage %= Constant.MAX_CARDGAUGE;
     }
 
     //변경할 예정(위치, 코드내용 등등)

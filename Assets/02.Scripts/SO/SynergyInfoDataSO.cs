@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static GenealogyDefine;
 
 [System.Serializable]
 public class SynergyDataList
@@ -19,7 +18,6 @@ public class SynergyDataList
 [System.Serializable]
 public class SynergyInfo
 {
-    public ESynergy type;
     public List<SynergyDataList> infoList;
 
     public List<int> this[int idx]
@@ -48,11 +46,6 @@ public class SynergyInfo
 public class SynergyInfoDataSO : ScriptableObject
 {
     [SerializeField] private List<SynergyInfo> _syneargyInfoSO;
-
-    public SynergyInfo this[ESynergy type]
-    {
-        get => _syneargyInfoSO[(int)type];
-    }
 
     public SynergyInfo this[int idx]
     {
