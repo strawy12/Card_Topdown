@@ -2,32 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class NormalSkill : AgentSkill
+public interface NormalSkill
 {
+    public float SkillCoolDown { get; }
+    public float SkillCoolDownTimeCheck { get; set; }
 
-    
-    protected enum BuffSkillState
-    {
-        READY,
-        ING,
-        WAIT,
-        CHARGING
-    }
-
-    protected virtual float SkillCoolDown { get; set; }
-
-    protected virtual void Awake()
-    {
-        ChildAwake();
-    }
-
-    protected virtual void ChildAwake()
-    {
-
-    }
-
-    protected virtual void SkillUsing()
-    {
-
-    }
+    public void SkillUsing();
 }

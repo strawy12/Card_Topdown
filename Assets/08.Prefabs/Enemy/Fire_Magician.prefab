@@ -1228,6 +1228,7 @@ MonoBehaviour:
   _isDashing: 0
   _isStop: 0
   _isInvincibility: 0
+  _isAttack: 0
 --- !u!114 &866101270
 MonoBehaviour:
   m_ObjectHideFlags: 0

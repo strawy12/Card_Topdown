@@ -41,7 +41,7 @@ public class ClownSkill : OnOffSkill
     public void WorkStart()
     {
         // 스킬쿨타임이 다 안돌았으면 리턴
-        if (SkillCoolDown >= SkillCoolDownTimeCheck) return;
+        if (SkillCoolDown > SkillCoolDownTimeCheck) return;
         SkillUsing(); // 스킬 실행
     }
 

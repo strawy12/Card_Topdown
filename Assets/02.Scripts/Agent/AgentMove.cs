@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using static UtilDefine;
 
-public class AgentMove : MonoBehaviour
+public class AgentMove : MonoBehaviour, IKnockBack
 {
     public MoveDataSO moveData;
 
@@ -17,10 +18,12 @@ public class AgentMove : MonoBehaviour
     private Rigidbody2D rb2D;
     private BoxCollider2D boxCol2D;
 
+    // 현재 상태
     private AgentStateCheck agentStateCheck;
 
-    //public static bool isDashing = false;
-    //public static bool isStop = false;
+    // 넉백
+    private bool _isKnockBacking = false;
+    private Coroutine _knockBackCoroutine = null;
 
     private void Start()
     {
@@ -99,5 +102,32 @@ public class AgentMove : MonoBehaviour
     public void EndMoveStop()
     {
         agentStateCheck.IsStop = false;
+    }
+
+    public void KnockBack(Vector2 dir, float power, float duration)
+    {
+        if (_isKnockBacking == false)
+        {
+            _isKnockBacking = true;
+            StartCoroutine(KnockBackCoroutine(dir, power, duration));
+        }
+    }
+
+    IEnumerator KnockBackCoroutine(Vector2 dir, float power, float duration)
+    {
+        Debug.Log(dir);
+        Debug.Log(power);
+        Debug.Log(duration);
+        rb2D.AddForce(dir * power, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(duration);
+        ResetKnockBackParem();
+    }
+
+    private void ResetKnockBackParem()
+    {
+        moveSpeed = 0;
+        rb2D.velocity = Vector2.zero;
+        _isKnockBacking = false;
+        rb2D.gravityScale = 0;
     }
 }
