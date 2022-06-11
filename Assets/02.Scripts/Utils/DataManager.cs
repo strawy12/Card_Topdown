@@ -106,7 +106,7 @@ public class DataManager : MonoBehaviour
             }
 
 
-            _synergyInfoDataSO[rowCnt] = synergyInfo;
+            //_synergyInfoDataSO[rowCnt] = synergyInfo;
 
             rowCnt++;
         }

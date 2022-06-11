@@ -131,4 +131,8 @@ public class Player : MonoBehaviour, IAgent, IHittable
         }
     }
 
+    public void GetCrowdCtrl(ECrowdControlType type, float amount)
+    {
+        throw new System.NotImplementedException();
+    }
 }

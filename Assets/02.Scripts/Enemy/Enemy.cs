@@ -103,5 +103,8 @@ public class Enemy : PoolableMono, IHittable
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
 
-
+    public void GetCrowdCtrl(ECrowdControlType type, float amount)
+    {
+        throw new System.NotImplementedException();
+    }
 }

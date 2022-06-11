@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,33 +7,11 @@ using UnityEngine;
 
 public class AgentSubWeapon : MonoBehaviour
 {
-    public enum ESubWeaponType
-    {
-        None = -1,
-        Book = 0,
-        Axe,
-        Fireball,
-        MagicWand,
-        Whip,
-        WeaponCnt
-    }
-
-    private List<SubWeaponController> _subWeapons = new List<SubWeaponController>();
-    private SubWeaponController[] _activeSubWeapons = new SubWeaponController[4];
+    [SerializeField] private List<SubWeaponController> _subWeapons = new List<SubWeaponController>();
 
     private void Start()
     {
         PEventManager.StartListening("CardAdd", ActiveAttack);
-
-        _subWeapons = transform.Find("SubWeapon").GetComponents<SubWeaponController>().ToList();
-
-        foreach (var ctrl in _subWeapons)
-        {
-            if (ctrl.IsActive)
-            {
-                ctrl.IsActive = false;
-            }
-        }
     }
 
     private void ActiveAttack(Param param)
@@ -77,35 +54,14 @@ public class AgentSubWeapon : MonoBehaviour
 
         switch(param.iParam)
         {
-            case 0:
-                type = ESubWeaponType.Whip;
-                break;
-            case 1:
-                type = ESubWeaponType.Book;
-                break;
 
-            case 2:
-                type = ESubWeaponType.Axe; // ¶Ç´Â Ã¤Âï (·£´ý)
-                break;
-
-            case 3:
-                type = ESubWeaponType.MagicWand;
-                break;
-
-            case 4:
-                type = ESubWeaponType.Fireball;
-                break;
-
-            default:
-                return;
         }
 
         if (type == ESubWeaponType.None) return;
 
         var weapon = _subWeapons.Find(x => x.Type == type);
 
-        weapon.IsActive = true;
-        weapon.ActiveAttack();
+        weapon.ActiveWeapon();
 
     }
 }
