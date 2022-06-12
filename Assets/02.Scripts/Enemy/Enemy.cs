@@ -16,14 +16,13 @@ public class Enemy : PoolableMono, IHittable, IKnockback
 
     [field: SerializeField] public UnityEvent OnDie { get; set; }
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
-
     public bool IsEnemy => true;
     public bool IsStiff = false;//°æÁ÷
     public Vector3 HitPoint { get; private set; }
 
     public void GetHit(float damage, GameObject damageDealer)
     {
-        
+        if (IsStiff) return;
         if (_agentStateCheck.IsDead == true) return;
         float critical = Random.value;
         bool isCritical = false;
@@ -39,7 +38,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback
         OnGetHit?.Invoke();
         //DamagePopup popup = Instantiate(new DamagePopup());
         //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
-        _hpBar.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
+        _hpBar?.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
         Staff(0.1f);
         if (Health <= 0)
         {
@@ -50,7 +49,6 @@ public class Enemy : PoolableMono, IHittable, IKnockback
             //_waveController.RemainEnemy--;
         }
     }
-    
     private void Awake()
     {
         _agentMove = GetComponent <AgentMove>();
@@ -79,6 +77,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback
 
     private void ResetHP()
     {
+        if (_hpBar == null) return;
         Health = _enemyData.maxHealth;
         _hpBar.GaugeBarGaugeSetting(Health / _enemyData.maxHealth);
     }

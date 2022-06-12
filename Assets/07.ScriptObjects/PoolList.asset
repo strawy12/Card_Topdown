@@ -25,3 +25,5 @@ MonoBehaviour:
     poolCnt: 10
   - prefab: {fileID: 5215987328007452282, guid: 91f548c652f92804f83f3cee991f5994, type: 3}
     poolCnt: 10
+  - prefab: {fileID: 2629356737379706386, guid: da619994d6e6be545918cacad6221ec9, type: 3}
+    poolCnt: 10

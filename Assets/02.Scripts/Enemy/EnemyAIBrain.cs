@@ -8,7 +8,6 @@ public class EnemyAIBrain : MonoBehaviour
     [field: SerializeField] public UnityEvent<Vector2> OnPointerPositionChanged { get; set; }
     [field: SerializeField] public UnityEvent OnAttack { get; set; }
     public Transform target;
-    
 
     [SerializeField] private AIState _currentState;
     private void Awake()
@@ -40,7 +39,6 @@ public class EnemyAIBrain : MonoBehaviour
         else
         {
             _currentState.UpdateState();
-        }
-        
+        }   
     }
 }
