@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45192b4901c08ca4c94e5ccd4ebf2b02, type: 3}
-  m_Name: MountainImmuneData
+  m_Name: InvincibleShieldData
   m_EditorClassIdentifier: 
   isAttack: 0
   damageAmount: 0

@@ -139,9 +139,11 @@ public class SubWeaponDataEditor : Editor
 
         if (Target.changeStat)
         {
-            Target.statType = (EStatType)EditorGUILayout.EnumPopup("StatType", Target.statType);
-            Target.statAmount = EditorGUILayout.FloatField("StatAmount", Target.statAmount);
+            SerializedProperty listProperty = serializedObject.FindProperty("changeStatList");
 
+            EditorGUILayout.PropertyField(listProperty, true);
+            Target.changeStat = true;
+            serializedObject.ApplyModifiedProperties();
         }
         EditorGUILayout.Space(selling);
 
@@ -156,7 +158,7 @@ public class SubWeaponDataEditor : Editor
 
         if (Target.isCrowdCtrl)
         {
-            Target.crowdCtrlType = (ECrowdControlType)EditorGUILayout.EnumPopup("CrowdCtrlType", Target.crowdCtrlType);
+            Target.crowdCtrlTypes = (int)((ECrowdControlType)EditorGUILayout.EnumFlagsField("CrowdCtrlType", (ECrowdControlType)Target.crowdCtrlTypes));
             Target.crowdCtrlAmount = EditorGUILayout.FloatField("CrowdCtrlAmount", Target.crowdCtrlAmount);
 
         }

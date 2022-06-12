@@ -7,8 +7,8 @@ public enum ESubWeaponType
     None,
     SunLight,
     SunExplosion,
-    MountainImmune,
-    MountainBarrier,
+    ReducedShield,
+    InvincibleShield,
     MountainAnimal,
     RiverBarrier,
     VineBondage,
@@ -38,11 +38,21 @@ public enum EStatType
 
 public enum ECrowdControlType
 {
-    KnockBack,
-    Fetter,
-    Stun,
-    Slow,
+    None = 0,
+    KnockBack =  1 << 0,
+    Fetter = 1 << 1,
+    Stun = 1 << 2,
+    Slow = 1 << 3,
+    All = ~0
 }
+
+[System.Serializable]
+public class StatPair
+{
+    public EStatType statType;
+    public float statAmount;
+}
+
 
 [CreateAssetMenu(menuName = "SO/Weapon/SubWeapon")]
 public class SubWeaponDataSO : ScriptableObject
@@ -62,11 +72,10 @@ public class SubWeaponDataSO : ScriptableObject
     public float lifeTime;
 
     public bool changeStat;
-    public EStatType statType;
-    public float statAmount;
+    public List<StatPair> changeStatList;
 
     public bool isCrowdCtrl;
-    public ECrowdControlType crowdCtrlType;
+    public int crowdCtrlTypes;
     public float crowdCtrlAmount;
 
     public bool needMove;

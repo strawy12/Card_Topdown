@@ -61,8 +61,8 @@ public class AgentMove : MonoBehaviour
         if (agentStateCheck.IsStop == true) return;
         agentStateCheck.IsDashing = true;
         Vector2 playerPos = new Vector2(
-            PlayerTrm.position.x,
-            PlayerTrm.position.y);
+            PlayerRef.transform.position.x,
+            PlayerRef.transform.position.y);
         Vector2 dashDir = mouseWorldPosition - playerPos;
         rb2D.velocity = dashDir.normalized * 40f;
 

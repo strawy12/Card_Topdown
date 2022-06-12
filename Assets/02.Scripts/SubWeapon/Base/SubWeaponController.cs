@@ -62,11 +62,12 @@ public abstract class SubWeaponController : MonoBehaviour
     {
         while (_isActive && !GameManager.Inst.GameEnd)
         {
+            EnterAction();
 
-            if(_weaponData.needLifeTime && _weaponData.isInfinite == false)
+            if (_weaponData.needLifeTime && _weaponData.isInfinite == false)
             {
+                
                 yield return LifeTimeCoroutine();
-                EndAction();
             }
 
             else
@@ -74,12 +75,15 @@ public abstract class SubWeaponController : MonoBehaviour
                 TakeAction();
             }
 
+            EndAction();
+
             yield return new WaitForSeconds(_weaponData.delayTime + _extraDelay);
         }
     }
 
     protected abstract void TakeAction();
 
+    protected virtual void EnterAction() { }
     protected virtual void EndAction() { }
 
     protected IEnumerator DelayFunc(float delay,Action action)
@@ -98,7 +102,7 @@ public abstract class SubWeaponController : MonoBehaviour
         {
             TakeAction();
             lifeTime -= Time.deltaTime;
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
 
     }
@@ -116,7 +120,7 @@ public abstract class SubWeaponController : MonoBehaviour
 
         if (_weaponData.isCrowdCtrl)
         {
-            hit.GetCrowdCtrl(_weaponData.crowdCtrlType, _weaponData.crowdCtrlAmount);
+            hit.GetCrowdCtrl(_weaponData.crowdCtrlTypes, _weaponData.crowdCtrlAmount);
         }
 
 

@@ -39,15 +39,16 @@ public class UtilDefine
         }
     }
 
-    private static Transform _playerTrm;
+    private static Player _player;
 
-    public static Transform PlayerTrm
+    public static Player PlayerRef
     {
         get
         {
-            if (_playerTrm == null)
-                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
-            return _playerTrm;
+            if (_player == null)
+                _player = GameObject.FindObjectOfType<Player>();
+
+            return _player;
         }
     }
 
