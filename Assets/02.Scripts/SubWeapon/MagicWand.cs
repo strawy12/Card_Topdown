@@ -30,14 +30,12 @@ public class MagicWand : SubWeapon
         Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, 5f, _targetLayer);
         if (enemys.Length <= 0) // 아무것도 안들어왔네 범위안에 없음
         {
-             Debug.Log("안들어옴 ");
             // 무작위 방향으로 발사
             _moveDir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             transform.rotation = Quaternion.LookRotation(_moveDir.normalized);
         }
         else // 뭐라도 들어왔으니 확인
         {
-            Debug.Log("들어옴 ");
             foreach(Collider2D enemy in enemys)
             {
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);

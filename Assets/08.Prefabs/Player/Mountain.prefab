@@ -1225,6 +1225,7 @@ GameObject:
   - component: {fileID: 806190231169119114}
   - component: {fileID: 806190231169119116}
   - component: {fileID: 806190231169119117}
+  - component: {fileID: 1903441552913851950}
   m_Layer: 3
   m_Name: Mountain
   m_TagString: Player
@@ -1519,7 +1520,19 @@ MonoBehaviour:
         m_CallState: 2
   OnESkillButtonPressEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1903441552913851950}
+        m_TargetAssemblyTypeName: MountainSkill, Assembly-CSharp
+        m_MethodName: SkillUsing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &806190231169119113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,6 +1605,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7289f188e8037e04490ea3c2121af486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1903441552913851950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806190231169119118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3aca8adb0211438d56e7c4b795c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillCoolDown: 5
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  force: 5
 --- !u!1 &806190231225214567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,7 +2692,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -11
-  m_Sprite: {fileID: 6436355157659965594, guid: 1135946fa2a9c3246a7dbf5dfadbeb4c, type: 3}
+  m_Sprite: {fileID: 6436355157659965594, guid: b19e7a5bcc574ff499190cd5fb755923, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3152,7 +3182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 19
-  m_Sprite: {fileID: 21300000, guid: c34f98daeabf4094093a7661824949e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 285a0c296fdb35448b6e588c8ab1a71a, type: 3}
   m_Color: {r: 0.8352941, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3485,7 +3515,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 70b05f18e24c9c843b1aa479ce2d439b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c970238f0cdbb143b0e62ec52e99479, type: 3}
   m_Color: {r: 0, g: 0.32156864, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3725,7 +3755,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 21
-  m_Sprite: {fileID: -3137994370387717294, guid: 9654a7f2d34671b48a04d24bf6bd58cb, type: 3}
+  m_Sprite: {fileID: -3137994370387717294, guid: 4440a1b01f182014caa2385f32b61ee9, type: 3}
   m_Color: {r: 0.8039216, g: 0.8039216, b: 0.79607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3838,7 +3868,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -19
-  m_Sprite: {fileID: -4607344544876785824, guid: 9654a7f2d34671b48a04d24bf6bd58cb, type: 3}
+  m_Sprite: {fileID: -4607344544876785824, guid: 4440a1b01f182014caa2385f32b61ee9, type: 3}
   m_Color: {r: 0.8039216, g: 0.8039216, b: 0.79607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3920,7 +3950,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 9071153741043795472, guid: 9654a7f2d34671b48a04d24bf6bd58cb, type: 3}
+  m_Sprite: {fileID: 9071153741043795472, guid: 4440a1b01f182014caa2385f32b61ee9, type: 3}
   m_Color: {r: 0.8039216, g: 0.8039216, b: 0.79607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5186,7 +5216,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 8616813021583795274, guid: 1135946fa2a9c3246a7dbf5dfadbeb4c, type: 3}
+  m_Sprite: {fileID: 8616813021583795274, guid: b19e7a5bcc574ff499190cd5fb755923, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
