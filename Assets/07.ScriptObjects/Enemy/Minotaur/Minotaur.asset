@@ -16,7 +16,8 @@ MonoBehaviour:
   prefab: {fileID: 0}
   maxHealth: 200
   damage: 10
-  attackDelay: 1.5
+  attackDelay: 3
   defence: 10
   cardGague: 10
   knockbackRegist: 100
+  haveSuperAmmor: 0

@@ -17,12 +17,14 @@ public class Enemy : PoolableMono, IHittable, IKnockback
     [field: SerializeField] public UnityEvent OnDie { get; set; }
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
     public bool IsEnemy => true;
-    public bool IsStiff = false;//°æÁ÷
+    private bool _isStiff = false;
+    public bool IsStiff { get => _isStiff; }
+    public bool IsAttacking { get => _enemyAttack._isAttacking;}
     public Vector3 HitPoint { get; private set; }
-
+    
     public void GetHit(float damage, GameObject damageDealer)
     {
-        if (IsStiff) return;
+        if (_isStiff) return;
         if (_agentStateCheck.IsDead == true) return;
         float critical = Random.value;
         bool isCritical = false;
@@ -39,7 +41,8 @@ public class Enemy : PoolableMono, IHittable, IKnockback
         //DamagePopup popup = Instantiate(new DamagePopup());
         //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
         _hpBar?.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
-        Staff(0.1f);
+        if(!_enemyData.haveSuperAmmor)
+            Staff(0.1f);
         if (Health <= 0)
         {
             _agentStateCheck.IsDead = true;
@@ -59,7 +62,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback
     }
     public void EnemyAttack()
     { 
-      if (_agentStateCheck.IsDead == false && !IsStiff)
+      if (_agentStateCheck.IsDead == false && !_isStiff)
       {
            _enemyAttack.Attack(_enemyData.damage);
       }
@@ -89,9 +92,12 @@ public class Enemy : PoolableMono, IHittable, IKnockback
 
     private void StopDuetoAttack()
     {
-        if (_enemyAttack.IsAttacking)
+        if (_enemyAttack._isAttacking)
         {
             _agentMove.StopImmediatelly();
+        }
+        else if(_agentStateCheck.IsStop)
+        {
             _agentMove.EndMoveStop();
         }
     }
@@ -117,15 +123,15 @@ public class Enemy : PoolableMono, IHittable, IKnockback
 
     public void Staff(float duraction)
     {
-        if(!_agentStateCheck.IsDead && !IsStiff)
+        if(!_agentStateCheck.IsDead && !_isStiff)
         {
             StartCoroutine(StaffCoroutine(duraction));
         }
     }
     private IEnumerator StaffCoroutine(float duraction)
     {
-        IsStiff = true;
+        _isStiff = true;
         yield return new WaitForSeconds(duraction);
-        IsStiff = false;
+        _isStiff = false;
     }
 }

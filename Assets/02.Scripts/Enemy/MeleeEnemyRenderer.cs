@@ -5,9 +5,16 @@ using UnityEngine;
 public class MeleeEnemyRenderer : AgentRenderer
 {
     public bool _isReversal = false;
+    private EnemyAttack _enemyAttack;
+
+    private void Awake()
+    {
+        _enemyAttack = transform.parent.GetComponent<EnemyAttack>();
+    }
+
     public override void ChangeFace(Vector2 pointerInput)
     {
-
+        if (_enemyAttack._isAttacking) return;
         Vector3 dir = (Vector3)pointerInput - transform.position;
         Vector3 result = Vector3.Cross(Vector2.up, dir);
         if (!_isReversal)

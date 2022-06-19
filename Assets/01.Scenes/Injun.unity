@@ -16761,7 +16761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -400, y: 150}
+  m_AnchoredPosition: {x: -400.00003, y: 150}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739274081
@@ -20671,21 +20671,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2049065883542268482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8391376102741951763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a6dc9ec95a5a645811e6ece02b4c22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pitchRandness: 0.2
-  _hitClip: {fileID: 8300000, guid: c0e18b36e0ceeb148a7d1c76f0aef745, type: 3}
-  _deathClip: {fileID: 0}
 --- !u!1 &2183814078229114286
 GameObject:
   m_ObjectHideFlags: 0
@@ -20717,76 +20702,6 @@ Transform:
   m_Father: {fileID: 5645813306253428515}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2378568466823781497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3173930582312337369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 2
---- !u!1001 &2629356737359513111
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706387, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629356737379706390, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-      propertyPath: m_Name
-      value: Earthquake
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: da619994d6e6be545918cacad6221ec9, type: 3}
 --- !u!4 &2726236196145594251
 Transform:
   m_ObjectHideFlags: 0
@@ -21004,8 +20919,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 718838015212561862}
-  - component: {fileID: 2378568466823781497}
   - component: {fileID: 8349199725001082973}
+  - component: {fileID: 3173930582312337370}
   m_Layer: 0
   m_Name: ChaseTransition
   m_TagString: Untagged
@@ -21013,6 +20928,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3173930582312337370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173930582312337369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc109d3a692f124c958659fcc78c509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3952295179077216700
 Transform:
   m_ObjectHideFlags: 0
@@ -21265,8 +21192,19 @@ MonoBehaviour:
       m_Calls: []
   <OnGetHit>k__BackingField:
     m_PersistentCalls:
-      m_Calls: []
-  IsStiff: 0
+      m_Calls:
+      - m_Target: {fileID: 8391376102741951764}
+        m_TargetAssemblyTypeName: AgentAudio, Assembly-CSharp
+        m_MethodName: PlayHitSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &5645813306253428515
 Transform:
   m_ObjectHideFlags: 0
@@ -21322,12 +21260,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f60bd67b3fd044f94b9211b8e6206d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAttacking: 0
   AttackFeedback:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4660294749221365158}
         m_TargetAssemblyTypeName: EnemyAnimation, Assembly-CSharp
         m_MethodName: PlayAttackAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8391376102741951764}
+        m_TargetAssemblyTypeName: EnemyAudio, Assembly-CSharp
+        m_MethodName: AttackSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21713,7 +21664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decisions:
-  - {fileID: 2378568466823781497}
+  - {fileID: 3173930582312337370}
   positiveState: {fileID: 0}
   negativeState: {fileID: 4177227116875728079}
 --- !u!4 &8357962794883879384
@@ -21741,7 +21692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2365096299054589740}
   - component: {fileID: 5988819545013198152}
-  - component: {fileID: 2049065883542268482}
+  - component: {fileID: 8391376102741951764}
   m_Layer: 0
   m_Name: AgentAudio
   m_TagString: Untagged
@@ -21749,6 +21700,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8391376102741951764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8391376102741951763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c69d931892041f46950cfd7b5b99fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pitchRandness: 0.2
+  _hitClip: {fileID: 8300000, guid: c0e18b36e0ceeb148a7d1c76f0aef745, type: 3}
+  _deathClip: {fileID: 0}
+  _attackSound: {fileID: 8300000, guid: 3de3fe226c0a7c844bfb48707ddcd7d4, type: 3}
 --- !u!1 &8806959371918618072
 GameObject:
   m_ObjectHideFlags: 0
@@ -21779,7 +21746,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a90a539f2cc464fa0d682b1406865e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
   targetSpotted: 0
   arrived: 0
 --- !u!70 &8921360666163254234

@@ -7,19 +7,26 @@ public class Earthquake : PoolableMono
     private Animator _animator;
     public Vector2 hitCapsuleSize;
     private Enemy _enemy;
+    private AudioSource _audioSource;
+
+    [SerializeField] private AudioClip _audioClip;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _audioClip;
     }
     public void SapwnEffect(Enemy enemy, Vector2 attackpos)   
     {
         _enemy = enemy;
         transform.position = new Vector2(attackpos.x, attackpos.y);
         _animator.Play("Earthquake");
+        _audioSource.Play();
     }
     public override void Reset()
     {
-        _animator.Play("Earthquake");
+        //_animator.Play("Earthquake");
     }
     public void OnHittable()
     {

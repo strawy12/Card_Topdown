@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 
-public class BossAttack : EnemyAttack
+public class MinoAttack : EnemyAttack
 {
     public Vector2 attackBoxSize;
     public Transform attackPos;
@@ -12,8 +12,8 @@ public class BossAttack : EnemyAttack
     {
         if (!_waitBeforeNextAttack)
         {
-            _isAttacking = true;
             AttackFeedback?.Invoke();
+            _isAttacking = true;
             StartCoroutine(WaitBeforeAttackCoroutine());
         }
     }
@@ -31,11 +31,12 @@ public class BossAttack : EnemyAttack
     }
     public IEnumerator EffectCoroutine()
     {
-        for(int i = 1; i <= 5; i++)
+        float tempX = attackPos.parent.transform.right.x;
+        for (int i = 1; i <= 5; i++)
         {
             Earthquake earthquake = PoolManager.Inst.Pop("Earthquake") as Earthquake;
-            earthquake.SapwnEffect(enemy: _enemy,new Vector2(attackPos.position.x + attackPos.parent.transform.right.x * i, attackPos.position.y));
-            yield return new WaitForSeconds(0.5f);
+            earthquake.SapwnEffect(enemy: _enemy,new Vector2(attackPos.position.x + tempX * i, attackPos.position.y));
+            yield return new WaitForSeconds(0.2f);
         }
     }
     public void SpawnEffect()
