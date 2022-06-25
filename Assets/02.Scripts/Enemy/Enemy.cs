@@ -21,6 +21,18 @@ public class Enemy : PoolableMono, IHittable
 
     public Vector3 HitPoint { get; private set; }
 
+    [SerializeField]
+    public int _waterStack = 0;
+    public int WaterStack
+    {
+        get => _waterStack;
+        set
+        {
+
+        }
+    }
+
+
     public void GetHit(float damage, GameObject damageDealer)
     {
       
@@ -68,6 +80,7 @@ public class Enemy : PoolableMono, IHittable
     public override void Reset()
     {
         ResetHP();
+        _agentStateCheck.IsStop = false;
         _agentStateCheck.IsDead = false;
         _aiMove.enabled = true;
     }
@@ -103,5 +116,19 @@ public class Enemy : PoolableMono, IHittable
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
 
+    public void CheckWaterStack(float stunTime)
+    {
+        if (_waterStack >= 3)
+        {
+            _waterStack = 0;
+            StartCoroutine(WaterStun(stunTime));
+        }
+    }
 
+    IEnumerator WaterStun(float stunTIme)
+    {
+        _agentStateCheck.IsStop = true;
+        yield return new WaitForSeconds(stunTIme);
+        _agentStateCheck.IsStop = false;
+    }
 }

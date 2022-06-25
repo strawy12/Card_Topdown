@@ -7,9 +7,17 @@ public class RangeEnemyAttack : EnemyAttack
     [SerializeField]private projectileSO _projectileData;
     public Transform firePos;
 
+    private AgentStateCheck _agentStateCheck = null;
+
+    protected override void AwakeChild()
+    {
+        base.AwakeChild();
+        _agentStateCheck = GetComponent<AgentStateCheck>();
+    }
+
     public override void Attack(float damage)
     {
-       if(!_waitBeforeNextAttack)
+       if(!_waitBeforeNextAttack && !_agentStateCheck.IsStop)
         {
             _isAttacking = true;
             AttackFeedback?.Invoke();
