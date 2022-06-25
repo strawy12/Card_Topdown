@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UtilDefine;
 
 public class WorldScrolling : MonoBehaviour
 {
-    // UtilDefine
-    [SerializeField] Transform playerTrm;
     [SerializeField] float tileSize = 20f;
     [SerializeField] Vector2Int currentTilePos = new Vector2Int(0, 0); // 현재 선택된 타일의 위치
     [SerializeField] Vector2Int onTileGridPlayerPos;
@@ -27,11 +26,11 @@ public class WorldScrolling : MonoBehaviour
 
     private void Update()
     {
-        playerTilePos.x = (int)(playerTrm.position.x / tileSize);
-        playerTilePos.y = (int)(playerTrm.position.y / tileSize);
+        playerTilePos.x = (int)(PlayerTrm.position.x / tileSize);
+        playerTilePos.y = (int)(PlayerTrm.position.y / tileSize);
 
-        playerTilePos.x -= playerTrm.position.x < 0 ? 1 : 0;
-        playerTilePos.y -= playerTrm.position.y < 0 ? 1 : 0;
+        playerTilePos.x -= PlayerTrm.position.x < 0 ? 1 : 0;
+        playerTilePos.y -= PlayerTrm.position.y < 0 ? 1 : 0;
 
         if (currentTilePos != playerTilePos)
         {
