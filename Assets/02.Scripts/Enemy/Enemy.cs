@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Enemy : PoolableMono, IHittable
+public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
 {
     [SerializeField] private EnemyDataSO _enemyData;
     public EnemyDataSO EnemyData => _enemyData;
-    private AgentMove _aiMove;
+    private AgentMove _agentMove;
     private EnemyAttack _enemyAttack;
     public BarUI _hpBar;
     public float Health { get; private set; }
@@ -16,9 +16,10 @@ public class Enemy : PoolableMono, IHittable
 
     [field: SerializeField] public UnityEvent OnDie { get; set; }
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
-
     public bool IsEnemy => true;
-
+    private bool _isStiff = false;
+    public bool IsStiff { get => _isStiff; }
+    public bool IsAttacking { get => _enemyAttack._isAttacking;}
     public Vector3 HitPoint { get; private set; }
 
     [SerializeField]
@@ -32,10 +33,9 @@ public class Enemy : PoolableMono, IHittable
         }
     }
 
-
     public void GetHit(float damage, GameObject damageDealer)
     {
-      
+        if (_isStiff) return;
         if (_agentStateCheck.IsDead == true) return;
         float critical = Random.value;
         bool isCritical = false;
@@ -51,28 +51,29 @@ public class Enemy : PoolableMono, IHittable
         OnGetHit?.Invoke();
         //DamagePopup popup = Instantiate(new DamagePopup());
         //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
-        _hpBar.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
+        _hpBar?.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
+        if(!_enemyData.haveSuperAmmor)
+        Staff(0.1f);
         if (Health <= 0)
         {
             _agentStateCheck.IsDead = true;
-            _aiMove.StopImmediatelly();
-            _aiMove.enabled = false;
+            _agentMove.StopImmediatelly();
+            _agentMove.enabled = false;
             OnDie?.Invoke();
-            _waveController.RemainEnemy--;
+            //_waveController.RemainEnemy--;
         }
     }
     private void Awake()
     {
-        _aiMove = GetComponent <AgentMove>();
+        _agentMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
         _waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
         _hpBar = transform.Find("HpBar").GetComponent<BarUI>();
-
     }
     public void EnemyAttack()
     { 
-      if (_agentStateCheck.IsDead == false)
+      if (_agentStateCheck.IsDead == false && !_isStiff)
       {
            _enemyAttack.Attack(_enemyData.damage);
       }
@@ -82,7 +83,7 @@ public class Enemy : PoolableMono, IHittable
         ResetHP();
         _agentStateCheck.IsStop = false;
         _agentStateCheck.IsDead = false;
-        _aiMove.enabled = true;
+        _agentMove.enabled = true;
     }
     private void Start()
     {
@@ -91,6 +92,7 @@ public class Enemy : PoolableMono, IHittable
 
     private void ResetHP()
     {
+        if (_hpBar == null) return;
         Health = _enemyData.maxHealth;
         _hpBar.GaugeBarGaugeSetting(Health / _enemyData.maxHealth);
     }
@@ -102,15 +104,19 @@ public class Enemy : PoolableMono, IHittable
 
     private void StopDuetoAttack()
     {
-        if (_enemyAttack.IsAttacking)
+        if (_enemyAttack._isAttacking)
         {
-            _aiMove.StopImmediatelly();
-            _aiMove.EndMoveStop();
+            _agentMove.StopImmediatelly();
+        }
+        else if(_agentStateCheck.IsStop)
+        {
+            _agentMove.EndMoveStop();
         }
     }
 
     public void Die()
     {
+        _agentStateCheck.IsDead = true;
         PoolManager.Inst.Push(this);
 
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
@@ -130,5 +136,30 @@ public class Enemy : PoolableMono, IHittable
         _agentStateCheck.IsStop = true;
         yield return new WaitForSeconds(stunTIme);
         _agentStateCheck.IsStop = false;
+    }
+
+    public void KnockBack(Vector2 dir, float power, float duraction)
+    {
+        if (!_agentStateCheck.IsDead)
+        {
+            if(power > _enemyData.knockbackRegist)
+            {
+                _agentMove.Knockback(dir, power, duraction);
+            }
+        }
+    }
+
+    public void Staff(float duraction)
+    {
+        if(!_agentStateCheck.IsDead && !_isStiff)
+        {
+            StartCoroutine(StaffCoroutine(duraction));
+        }
+    }
+    private IEnumerator StaffCoroutine(float duraction)
+    {
+        _isStiff = true;
+        yield return new WaitForSeconds(duraction);
+        _isStiff = false;
     }
 }

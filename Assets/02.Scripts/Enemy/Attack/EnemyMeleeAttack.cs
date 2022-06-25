@@ -10,9 +10,7 @@ public class EnemyMeleeAttack : EnemyAttack
     {
         if (!_waitBeforeNextAttack)
         {
-            IHittable hitable = GetTarget().GetComponent<IHittable>();
             _isAttacking = true;
-            hitable?.GetHit(damage: damage, damageDealer: gameObject);
             AttackFeedback?.Invoke();
             StartCoroutine(WaitBeforeAttackCoroutine());
         }
@@ -24,8 +22,8 @@ public class EnemyMeleeAttack : EnemyAttack
         {
             if (collider.CompareTag("Player"))
             {
-                //IHittable hittable = collider.GetComponent<IHittable>();
-                //hittable.GetHit(_enemy.EnemyData.damage, _enemy.gameObject);
+                IHittable hittable = collider.GetComponent<IHittable>();
+                hittable.GetHit(_enemy.EnemyData.damage, _enemy.gameObject);
             }
         }
     }

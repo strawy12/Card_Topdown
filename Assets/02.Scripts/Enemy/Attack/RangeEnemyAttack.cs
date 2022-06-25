@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class RangeEnemyAttack : EnemyAttack
 {
     [SerializeField]private projectileSO _projectileData;
@@ -15,17 +14,20 @@ public class RangeEnemyAttack : EnemyAttack
         _agentStateCheck = GetComponent<AgentStateCheck>();
     }
 
+    public Coroutine attackCoroutine = null;
     public override void Attack(float damage)
     {
-       if(!_waitBeforeNextAttack && !_agentStateCheck.IsStop)
+       if(!_waitBeforeNextAttack && !_enemy.IsStiff && !_agentStateCheck.IsStop)
         {
             _isAttacking = true;
             AttackFeedback?.Invoke();
-            
-            SpawnProjectile(firePos.position, RotateToTarget());
-
             StartCoroutine(WaitBeforeAttackCoroutine());
         }
+    }
+
+    public void StartSpawningProjectile()
+    {
+        SpawnProjectile(firePos.position, RotateToTarget());
     }
     public Quaternion RotateToTarget()
     {

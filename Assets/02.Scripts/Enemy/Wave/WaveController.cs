@@ -8,29 +8,25 @@ public class WaveController : MonoBehaviour
     [Header("Wave의 종류 레벨 순서 대로 넣어주면 됨")]
     public List<WaveDataSO> waves;
 
-    public UnityEvent<int, int> OnWaveCountUpdated;
-    public  UnityEvent<int, int> OnRemainEnemyUpdated;
     public UnityEvent OnClearAllWaves;
     public UnityEvent OnWaveEnded;
+
     #region wave를 순서대로 나오게 하기 위한값
     //해당 부분은 웨이브가 랜덤으로 바뀌거나, 순서가 사라지면 수정될 수 있음.
     private WaveDataSO[] wavesArr;
     private int waveIndex = 0;
-    private int waveMaxEnemy = 0, remainEnemy = 0;
-
-    public  int RemainEnemy
+    private int remainEnemy = 0;
+    private bool isClearAllwaved =false;
+    public int RemainEnemy
     {
         get => remainEnemy;
         set
         {
             remainEnemy = value;
-            if(remainEnemy <= 0)
+            if (remainEnemy <= 0 && isClearAllwaved)
             {
-                remainEnemy = 0;
-                isWaveProcessing = false;
-                OnWaveEnded?.Invoke();
-            }
-            OnRemainEnemyUpdated?.Invoke(remainEnemy, waveMaxEnemy);
+                OnClearAllWaves?.Invoke();
+            }            
         }
     }
     private bool isWaveProcessing = false;
@@ -40,34 +36,23 @@ public class WaveController : MonoBehaviour
     {
         wavesArr = waves.ToArray();
         StartWave();
+
+        Invoke("StartWave", 2f);
     }
-    private void SetMaxEnemy()
-    {
-        foreach(WavePattern pattern in wavesArr[waveIndex -1].patterns)
-        {
-            waveMaxEnemy += pattern.count;
-        }
-        remainEnemy = waveMaxEnemy;
-        OnRemainEnemyUpdated?.Invoke(remainEnemy, waveMaxEnemy);
-    }
+   
     public void StartWave()
     {
-        if (isWaveProcessing) return;
-        waveMaxEnemy = 0;
         waveIndex++;
         if (waveIndex > waves.Count)
         {
-            OnClearAllWaves?.Invoke();
+            isClearAllwaved = true;
             return;
         }
-        SetMaxEnemy();
         StartCoroutine(StartWavePattern());
-        OnWaveCountUpdated?.Invoke(waveIndex, waves.Count);
-
     }
     public IEnumerator StartWavePattern()
     {
-        isWaveProcessing = true;
+        //isWaveProcessing = true;
         foreach (WavePattern pattern in wavesArr[waveIndex -1].patterns)
         {
             if (GameManager.Inst.GameEnd) yield break;
@@ -80,6 +65,8 @@ public class WaveController : MonoBehaviour
             }
             yield return new WaitForSeconds(pattern.nextPatternDelay);
         }
+        yield return new WaitForSeconds(5f);
+        StartWave();
     }
 
     private static Vector2 RandomCameraSideVector()
@@ -105,6 +92,7 @@ public class WaveController : MonoBehaviour
     public void SpawnEnemy(string monsterName,Vector2 pos)
     {
         Enemy monster = PoolManager.Inst.Pop(monsterName) as Enemy;
+        remainEnemy++;
         monster.transform.SetPositionAndRotation(pos, Quaternion.identity);
     }
 }
