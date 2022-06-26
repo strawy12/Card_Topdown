@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using static UtilDefine;
 
-public class AgentMove : MonoBehaviour, IKnockBack
+public class AgentMove : MonoBehaviour, IKnockback
 {
     public MoveDataSO moveData;
 
@@ -20,11 +20,10 @@ public class AgentMove : MonoBehaviour, IKnockBack
 
     // 현재 상태
     private AgentStateCheck agentStateCheck;
-
-    // 넉백
     private bool _isKnockBacking = false;
     private Coroutine _knockBackCoroutine = null;
-
+    private Coroutine knockbackCoroutine = null;
+    public bool _isKnockback = false;
     private void Start()
     {
         rb2D = GetComponentInParent<Rigidbody2D>();
@@ -128,6 +127,25 @@ public class AgentMove : MonoBehaviour, IKnockBack
         moveSpeed = 0;
         rb2D.velocity = Vector2.zero;
         _isKnockBacking = false;
+    }
+    public void Knockback(Vector2 dir, float power, float duraction)
+    {
+        if(!_isKnockback)
+        {
+            _isKnockback = true;
+            knockbackCoroutine = StartCoroutine(KnockbackCoroutine(dir, power, duraction));
+        }
+    }
+    public IEnumerator KnockbackCoroutine(Vector2 dir, float power, float duraction)
+    {
+        rb2D.AddForce(dir.normalized * power, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(duraction);
+        ResetKnockbackParam();
+    }
+    public void ResetKnockbackParam()
+    {
+        rb2D.velocity = Vector2.zero;
+        _isKnockback = false;
         rb2D.gravityScale = 0;
     }
 }

@@ -9,7 +9,6 @@ public class EnemyAIBrain : MonoBehaviour
     [field: SerializeField] public UnityEvent OnAttack { get; set; }
     public Transform target;
     
-
     [SerializeField] private AIState _currentState;
     private void Awake()
     {
@@ -33,7 +32,6 @@ public class EnemyAIBrain : MonoBehaviour
     {
         if (GameManager.Inst.GameEnd || GameManager.Inst.OnUI) return;
 
-        //Debug.Log(_currentState);
         if(target == null)
         {
             OnMovement?.Invoke(Vector2.zero);
@@ -41,7 +39,6 @@ public class EnemyAIBrain : MonoBehaviour
         else
         {
             _currentState.UpdateState();
-        }
-        
+        }   
     }
 }

@@ -2468,7 +2468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initList: {fileID: 11400000, guid: b74ebd3845ca79249a9f9b7420d83727, type: 2}
   _cardDataSO: {fileID: 11400000, guid: fb324694ec5e34e449257998de7c135e, type: 2}
-  _monsterPref: {fileID: 3331124398576119053, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
+  GameEnd: 0
 --- !u!4 &275371292
 Transform:
   m_ObjectHideFlags: 0
@@ -3623,7 +3623,7 @@ SpriteRenderer:
   m_Size: {x: 0.6875, y: 0.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &426138809
@@ -7485,6 +7485,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c35eb32b15122742a484d10bd966c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickTypeButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &642579477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7816,6 +7820,7 @@ MonoBehaviour:
   _isDashing: 0
   _isStop: 0
   _isInvincibility: 0
+  _isAttack: 0
 --- !u!114 &681829176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7847,6 +7852,7 @@ MonoBehaviour:
   OnVectorChange:
     m_PersistentCalls:
       m_Calls: []
+  _isKnockback: 0
 --- !u!114 &681829177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7972,6 +7978,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initHp: 100
+  OnAddCardGauge:
+    m_PersistentCalls:
+      m_Calls: []
   <OnDie>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -8794,7 +8803,7 @@ SpriteRenderer:
   m_Size: {x: 0.1875, y: 0.15625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &758882756
@@ -9450,7 +9459,7 @@ SpriteRenderer:
   m_Size: {x: 0.4375, y: 0.15625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &829126785
@@ -10967,10 +10976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _messagePanal: {fileID: 2073496683}
-  _waveCountText: {fileID: 833727907}
-  _remainMonsetText: {fileID: 1601307608}
   _winPanal: {fileID: 1266424533}
-  _nextWavePanal: {fileID: 225475797}
   OnUI:
     m_PersistentCalls:
       m_Calls:
@@ -11723,7 +11729,7 @@ SpriteRenderer:
   m_Size: {x: 0.125, y: 0.21875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1180851323
@@ -11805,7 +11811,7 @@ SpriteRenderer:
   m_Size: {x: 0.1875, y: 0.6875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1186477058
@@ -15017,36 +15023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 11400000, guid: fc833895bd778024fb8086526f209625, type: 2}
-  OnWaveCountUpdated:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1076578011}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: UpdateWaveInfo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnRemainEnemyUpdated:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1076578011}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: UpdateRemainMonsterInfo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   OnClearAllWaves:
     m_PersistentCalls:
       m_Calls:
@@ -15821,7 +15797,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1812653815
@@ -15993,6 +15969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33966e5bbe3746459fc59f9e7106d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackClip: {fileID: 0}
+  attackEffectName: DefaultAttackEffect
   beforeDelay: 0.25
 --- !u!114 &1828110247
 MonoBehaviour:
@@ -17838,7 +17816,7 @@ SpriteRenderer:
   m_Size: {x: 0.125, y: 0.21875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2056719422
@@ -17999,7 +17977,7 @@ SpriteRenderer:
   m_Size: {x: 0.1875, y: 0.15625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2062536379
@@ -18439,8 +18417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4449cd54ae8214abd9a51d99c98e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initPickCnt: 2
   _pickButton: {fileID: 2126175325}
+  _pickCountText: {fileID: 0}
 --- !u!114 &2089152333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18558,7 +18536,7 @@ SpriteRenderer:
   m_Size: {x: 0.375, y: 0.28125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2110195325

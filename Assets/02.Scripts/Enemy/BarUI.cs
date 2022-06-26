@@ -47,7 +47,7 @@ public class BarUI : MonoBehaviour
         _fillBar.transform.DOScaleX(value, 0.3f).OnComplete(AutoFadeOut);
     }
 
-    protected void AutoFadeOut()
+    protected virtual void AutoFadeOut()
     {
         if (_autoFadeOut == false) return;
         if (gameObject.activeSelf == false) return;

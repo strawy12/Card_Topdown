@@ -31,7 +31,7 @@ public class MountainSkill : AgentSkill, NormalSkill
         Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, force, _enemyLayer);
         foreach (Collider2D enemy in enemys)
         {
-            IKnockBack enemyKnock = enemy.GetComponent<IKnockBack>();
+            IKnockback enemyKnock = enemy.GetComponent<IKnockback>();
 
             Vector3 forceDir = enemy.transform.position - PlayerTrm.position;
             forceDir.Normalize();

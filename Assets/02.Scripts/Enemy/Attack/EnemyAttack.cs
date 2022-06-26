@@ -13,8 +13,7 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public bool WaitingForNextAttack => _waitBeforeNextAttack;
 
-    protected bool _isAttacking = false; // 현재 공격중인가?
-    public bool IsAttacking { get => _isAttacking; }
+    public bool _isAttacking = false; // 현재 공격중인가?
     public UnityEvent AttackFeedback;
     private void Awake()
     {

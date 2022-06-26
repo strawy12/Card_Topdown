@@ -24,7 +24,7 @@ public class AIState : MonoBehaviour
             foreach(AIDecision decision in transition.decisions)
             {
                 result = decision.MakeDecision();
-                if (!result) break;
+                if (!result) break; 
             }
             if(result)
             {
