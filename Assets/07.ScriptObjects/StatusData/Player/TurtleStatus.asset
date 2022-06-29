@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38d201f84d0cd5148b086f5876ae66db, type: 3}
-  m_Name: ShamanStatus
+  m_Name: TurtleStatus
   m_EditorClassIdentifier: 
-  maxHp: 100
-  attackDamage: 15
-  attackSpeed: 1
-  defence: -2
-  criticalPercentage: 20
-  criticalDamage: 220
+  maxHp: 150
+  attackDamage: 7
+  attackSpeed: 0.7
+  defence: 15
+  criticalPercentage: 0
+  criticalDamage: 200
   CooldownDecrease: 0

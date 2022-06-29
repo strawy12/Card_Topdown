@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UtilDefine;
 
-public class MountainSkill : AgentSkill, NormalSkill
+public class MountainSkill : AgentSkill, INormalSkill
 {
     [SerializeField] private float _skillCoolDown = 5f;
     public float SkillCoolDown => _skillCoolDown;

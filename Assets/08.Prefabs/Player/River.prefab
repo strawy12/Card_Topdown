@@ -2154,7 +2154,6 @@ GameObject:
   - component: {fileID: 5981400240877343087}
   - component: {fileID: 5981400240877343086}
   - component: {fileID: 5981400240877343085}
-  - component: {fileID: 5981400240877343084}
   - component: {fileID: 5981400240877343091}
   - component: {fileID: 5981400240877343090}
   - component: {fileID: 5981400240877343089}
@@ -2353,22 +2352,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <OnGetHitDealer>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   _playerHpBar: {fileID: 5981400242709708537}
   _cardGaugeBar: {fileID: 5981400241995831261}
   _overapDistance: 2
---- !u!114 &5981400240877343084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5981400240877343093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bac935fc402cee46be8d48893407e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _agentStatus: {fileID: 11400000, guid: 7a77215a63bf36747a5eee77523a3c0e, type: 2}
 --- !u!114 &5981400240877343091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2499,6 +2488,7 @@ MonoBehaviour:
   OnVectorChange:
     m_PersistentCalls:
       m_Calls: []
+  _isKnockback: 0
 --- !u!114 &5981400240877343089
 MonoBehaviour:
   m_ObjectHideFlags: 0

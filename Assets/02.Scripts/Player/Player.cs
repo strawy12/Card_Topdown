@@ -39,6 +39,8 @@ public class Player : MonoBehaviour, IAgent, IHittable
 
     [field: SerializeField]
     public UnityEvent OnGetHit { get; set; }
+    [field: SerializeField]
+    public UnityEvent<float, GameObject> OnGetHitDealer { get; set; }
 
     [SerializeField]
     private BarUI _playerHpBar = null;
@@ -69,7 +71,7 @@ public class Player : MonoBehaviour, IAgent, IHittable
         CardGaugeCheck();
     }
 
-    public void GetHit(float damage, GameObject damageDealer)
+    public virtual void GetHit(float damage, GameObject damageDealer)
     {
         if (_agentStateCheck.IsDead == true) return;
         if (_agentStateCheck.IsInvincibility == true) return;
@@ -77,6 +79,7 @@ public class Player : MonoBehaviour, IAgent, IHittable
 
         Health -= damage;
         OnGetHit?.Invoke();
+        OnGetHitDealer?.Invoke(damage, damageDealer);
         _playerHpBar.GaugeBarGaugeSetting(_health / _initHp);
 
         if (Health <= 0)

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38d201f84d0cd5148b086f5876ae66db, type: 3}
-  m_Name: SecretRoyalInspectorStatus
+  m_Name: MountainStatus
   m_EditorClassIdentifier: 
-  maxHp: 80
-  attackDamage: 15
-  attackSpeed: 1.2
-  defence: 0
+  maxHp: 150
+  attackDamage: 10
+  attackSpeed: 0.9
+  defence: 3
   criticalPercentage: 0
   criticalDamage: 200
   CooldownDecrease: 0

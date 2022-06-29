@@ -18,8 +18,7 @@ public class ClownSkill : OnOffSkill
 
     protected virtual void Awake()
     {
-        _originalPlayerStatus = GetComponent<PlayerStatus>().OriginalPlayerStatus;
-        _dynamicPlayerStatus = GetComponent<PlayerStatus>().DynamicPlayerStatus;
+        _dynamicPlayerStatus = GetComponent<PlayerStatusManager>().DynamicPlayerStatus;
         ResetSkill();
     }
     protected void Update()

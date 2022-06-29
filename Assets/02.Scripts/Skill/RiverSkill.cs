@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RiverSkill : AgentSkill, NormalSkill
+public class RiverSkill : AgentSkill, INormalSkill
 {
     [SerializeField] private float _skillCoolDown = 1f;
     public float SkillCoolDown => _skillCoolDown;

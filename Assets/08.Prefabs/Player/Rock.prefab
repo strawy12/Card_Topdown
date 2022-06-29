@@ -2267,12 +2267,12 @@ GameObject:
   - component: {fileID: 2088076809043035352}
   - component: {fileID: 2088076809043035353}
   - component: {fileID: 2088076809043035354}
-  - component: {fileID: 2088076809043035355}
   - component: {fileID: 2088076809043035332}
   - component: {fileID: 2088076809043035333}
   - component: {fileID: 2088076809043035334}
   - component: {fileID: 2088076809043035328}
   - component: {fileID: 2088076809043035329}
+  - component: {fileID: 621713048}
   m_Layer: 3
   m_Name: Rock
   m_TagString: Player
@@ -2465,22 +2465,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <OnGetHitDealer>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 621713048}
+        m_TargetAssemblyTypeName: RockSkill, Assembly-CSharp
+        m_MethodName: GetHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _playerHpBar: {fileID: 2088076807327083342}
   _cardGaugeBar: {fileID: 2088076807953384042}
   _overapDistance: 2
---- !u!114 &2088076809043035355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088076809043035330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bac935fc402cee46be8d48893407e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _agentStatus: {fileID: 11400000, guid: 7a77215a63bf36747a5eee77523a3c0e, type: 2}
 --- !u!114 &2088076809043035332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2567,7 +2569,19 @@ MonoBehaviour:
         m_CallState: 2
   OnESkillButtonPressEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 621713048}
+        m_TargetAssemblyTypeName: RockSkill, Assembly-CSharp
+        m_MethodName: Skill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2088076809043035333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,6 +2613,7 @@ MonoBehaviour:
   OnVectorChange:
     m_PersistentCalls:
       m_Calls: []
+  _isKnockback: 0
 --- !u!114 &2088076809043035334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2640,6 +2655,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7289f188e8037e04490ea3c2121af486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &621713048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088076809043035330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6631080567f36f049b421d0e5d6b72a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillCoolDown: 5
+  SkillDuration: 3
+  SkillCoolDownTimeCheck: 0
 --- !u!1 &2146509928623381983
 GameObject:
   m_ObjectHideFlags: 0
