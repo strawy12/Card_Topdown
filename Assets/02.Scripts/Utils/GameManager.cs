@@ -140,6 +140,12 @@ public class GameManager : MonoSingleton<GameManager>
     //    return _existCard[cardNum - 1];
     //}
 
+    public void SetPlayerableCardInfo(int idx, string id)
+    {
+        Debug.Log($"idx:{idx}, id:{id}");
+        _dataManager.CurrentPlayer.playerableCardInfo[idx] = id;
+    }
+
     public void SpawnCardGauge(Vector3 pos, float  amout)
     {
         CardGauge gauge = PoolManager.Inst.Pop("CardGauge") as CardGauge;

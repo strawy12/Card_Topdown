@@ -22,11 +22,14 @@ public class PlayerData
 
     public bool isTutorial;
 
+    public string[] playerableCardInfo;
+
     public PlayerData(float soundVolume)
     {
         effectSoundVolume = soundVolume;
         bgmSoundVolume = soundVolume;
         isTutorial = false;
+        playerableCardInfo = new string[2]; 
     }
 
 }

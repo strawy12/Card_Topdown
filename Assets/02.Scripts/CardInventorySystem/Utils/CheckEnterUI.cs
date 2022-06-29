@@ -36,11 +36,15 @@ public class CheckEnterUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if(_isEnter)
         {
+            Debug.Log(2);
+
             OnPointerUpUIEnter?.Invoke(param);
         }
 
         else
         {
+            Debug.Log(3);
+
             OnPointerUpUINotEnter?.Invoke(param);
         }
     }

@@ -20,7 +20,15 @@ public class MountCardPanal : CardPanal//, IPointerClickHandler
     {
     }
 
+    public override void ChangeCard(CardData cardData, bool isEffect = true)
+    {
+        base.ChangeCard(cardData, isEffect);
 
+        if (_currentIdx <= 1)
+        {
+            GameManager.Inst.SetPlayerableCardInfo(_currentIdx, _currentCard.ID);
+        }
+    }
     //public void OnPointerClick(PointerEventData eventData)
     //{
     //    if (_isEmpty || !_isEventActive) return;

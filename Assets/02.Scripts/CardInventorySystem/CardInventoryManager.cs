@@ -335,17 +335,4 @@ public class CardInventoryManager : MonoBehaviour
         return _cardPanalList.FindAll(panal => panal.IsDeferPanal);
     }
 
-    public CardPanal GetLastCardPanal()
-    {
-        for (int i = _cardPanalList.Count - 1; i >= 0; i--)
-        {
-            if (_cardPanalList[i].CurrentCard != null)
-            {
-                return _cardPanalList[i];
-            }
-        }
-
-        return _cardPanalList[0];
-    }
-
 }

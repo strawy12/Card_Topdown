@@ -10,6 +10,7 @@ public class GeneratePanals : MonoBehaviour
     private void Start()
     {
         Generate();
+
     }
 
     public void Generate()

@@ -369,6 +369,7 @@ MonoBehaviour:
     effectSoundVolume: 0
     bgmSoundVolume: 0
     isTutorial: 0
+    playerableCardInfo: []
   _synergyInfoDataSO: {fileID: 11400000, guid: 2e92ea813e222b740bd7deb801f4d1d6, type: 2}
 --- !u!1 &39684867
 GameObject:

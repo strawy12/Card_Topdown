@@ -59,6 +59,7 @@ public class HoldCard : MonoBehaviour
         _cardImage.enabled = false;
         _holdCard = false;
 
+        Debug.Log(1);
         PEventManager.TriggerEvent(Constant.POINTUP_CARD, param);
     }
 
@@ -90,6 +91,7 @@ public class HoldCard : MonoBehaviour
 
     private void ReturnCard()
     {
+        Debug.Log("¤·¤·");
         _cardImage.enabled = true;
 
         _holdCard = false;
@@ -126,7 +128,7 @@ public class HoldCard : MonoBehaviour
 
     private void OnDestroy()
     {
-        PEventManager.StopListening(Constant.POINTDOWN_CARD, Init);
+        PEventManager.StopListening(Constant.POINTDOWN_CARD, StartHold);
     }
 
 }

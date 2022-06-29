@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using static UtilDefine;
 
 public class GenealogyCardPanal : MonoBehaviour, IUIEvent
 {
@@ -12,7 +13,6 @@ public class GenealogyCardPanal : MonoBehaviour, IUIEvent
 
     private GenealogyData _genealogyData = null;
 
-    private static int _genealogyCnt = 0;
     public GenealogyData Genealogy
     {
         get
@@ -38,6 +38,7 @@ public class GenealogyCardPanal : MonoBehaviour, IUIEvent
     public Action<Param> OnPointerUpUIEnter { get; set; }
     public Action<Param> OnPointerUpUINotEnter { get; set; }
 
+    private int _currentIndex;
     private int _currentEnforceCnt = 0;
     private int _needEnforceCnt = 0;
 
@@ -46,6 +47,7 @@ public class GenealogyCardPanal : MonoBehaviour, IUIEvent
         _cardPanals = new CardPanal[2];
         _genealogyText = transform.Find("GenealogyText").GetComponent<Text>();
         _genealogyText.text = "";
+        _currentIndex = transform.GetSiblingIndex() - 1;
 
         SubscribeEvent();
 
@@ -73,8 +75,8 @@ public class GenealogyCardPanal : MonoBehaviour, IUIEvent
         if (_cardPanals[1].IsEmpty) return;
 
 
-
-        CalcGenealogy(_cardPanals[0].CurrentCard, _cardPanals[1].CurrentCard);
+        if (_currentIndex != 0)
+            CalcGenealogy(_cardPanals[0].CurrentCard, _cardPanals[1].CurrentCard);
 
         if (_genealogyData != null)
         {
@@ -100,7 +102,13 @@ public class GenealogyCardPanal : MonoBehaviour, IUIEvent
         int num1 = cardData1.CardNum;
         int num2 = cardData2.CardNum;
 
-        int genealogyNum = 0;
+        if (num1 == num2)
+        {
+            Debug.LogError("똑같은 카드가 한 쌍이 되었음");
+            return;
+        }
+
+        ESubWeaponType genealogyNum = ESubWeaponType.None;
 
         if (num1 > num2)
         {
@@ -109,15 +117,130 @@ public class GenealogyCardPanal : MonoBehaviour, IUIEvent
             num2 = temp;
         }
 
-        
+        switch ((ECardType)num1)
+        {
+            case ECardType.Sun:
+
+                if (CompareValue(num2, new int[] { 2, 3, 4, 5, 6, 7 }))
+                {
+                    genealogyNum = ESubWeaponType.SunLight;
+                }
+
+                else
+                {
+                    genealogyNum = ESubWeaponType.SunExplosion;
+                }
+
+                break;
+
+            case ECardType.Mountain:
+
+                if (CompareValue(num2, new int[] { 3, 4, 5 }))
+                {
+                    genealogyNum = ESubWeaponType.ReducedShield;
+                }
+
+                else if (CompareValue(num2, new int[] { 6, 7 }))
+                {
+                    genealogyNum = ESubWeaponType.InvincibleShield;
+                }
+
+                else
+                {
+                    genealogyNum = ESubWeaponType.MountainAnimal;
+                }
+
+                break;
+
+            case ECardType.River:
+
+                if (CompareValue(num2, new int[] { 4, 5, 8 }))
+                {
+                    genealogyNum = ESubWeaponType.RiverBarrier;
+                }
+
+                else if (CompareValue(num2, new int[] { 6, 7 }))
+                {
+                    genealogyNum = ESubWeaponType.VineBondage;
+                }
+
+                else
+                {
+                    genealogyNum = ESubWeaponType.ClockStun;
+                }
+
+                break;
+
+            case ECardType.Rock:
+
+                if (CompareValue(num2, new int[] { 5, 6, 7 }))
+                {
+                    genealogyNum = ESubWeaponType.RockProjectile;
+                }
+
+                else
+                {
+                    genealogyNum = ESubWeaponType.RockReflection;
+                }
+
+                break;
+
+            case ECardType.Cloud:
+
+                if (CompareValue(num2, new int[] { 6, 7 }))
+                {
+                    genealogyNum = ESubWeaponType.RainCloud;
+                }
+
+                else
+                {
+                    genealogyNum = ESubWeaponType.CloudBounce;
+                }
+
+                break;
+
+            case ECardType.Bamboo:
+
+                if (CompareValue(num2, 7))
+                {
+                    genealogyNum = ESubWeaponType.ForestTrail;
+                }
+
+                else if (CompareValue(num2, 8))
+                {
+                    genealogyNum = ESubWeaponType.ThornShield;
+                }
+
+                else
+                {
+                    genealogyNum = ESubWeaponType.BambooSpear;
+                }
+
+                break;
+
+            case ECardType.Pine:
+                genealogyNum = ESubWeaponType.RainPine;
+                break;
+            case ECardType.Turtle:
+                genealogyNum = ESubWeaponType.TurtleProjectile;
+                break;
+            case ECardType.Crane:
+                genealogyNum = ESubWeaponType.HornTrap;
+                break;
+            case ECardType.Deer:
+                Debug.LogError("있을 수 없는 조합입니다.");
+                break;
+        }
+
+
+
+
 
 
         Param param = new Param();
-        //param.iParam = (int)genealogyType;
-        param.iParam = _genealogyCnt;
+        param.iParam = (int)genealogyNum;
 
         PEventManager.TriggerEvent("CardAdd", param);
-        _genealogyCnt++;
     }
 
     private void CloseMessage()

@@ -14,42 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardDataList:
   - _cardName: "\uD574"
-    _cardID: SUN_1
-    _cardNum: 1
+    _cardType: 1
     _cardSprite: {fileID: -6555575649291838755, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uC0B0"
-    _cardID: MOUNTAIN_2
-    _cardNum: 2
+    _cardType: 2
     _cardSprite: {fileID: -1636742031616846006, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uAC15"
-    _cardID: RIVER_3
-    _cardNum: 3
+    _cardType: 3
     _cardSprite: {fileID: -7557494978891415441, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uB3CC"
-    _cardID: ROCK_4
-    _cardNum: 4
+    _cardType: 4
     _cardSprite: {fileID: 6220208007999549204, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uAD6C\uB984"
-    _cardID: CLOUD_5
-    _cardNum: 5
+    _cardType: 5
     _cardSprite: {fileID: -2613411450045547498, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uB300\uB098\uBB34"
-    _cardID: BAMBOO_6
-    _cardNum: 6
+    _cardType: 6
     _cardSprite: {fileID: 6084249756908604392, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uC18C\uB098\uBB34"
-    _cardID: PINE_7
-    _cardNum: 7
+    _cardType: 7
     _cardSprite: {fileID: -6663811380663864060, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uAC70\uBD81"
-    _cardID: TURTLE_8
-    _cardNum: 8
+    _cardType: 8
     _cardSprite: {fileID: 4800566814532983255, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uB450\uB8E8\uBBF8"
-    _cardID: CRANE_9
-    _cardNum: 9
+    _cardType: 9
     _cardSprite: {fileID: -2888899937977690089, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uC0AC\uC2B4"
-    _cardID: DEER_10
-    _cardNum: 10
+    _cardType: 10
     _cardSprite: {fileID: 6034864100499761545, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}

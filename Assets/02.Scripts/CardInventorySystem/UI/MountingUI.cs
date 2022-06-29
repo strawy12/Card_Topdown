@@ -32,12 +32,14 @@ public class MountingUI : MonoBehaviour
             panal.Init();
             panal.gameObject.SetActive(true);
             panal.OnPointerUpUIEnter += ActiveMountingCard;
-            panal.OnPointerUpUINotEnter += ActiveMountingCard;
+            panal.OnPointerUpUINotEnter += UnActiveMountingCard;
         }
     }
 
     private void ActiveMountingCard(Param param)
     {
+        Debug.Log(4);
+
         PEventManager.TriggerEvent(Constant.ENTER_MOUNTING_UI, param);
     }
 

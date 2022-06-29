@@ -16,52 +16,11 @@ public class AgentSubWeapon : MonoBehaviour
 
     private void ActiveAttack(Param param)
     {
-        ESubWeaponType type = ESubWeaponType.None;
-
-        #region 추후 변경 예정
-        //switch ((EGenealogy)param.iParam)
-        //{
-        //    case EGenealogy.Rest:
-        //        type = ESubWeaponType.Book;
-        //        break;
-        //    case EGenealogy.Pair:
-        //        break;
-        //    case EGenealogy.GuSa:
-        //        break;
-        //    case EGenealogy.PairHunter:
-        //        break;
-        //    case EGenealogy.ESibal:
-        //        break;
-        //    case EGenealogy.SeRyuk:
-        //        break;
-        //    case EGenealogy.Jangsa:
-        //        break;
-        //    case EGenealogy.BBing:
-        //        break;
-        //    case EGenealogy.Doksa:
-        //        break;
-        //    case EGenealogy.Ali:
-        //        break;
-        //    case EGenealogy.GabO:
-        //        break;
-        //    case EGenealogy.Mangtong:
-        //        break;
-        //    case EGenealogy.LightPair:
-        //        break;
-        //}
-
-        #endregion
-
-        switch(param.iParam)
-        {
-
-        }
-
-        if (type == ESubWeaponType.None) return;
+        ESubWeaponType type = (ESubWeaponType)param.iParam;
 
         var weapon = _subWeapons.Find(x => x.Type == type);
 
         weapon.ActiveWeapon();
-
+        AgentAudio
     }
 }

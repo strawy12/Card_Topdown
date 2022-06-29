@@ -5,16 +5,40 @@ using UnityEngine;
 public enum ESubWeaponType
 {
     None,
+    /// <summary>
+    /// 카서스 W
+    /// </summary>
     SunLight,
+    /// <summary>
+    /// 카서스 Q
+    /// </summary>
     SunExplosion,
+    /// <summary>
+    /// 피해감소 실드
+    /// </summary>
     ReducedShield,
+    /// <summary>
+    /// 무적 실드
+    /// </summary>
     InvincibleShield,
+    /// <summary>
+    /// 소환수(콩콩이)
+    /// </summary>
     MountainAnimal,
+    /// <summary>
+    /// 시셀라 W
+    /// </summary>
     RiverBarrier,
+    /// <summary>
+    /// 속박
+    /// </summary>
     VineBondage,
     ClockStun,
-    StoneProjectile,
-    StoneReflection,
+    RockProjectile,
+    /// <summary>
+    /// 반사 실드
+    /// </summary>
+    RockReflection,
     RainCloud,
     CloudBounce,
     ForestTrail,

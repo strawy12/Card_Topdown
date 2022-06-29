@@ -11,6 +11,7 @@ public class EventManager
     {
         Action thisEvent;
 
+
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent += listener;
@@ -45,6 +46,7 @@ public class EventManager
 
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
+            Debug.Log(thisEvent.Method);
             thisEvent?.Invoke();
         }
     }
@@ -90,11 +92,11 @@ public class PEventManager
     public static void TriggerEvent(string eventName, Param param)
     {
         Action<Param> thisEvent;
-
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent?.Invoke(param);
-            EventManager.TriggerEvent(eventName);
         }
+        EventManager.TriggerEvent(eventName);
+
     }
 }

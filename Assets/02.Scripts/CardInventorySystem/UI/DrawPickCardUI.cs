@@ -52,7 +52,7 @@ public class DrawPickCardUI : MonoCardUI
 
     private bool InitDisappearCard()
     {
-        _currentCardPanal = InventoryManager.GetLastCardPanal();
+        _currentCardPanal = null;
         CardData cardData = _currentCardPanal.CurrentCard;
         if (cardData == null) return false;
 

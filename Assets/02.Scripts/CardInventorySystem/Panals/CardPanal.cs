@@ -8,14 +8,13 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 {
 
     private static bool _stopShowInfo;
-    private static int _panalCount;
 
     public Action OnChangeCardEvent { get; set; }
 
     protected CardData _currentCard { get; private set; }
 
     protected Image _currentImage;
-    protected int _currentID;
+    protected int _currentIdx;
 
     protected bool _isEmpty;
     protected bool _isDeferPanal;
@@ -38,7 +37,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 
     public int ID
     {
-        get => _currentID;
+        get => _currentIdx;
     }
 
 
@@ -53,8 +52,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 
     public void Init()
     {
-
-        _currentID = _panalCount++;
+        _currentIdx = transform.GetSiblingIndex() - 1;
         _currentImage = GetComponent<Image>();
         EmptyCard();
         ChildInit();
@@ -79,6 +77,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
         _currentCard = cardData;
         _currentImage.sprite = _currentCard.CardSprite;
 
+        
 
         if (_isEmpty)
         {
@@ -181,7 +180,7 @@ public abstract class CardPanal : MonoCardUI, IPointerEnterHandler, IPointerExit
 
         Param param = new Param();
         param.sParam = _currentCard.ID;
-        param.iParam = _currentID;
+        param.iParam = _currentIdx;
         param.vParam = transform.position;
 
         PEventManager.TriggerEvent(Constant.ENTER_CARD_PANAL, param);

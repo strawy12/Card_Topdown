@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using System;
+using Object = UnityEngine.Object;
 
 public class UtilDefine
 {
+   
     public enum EButtonStyle
     {
         None = -1,
         Okay,
         Cancel,
         Close
-    }
-
-    public enum ESubWeaponType
-    {
-        None = -1,
     }
 
     private static Camera mainCam;
@@ -69,6 +66,29 @@ public class UtilDefine
     public static float CalcPercent(float value, float percent)
     {
         return (value * 100) / percent;
+    }
+
+    public static bool CompareValue<T>(T value, T[] values) where T : IComparable
+    {
+        foreach (var compareValue in values)
+        {
+            if (value.CompareTo(compareValue) == 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool CompareValue<T>(T value, T value2) where T : IComparable
+    {
+        if (value.CompareTo(value2) == 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
 
