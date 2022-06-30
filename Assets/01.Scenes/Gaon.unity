@@ -14945,6 +14945,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1917932096
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -24.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -22.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915532, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149583741991915536, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
+      propertyPath: m_Name
+      value: Crane
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b92211461c99f0246ad0d6f5286a42c8, type: 3}
 --- !u!1 &1927916139
 GameObject:
   m_ObjectHideFlags: 0
@@ -16505,95 +16562,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133367613}
   m_CullTransparentMesh: 1
---- !u!1001 &3514977253076653478
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -24.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -22.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421101996, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421102000, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: m_Name
-      value: Bamboo
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421102006, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: OnESkillButtonPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5981400241083871767}
-    - target: {fileID: 7189300695421102006, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: OnESkillButtonPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SkillUsing
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421102006, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: OnESkillButtonPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BambooSkill, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189300695421102006, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-      propertyPath: OnESkillButtonPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
---- !u!1 &5981400241083871766 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7189300695421102000, guid: acd34f59a00485d4f85d7e1fc78bfeb4, type: 3}
-  m_PrefabInstance: {fileID: 3514977253076653478}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5981400241083871767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5981400241083871766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c4a08d759d3350469d2802b72d1a2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _skillCoolDown: 5
-  _skillCoolDownTimeCheck: 0

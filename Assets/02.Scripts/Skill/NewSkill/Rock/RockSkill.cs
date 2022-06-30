@@ -23,7 +23,6 @@ public class RockSkill : BuffSkill, IHittable
     {
         if (SkillCoolDown > SkillCoolDownTimeCheck) return;
         SkillCoolDownTimeCheck = 0;
-        Debug.Log("스킬 누름");
         StartCoroutine(SkillUsing(SkillDuration));
     }
 
@@ -37,18 +36,15 @@ public class RockSkill : BuffSkill, IHittable
         dir.Normalize();
 
         damageDealer.transform.Translate(dir * 10);
-        Debug.Log("밀었음");
 
         //enemy.KnockBack(dir, 1f, 1f);
     }
 
     protected override IEnumerator SkillUsing(float skillDuration)
     {
-        Debug.Log("스킬 실행");
         PlayerStatusManager.Inst.DynamicPlayerStatus.defence += 5;
         isOn = true;
         yield return base.SkillUsing(skillDuration);
-        Debug.Log("스킬 끝남");
         PlayerStatusManager.Inst.DynamicPlayerStatus.defence -= 5;
         isOn = false;    
     }

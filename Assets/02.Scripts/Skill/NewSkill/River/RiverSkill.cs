@@ -25,11 +25,11 @@ public class RiverSkill : AgentSkill, INormalSkill
         SkillCoolDownTimeCheck += Time.deltaTime;
     }
 
+    // 나중에는 얘가 적관리하면서 스택 관리하자
     public void SkillUsing()
     {
         if (SkillCoolDown > SkillCoolDownTimeCheck) return;
         SkillCoolDownTimeCheck = 0;
-        Debug.Log("스킬사용");
 
         Collider2D[] enemys = Physics2D.OverlapCircleAll(transform.position, circleRange, _enemyLayer);
         foreach (Collider2D enemy in enemys)

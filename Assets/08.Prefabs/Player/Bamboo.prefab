@@ -4071,6 +4071,7 @@ GameObject:
   - component: {fileID: 7189300695421102004}
   - component: {fileID: 7189300695421102002}
   - component: {fileID: 7189300695421102003}
+  - component: {fileID: 5981400241083871767}
   m_Layer: 3
   m_Name: Bamboo
   m_TagString: Player
@@ -4356,13 +4357,13 @@ MonoBehaviour:
   OnESkillButtonPressEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 5981400241083871767}
+        m_TargetAssemblyTypeName: BambooSkill, Assembly-CSharp
+        m_MethodName: SkillUsing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4441,6 +4442,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7289f188e8037e04490ea3c2121af486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5981400241083871767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7189300695421102000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4a08d759d3350469d2802b72d1a2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillCoolDown: 3
+  _skillCoolDownTimeCheck: 0
 --- !u!1 &7189300695773140120
 GameObject:
   m_ObjectHideFlags: 0

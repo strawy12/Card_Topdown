@@ -54,7 +54,7 @@ public class AgentMove : MonoBehaviour, IKnockback
         {
             moveSpeed -= moveData.deceleration * Time.deltaTime;
         }
-        return Mathf.Clamp(moveSpeed, 0, moveData.maxSpeed);
+        return Mathf.Clamp(moveSpeed, 0, PlayerStatusManager.Inst.DynamicPlayerStatus.maxSpeed);
     }
 
     public void OnDash(Vector2 mouseWorldPosition)

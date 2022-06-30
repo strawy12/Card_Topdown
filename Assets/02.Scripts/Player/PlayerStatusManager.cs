@@ -7,7 +7,11 @@ public class PlayerStatusManager : MonoSingleton<PlayerStatusManager>
 {
     private AgentStatusSO _agentStatus;
     private PlayerStat _dynamicStatus;
-                
+
+    private AgentMove _agentMove = null;
+    // 플레이어가 필요한가?
+    private Player _player = null;
+
     #region 스테이터스 변수들
     [SerializeField] private AgentStatusSO _mountainStatus;
     [SerializeField] private AgentStatusSO _sunStatus;
@@ -68,6 +72,11 @@ public class PlayerStatusManager : MonoSingleton<PlayerStatusManager>
                 break;
         }
 
+        if (_agentMove == null)
+            _agentMove = PlayerTrm.GetComponent<AgentMove>();
+        if (_player == null)
+            _player = PlayerTrm.GetComponent<Player>();
+
         _dynamicStatus = new PlayerStat
         {
             maxHp = _agentStatus.maxHp,
@@ -76,7 +85,8 @@ public class PlayerStatusManager : MonoSingleton<PlayerStatusManager>
             defence = _agentStatus.defence,
             criticalPercent = _agentStatus.criticalPercentage,
             criticalDamage = _agentStatus.criticalDamage,
-            CooldownDecrease = _agentStatus.CooldownDecrease
+            CooldownDecrease = _agentStatus.CooldownDecrease,
+            maxSpeed = _agentMove.moveData.maxSpeed
         };
     }
 }

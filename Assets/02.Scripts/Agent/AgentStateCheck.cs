@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class AgentStateCheck : MonoBehaviour
 {
-    int index = 0;
+    int stopIndex = 0;
+    int invincibilityIndex = 0;
+    int attackIndex = 0;
 
     [SerializeField]
     private bool _isDead = false;
@@ -29,20 +31,20 @@ public class AgentStateCheck : MonoBehaviour
         get => _isStop;
         set
         {
-            if (value == true && index == 0)
+            if (value == true && stopIndex == 0)
             {
                 _isStop = true;
-                index++;
+                stopIndex++;
             }
-            else if (value == true && index >= 1)
-                index++;
-            else if (value == false && index == 1)
+            else if (value == true && stopIndex >= 1)
+                stopIndex++;
+            else if (value == false && stopIndex == 1)
             {
                 _isStop = false;
-                index--;
+                stopIndex--;
             }
-            else if (value == false && index > 1)
-                index--;
+            else if (value == false && stopIndex > 1)
+                stopIndex--;
         }
     }
 
@@ -53,20 +55,20 @@ public class AgentStateCheck : MonoBehaviour
         get => _isInvincibility;
         set
         {
-            if (value == true && index == 0)
+            if (value == true && invincibilityIndex == 0)
             {
                 _isInvincibility = true;
-                index++;
+                invincibilityIndex++;
             }
-            else if (value == true && index >= 1)
-                index++;
-            else if (value == false && index == 1)
+            else if (value == true && invincibilityIndex >= 1)
+                invincibilityIndex++;
+            else if (value == false && invincibilityIndex == 1)
             {
                 _isInvincibility = false;
-                index--;
+                invincibilityIndex--;
             }
-            else if (value == false && index > 1)
-                index--;
+            else if (value == false && invincibilityIndex > 1)
+                invincibilityIndex--;
         }
     }
 
@@ -77,20 +79,33 @@ public class AgentStateCheck : MonoBehaviour
         get => _isAttack;
         set
         {
-            if (value == true && index == 0)
+            if (value == true && attackIndex == 0)
             {
                 _isAttack = true;
-                index++;
+                attackIndex++;
             }
-            else if (value == true && index >= 1)
-                index++;
-            else if (value == false && index == 1)
+            else if (value == true && attackIndex >= 1)
+                attackIndex++;
+            else if (value == false && attackIndex == 1)
             {
                 _isAttack = false;
-                index--;
+                attackIndex--;
             }
-            else if (value == false && index > 1)
-                index--;
+            else if (value == false && attackIndex > 1)
+                attackIndex--;
         }
+    }
+
+    public void StateReset()
+    {
+        stopIndex = 0;
+        invincibilityIndex = 0;
+        attackIndex = 0;
+
+        _isAttack = false;
+        _isDashing = false;
+        _isDead = false;
+        _isInvincibility = false;
+        _isStop = false;
     }
 }
