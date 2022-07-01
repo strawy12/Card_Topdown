@@ -27,5 +27,5 @@ MonoBehaviour:
   isCrowdCtrl: 0
   crowdCtrlTypes: 0
   crowdCtrlAmount: 0
-  needMove: 0
-  movementSpeed: 0
+  needMove: 1
+  movementSpeed: 213213

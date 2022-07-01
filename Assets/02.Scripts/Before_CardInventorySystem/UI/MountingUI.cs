@@ -38,8 +38,6 @@ public class MountingUI : MonoBehaviour
 
     private void ActiveMountingCard(Param param)
     {
-        Debug.Log(4);
-
         PEventManager.TriggerEvent(Constant.ENTER_MOUNTING_UI, param);
     }
 

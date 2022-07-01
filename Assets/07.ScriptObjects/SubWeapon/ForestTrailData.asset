@@ -12,21 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45192b4901c08ca4c94e5ccd4ebf2b02, type: 3}
   m_Name: ForestTrailData
   m_EditorClassIdentifier: 
-  isAttack: 0
+  delayTime: 0
+  isAttack: 1
   damageAmount: 0
-  isSummon: 1
-  isBounce: 0
-  maxGenerateCnt: 0
+  isSpawn: 1
+  prefab: {fileID: 0}
+  isBounce: 1
+  maxGenerateCnt: 2147483647
   needLifeTime: 1
   isInfinite: 0
-  lifeTime: 0
-  isLoop: 0
-  delayTime: 0
+  lifeTime: 2313
   changeStat: 0
-  statType: 0
-  statAmount: 0
+  changeStatList: []
   isCrowdCtrl: 0
-  crowdCtrlType: 0
+  crowdCtrlTypes: 121
   crowdCtrlAmount: 0
-  needMove: 0
+  needMove: 1
   movementSpeed: 0

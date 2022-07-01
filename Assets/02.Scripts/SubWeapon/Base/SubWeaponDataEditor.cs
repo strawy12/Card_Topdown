@@ -14,16 +14,14 @@ public class SubWeaponDataEditor : Editor
         get => target as SubWeaponDataSO;
     }
     public override void OnInspectorGUI()
-    {
+    { 
         EditorGUILayout.Space(selling);
-
         Target.delayTime = EditorGUILayout.FloatField("DelayTime", Target.delayTime);
         EditorGUILayout.Space(selling);
 
-
         ActiveTypeToggles();
 
-
+        EditorUtility.SetDirty(Target);
     }
 
     public void ActiveTypeToggles()

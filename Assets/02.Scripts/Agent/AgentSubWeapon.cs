@@ -21,6 +21,5 @@ public class AgentSubWeapon : MonoBehaviour
         var weapon = _subWeapons.Find(x => x.Type == type);
 
         weapon.ActiveWeapon();
-        AgentAudio
     }
 }

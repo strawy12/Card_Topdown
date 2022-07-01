@@ -46,7 +46,6 @@ public class EventManager
 
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            Debug.Log(thisEvent.Method);
             thisEvent?.Invoke();
         }
     }

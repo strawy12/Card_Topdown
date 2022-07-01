@@ -142,7 +142,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SetPlayerableCardInfo(int idx, string id)
     {
-        Debug.Log($"idx:{idx}, id:{id}");
         _dataManager.CurrentPlayer.playerableCardInfo[idx] = id;
     }
 
