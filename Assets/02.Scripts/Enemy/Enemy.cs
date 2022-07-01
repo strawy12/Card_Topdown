@@ -27,10 +27,13 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     public int WaterStack
     {
         get => _waterStack;
-        set
-        {
-
-        }
+        set => _waterStack = value;
+    }
+    [SerializeField] private bool _isHitCloud = false;
+    public bool IsHitCloud
+    {
+        get => _isHitCloud;
+        set => _isHitCloud = value;
     }
 
     public void GetHit(float damage, GameObject damageDealer)

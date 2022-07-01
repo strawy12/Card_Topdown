@@ -19,7 +19,7 @@ public class RockSkill : BuffSkill, IHittable
 
     public Vector3 HitPoint { get; set; }
     
-    public override void Skill()
+    public void Skill()
     {
         if (SkillCoolDown > SkillCoolDownTimeCheck) return;
         SkillCoolDownTimeCheck = 0;
@@ -44,7 +44,7 @@ public class RockSkill : BuffSkill, IHittable
     {
         PlayerStatusManager.Inst.DynamicPlayerStatus.defence += 5;
         isOn = true;
-        yield return base.SkillUsing(skillDuration);
+        yield return new WaitForSeconds(skillDuration);
         PlayerStatusManager.Inst.DynamicPlayerStatus.defence -= 5;
         isOn = false;    
     }

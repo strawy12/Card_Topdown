@@ -7,6 +7,7 @@ public class BuffSkill : AgentSkill
     public float SkillCoolDown;
     public float SkillDuration;
     public float SkillCoolDownTimeCheck;
+    public bool isBuffOn = false;
 
     protected virtual void Awake()
     {
@@ -16,11 +17,6 @@ public class BuffSkill : AgentSkill
     protected virtual void Update()
     {
         SkillCoolDownTimeCheck += Time.deltaTime;
-    }
-
-    public virtual void Skill()
-    {
-
     }
 
     protected virtual IEnumerator SkillUsing(float skillDuration)
