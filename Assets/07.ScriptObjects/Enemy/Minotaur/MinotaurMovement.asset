@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe53cec57d8ecf4a997813b4ca17663, type: 3}
   m_Name: MinotaurMovement
   m_EditorClassIdentifier: 
-  maxSpeed: 4
+  maxSpeed: 5
   acceleration: 50
   deceleration: 50

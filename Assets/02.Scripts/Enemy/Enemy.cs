@@ -11,7 +11,6 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     private EnemyAttack _enemyAttack;
     public BarUI _hpBar;
     public float Health { get; private set; }
-    private WaveController _waveController;
     private AgentStateCheck _agentStateCheck;
 
     [field: SerializeField] public UnityEvent OnDie { get; set; }
@@ -22,16 +21,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     public bool IsAttacking { get => _enemyAttack._isAttacking;}
     public Vector3 HitPoint { get; private set; }
 
-    [SerializeField]
     public int _waterStack = 0;
-    public int WaterStack
-    {
-        get => _waterStack;
-        set
-        {
-
-        }
-    }
 
     public void GetHit(float damage, GameObject damageDealer)
     {
@@ -59,7 +49,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
             _agentStateCheck.IsDead = true;
             _agentMove.StopImmediatelly();
             _agentMove.enabled = false;
-            OnDie?.Invoke();
+            Die();
             //_waveController.RemainEnemy--;
         }
     }
@@ -68,7 +58,6 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         _agentMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
-        _waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
         _hpBar = transform.Find("HpBar").GetComponent<BarUI>();
     }
     public void EnemyAttack()
@@ -117,6 +106,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     public void Die()
     {
         _agentStateCheck.IsDead = true;
+        OnDie?.Invoke();
         PoolManager.Inst.Push(this);
 
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);

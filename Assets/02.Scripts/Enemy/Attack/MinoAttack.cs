@@ -29,23 +29,19 @@ public class MinoAttack : EnemyAttack
             }
         }
     }
-    public IEnumerator EffectCoroutine()
+    public IEnumerator EffectCoroutine(Vector3 dir)
     {
-        float tempX = attackPos.parent.transform.right.x;
         for (int i = 1; i <= 5; i++)
         {
             Earthquake earthquake = PoolManager.Inst.Pop("Earthquake") as Earthquake;
-            earthquake.SapwnEffect(enemy: _enemy,new Vector2(attackPos.position.x + tempX * i, attackPos.position.y));
+            earthquake.SapwnEffect(_enemy, attackPos.position + dir.normalized * i);
             yield return new WaitForSeconds(0.2f);
         }
     }
     public void SpawnEffect()
     {
-        StartCoroutine(EffectCoroutine());
-    }
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(attackPos.position, attackBoxSize);
+        Vector3 dir = GetTarget().position - transform.position;
+        StartCoroutine(EffectCoroutine(dir));
+
     }
 }
