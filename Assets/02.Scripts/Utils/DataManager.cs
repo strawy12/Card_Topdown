@@ -46,14 +46,6 @@ public class DataManager : MonoBehaviour
        // SaveToJson();
     }
 
-    public void SetGenealogyData(GenealogyData data)
-    {
-        //if (player.GenealogyCnt >= 5) return;
-
-        //player.genealogyDatas[player.GenealogyCnt] = data;
-        //player.SetPlayerSynergy(data);
-    }
-
     public void SaveToJson()
     {
         string stringJson = JsonUtility.ToJson(player, true);

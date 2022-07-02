@@ -124,6 +124,7 @@ public static class Constant
     public const string          CLOSE_MESSAGE = "CL_MS";
 
     public const string       MESSAGE_MOUNTING = "정말로 장착하시겠습니까?";
+    public const string       MESSAGE_ENFORCE = "정말로 강화하시겠습니까??";
 
     public const string         OPEN_INVENTORY = "OP_IV";
     public const string    PLAYER_ATTACK_START = "PL_AT_ST";

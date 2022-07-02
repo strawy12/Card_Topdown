@@ -140,9 +140,9 @@ public class GameManager : MonoSingleton<GameManager>
     //    return _existCard[cardNum - 1];
     //}
 
-    public void SetPlayerableCardInfo(int idx, string id)
+    public void SetPlayerableCardInfo(string id)
     {
-        _dataManager.CurrentPlayer.playerableCardInfo[idx] = id;
+        _dataManager.CurrentPlayer.playerableCardInfoList.Add(id);
     }
 
     public void SpawnCardGauge(Vector3 pos, float  amout)
