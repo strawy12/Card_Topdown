@@ -22,6 +22,7 @@ public abstract class CardPanel : MonoBehaviour
     protected int _currentIdx;
 
     public string ID => $"{_panelType}_{_currentIdx}";
+    public int Idx => _currentIdx;
     public ECardPanelType Type => _panelType;
     public bool IsEmpty => _isEmpty;
     public CardData CurrentCardData => _currentCardData;
@@ -33,7 +34,7 @@ public abstract class CardPanel : MonoBehaviour
             _cardImage = GetComponent<Image>();
         }
 
-        _currentIdx = transform.GetSiblingIndex() - 1;
+        
         ChildInit();
         EmptyCard();
 

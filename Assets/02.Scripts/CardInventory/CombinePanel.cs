@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using static UtilDefine;
 
-public class CombinePanel : MonoBehaviour
+public class CombinePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-   [SerializeField] private CardPanel[] _cardPanals = new CardPanel[2];
+    [SerializeField] private CardPanel[] _cardPanals = new CardPanel[2];
+
     private Text _combineEnforceText;
     private bool _isEmpty;
+    private bool _isEnter;
 
     private int _currentIndex;
     private int _currentEnforceCnt = 0;
     private int _needEnforceCnt = 0;
 
+
+
     public bool IsEmpty
     {
         get => _isEmpty;
+    }
+
+    public bool IsEnter
+    {
+        get => _isEnter;
     }
 
     public bool CanEnForce
@@ -34,18 +44,20 @@ public class CombinePanel : MonoBehaviour
         _currentIndex = transform.GetSiblingIndex() - 1;
         _isEmpty = true;
 
+        CardInventoryManager.Inst.AddCombinePanel(this);
+
         CardPanalsInit();
     }
 
     public void CardPanalsInit()
     {
-        foreach(var panel in _cardPanals)
+        foreach (var panel in _cardPanals)
         {
             panel.Init();
         }
     }
 
-    private void ChangePanal()
+    public void ChangePanal()
     {
         if (_cardPanals[1].IsEmpty) return;
 
@@ -64,6 +76,21 @@ public class CombinePanel : MonoBehaviour
             _combineEnforceText.gameObject.SetActive(false);
             _combineEnforceText.text = "";
         }
+
+        _isEmpty = false;
+    }
+
+    public bool CompareCard(string cardID)
+    {
+        foreach (var panel in _cardPanals)
+        {
+            if (panel.CurrentCardData.ID.Equals(cardID))
+            {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     private void SetCombineText()
@@ -207,7 +234,6 @@ public class CombinePanel : MonoBehaviour
         param.iParam = (int)subweaponType;
 
         PEventManager.TriggerEvent("CardAdd", param);
-        _isEmpty = false;
     }
 
     private void CloseMessage()
@@ -229,7 +255,7 @@ public class CombinePanel : MonoBehaviour
         return false;
     }
 
-    private void EnForceMountMessage(string panelID, CardData data)
+    public void EnForceMountMessage(string panelID, CardData data, Vector2 returnPos)
     {
         ButtonStyle btn1 = new ButtonStyle(EButtonStyle.Okay, () =>
         {
@@ -239,9 +265,34 @@ public class CombinePanel : MonoBehaviour
 
         ButtonStyle btn2 = new ButtonStyle(EButtonStyle.Cancel, () =>
         {
-            CardInventoryManager.Inst.ReturnCard(panelID, data);
+            CardInventoryManager.Inst.ReturnCardEffect(panelID, data, returnPos);
         });
 
         GameManager.Inst.UI.TriggerMessage($"해당 카드가 사라집니다.\n {Constant.MESSAGE_ENFORCE}", btn1, btn2);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (_currentIndex == 0) return;
+
+        if (_isEmpty == false)
+        {
+            CardInventoryManager.Inst.SetCanEnforceCard(true);
+        }
+
+        else
+        {
+            CardInventoryManager.Inst.SetCanEquipCard(true);
+        }
+
+        _isEnter = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (_currentIndex == 0) return;
+
+        CardInventoryManager.Inst.SetCanEnforceCard(false);
+        _isEnter = false;
     }
 }

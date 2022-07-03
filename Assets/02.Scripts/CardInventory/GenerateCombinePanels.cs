@@ -14,7 +14,7 @@ public class GenerateCombinePanels : MonoBehaviour
 
     private void GeneratePanel()
     {
-        CombinePanel panel = null;
+        CombinePanel    panel = null;
 
         for (int i = 0; i < _generateCount; i++)
         {

@@ -8,8 +8,9 @@ public class EquipCardPanel : CardPanel
     protected override void ChildInit()
     {
         _panelType = ECardPanelType.Equip;
+        _currentIdx = transform.parent.parent.GetSiblingIndex() - 1 + transform.GetSiblingIndex();
 
-        _parentCombinePanel = GetComponentInParent<CombinePanel>();
+        _parentCombinePanel = transform.parent.parent.GetComponent<CombinePanel>();
     }
 
     public override void ChangeCard(CardData cardData, bool isEffect = true)
@@ -19,6 +20,11 @@ public class EquipCardPanel : CardPanel
         if (_currentIdx < 2)
         {
             GameManager.Inst.SetPlayerableCardInfo(_currentCardData.ID);
+        }
+
+        if(!_isEmpty)
+        {
+            _parentCombinePanel.ChangePanal();
         }
     }
 }
