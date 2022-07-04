@@ -16,7 +16,7 @@ public class EnemyMeleeAttack : EnemyAttack
         }
     }
     public virtual void MeleeAttackCollider() // 박스 형태의 판정을 안사용하는 애들도 있을거 같아 virtual로 구현해놈
-    { 
+    {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(pos.position, attackBoxSize, 0);
         foreach (Collider2D collider in colliders)
         {
@@ -27,10 +27,4 @@ public class EnemyMeleeAttack : EnemyAttack
             }
         }
     }
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(pos.position, attackBoxSize);
-    }
-
 }
