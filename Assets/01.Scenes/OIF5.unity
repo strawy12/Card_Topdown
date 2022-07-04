@@ -651,8 +651,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.361}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -152, y: 0}
-  m_SizeDelta: {x: 88.77, y: 133.16}
+  m_AnchoredPosition: {x: -131, y: 0.0000076294}
+  m_SizeDelta: {x: 111.02, y: 156.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &104337891
 MonoBehaviour:
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2cabd6643155eb4abd46cd7ccc62e15, type: 3}
+  m_Sprite: {fileID: -6555575649291838755, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1490,6 +1490,7 @@ GameObject:
   - component: {fileID: 350416703}
   - component: {fileID: 350416702}
   - component: {fileID: 350416701}
+  - component: {fileID: 350416704}
   m_Layer: 5
   m_Name: InventorySystem
   m_TagString: Untagged
@@ -1574,6 +1575,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350416699}
   m_CullTransparentMesh: 1
+--- !u!225 &350416704
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350416699}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &364771915
 GameObject:
   m_ObjectHideFlags: 0
@@ -8916,6 +8929,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072720470}
   m_CullTransparentMesh: 1
+--- !u!1 &1075278476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1075278477}
+  - component: {fileID: 1075278478}
+  m_Layer: 3
+  m_Name: MountainAnimal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1075278477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075278476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2071268783}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1075278478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075278476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f883d9ac51161479aad8f81bbed89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _subWeaponType: 5
+  _weaponData: {fileID: 11400000, guid: 7119d29cc973a394dbdd1a0a76292938, type: 2}
+  _enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _rotateFactor: 10
+  _detactRange: 5
 --- !u!1 &1081458117
 GameObject:
   m_ObjectHideFlags: 0
@@ -12940,7 +13003,7 @@ MonoBehaviour:
   OnInventoryKeyInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 350416701}
         m_TargetAssemblyTypeName: CardInventoryManager, Assembly-CSharp
         m_MethodName: OnActivePanal
         m_Mode: 1
@@ -14209,7 +14272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7289f188e8037e04490ea3c2121af486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _subWeapons: []
+  _subWeapons:
+  - {fileID: 237191637}
+  - {fileID: 1180760221}
+  - {fileID: 2054499466}
+  - {fileID: 1081458119}
+  - {fileID: 1075278478}
 --- !u!4 &2071268783
 Transform:
   m_ObjectHideFlags: 0
@@ -14225,6 +14293,7 @@ Transform:
   - {fileID: 1180760220}
   - {fileID: 2054499464}
   - {fileID: 1081458118}
+  - {fileID: 1075278477}
   m_Father: {fileID: 940005653}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

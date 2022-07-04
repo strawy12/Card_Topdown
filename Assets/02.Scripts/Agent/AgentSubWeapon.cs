@@ -16,10 +16,8 @@ public class AgentSubWeapon : MonoBehaviour
 
     private void ActiveAttack(Param param)
     {
-        return;
-
         ESubWeaponType type = (ESubWeaponType)param.iParam;
-
+        type = ESubWeaponType.MountainAnimal;
         var weapon = _subWeapons.Find(x => x.Type == type);
 
         weapon.ActiveWeapon();

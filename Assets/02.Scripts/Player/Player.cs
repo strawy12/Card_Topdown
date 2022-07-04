@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IAgent, IHittable
     private float _initHp = 100f;
 
     private float _health;
-    private float _maxCardGauge = 2;
+    private float _maxCardGauge = 100;
     private float _cardGuage;
 
     public UnityEvent OnAddCardGauge;
@@ -154,7 +154,6 @@ public class Player : MonoBehaviour, IAgent, IHittable
             GameManager.Inst.CardPickCnt++;
             EventManager.TriggerEvent(Constant.TRIGGER_PICK_CARD);
             _cardGuage %= _maxCardGauge;
-            _maxCardGauge *= 1.5f;
         }
 
     }

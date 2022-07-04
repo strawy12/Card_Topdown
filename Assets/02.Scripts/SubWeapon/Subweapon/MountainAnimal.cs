@@ -21,7 +21,6 @@ public class MountainAnimal : SubWeaponController
     private void SpawnAnimalObj()
     {
         MountainAnimalObject obj = PoolManager.Inst.Pop(_weaponData.prefab.name) as MountainAnimalObject;
-        obj.transform.localScale = Vector3.zero;
         obj.transform.position = transform.position;
 
         obj.gameObject.SetActive(true);

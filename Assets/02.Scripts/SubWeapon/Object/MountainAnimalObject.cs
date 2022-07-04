@@ -25,17 +25,23 @@ public class MountainAnimalObject : PoolableMono
     private bool _isReturning;
     private bool _isDead;
 
+    private Vector2 _returnPoint;
+
     public void Init(float moveSpeed, float rotateSpeedFactor, float detactRange, float lifeTime)
     {
         if (_spriteRenderer == null)
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
+        _spriteRenderer.color = Color.white;
+        transform.localScale = Vector3.one;
 
         _detactRange = detactRange;
         _moveSpeed = moveSpeed;
         _rotateSpeed = _moveSpeed * rotateSpeedFactor;
         _lifeTime = lifeTime;
+
+        _targetTrs = UtilDefine.PlayerRef.transform;
 
         _isTargeting = false;
 
@@ -60,6 +66,7 @@ public class MountainAnimalObject : PoolableMono
 
         if (_isTargeting)
         {
+            Debug.Log("dd)");
             Vector2 dir = Vector2.zero;
             dir = _targetTrs.position - transform.position;
             dir.Normalize();
@@ -73,7 +80,8 @@ public class MountainAnimalObject : PoolableMono
             Vector3 point;
             if (_isReturning)
             {
-                point = Vector3.Lerp(transform.position, _targetTrs.position, Time.deltaTime * _moveSpeed);
+                point = Vector3.Lerp(_returnPoint, _targetTrs.position, Time.deltaTime * _moveSpeed);
+                _returnPoint = point;
             }
 
             else
@@ -149,6 +157,7 @@ public class MountainAnimalObject : PoolableMono
         _isReturning = true;
         _isHitDelay = true;
         _isTargeting = false;
+        _returnPoint = transform.position;
         OnHitTarget?.Invoke(collision);
     }
 

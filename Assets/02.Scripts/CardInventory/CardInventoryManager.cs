@@ -30,7 +30,6 @@ public class CardInventoryManager : MonoSingleton<CardInventoryManager>
         _cardPanelList = new List<CardPanel>();
         _combinePanelList = new List<CombinePanel>();
         _currentCanvasGroup = GetComponent<CanvasGroup>();
-        _isActiveInventory = true;
     }
 
     #region 인벤토리 UI 관련
