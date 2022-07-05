@@ -34,10 +34,10 @@ public class BambooSkill : AgentSkill, INormalSkill
         if (SkillCoolDown > SkillCoolDownTimeCheck) return;
         SkillCoolDownTimeCheck = 0f;
         PoolableMono bambooSpear = PoolManager.Inst.Pop("BambooSpear");
-        Vector3 dir = MousePos - PlayerTrm.position;
+        Vector3 dir = MousePos - PlayerRef.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         bambooSpear.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-        bambooSpear.transform.position = PlayerTrm.position;
+        bambooSpear.transform.position = PlayerRef.transform.position;
     }
 
     protected override void Reset()

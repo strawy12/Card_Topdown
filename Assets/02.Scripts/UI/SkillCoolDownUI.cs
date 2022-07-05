@@ -15,7 +15,7 @@ public class SkillCoolDownUI : MonoBehaviour
 
     private void Awake()
     {
-        _skillData = PlayerTrm.GetComponent<Player>().SkillData;
+        _skillData = PlayerRef.GetComponent<Player>().SkillData;
         fillArea.fillAmount = 0f;
     }
 

@@ -17,7 +17,7 @@ public class FollowCam : MonoBehaviour
     {
         if (_virtualCam.Follow == null)
         {
-            _virtualCam.Follow = PlayerTrm;
+            _virtualCam.Follow = PlayerRef.transform;
         }
     }
 }

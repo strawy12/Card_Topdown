@@ -38,7 +38,7 @@ public class PlayerStatusManager : MonoSingleton<PlayerStatusManager>
         // 이름가지고 스테이터스 가져와서 할거임
         // 근데 생각해보니까 안될거같아서 그냥 스위치로 일단함
         // 더 좋은생각나면 바꾸기 ㄱㄱ
-        switch (PlayerTrm.name)
+        switch (PlayerRef.name)
         {
             case "Mountain":
                 _agentStatus = _mountainStatus;
@@ -73,9 +73,9 @@ public class PlayerStatusManager : MonoSingleton<PlayerStatusManager>
         }
 
         if (_agentMove == null)
-            _agentMove = PlayerTrm.GetComponent<AgentMove>();
+            _agentMove = PlayerRef.GetComponent<AgentMove>();
         if (_player == null)
-            _player = PlayerTrm.GetComponent<Player>();
+            _player = PlayerRef.GetComponent<Player>();
 
         _dynamicStatus = new PlayerStat
         {

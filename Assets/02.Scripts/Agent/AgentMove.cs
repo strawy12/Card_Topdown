@@ -18,6 +18,9 @@ public class AgentMove : MonoBehaviour, IKnockback
     private Rigidbody2D rb2D;
     private BoxCollider2D boxCol2D;
 
+    [SerializeField] private float _dashTime = 1f;
+    [SerializeField] private float dashTimeCheck = 0;
+
     // 현재 상태
     private AgentStateCheck agentStateCheck;
     private bool _isKnockBacking = false;
@@ -29,6 +32,12 @@ public class AgentMove : MonoBehaviour, IKnockback
         rb2D = GetComponentInParent<Rigidbody2D>();
         boxCol2D = GetComponentInChildren<BoxCollider2D>();
         agentStateCheck = GetComponent<AgentStateCheck>();
+        dashTimeCheck = _dashTime;
+    }
+
+    private void Update()
+    {
+        dashTimeCheck += Time.deltaTime;
     }
 
     public void OnMove(Vector2 plyaerVec)
@@ -59,9 +68,11 @@ public class AgentMove : MonoBehaviour, IKnockback
 
     public void OnDash(Vector2 mouseWorldPosition)
     {
+        if (dashTimeCheck <= _dashTime) return;
         if (agentStateCheck.IsDashing == true) return;
         if (agentStateCheck.IsStop == true) return;
         agentStateCheck.IsDashing = true;
+        dashTimeCheck = 0;
         Vector2 playerPos = new Vector2(
             PlayerRef.transform.position.x,
             PlayerRef.transform.position.y);

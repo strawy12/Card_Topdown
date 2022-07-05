@@ -35,7 +35,7 @@ public class RockSkill : BuffSkill, IHittable
         
         IKnockback enemy = damageDealer.GetComponent<IKnockback>();
 
-        Vector3 dir = damageDealer.transform.position - PlayerTrm.position;
+        Vector3 dir = damageDealer.transform.position - PlayerRef.transform.position;
         dir.Normalize();
 
         damageDealer.transform.Translate(dir * 10);
@@ -56,5 +56,10 @@ public class RockSkill : BuffSkill, IHittable
     {
         SkillCoolDownTimeCheck = SkillCoolDown;
         StopAllCoroutines();
+    }
+
+    public void GetCrowdCtrl(int types, float amount)
+    {
+
     }
 }

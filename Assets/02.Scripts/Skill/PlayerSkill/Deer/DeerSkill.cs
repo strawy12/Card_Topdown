@@ -45,7 +45,7 @@ public class DeerSkill : AgentSkill, INormalSkill
         {
             IKnockback enemyKnock = enemy.GetComponent<IKnockback>();
 
-            Vector3 forceDir = enemy.transform.position - PlayerTrm.position;
+            Vector3 forceDir = enemy.transform.position - PlayerRef.transform.position;
             forceDir.Normalize();
 
             enemy.transform.Translate(forceDir * _force);
@@ -66,7 +66,7 @@ public class DeerSkill : AgentSkill, INormalSkill
         _agentStateCheck.IsStop = true;
         _isSkillUsing = true;
 
-        Vector2 playerDir = MousePos - PlayerTrm.position;
+        Vector2 playerDir = MousePos - PlayerRef.transform.position;
 
         _rb2D.velocity = playerDir.normalized * distance;
 
