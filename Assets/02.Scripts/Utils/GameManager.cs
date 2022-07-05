@@ -143,6 +143,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetPlayerableCardInfo(string id)
     {
         _dataManager.CurrentPlayer.playerableCardInfoList.Add(id);
+
     }
 
     public void SpawnCardGauge(Vector3 pos, float  amout)
