@@ -8,9 +8,9 @@ public class RangeEnemyAttack : EnemyAttack
 
     private AgentStateCheck _agentStateCheck = null;
 
-    protected override void AwakeChild()
+    protected override void Awake()
     {
-        base.AwakeChild();
+        base.Awake();
         _agentStateCheck = GetComponent<AgentStateCheck>();
     }
 

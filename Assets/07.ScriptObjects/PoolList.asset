@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - prefab: {fileID: 3331124398576119048, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-    poolCnt: 10
+    poolCnt: 50
   - prefab: {fileID: 6303382399656805087, guid: 9df40ff595766144babbb67ffa60ea4e, type: 3}
-    poolCnt: 10
+    poolCnt: 50
   - prefab: {fileID: 8620321401439369767, guid: 1037eb0252536eb45a291d652527cd31, type: 3}
-    poolCnt: 10
+    poolCnt: 50
   - prefab: {fileID: 9054793854889956455, guid: 98bf0ffec1cddf542ac7d197294f24c2, type: 3}
     poolCnt: 10
   - prefab: {fileID: 7535408954211020451, guid: 1ecb8b405f40a904baaddc2877d903aa, type: 3}
-    poolCnt: 10
+    poolCnt: 100
   - prefab: {fileID: 5215987328007452282, guid: 91f548c652f92804f83f3cee991f5994, type: 3}
     poolCnt: 10
   - prefab: {fileID: 8721957713973524147, guid: 255a21d90b67ab14bb195b86ef3e6e7d, type: 3}
     poolCnt: 10
   - prefab: {fileID: 8135281838176177664, guid: 9420387d4cb637e40bfff79eb863815c, type: 3}
-    poolCnt: 1
+    poolCnt: 10
   - prefab: {fileID: 2629356737379706386, guid: da619994d6e6be545918cacad6221ec9, type: 3}
-    poolCnt: 20
+    poolCnt: 30

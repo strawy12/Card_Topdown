@@ -16574,6 +16574,7 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: fc833895bd778024fb8086526f209625, type: 2}
   - {fileID: 11400000, guid: 4f907d3ce00798d4f91187d7789481d4, type: 2}
+  - {fileID: 11400000, guid: 1efe9e5a6052fc042b78482222564d9d, type: 2}
   OnClearAllWaves:
     m_PersistentCalls:
       m_Calls:

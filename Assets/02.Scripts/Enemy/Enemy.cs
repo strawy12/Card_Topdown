@@ -27,15 +27,13 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     {
         if (_isStiff) return;
         if (_agentStateCheck.IsDead == true) return;
-        float critical = Random.value;
-        bool isCritical = false;
+        //float critical = Random.value;
 
-        if(critical <= 0.5f) // 플레이어가 가진 크리티컬 확률 값으로 변경 예정
-        {
-            float ratio = 1.5f; // 플레이어가 가진 크리티컬 추가 데미지로 변경 예정
-            damage = Mathf.CeilToInt((float)damage * ratio);
-            isCritical = true;
-        }
+        //if(critical <= ) // 플레이어가 가진 크리티컬 확률 값으로 변경 예정
+        //{
+        //    float ratio = 1.5f; // 플레이어가 가진 크리티컬 추가 데미지로 변경 예정
+        //    damage = Mathf.CeilToInt((float)damage * ratio);
+        //}
         Health -= damage;   
         HitPoint = damageDealer.transform.position;
         OnGetHit?.Invoke();
