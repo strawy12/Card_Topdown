@@ -150,5 +150,10 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         _isStiff = true;
         yield return new WaitForSeconds(duraction);
         _isStiff = false;
+
+    }
+    public void GetCrowdCtrl(int types, float amount)
+    {
+        return;
     }
 }

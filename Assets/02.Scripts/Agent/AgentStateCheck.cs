@@ -93,4 +93,30 @@ public class AgentStateCheck : MonoBehaviour
                 index--;
         }
     }
+
+    [SerializeField] private int _sheildCnt;
+
+    public bool HaveShield
+    {
+        get
+        {
+            return _sheildCnt > 0;
+        }
+
+        set
+        {
+            if (value)
+            {
+                _sheildCnt++;
+            }
+
+            else
+            {
+                if (_sheildCnt > 0)
+                {
+                    _sheildCnt--;
+                }
+            }
+        }
+    }
 }

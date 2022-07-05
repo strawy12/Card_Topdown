@@ -13,103 +13,33 @@ MonoBehaviour:
   m_Name: CardDataSO
   m_EditorClassIdentifier: 
   _cardDataList:
-  - _cardName: "\uB450\uB8E8\uBBF8"
-    _cardID: H1_1
-    _cardNum: 1
-    _isLight: 1
-    _cardSprite: {fileID: 21300000, guid: ed0fc9f148ff602429ce1bd9f1bf0df1, type: 3}
+  - _cardName: "\uD574"
+    _cardType: 1
+    _cardSprite: {fileID: -6555575649291838755, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
+  - _cardName: "\uC0B0"
+    _cardType: 2
+    _cardSprite: {fileID: -1636742031616846006, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
+  - _cardName: "\uAC15"
+    _cardType: 3
+    _cardSprite: {fileID: -7557494978891415441, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
+  - _cardName: "\uB3CC"
+    _cardType: 4
+    _cardSprite: {fileID: 6220208007999549204, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
+  - _cardName: "\uAD6C\uB984"
+    _cardType: 5
+    _cardSprite: {fileID: -2613411450045547498, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
+  - _cardName: "\uB300\uB098\uBB34"
+    _cardType: 6
+    _cardSprite: {fileID: 6084249756908604392, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uC18C\uB098\uBB34"
-    _cardID: H1_2
-    _cardNum: 1
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: bf7a07166f0b85b4a8fa3572ae75bcc8, type: 3}
-  - _cardName: "\uD718\uD30C\uB78C\uC0C8"
-    _cardID: H2_1
-    _cardNum: 2
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: f1db0f8335bc3bc4ba1c953e07b3d894, type: 3}
-  - _cardName: "\uB9E4\uD654"
-    _cardID: H2_2
-    _cardNum: 2
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 00473409d4a369642b594941ed593945, type: 3}
-  - _cardName: "\uB9C9"
-    _cardID: H3_1
-    _cardNum: 3
-    _isLight: 1
-    _cardSprite: {fileID: 21300000, guid: c2cabd6643155eb4abd46cd7ccc62e15, type: 3}
-  - _cardName: "\uBC9A\uAF43"
-    _cardID: H3_2
-    _cardNum: 3
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 3295c43afe1915048861b06baa38eec9, type: 3}
-  - _cardName: "\uB450\uACAC"
-    _cardID: H4_1
-    _cardNum: 4
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 8deb12779fd70f245b00707c3ef38072, type: 3}
-  - _cardName: "\uB4F1\uB098\uBB34"
-    _cardID: H4_2
-    _cardNum: 4
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: a1c01d1e8ecd7fb4aa52109da7755fd3, type: 3}
-  - _cardName: "\uCC3D\uD3EC"
-    _cardID: H5_1
-    _cardNum: 5
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: f88d6858b99131844bd05bebbea5f776, type: 3}
-  - _cardName: "\uB2E4\uB9AC"
-    _cardID: H5_2
-    _cardNum: 5
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 8a486cfc73fba1e40ab2665d7795705b, type: 3}
-  - _cardName: "\uB098\uBE44"
-    _cardID: H6_1
-    _cardNum: 6
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 82c976ecdd228a4499561cfdacceefa9, type: 3}
-  - _cardName: "\uBAA8\uB780"
-    _cardID: H6_2
-    _cardNum: 6
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: ed412dc4a603a434b94a81e4b506722d, type: 3}
-  - _cardName: "\uBA67\uB3FC\uC9C0"
-    _cardID: H7_1
-    _cardNum: 7
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 6ef66a8ff7f6e6748be1895c25a42333, type: 3}
-  - _cardName: "\uC2F8\uB9AC\uB098\uBB34"
-    _cardID: H7_2
-    _cardNum: 7
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 67fe104b046b98448a8f1162eaeea1b2, type: 3}
-  - _cardName: "\uC77C\uCD9C"
-    _cardID: H8_1
-    _cardNum: 8
-    _isLight: 1
-    _cardSprite: {fileID: 21300000, guid: 1ce3f5e5b2ab3314da3113cf8337393a, type: 3}
-  - _cardName: "\uAE30\uB7EC\uAE30"
-    _cardID: H8_2
-    _cardNum: 8
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 881dbb1a3726cf440903da7592dc6b76, type: 3}
-  - _cardName: "\uC220\uC794"
-    _cardID: H9_1
-    _cardNum: 9
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: f568136127a0d8f4fb6bab69864e1e6c, type: 3}
-  - _cardName: "\uAD6D\uD654"
-    _cardID: H9_2
-    _cardNum: 9
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 50a6ecdead9f88a4eaf8a78c2ca82d21, type: 3}
+    _cardType: 7
+    _cardSprite: {fileID: -6663811380663864060, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
+  - _cardName: "\uAC70\uBD81"
+    _cardType: 8
+    _cardSprite: {fileID: 4800566814532983255, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
+  - _cardName: "\uB450\uB8E8\uBBF8"
+    _cardType: 9
+    _cardSprite: {fileID: -2888899937977690089, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}
   - _cardName: "\uC0AC\uC2B4"
-    _cardID: H10_1
-    _cardNum: 10
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: a298abb5707c70841b4c9a2e3a32b148, type: 3}
-  - _cardName: "\uB2E8\uD48D"
-    _cardID: H10_2
-    _cardNum: 10
-    _isLight: 0
-    _cardSprite: {fileID: 21300000, guid: 71d25237988b0de4ab4bd21bf6d20223, type: 3}
+    _cardType: 10
+    _cardSprite: {fileID: 6034864100499761545, guid: 437ac4c1c14da174d92e4367daf4ac84, type: 3}

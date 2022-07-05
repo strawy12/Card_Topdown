@@ -41,9 +41,9 @@ public class AttackCalculate : MonoBehaviour
     private void StartSpawnEffect()
     {
         AttackStart attackEffect = PoolManager.Inst.Pop(attackEffectName) as AttackStart;
-        Vector2 direction = MousePos - PlayerTrm.position;
+        Vector2 direction = MousePos - PlayerRef.transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        attackEffect.transform.position = new Vector2(PlayerTrm.position.x, PlayerTrm.position.y + 0.75f);
+        attackEffect.transform.position = new Vector2(PlayerRef.transform.position.x, PlayerRef.transform.position.y + 0.75f);
         attackEffect.transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
         attackEffect.transform.position = attackEffect.transform.position - attackEffect.transform.up;
         attackEffect.Attack();

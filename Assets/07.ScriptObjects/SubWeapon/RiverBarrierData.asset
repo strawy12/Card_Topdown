@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45192b4901c08ca4c94e5ccd4ebf2b02, type: 3}
+  m_Name: RiverBarrierData
+  m_EditorClassIdentifier: 
+  delayTime: 30
+  isAttack: 1
+  damageAmount: 3
+  isSpawn: 0
+  prefab: {fileID: 0}
+  isBounce: 0
+  maxGenerateCnt: 0
+  needLifeTime: 1
+  isInfinite: 0
+  lifeTime: 3
+  changeStat: 1
+  changeStatList:
+  - statType: 5
+    statAmount: 3
+  - statType: 1
+    statAmount: 3
+  isCrowdCtrl: 1
+  crowdCtrlTypes: 1
+  crowdCtrlAmount: 2
+  needMove: 0
+  movementSpeed: 0
