@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - CardGauge
+  - SkillCoolDown
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - EnemyBottom
-  - 
+  - Skill
   - 
   - 
   - 

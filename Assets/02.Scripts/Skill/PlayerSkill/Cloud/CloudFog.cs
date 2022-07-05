@@ -12,7 +12,6 @@ public class CloudFog : PoolableMono
     private float time = 0f;
 
     [SerializeField] private float _hitInterval = 1f;
-    [SerializeField] private bool isHit = false;
 
     List<Enemy> enemyList = new List<Enemy>();
 

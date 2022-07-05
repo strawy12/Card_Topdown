@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1467921056712201481}
   - component: {fileID: 1467921056712201485}
   - component: {fileID: 1467921056712201484}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CloudFog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,6 @@ MonoBehaviour:
   increaseDamage: 1
   destroyTime: 5
   _hitInterval: 1
-  isHit: 0
 --- !u!70 &1467921056712201485
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

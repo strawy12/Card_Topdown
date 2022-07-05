@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5863844239166093083}
   - component: {fileID: -1053727900142466272}
   - component: {fileID: 3651842246313952227}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BambooSpear
   m_TagString: Untagged
   m_Icon: {fileID: 0}

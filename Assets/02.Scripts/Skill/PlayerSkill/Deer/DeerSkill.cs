@@ -24,11 +24,15 @@ public class DeerSkill : AgentSkill, INormalSkill
 
     private AgentStateCheck _agentStateCheck = null;
 
+    private SkillDataSO _skillData = null;
+
     private void Awake()
     {
-        _skillCoolDownTimeCheck = _skillCoolDown;
         _agentStateCheck = gameObject.GetComponent<AgentStateCheck>();
         _rb2D = gameObject.GetComponent<Rigidbody2D>();
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        _skillCoolDown = _skillData.SkillCoolDown;
+        SkillCoolDownTimeCheck = SkillCoolDown;
     }
 
     private void Update()

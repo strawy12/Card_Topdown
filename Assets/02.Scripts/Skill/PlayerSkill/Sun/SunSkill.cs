@@ -12,8 +12,12 @@ public class SunSkill : AgentSkill, INormalSkill
 
     public float SkillCoolDownTimeCheck { get; set; }
 
+    private SkillDataSO _skillData = null;
+
     private void Awake()
     {
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        _skillCoolDown = _skillData.SkillCoolDown;
         SkillCoolDownTimeCheck = SkillCoolDown;
     }
 

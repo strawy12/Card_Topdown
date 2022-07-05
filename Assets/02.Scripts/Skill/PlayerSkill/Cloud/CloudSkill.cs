@@ -10,9 +10,13 @@ public class CloudSkill : AgentSkill, INormalSkill
     [SerializeField] private float _skillCoolDownTimeCheck = 0f;
     public float SkillCoolDownTimeCheck { get => _skillCoolDownTimeCheck; set => _skillCoolDownTimeCheck = value; }
 
+    private SkillDataSO _skillData = null;
+
     private void Awake()
     {
-        _skillCoolDownTimeCheck = _skillCoolDown;
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        _skillCoolDown = _skillData.SkillCoolDown;
+        SkillCoolDownTimeCheck = SkillCoolDown;
     }
 
     private void Update()

@@ -4206,6 +4206,7 @@ MonoBehaviour:
       m_Calls: []
   _playerHpBar: {fileID: 7694407429020933616}
   _cardGaugeBar: {fileID: 7694407428121965780}
+  SkillData: {fileID: 11400000, guid: 409a005d841a0904a846584e4f6b7c9d, type: 2}
   _overapDistance: 2
 --- !u!114 &7694407429175439994
 MonoBehaviour:

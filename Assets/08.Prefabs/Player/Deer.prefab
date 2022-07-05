@@ -3730,6 +3730,7 @@ GameObject:
   - component: {fileID: 8188885514336423145}
   - component: {fileID: 8188885514336423151}
   - component: {fileID: 8188885514336423150}
+  - component: {fileID: 9139086301346929413}
   m_Layer: 3
   m_Name: Deer
   m_TagString: Player
@@ -3927,6 +3928,7 @@ MonoBehaviour:
       m_Calls: []
   _playerHpBar: {fileID: 8188885515514602337}
   _cardGaugeBar: {fileID: 8188885515457235525}
+  SkillData: {fileID: 11400000, guid: 0c4e49281a85f94409e661c7d101172e, type: 2}
   _overapDistance: 2
 --- !u!114 &8188885514336423147
 MonoBehaviour:
@@ -4015,13 +4017,13 @@ MonoBehaviour:
   OnESkillButtonPressEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 9139086301346929413}
+        m_TargetAssemblyTypeName: DeerSkill, Assembly-CSharp
+        m_MethodName: SkillUsing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4100,6 +4102,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7289f188e8037e04490ea3c2121af486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9139086301346929413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188885514336423149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703f11c040646ab46b8ae0bf0c661b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillCoolDown: 5
+  _skillCoolDownTimeCheck: 0
+  enemyStopTime: 3
+  distance: 20
+  time: 0.25
+  _radius: 0.5
+  _force: 1
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &8188885514419486661
 GameObject:
   m_ObjectHideFlags: 0

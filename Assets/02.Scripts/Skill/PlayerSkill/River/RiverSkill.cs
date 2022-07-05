@@ -15,8 +15,12 @@ public class RiverSkill : AgentSkill, INormalSkill
 
     [SerializeField] private LayerMask _enemyLayer;
 
+    private SkillDataSO _skillData = null;
+
     private void Awake()
     {
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        _skillCoolDown = _skillData.SkillCoolDown;
         SkillCoolDownTimeCheck = SkillCoolDown;
     }
 

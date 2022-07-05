@@ -12,10 +12,14 @@ public class MountainSkill : AgentSkill, INormalSkill
     public float SkillCoolDownTimeCheck { get; set; }
 
     [SerializeField] private LayerMask _enemyLayer;
-    [SerializeField] private float force = 5f; 
+    [SerializeField] private float force = 5f;
+
+    private SkillDataSO _skillData = null;
 
     private void Awake()
     {
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        _skillCoolDown = _skillData.SkillCoolDown;
         SkillCoolDownTimeCheck = SkillCoolDown;
     }
 

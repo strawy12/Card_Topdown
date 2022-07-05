@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38d201f84d0cd5148b086f5876ae66db, type: 3}
-  m_Name: CloudStatus
+  m_Script: {fileID: 11500000, guid: d547040071c91124fb1f56cb584213e8, type: 3}
+  m_Name: SunSkillData
   m_EditorClassIdentifier: 
-  maxHp: 100
-  attackDamage: 12
-  attackSpeed: 1.2
-  defence: 0
-  criticalPercentage: 0
-  criticalDamage: 200
-  CooldownDecrease: 0
+  SkillCoolDown: 5
+  Damage: 5

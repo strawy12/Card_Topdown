@@ -15,8 +15,12 @@ public class BambooSkill : AgentSkill, INormalSkill
         set => _skillCoolDownTimeCheck = value;
     }
 
+    private SkillDataSO _skillData = null;
+
     private void Awake()
     {
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        _skillCoolDown = _skillData.SkillCoolDown;
         SkillCoolDownTimeCheck = SkillCoolDown;
     }
 

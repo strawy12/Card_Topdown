@@ -4269,6 +4269,7 @@ MonoBehaviour:
       m_Calls: []
   _playerHpBar: {fileID: 7189300694661236796}
   _cardGaugeBar: {fileID: 7189300694338101528}
+  SkillData: {fileID: 11400000, guid: 22a73c0d39e758643911a13041e11679, type: 2}
   _overapDistance: 2
 --- !u!114 &7189300695421102006
 MonoBehaviour:
@@ -4282,6 +4283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f1fcedd8c57dc42a18a736471a1a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillCoolDownUI: {fileID: 0}
   OnPlayerMoveEvent:
     m_PersistentCalls:
       m_Calls:
@@ -4360,6 +4362,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5981400241083871767}
         m_TargetAssemblyTypeName: BambooSkill, Assembly-CSharp
         m_MethodName: SkillUsing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SkillCoolDownUI, Assembly-CSharp
+        m_MethodName: StartTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

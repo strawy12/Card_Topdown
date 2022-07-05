@@ -12,11 +12,14 @@ public class TurtleSkill : AgentSkill, INormalSkill
 
     [SerializeField] private bool isOn = false;
 
+    private SkillDataSO _skillData = null;
+
     private void Awake()
     {
-        _skillCoolDownTimeCheck = _skillCoolDown;
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        _skillCoolDown = _skillData.SkillCoolDown;
+        SkillCoolDownTimeCheck = SkillCoolDown;
     }
-
     private void Update()
     {
         _skillCoolDownTimeCheck += Time.deltaTime;

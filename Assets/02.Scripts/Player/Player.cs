@@ -48,6 +48,8 @@ public class Player : MonoBehaviour, IAgent, IHittable
     [SerializeField]
     private BarUI _cardGaugeBar = null;
 
+    public SkillDataSO SkillData = null;
+
     private void Awake()
     {
         _agentStateCheck = GetComponent<AgentStateCheck>();

@@ -6,6 +6,7 @@ using static UtilDefine;
 
 public class AgentInput : MonoBehaviour
 {
+
     public UnityEvent<Vector2> OnPlayerMoveEvent;
     public UnityEvent<Vector2> OnPlayerMousePointEvent;
     public UnityEvent<Vector2> OnPlayerDashButtonPressEvent;
@@ -16,6 +17,7 @@ public class AgentInput : MonoBehaviour
     private void Update()
     {
         if (GameManager.Inst.OnUI || GameManager.Inst.GameEnd) return;
+
 
         GetMoveInput();
         GetMousePointInput();
@@ -49,6 +51,9 @@ public class AgentInput : MonoBehaviour
     private void GetESkillButtonInput()
     {
         if (Input.GetKeyDown(KeyCode.E))
-            OnESkillButtonPressEvent?.Invoke();     
+        {
+            OnESkillButtonPressEvent?.Invoke();
+            SkillCoolDown.StartTimer();
+        }
     }
 }

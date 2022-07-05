@@ -7,10 +7,13 @@ public class RockSkill : BuffSkill, IHittable
 {
     private Player player = null;
 
+    private SkillDataSO _skillData = null;
+
     protected override void Awake()
     {
-        base.Awake();
-        player = PlayerTrm.GetComponent<Player>();
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        SkillCoolDown = _skillData.SkillCoolDown;
+        SkillCoolDownTimeCheck = SkillCoolDown;
     }
 
     private bool isOn = false;

@@ -1219,7 +1219,6 @@ GameObject:
   - component: {fileID: 806190231169119124}
   - component: {fileID: 806190231169119125}
   - component: {fileID: 806190231169119126}
-  - component: {fileID: 806190231169119127}
   - component: {fileID: 806190231169119112}
   - component: {fileID: 806190231169119113}
   - component: {fileID: 806190231169119114}
@@ -1423,29 +1422,8 @@ MonoBehaviour:
       m_Calls: []
   _playerHpBar: {fileID: 806190229604146178}
   _cardGaugeBar: {fileID: 806190230080025894}
+  SkillData: {fileID: 11400000, guid: 9480b1342126d3c4a80de284dbdbfda4, type: 2}
   _overapDistance: 2
---- !u!114 &806190231169119127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806190231169119118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bac935fc402cee46be8d48893407e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mountainStatus: {fileID: 0}
-  _sunStatus: {fileID: 0}
-  _riverStatus: {fileID: 0}
-  _rockStatus: {fileID: 0}
-  _cloudStatus: {fileID: 0}
-  _bambooStatus: {fileID: 0}
-  _pineStatus: {fileID: 0}
-  _turtleStatus: {fileID: 0}
-  _craneStatus: {fileID: 0}
-  _deerStatus: {fileID: 0}
 --- !u!114 &806190231169119112
 MonoBehaviour:
   m_ObjectHideFlags: 0

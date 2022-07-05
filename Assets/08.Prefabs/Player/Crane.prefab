@@ -2853,6 +2853,7 @@ MonoBehaviour:
       m_Calls: []
   _playerHpBar: {fileID: 7149583744110542748}
   _cardGaugeBar: {fileID: 7149583743078946488}
+  SkillData: {fileID: 11400000, guid: fcb71b1079fac5e4d8b20d0214076cef, type: 2}
   _overapDistance: 2
 --- !u!114 &7149583741991915542
 MonoBehaviour:
@@ -2944,6 +2945,18 @@ MonoBehaviour:
       - m_Target: {fileID: 248899214}
         m_TargetAssemblyTypeName: CraneSkill, Assembly-CSharp
         m_MethodName: Skill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SkillCoolDownUI, Assembly-CSharp
+        m_MethodName: StartTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

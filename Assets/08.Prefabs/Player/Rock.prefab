@@ -2482,6 +2482,7 @@ MonoBehaviour:
         m_CallState: 2
   _playerHpBar: {fileID: 2088076807327083342}
   _cardGaugeBar: {fileID: 2088076807953384042}
+  SkillData: {fileID: 11400000, guid: fab599d9936a42248a4317c86696a95b, type: 2}
   _overapDistance: 2
 --- !u!114 &2088076809043035332
 MonoBehaviour:
@@ -2670,6 +2671,7 @@ MonoBehaviour:
   SkillCoolDown: 5
   SkillDuration: 3
   SkillCoolDownTimeCheck: 0
+  isBuffOn: 0
 --- !u!1 &2146509928623381983
 GameObject:
   m_ObjectHideFlags: 0

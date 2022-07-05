@@ -2357,6 +2357,7 @@ MonoBehaviour:
       m_Calls: []
   _playerHpBar: {fileID: 5981400242709708537}
   _cardGaugeBar: {fileID: 5981400241995831261}
+  SkillData: {fileID: 11400000, guid: da257b23c0af94b4981ffbdefbf49fad, type: 2}
   _overapDistance: 2
 --- !u!114 &5981400240877343091
 MonoBehaviour:
@@ -2542,7 +2543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075c2be890a630843826223ea2244cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillCoolDown: 1
+  _skillCoolDown: 2
   stunTime: 3
   circleRange: 5
   _enemyLayer:

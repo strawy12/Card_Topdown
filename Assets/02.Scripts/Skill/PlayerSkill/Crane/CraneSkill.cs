@@ -10,11 +10,16 @@ public class CraneSkill : BuffSkill
     private BoxCollider2D boxCol2D = null;
 
     List<GameObject> enemy = new List<GameObject>();
+    
+    private SkillDataSO _skillData = null;
 
     protected override void Awake()
     {
         base.Awake();
         boxCol2D = gameObject.GetComponent<BoxCollider2D>();
+        _skillData = gameObject.GetComponent<Player>().SkillData;
+        SkillCoolDown = _skillData.SkillCoolDown;
+        SkillCoolDownTimeCheck = SkillCoolDown;
     }
 
     protected override IEnumerator SkillUsing(float skillDuration)
