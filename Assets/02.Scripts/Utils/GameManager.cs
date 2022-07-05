@@ -69,7 +69,7 @@ public class GameManager : MonoSingleton<GameManager>
         Time.timeScale = onUI ? 0f : 1f;
     }
 
-    public void OnTriggrtGameEnd()
+    public void OnTriggerGameEnd()
     {
         Time.timeScale = 0f;
         GameEnd = true;

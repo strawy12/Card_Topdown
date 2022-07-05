@@ -19,6 +19,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     private bool _isStiff = false;
     public bool IsStiff { get => _isStiff; }
     public bool IsAttacking { get => _enemyAttack._isAttacking;}
+    private WaveController _waveController; 
     public Vector3 HitPoint { get; private set; }
 
     public int _waterStack = 0;
@@ -37,8 +38,6 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         Health -= damage;   
         HitPoint = damageDealer.transform.position;
         OnGetHit?.Invoke();
-        //DamagePopup popup = Instantiate(new DamagePopup());
-        //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
         _hpBar?.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
         if(!_enemyData.haveSuperAmmor)
         Staff(0.1f);
@@ -53,6 +52,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     }
     private void Awake()
     {
+        _waveController = FindObjectOfType<WaveController>();
         _agentMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
@@ -104,6 +104,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     public void Die()
     {
         _agentStateCheck.IsDead = true;
+        _waveController.RemainEnemy--;
         OnDie?.Invoke();
         PoolManager.Inst.Push(this);
 
