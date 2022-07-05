@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a90a539f2cc464fa0d682b1406865e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
   targetSpotted: 0
   arrived: 0
 --- !u!114 &6455075624808730594
@@ -403,6 +402,7 @@ MonoBehaviour:
   OnVectorChange:
     m_PersistentCalls:
       m_Calls: []
+  _isKnockback: 0
 --- !u!50 &3331124398576119049
 Rigidbody2D:
   serializedVersion: 4
@@ -551,6 +551,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _waterStack: 0
 --- !u!114 &5291222363545832132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdfe8cb50b92984090e1ba833902780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAttacking: 0
   AttackFeedback:
     m_PersistentCalls:
       m_Calls:
@@ -578,7 +580,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  attackBoxSize: {x: 0, y: 0}
+  attackBoxSize: {x: 1, y: 1}
   pos: {fileID: 5291222364159382062}
 --- !u!70 &3331124399031841769
 CapsuleCollider2D:
@@ -612,6 +614,8 @@ MonoBehaviour:
   _isDashing: 0
   _isStop: 0
   _isInvincibility: 0
+  _isAttack: 0
+  _sheildCnt: 0
 --- !u!1 &3373700967275483603
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 8
+  distance: 20
 --- !u!1 &3449085977354878971
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 8
+  distance: 20
 --- !u!1 &4393737498888965808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,7 +1064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.8
+  distance: 0.5
 --- !u!1 &5291222365153205545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,7 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.8
+  distance: 0.5
 --- !u!1 &9091929693920888711
 GameObject:
   m_ObjectHideFlags: 0
