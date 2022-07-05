@@ -942,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initList: {fileID: 11400000, guid: b74ebd3845ca79249a9f9b7420d83727, type: 2}
   _cardDataSO: {fileID: 11400000, guid: fb324694ec5e34e449257998de7c135e, type: 2}
-  _monsterPref: {fileID: 0}
+  GameEnd: 0
 --- !u!4 &1695323315
 Transform:
   m_ObjectHideFlags: 0

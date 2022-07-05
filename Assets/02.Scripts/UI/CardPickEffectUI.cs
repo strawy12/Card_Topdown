@@ -13,8 +13,6 @@ public class CardPickEffectUI : MonoBehaviour
     {
         _rectTransform = GetComponent<RectTransform>();
         _outlineEffect = GetComponent<CardOutLineEffect>();
-        EventManager.StartListening(Constant.TRIGGER_PICK_CARD, StartEffect);
-        EventManager.StartListening(Constant.OPEN_INVENTORY, ResetUI);
         ResetUI();
     }
 

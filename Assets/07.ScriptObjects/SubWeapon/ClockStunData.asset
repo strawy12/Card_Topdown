@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45192b4901c08ca4c94e5ccd4ebf2b02, type: 3}
+  m_Name: ClockStunData
+  m_EditorClassIdentifier: 
+  isAttack: 0
+  damageAmount: 0
+  isSummon: 1
+  isBounce: 0
+  maxGenerateCnt: 0
+  needLifeTime: 1
+  isInfinite: 0
+  lifeTime: 0
+  isLoop: 0
+  delayTime: 0
+  changeStat: 0
+  statType: 0
+  statAmount: 0
+  isCrowdCtrl: 0
+  crowdCtrlType: 0
+  crowdCtrlAmount: 0
+  needMove: 0
+  movementSpeed: 0

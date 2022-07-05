@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using System;
+using Object = UnityEngine.Object;
 
 public class UtilDefine
 {
+   
     public enum EButtonStyle
     {
         None = -1,
@@ -34,15 +36,16 @@ public class UtilDefine
         }
     }
 
-    private static Transform _playerTrm;
+    private static Player _player;
 
-    public static Transform PlayerTrm
+    public static Player PlayerRef
     {
         get
         {
-            if (_playerTrm == null)
-                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
-            return _playerTrm;
+            if (_player == null)
+                _player = GameObject.FindObjectOfType<Player>();
+
+            return _player;
         }
     }
 
@@ -76,163 +79,28 @@ public class UtilDefine
     {
         return (value * 100) / percent;
     }
-}
 
-public class GenealogyDefine
-{
-    public enum EGenealogy
+    public static bool CompareValue<T>(T value, T[] values) where T : IComparable
     {
-        None = -1,
-        Rest,
-        Pair,
-        GuSa,
-        PairHunter,
-        ESibal,
-        SeRyuk,
-        Jangsa,
-        BBing,
-        Doksa,
-        Ali,
-        GabO,
-        Mangtong,
-        LightPair
-    };
-
-    public enum ESynergy
-    {
-        None = -1,
-        Rest,
-        Pair,
-        LightPair,
-        Middle,
-        Special,
-        Mangtong,
-        Count
-    }
-
-    private static Dictionary<EGenealogy, string> _pedigreInfoDict;
-    private static string[] _cardInfoDatas;
-    private static Dictionary<int, string> _numberToStringArray;
-
-    public static string NumberToString(int num)
-    {
-        if (num > 10 || num < 1)
+        foreach (var compareValue in values)
         {
-            return "";
+            if (value.CompareTo(compareValue) == 0)
+            {
+                return true;
+            }
         }
 
-        num--;
-        if (_numberToStringArray == null)
-        {
-            InitNumberToStringArray();
-        }
-
-
-        return _numberToStringArray[num];
+        return false;
     }
 
-    public static string LightDDangToString(int num)
+    public static bool CompareValue<T>(T value, T value2) where T : IComparable
     {
-        switch(num)
+        if (value.CompareTo(value2) == 0)
         {
-
-            case 4:
-                return "ÀÏ»ï";
-
-            case 9:
-                return "ÀÏÆÈ";
-
-            case 11:
-                return "»ïÆÈ";
+            return true;
         }
 
-        return "";
-    }
-
-    public static string GetCardInfo(int num)
-    {
-        if (num > 10 || num < 1)
-        {
-            return "";
-        }
-
-        num--;
-
-        if (_cardInfoDatas == null)
-        {
-            InitCardInfoDatas();
-        }
-
-
-
-        return _cardInfoDatas[num];
-    }
-
-    public static string GetGenealogyInfo(EGenealogy Genealogy)
-    {
-        if (_pedigreInfoDict == null)
-        {
-            InitGenealogyInfoDict();
-        }
-
-        if (!_pedigreInfoDict.ContainsKey(Genealogy))
-        {
-            return null;
-        }
-
-        return _pedigreInfoDict[Genealogy];
-    }
-
-    
-
-    private static void InitNumberToStringArray()
-    {
-        _numberToStringArray = new Dictionary<int, string>();
-
-        _numberToStringArray.Add(0, "ÀÏ");
-        _numberToStringArray.Add(1, "ÀÌ");
-        _numberToStringArray.Add(2, "»ï");
-        _numberToStringArray.Add(3, "»ç");
-        _numberToStringArray.Add(4, "¿À");
-        _numberToStringArray.Add(5, "À°");
-        _numberToStringArray.Add(6, "Ä¥");
-        _numberToStringArray.Add(7, "ÆÈ");
-        _numberToStringArray.Add(8, "±¸");
-        _numberToStringArray.Add(9, "Àå");
-    }
-
-        private static void InitGenealogyInfoDict()
-    {
-        _pedigreInfoDict = new Dictionary<EGenealogy, string>();
-        _pedigreInfoDict.Add(EGenealogy.Pair, "¶¯");
-        _pedigreInfoDict.Add(EGenealogy.PairHunter, "¶¯ÀâÀÌ");
-        _pedigreInfoDict.Add(EGenealogy.Rest, "²ý");
-        _pedigreInfoDict.Add(EGenealogy.SeRyuk, "¼¼·ú");
-        _pedigreInfoDict.Add(EGenealogy.Ali, "¾Ë¸®");
-        _pedigreInfoDict.Add(EGenealogy.BBing, "»æ");
-        _pedigreInfoDict.Add(EGenealogy.Doksa, "µ¶»ç");
-        _pedigreInfoDict.Add(EGenealogy.ESibal, "¾ÏÇà¾î»ç");
-        _pedigreInfoDict.Add(EGenealogy.GabO, "°©¿À");
-        _pedigreInfoDict.Add(EGenealogy.GuSa, "±¸»ç");
-        _pedigreInfoDict.Add(EGenealogy.Jangsa, "Àå»ç");
-        _pedigreInfoDict.Add(EGenealogy.LightPair, "±¤¶¯");
-        _pedigreInfoDict.Add(EGenealogy.Mangtong, "¸ÁÅë");
-    }
-
-    private static void InitCardInfoDatas()
-    {
-        _cardInfoDatas = new string[10];
-
-        _cardInfoDatas[0] = "¼Ö";
-        _cardInfoDatas[1] = "¸ÅÁ¶";
-        _cardInfoDatas[2] = "»çÄí¶ó";
-        _cardInfoDatas[3] = "Èæ½Î¸®";
-        _cardInfoDatas[4] = "ÃÊ";
-        _cardInfoDatas[5] = "¸ñ´Ü";
-        _cardInfoDatas[6] = "È«½Î¸®";
-        _cardInfoDatas[7] = "°ø»ê";
-        _cardInfoDatas[8] = "±¹Áø";
-        _cardInfoDatas[9] = "Ç³";
+        return false;
     }
 }
 
@@ -268,6 +136,7 @@ public static class Constant
     public const string          CLOSE_MESSAGE = "CL_MS";
 
     public const string       MESSAGE_MOUNTING = "Á¤¸»·Î ÀåÂøÇÏ½Ã°Ú½À´Ï±î?";
+    public const string       MESSAGE_ENFORCE = "Á¤¸»·Î °­È­ÇÏ½Ã°Ú½À´Ï±î??";
 
     public const string         OPEN_INVENTORY = "OP_IV";
     public const string    PLAYER_ATTACK_START = "PL_AT_ST";

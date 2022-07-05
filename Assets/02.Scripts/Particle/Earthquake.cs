@@ -20,7 +20,7 @@ public class Earthquake : PoolableMono
     public void SapwnEffect(Enemy enemy, Vector2 attackpos)   
     {
         _enemy = enemy;
-        transform.position = new Vector2(attackpos.x, attackpos.y);
+        transform.position = attackpos;
         _animator.Play("Earthquake");
         _audioSource.Play();
     }

@@ -5,12 +5,13 @@ using UnityEngine;
 public class CheckAttackDecision : AIDecision
 {
     private Enemy _enemy;
-    protected override void ChildAwake()
+    protected override void Awake()
     {
+        base.Awake();
         _enemy = GetComponentInParent<Enemy>();
     }
     public override bool MakeDecision()
     {
-        return _enemy.IsAttacking;
+        return !_enemy.IsAttacking;
     }
 }

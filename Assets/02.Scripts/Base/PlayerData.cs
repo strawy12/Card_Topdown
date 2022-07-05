@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static GenealogyDefine;
 
 public class PlayerStat
 {
@@ -24,11 +23,14 @@ public class PlayerData
 
     public bool isTutorial;
 
+    public List<string> playerableCardInfoList;
+
     public PlayerData(float soundVolume)
     {
         effectSoundVolume = soundVolume;
         bgmSoundVolume = soundVolume;
         isTutorial = false;
+        playerableCardInfoList = new List<string>(); 
     }
 
 }

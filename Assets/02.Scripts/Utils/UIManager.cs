@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     public void TriggerMessage(string message, ButtonStyle btnStyle, ButtonStyle btnStyle2 = null)
     {
+        Debug.Log("dd");
         _messagePanal.ShowMessagePanal(message, btnStyle, btnStyle2);
     }
 

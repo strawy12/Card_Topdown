@@ -15,23 +15,16 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public bool _isAttacking = false; // 현재 공격중인가?
     public UnityEvent AttackFeedback;
-    private void Awake()
+    protected virtual void Awake()
     {
         _enemy = GetComponent<Enemy>();
         _enemyBrain = GetComponent<EnemyAIBrain>();
-
-        AwakeChild();
-    }
-    protected virtual void AwakeChild()
-    {
-        //do nothing here!
     }
     protected IEnumerator WaitBeforeAttackCoroutine()
     {
         _waitBeforeNextAttack = true;
         yield return new WaitForSeconds(_enemy.EnemyData.attackDelay);
         _waitBeforeNextAttack = false;
-        _isAttacking = false;
     }
     public void Reset()
     {

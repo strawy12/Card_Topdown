@@ -26,11 +26,11 @@ public class WorldScrolling : MonoBehaviour
 
     private void Update()
     {
-        playerTilePos.x = (int)(PlayerTrm.position.x / tileSize);
-        playerTilePos.y = (int)(PlayerTrm.position.y / tileSize);
+        playerTilePos.x = (int)(PlayerRef.transform.position.x / tileSize);
+        playerTilePos.y = (int)(PlayerRef.transform.position.y / tileSize);
 
-        playerTilePos.x -= PlayerTrm.position.x < 0 ? 1 : 0;
-        playerTilePos.y -= PlayerTrm.position.y < 0 ? 1 : 0;
+        playerTilePos.x -= PlayerRef.transform.position.x < 0 ? 1 : 0;
+        playerTilePos.y -= PlayerRef.transform.position.y < 0 ? 1 : 0;
 
         if (currentTilePos != playerTilePos)
         {

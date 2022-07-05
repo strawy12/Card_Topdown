@@ -16,8 +16,8 @@ MonoBehaviour:
   sprite: {fileID: -8262534425414574923, guid: af2919ad7bda76b4b9de4e8cc92ad5d7, type: 3}
   animatorController: {fileID: 9100000, guid: c55b8703b995dad499bbd0c4297f7d57, type: 2}
   damage: 5
-  speed: 5
+  speed: 7
   material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  lifeTime: 2
+  lifeTime: 2.5
   particlePrefab: {fileID: 4894952050934284314, guid: 91f548c652f92804f83f3cee991f5994, type: 3}
   _explosionRange: 0.5

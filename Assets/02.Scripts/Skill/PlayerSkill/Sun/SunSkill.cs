@@ -31,10 +31,10 @@ public class SunSkill : AgentSkill, INormalSkill
         if (SkillCoolDown > SkillCoolDownTimeCheck) return;
         SkillCoolDownTimeCheck = 0f;
         PoolableMono raser =  PoolManager.Inst.Pop("RaserParent");
-        Vector3 dir = MousePos - PlayerTrm.position;
+        Vector3 dir = MousePos - PlayerRef.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         raser.transform.rotation = Quaternion.AngleAxis(angle-90, Vector3.forward);
-        raser.transform.position = PlayerTrm.position;
+        raser.transform.position = PlayerRef.transform.position;
         StartCoroutine(ShootRazer(raser));
     }
 

@@ -95,7 +95,7 @@ public class AgentStateCheck : MonoBehaviour
                 attackIndex--;
         }
     }
-
+    
     public void StateReset()
     {
         stopIndex = 0;
@@ -107,5 +107,31 @@ public class AgentStateCheck : MonoBehaviour
         _isDead = false;
         _isInvincibility = false;
         _isStop = false;
+    }
+
+    [SerializeField] private int _sheildCnt;
+
+    public bool HaveShield
+    {
+        get
+        {
+            return _sheildCnt > 0;
+        }
+
+        set
+        {
+            if (value)
+            {
+                _sheildCnt++;
+            }
+
+            else
+            {
+                if (_sheildCnt > 0)
+                {
+                    _sheildCnt--;
+                }
+            }
+        }
     }
 }

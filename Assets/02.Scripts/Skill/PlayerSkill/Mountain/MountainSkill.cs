@@ -37,7 +37,7 @@ public class MountainSkill : AgentSkill, INormalSkill
         {
             IKnockback enemyKnock = enemy.GetComponent<IKnockback>();
 
-            Vector3 forceDir = enemy.transform.position - PlayerTrm.position;
+            Vector3 forceDir = enemy.transform.position - PlayerRef.transform.position;
             forceDir.Normalize();
 
             enemy.transform.Translate(forceDir * force);

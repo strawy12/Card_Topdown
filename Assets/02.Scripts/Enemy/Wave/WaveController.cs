@@ -29,7 +29,6 @@ public class WaveController : MonoBehaviour
             }            
         }
     }
-    private bool isWaveProcessing = false;
     #endregion
 
     private void Start()
@@ -65,7 +64,7 @@ public class WaveController : MonoBehaviour
             }
             yield return new WaitForSeconds(pattern.nextPatternDelay);
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         StartWave();
     }
 
@@ -86,6 +85,8 @@ public class WaveController : MonoBehaviour
             posY = posY == 1 ? posY = 0.99f : posY;
         }
         Vector2 pos = Camera.main.ViewportToWorldPoint(new Vector2(posX, posY));
+        pos.x = Mathf.Clamp(pos.x,-180, 215);
+        pos.y = Mathf.Clamp(pos.y, -125, 125);
         return pos;
     }
 

@@ -11,7 +11,6 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     private EnemyAttack _enemyAttack;
     public BarUI _hpBar;
     public float Health { get; private set; }
-    private WaveController _waveController;
     private AgentStateCheck _agentStateCheck;
 
     [field: SerializeField] public UnityEvent OnDie { get; set; }
@@ -20,9 +19,9 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     private bool _isStiff = false;
     public bool IsStiff { get => _isStiff; }
     public bool IsAttacking { get => _enemyAttack._isAttacking;}
+    private WaveController _waveController; 
     public Vector3 HitPoint { get; private set; }
 
-    [SerializeField]
     public int _waterStack = 0;
     public int WaterStack
     {
@@ -40,20 +39,9 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     {
         if (_isStiff) return;
         if (_agentStateCheck.IsDead == true) return;
-        float critical = Random.value;
-        bool isCritical = false;
-
-        if(critical <= 0.5f) // 플레이어가 가진 크리티컬 확률 값으로 변경 예정
-        {
-            float ratio = 1.5f; // 플레이어가 가진 크리티컬 추가 데미지로 변경 예정
-            damage = Mathf.CeilToInt((float)damage * ratio);
-            isCritical = true;
-        }
         Health -= damage;   
         HitPoint = damageDealer.transform.position;
         OnGetHit?.Invoke();
-        //DamagePopup popup = Instantiate(new DamagePopup());
-        //popup.Setup(damage, transform.position + new Vector3(0, 0.5f, 0), isCritical);
         _hpBar?.GaugeBarGaugeSetting(Health/_enemyData.maxHealth);
         if(!_enemyData.haveSuperAmmor)
         Staff(0.1f);
@@ -62,16 +50,16 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
             _agentStateCheck.IsDead = true;
             _agentMove.StopImmediatelly();
             _agentMove.enabled = false;
-            OnDie?.Invoke();
+            Die();
             //_waveController.RemainEnemy--;
         }
     }
     private void Awake()
     {
+        _waveController = FindObjectOfType<WaveController>();
         _agentMove = GetComponent <AgentMove>();
         _enemyAttack = GetComponent<EnemyAttack>();
         _agentStateCheck = GetComponent<AgentStateCheck>();
-        _waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
         _hpBar = transform.Find("HpBar").GetComponent<BarUI>();
     }
     public void EnemyAttack()
@@ -87,6 +75,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         _agentStateCheck.IsStop = false;
         _agentStateCheck.IsDead = false;
         _agentMove.enabled = true;
+        _isStiff = false;
     }
     private void Start()
     {
@@ -120,6 +109,8 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     public void Die()
     {
         _agentStateCheck.IsDead = true;
+        _waveController.RemainEnemy--;
+        OnDie?.Invoke();
         PoolManager.Inst.Push(this);
 
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
@@ -164,5 +155,10 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         _isStiff = true;
         yield return new WaitForSeconds(duraction);
         _isStiff = false;
+
+    }
+    public void GetCrowdCtrl(int types, float amount)
+    {
+        return;
     }
 }
