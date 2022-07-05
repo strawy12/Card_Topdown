@@ -3,6 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ECardType
+{
+    None,
+    Sun,
+    Mountain,
+    River,
+    Rock,
+    Cloud,
+    Bamboo,
+    Pine,
+    Turtle,
+    Crane,
+    Deer
+}
+
 [System.Serializable]
 public class CardData
 {
@@ -10,23 +25,19 @@ public class CardData
     [SerializeField] private string _cardName;
 
     [Header("카드 데이터")]
-    [SerializeField] private string _cardID;
-    [SerializeField] private int _cardNum;
-    [SerializeField] private bool _isLight;
+    [SerializeField] private ECardType _cardType;
     [SerializeField] private Sprite _cardSprite;
 
-    public string ID { get => _cardID; set => _cardID = value; }
-    public int CardNum { get => _cardNum; }
+    public string ID { get => _cardType.ToString(); }
+    public int CardNum { get => (int)_cardType; }
     public Sprite CardSprite { get => _cardSprite; }
-    public bool IsLight { get => _isLight; }
 
 
     public CardData(CardData cardData)
     {
-        _cardID = cardData._cardID;
         _cardName = cardData._cardName;
         _cardSprite = cardData._cardSprite;
-        _cardNum = cardData._cardNum;
+        _cardType = cardData._cardType;
     }
 }
 

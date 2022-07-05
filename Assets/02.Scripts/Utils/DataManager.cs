@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
-using static GenealogyDefine;
 using UnityEngine.Networking;
 using System.Text.RegularExpressions;
 
@@ -45,14 +44,6 @@ public class DataManager : MonoBehaviour
        // }
        // SaveToJson();
        // SaveToJson();
-    }
-
-    public void SetGenealogyData(GenealogyData data)
-    {
-        //if (player.GenealogyCnt >= 5) return;
-
-        //player.genealogyDatas[player.GenealogyCnt] = data;
-        //player.SetPlayerSynergy(data);
     }
 
     public void SaveToJson()
@@ -106,9 +97,8 @@ public class DataManager : MonoBehaviour
                 synergyInfo.Add(SetSynergyInfoList(column, j, maxLevel));
             }
 
-            synergyInfo.type = (ESynergy)rowCnt;
 
-            _synergyInfoDataSO[rowCnt] = synergyInfo;
+            //_synergyInfoDataSO[rowCnt] = synergyInfo;
 
             rowCnt++;
         }
@@ -133,11 +123,6 @@ public class DataManager : MonoBehaviour
         }
 
         return dataList;
-    }
-
-    public int GetSynergyInfoData(ESynergy type, int idx, int level)
-    {
-        return _synergyInfoDataSO[type][idx][level - 1];
     }
 
     private void OnDestroy()

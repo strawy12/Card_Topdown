@@ -110,6 +110,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
 
+<<<<<<< HEAD
     public void CheckWaterStack(float stunTime)
     {
         if (_waterStack >= 3)
@@ -149,5 +150,10 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         _isStiff = true;
         yield return new WaitForSeconds(duraction);
         _isStiff = false;
+=======
+    public void GetCrowdCtrl(int types, float amount)
+    {
+        throw new System.NotImplementedException();
+>>>>>>> OIF
     }
 }
