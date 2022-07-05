@@ -21,6 +21,7 @@ public class WaveController : MonoBehaviour
         get => remainEnemy;
         set
         {
+            Debug.Log(remainEnemy);
             remainEnemy = value;
             if (remainEnemy <= 0 && isClearAllwaved)
             {
