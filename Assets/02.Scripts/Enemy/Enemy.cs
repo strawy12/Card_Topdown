@@ -60,6 +60,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     }
     public override void Reset()
     {
+        StopAllCoroutines();
         ResetHP();
         _agentStateCheck.IsStop = false;
         _agentStateCheck.IsDead = false;

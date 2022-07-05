@@ -9,7 +9,6 @@ public class WaveController : MonoBehaviour
     public List<WaveDataSO> waves;
 
     public UnityEvent OnClearAllWaves;
-    public UnityEvent OnWaveEnded;
 
     #region wave를 순서대로 나오게 하기 위한값
     //해당 부분은 웨이브가 랜덤으로 바뀌거나, 순서가 사라지면 수정될 수 있음.
@@ -51,7 +50,6 @@ public class WaveController : MonoBehaviour
     }
     public IEnumerator StartWavePattern()
     {
-        //isWaveProcessing = true;
         foreach (WavePattern pattern in wavesArr[waveIndex -1].patterns)
         {
             if (GameManager.Inst.GameEnd) yield break;

@@ -363,6 +363,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 866101270}
+        m_TargetAssemblyTypeName: EnemyAttack, Assembly-CSharp
+        m_MethodName: EndOfAttackAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   HittableAttackAnimation:
     m_PersistentCalls:
       m_Calls: []
@@ -423,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
+  distance: 6
 --- !u!114 &5343007518600721755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
+  distance: 10
 --- !u!1 &4031450938933409723
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,7 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e08f88e2453546bf921b148e43849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 8
+  distance: 10
 --- !u!1 &6043253566961822967
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +1006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a90a539f2cc464fa0d682b1406865e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
   targetSpotted: 0
   arrived: 0
 --- !u!1 &8620321401439369762
@@ -1221,7 +1232,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  IsStiff: 0
+  _waterStack: 0
 --- !u!70 &8620321400849458374
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1255,6 +1266,7 @@ MonoBehaviour:
   _isStop: 0
   _isInvincibility: 0
   _isAttack: 0
+  _sheildCnt: 0
 --- !u!114 &866101270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67adb19719d22994a953b1ccbbc367e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAttacking: 0
   AttackFeedback:
     m_PersistentCalls:
       m_Calls:
