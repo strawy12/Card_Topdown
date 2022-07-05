@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7150850122438558507}
   - component: {fileID: 7150850122438558505}
   - component: {fileID: 7150850122438558506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Raser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7150850123677165950}
   - component: {fileID: 8241756795207369316}
   - component: {fileID: 8721957713973524147}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RaserParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

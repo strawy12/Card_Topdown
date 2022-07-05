@@ -2,33 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BuffSkill : AgentSkill
+public class BuffSkill : AgentSkill
 {
-    protected enum BuffSkillState
-    {
-        READY,
-        ING,
-        WAIT
-    }
-
-    [field: SerializeField] protected virtual float SkillCoolDown { get; set; }
-    [field: SerializeField] protected virtual float SkillDuration { get; set; }
-    [field: SerializeField] protected virtual float skillCoolDownTimeCheck { get; set; }
+    public float SkillCoolDown;
+    public float SkillDuration;
+    public float SkillCoolDownTimeCheck;
+    public bool isBuffOn = false;
 
     protected virtual void Awake()
     {
-        ChildAwake();
+        SkillCoolDownTimeCheck = SkillCoolDown;
     }
 
-
-
-    protected virtual void ChildAwake()
+    protected virtual void Update()
     {
-
+        SkillCoolDownTimeCheck += Time.deltaTime;
     }
 
     protected virtual IEnumerator SkillUsing(float skillDuration)
     {
+        // 버프 내용
         yield return new WaitForSeconds(skillDuration);
+        // 버프 끝날 때
     }
 }

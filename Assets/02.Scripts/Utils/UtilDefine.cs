@@ -49,6 +49,18 @@ public class UtilDefine
         }
     }
 
+    private static SkillCoolDownUI _skillCoolDown;
+
+    public static SkillCoolDownUI SkillCoolDown
+    {
+        get
+        {
+            if (_skillCoolDown == null)
+                _skillCoolDown = GameObject.FindGameObjectWithTag("SkillCoolDown").GetComponent<SkillCoolDownUI>();
+            return _skillCoolDown;
+        }
+    }
+
     private static CinemachineVirtualCamera _cmVCam = null;
     
     public static CinemachineVirtualCamera VCam

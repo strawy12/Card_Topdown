@@ -41,6 +41,8 @@ public class Player : MonoBehaviour, IAgent, IHittable
 
     [field: SerializeField]
     public UnityEvent OnGetHit { get; set; }
+    [field: SerializeField]
+    public UnityEvent<float, GameObject> OnGetHitDealer { get; set; }
 
 
     [SerializeField]
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour, IAgent, IHittable
 
     [SerializeField]
     private BarUI _cardGaugeBar = null;
+
+    public SkillDataSO SkillData = null;
 
     private void Awake()
     {
@@ -72,7 +76,6 @@ public class Player : MonoBehaviour, IAgent, IHittable
         CardGaugeCheck();
     }
 
-    //TODO Agent Shield ¸¸µé±â
 
     public void PushHitShieldStack(Action<float, GameObject> hitAction)
     {
@@ -129,6 +132,7 @@ public class Player : MonoBehaviour, IAgent, IHittable
     {
         Health -= damage;
         OnGetHit?.Invoke();
+        OnGetHitDealer?.Invoke(damage, gameObject);
         _playerHpBar.GaugeBarGaugeSetting(_health / _initHp);
 
         if (Health <= 0)

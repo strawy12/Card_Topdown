@@ -10,6 +10,7 @@ public class PlayerStat
     public float criticalPercent;
     public float criticalDamage;
     public float CooldownDecrease;
+    public float maxSpeed;
 }
 
 

@@ -49,7 +49,8 @@ public class AttackStart : PoolableMono
         {
             IHittable hitable = enemy.GetComponent<IHittable>();
             // 데미지는 스테이터스에서 받아올거임
-            hitable.GetHit(damage: 5, damageDealer: gameObject);
+            float damage = PlayerStatusManager.Inst.DynamicPlayerStatus.attackDamage;
+            hitable.GetHit(damage: damage, damageDealer: gameObject);
         }
     }
 
