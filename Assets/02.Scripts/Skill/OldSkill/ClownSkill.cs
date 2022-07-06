@@ -94,7 +94,7 @@ public class ClownSkill : OnOffSkill
         _dynamicPlayerStatus.criticalDamage -= _criticalDamageChangeValue;
     }
 
-    protected override void Reset() // 캐릭터 바꿀 때 할듯?
+    public override void Reset() // 캐릭터 바꿀 때 할듯?
     {
         ResetStatus();
         ResetSkill();

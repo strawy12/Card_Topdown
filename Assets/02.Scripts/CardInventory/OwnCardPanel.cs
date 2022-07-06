@@ -22,7 +22,7 @@ public class OwnCardPanel : CardPanel, IPointerDownHandler
 
     public override void ChangeCard(CardData cardData, bool isEffect = true)
     {
-        if (!_isEmpty && _currentCardData.ID.Equals(cardData.ID))
+        if (!IsEmpty && _currentCardData.ID.Equals(cardData.ID))
         {
             _currentCount++;
             SetCountText();

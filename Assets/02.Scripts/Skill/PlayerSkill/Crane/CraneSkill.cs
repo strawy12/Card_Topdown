@@ -54,7 +54,7 @@ public class CraneSkill : BuffSkill
         }
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         base.Reset();
         boxCol2D.enabled = true;

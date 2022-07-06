@@ -44,7 +44,7 @@ public class RiverSkill : AgentSkill, INormalSkill
         }
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         SkillCoolDownTimeCheck = SkillCoolDown;
         StopAllCoroutines();

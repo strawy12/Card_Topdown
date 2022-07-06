@@ -28,6 +28,7 @@ public class CardData
     [SerializeField] private ECardType _cardType;
     [SerializeField] private Sprite _cardSprite;
 
+    public string Name => _cardName;
     public string ID { get => _cardType.ToString(); }
     public int CardNum { get => (int)_cardType; }
     public Sprite CardSprite { get => _cardSprite; }

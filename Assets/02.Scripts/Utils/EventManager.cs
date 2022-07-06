@@ -93,6 +93,7 @@ public class PEventManager
         Action<Param> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
+            Debug.Log(11);
             thisEvent?.Invoke(param);
         }
         EventManager.TriggerEvent(eventName);

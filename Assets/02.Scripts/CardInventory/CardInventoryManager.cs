@@ -125,10 +125,19 @@ public class CardInventoryManager : MonoSingleton<CardInventoryManager>
 
         CardData card = GameManager.Inst.GetRandomCardData();
 
-        foreach (var panel in _cardPanelList)
+        for (int i = 0; i < _cardPanelList.Count; i++)
         {
+            var panel = _cardPanelList[i];
             if (panel.IsEmpty)
             {
+                if(panel.Idx % 2 == 1 )
+                {
+                    while(_cardPanelList[i - 1].CurrentCardData.ID.Equals(card.ID))
+                    {
+                        card = GameManager.Inst.GetRandomCardData();
+                    }
+                }
+
                 panel.ChangeCard(card);
                 return;
             }
@@ -274,7 +283,6 @@ public class CardInventoryManager : MonoSingleton<CardInventoryManager>
 
     public void SetCanEnforceCard(bool canEnforce)
     {
-        Debug.Log(canEnforce);
         _canEnforceCard = canEnforce;
     }
 }
