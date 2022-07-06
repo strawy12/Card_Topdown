@@ -3046,7 +3046,6 @@ GameObject:
   - component: {fileID: 5323689346904786051}
   - component: {fileID: 5323689346904786048}
   - component: {fileID: 5323689346904786054}
-  - component: {fileID: 5323689346904786055}
   - component: {fileID: 5323689346904786049}
   m_Layer: 3
   m_Name: Sun
@@ -3243,6 +3242,9 @@ MonoBehaviour:
   <OnGetHitDealer>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  <OnChangeCharacterEvent>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
   _playerHpBar: {fileID: 5323689346858035976}
   _cardGaugeBar: {fileID: 5323689345880441388}
   SkillData: {fileID: 11400000, guid: d3afc2214dd703440a496c87a11c3aa0, type: 2}
@@ -3346,6 +3348,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnChangeCharacterEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5323689346904786051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3410,19 +3415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b17e1cab464bac449f3879366d75e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5323689346904786055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5323689346904786052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7289f188e8037e04490ea3c2121af486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _subWeapons: []
 --- !u!114 &5323689346904786049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4345,8 +4337,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -637255433
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 429ffc0603bf0904da91920a33218ef4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -5441,7 +5433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7670207007097829899}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.3, y: 22.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1876513281267992305}
@@ -5469,7 +5461,6 @@ MonoBehaviour:
   - {fileID: 320066737440956749}
   - {fileID: 5007484403626586552}
   - {fileID: 6803930934377840170}
-  - {fileID: 7373676615476120823}
 --- !u!1 &7919602176281426388
 GameObject:
   m_ObjectHideFlags: 0

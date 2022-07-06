@@ -188,5 +188,9 @@ public class Player : MonoBehaviour, IAgent, IHittable
         }
     }
 
-    
+    public void OnDestroy()
+    {
+        PEventManager.StopListening(Constant.ADD_CARD_GAUGE, AddCardGauge);
+    }
+
 }
