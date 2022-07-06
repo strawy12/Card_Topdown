@@ -18,6 +18,6 @@ MonoBehaviour:
   damage: 10
   attackDelay: 3
   defence: 10
-  cardGague: 10
+  cardGague: 200
   knockbackRegist: 100
   haveSuperAmmor: 0
