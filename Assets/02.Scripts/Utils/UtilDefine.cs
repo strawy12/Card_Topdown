@@ -21,7 +21,8 @@ public class UtilDefine
     {
         get
         {
-            mainCam ??= Camera.main;
+            if (mainCam == null)
+                mainCam = Camera.main;
             return mainCam;
         }
     }

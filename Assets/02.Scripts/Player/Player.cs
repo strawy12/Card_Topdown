@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IAgent, IHittable
 {
@@ -56,9 +57,15 @@ public class Player : MonoBehaviour, IAgent, IHittable
 
     public SkillDataSO SkillData = null;
 
+    [SerializeField]
+    private Transform _image = null;
+
     private void Awake()
     {
         _agentStateCheck = GetComponent<AgentStateCheck>();
+
+        _image = GameObject.Find("UICanvas").GetComponent<Transform>();
+        _image = _image.Find("GameOverPanal").GetComponent<Transform>();
 
         if (_playerHpBar == null)
         {
@@ -142,6 +149,12 @@ public class Player : MonoBehaviour, IAgent, IHittable
         {
             OnDie?.Invoke();
             _agentStateCheck.IsDead = true;
+            BoxCollider2D boxcol2D = GetComponent<BoxCollider2D>();
+            boxcol2D.enabled = false;
+            AgentInput agentInput = GetComponent<AgentInput>();
+            agentInput.enabled = false;
+            _image.gameObject.SetActive(true);
+
         }
     }
 
