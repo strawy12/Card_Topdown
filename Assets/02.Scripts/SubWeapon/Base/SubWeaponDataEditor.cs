@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using System;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(SubWeaponDataSO))]
 public class SubWeaponDataEditor : Editor
 {
@@ -164,3 +165,4 @@ public class SubWeaponDataEditor : Editor
     }
 
 }
+#endif
