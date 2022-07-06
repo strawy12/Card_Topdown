@@ -40,7 +40,7 @@ public class BambooSkill : AgentSkill, INormalSkill
         bambooSpear.transform.position = PlayerRef.transform.position;
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         SkillCoolDownTimeCheck = SkillCoolDown;
         StopAllCoroutines();

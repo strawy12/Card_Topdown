@@ -53,8 +53,14 @@ public class SunSkill : AgentSkill, INormalSkill
         }
         PoolManager.Inst.Push(raser);
     }
+    
+    public void ChangeCharacterSkill()
+    {
+        SkillCoolDownTimeCheck = SkillCoolDown;
+        StopAllCoroutines();    
+    }
 
-    protected override void Reset()
+    public override void Reset()
     {
         SkillCoolDownTimeCheck = SkillCoolDown;
         StopAllCoroutines();
