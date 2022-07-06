@@ -39,10 +39,6 @@ public abstract class EnemyAttack : MonoBehaviour
 
     }
 
-    public Transform GetTarget()
-    {
-        return _enemyBrain.target;
-    }
     public abstract void Attack(float damage);
 
 }

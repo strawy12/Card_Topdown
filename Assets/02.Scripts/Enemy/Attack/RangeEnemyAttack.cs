@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UtilDefine;
 public class RangeEnemyAttack : EnemyAttack
 {
     [SerializeField]private projectileSO _projectileData;
@@ -31,7 +32,7 @@ public class RangeEnemyAttack : EnemyAttack
     }
     public Quaternion RotateToTarget()
     {
-        Vector3 dir = GetTarget().position - firePos.position;
+        Vector3 dir = PlayerRef.transform.position- firePos.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
         return rot;

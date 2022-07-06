@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
-
+using static UtilDefine;
 public class MinoAttack : EnemyAttack
 {
     public Vector2 attackBoxSize;
@@ -40,7 +40,7 @@ public class MinoAttack : EnemyAttack
     }
     public void SpawnEffect()
     {
-        Vector3 dir = GetTarget().position - transform.position;
+        Vector3 dir = PlayerRef.transform.position - transform.position;
         StartCoroutine(EffectCoroutine(dir));
 
     }
