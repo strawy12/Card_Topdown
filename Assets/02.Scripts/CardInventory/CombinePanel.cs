@@ -10,6 +10,7 @@ public class CombinePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private CardPanel[] _cardPanals = new CardPanel[2];
 
     private Text _combineEnforceText;
+    private Text _combineInfoText;
     private bool _isEmpty;
     private bool _isEnter;
 
@@ -40,7 +41,9 @@ public class CombinePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Init()
     {
         _combineEnforceText = transform.Find("CombineEnforceText").GetComponent<Text>();
+        _combineInfoText = transform.Find("CombineInfoText").GetComponent<Text>();
         _combineEnforceText.text = "";
+        _combineInfoText.text = "";
         _currentIndex = transform.GetSiblingIndex() - 1;
         _isEmpty = true;
 
@@ -61,6 +64,8 @@ public class CombinePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (_cardPanals[1].IsEmpty) return;
 
+        _isEmpty = false;
+        _combineInfoText.text = string.Format("[{0}] [{1}]", _cardPanals[0].CurrentCardData.Name, _cardPanals[1].CurrentCardData.Name);
 
         if (_currentIndex != 0)
             CalcCombination(_cardPanals[0].CurrentCardData, _cardPanals[1].CurrentCardData);
@@ -68,16 +73,13 @@ public class CombinePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (_currentIndex != 0 && !_isEmpty)
         {
             SetCombineText();
-            _combineEnforceText.gameObject.SetActive(true);
         }
 
         else
         {
-            _combineEnforceText.gameObject.SetActive(false);
             _combineEnforceText.text = "";
         }
 
-        _isEmpty = false;
     }
 
     public bool CompareCard(string cardID)
@@ -233,6 +235,7 @@ public class CombinePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         Param param = new Param();
         param.iParam = (int)subweaponType;
 
+        Debug.Log("dd");
         PEventManager.TriggerEvent("CardAdd", param);
     }
 

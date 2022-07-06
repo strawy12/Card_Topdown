@@ -24,7 +24,7 @@ public abstract class CardPanel : MonoBehaviour
     public string ID => $"{_panelType}_{_currentIdx}";
     public int Idx => _currentIdx;
     public ECardPanelType Type => _panelType;
-    public bool IsEmpty => _isEmpty;
+    public bool IsEmpty => _isEmpty && _currentCardData == null;
     public CardData CurrentCardData => _currentCardData;
 
     public void Init()

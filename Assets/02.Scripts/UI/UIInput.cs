@@ -22,6 +22,7 @@ public class UIInput : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+ 
             OnESCKeyInput?.Invoke();
         }
     }

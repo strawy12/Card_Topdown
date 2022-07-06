@@ -6,6 +6,8 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private MessagePanal _messagePanal;
@@ -14,6 +16,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _winPanal;
     //[SerializeField] private GameObject _nextWavePanal;
     public UnityEvent<bool> OnUI;
+
+    [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private GameObject _settingPanel;
+    [SerializeField] private Slider _effectSlider;
+    [SerializeField] private Slider _musicSlider;
 
     private Stack<GameObject> _panalStack = new Stack<GameObject>();
 
@@ -28,7 +35,6 @@ public class UIManager : MonoBehaviour
 
     public void TriggerMessage(string message, ButtonStyle btnStyle, ButtonStyle btnStyle2 = null)
     {
-        Debug.Log("dd");
         _messagePanal.ShowMessagePanal(message, btnStyle, btnStyle2);
     }
 
@@ -59,11 +65,19 @@ public class UIManager : MonoBehaviour
                     action?.Invoke();
                 }
                 );
+
+        if(_panalStack.Count == 0)
+        {
+            OnUI?.Invoke(false);
+        }
     }
 
     public void ClosePanal()
     {
-        if (_panalStack.Count == 0) return;
+        if (_panalStack.Count == 0)
+        {
+            OpenSettingPanel();
+            return; }
 
         GameObject panal = _panalStack.Pop();
         UnActiveUI(panal);
@@ -83,7 +97,12 @@ public class UIManager : MonoBehaviour
 
     public void ClosePanal(GameObject panal, System.Action action = null)
     {
-        if (_panalStack.Count == 0) return;
+
+        if (_panalStack.Count == 0)
+        {
+
+            return;
+        }
 
         if (_panalStack.Contains(panal) == false)
         {
@@ -134,5 +153,24 @@ public class UIManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void OpenSettingPanel()
+    {
+        _settingPanel.SetActive(true);
+        _settingPanel.transform.DOScale(Vector3.one, 0.6f)
+               .SetUpdate(true)
+               .SetEase(Ease.InOutElastic);
+        PushPanal(_settingPanel);
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        _audioMixer.SetFloat("Music", value);
+    }
+
+    public void SetEffectVolume(float value)
+    {
+        _audioMixer.SetFloat("Effect", value);
     }
 }

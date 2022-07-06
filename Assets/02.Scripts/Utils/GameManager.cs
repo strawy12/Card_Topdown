@@ -14,7 +14,7 @@ public class GameManager : MonoSingleton<GameManager>
     private UIManager _uiManager;
     private DataManager _dataManager;
     //private bool[] _existCard;
-    private int _canCardPickCnt = 12;
+    private int _canCardPickCnt = 0;
 
     private bool _onUI;
 
