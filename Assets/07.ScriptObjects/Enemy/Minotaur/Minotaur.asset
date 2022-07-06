@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Minotaur
   m_EditorClassIdentifier: 
   enemyName: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 8135281838176177668, guid: 9420387d4cb637e40bfff79eb863815c, type: 3}
   maxHealth: 200
   damage: 10
   attackDelay: 3

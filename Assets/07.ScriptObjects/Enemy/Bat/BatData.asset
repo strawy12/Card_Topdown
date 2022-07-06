@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Bat
   prefab: {fileID: 3331124398576119053, guid: e9208b6e1dbf9b64fbb37e08fb8b7174, type: 3}
-  maxHealth: 8
+  maxHealth: 12
   damage: 5
   attackDelay: 1
   defence: 0
   cardGague: 10
+  knockbackRegist: 0
+  haveSuperAmmor: 0

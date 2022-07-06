@@ -13,7 +13,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
     public float Health { get; private set; }
     private AgentStateCheck _agentStateCheck;
 
-    [field: SerializeField] public UnityEvent OnDie { get; set; }
+    [field: SerializeField] public UnityEvent OnDieFeedback { get; set; }
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
     public bool IsEnemy => true;
     private bool _isStiff = false;
@@ -46,12 +46,10 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         if(!_enemyData.haveSuperAmmor)
         Staff(0.1f);
         if (Health <= 0)
-        {
-            _agentStateCheck.IsDead = true;
+        { 
             _agentMove.StopImmediatelly();
-            _agentMove.enabled = false;
-            Die();
-            //_waveController.RemainEnemy--;
+            _agentStateCheck.IsDead = true;
+            OnDieFeedback?.Invoke();
         }
     }
     private void Awake()
@@ -74,7 +72,6 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         ResetHP();
         _agentStateCheck.IsStop = false;
         _agentStateCheck.IsDead = false;
-        _agentMove.enabled = true;
         _isStiff = false;
     }
     private void Start()
@@ -108,11 +105,8 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
 
     public void Die()
     {
-        _agentStateCheck.IsDead = true;
         _waveController.RemainEnemy--;
-        OnDie?.Invoke();
         PoolManager.Inst.Push(this);
-
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
 
