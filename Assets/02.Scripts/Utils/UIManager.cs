@@ -130,22 +130,10 @@ public class UIManager : MonoBehaviour
 
         }
     }
-    //public void UpdateWaveInfo(int count, int maxCount)
-    //{
-    //    _waveCountText.SetText($"Wave {count}/{maxCount}");
-    //}
-    //public void UpdateRemainMonsterInfo(int count, int maxCount)
-    //{
-    //    _remainMonsetText.SetText($"Monster {count}/{maxCount}");
-    //}
     public void OpenGameClearUI()
     {
         _winPanal.SetActive(true);
     }
-    //public void OnClearWaveUI()
-    //{
-    //    _nextWavePanal.SetActive(true);
-    //}
     public void ReStart()
     {
         SceneManager.LoadScene("Main");
