@@ -54,7 +54,6 @@ public class GameManager : MonoSingleton<GameManager>
         _uiManager = GetComponentInChildren<UIManager>();
         _dataManager = GetComponentInChildren<DataManager>();
         CreatePool();
-        _changePlayers.Enqueue("River");
         _changePlayers.Enqueue("Sun");
     }
 
