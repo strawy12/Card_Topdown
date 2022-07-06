@@ -89,7 +89,7 @@ public class DeerSkill : AgentSkill, INormalSkill
         enemyState.IsStop = false;
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         StopAllCoroutines();
         _isSkillUsing = false;

@@ -45,6 +45,9 @@ public class Player : MonoBehaviour, IAgent, IHittable
     public UnityEvent<float, GameObject> OnGetHitDealer { get; set; }
 
 
+    [field: SerializeField]
+    public UnityEvent OnChangeCharacterEvent { get; set; }
+
     [SerializeField]
     private BarUI _playerHpBar = null;
 
@@ -144,7 +147,8 @@ public class Player : MonoBehaviour, IAgent, IHittable
 
     public void CharacterChange()
     {
-
+        if (_agentStateCheck.IsDead == false && _agentStateCheck.IsStop) return;
+        OnChangeCharacterEvent?.Invoke();
     }
 
     private void AddCardGauge(Param param)

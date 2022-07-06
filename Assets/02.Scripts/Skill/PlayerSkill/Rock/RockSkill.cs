@@ -52,7 +52,7 @@ public class RockSkill : BuffSkill, IHittable
         isOn = false;    
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         SkillCoolDownTimeCheck = SkillCoolDown;
         StopAllCoroutines();

@@ -50,7 +50,7 @@ public class MountainSkill : AgentSkill, INormalSkill
         // 해당 방향으로 addforce?
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         SkillCoolDownTimeCheck = SkillCoolDown;
         StopAllCoroutines();

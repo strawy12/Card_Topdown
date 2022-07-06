@@ -6,24 +6,30 @@ using static UtilDefine;
 
 public class AgentInput : MonoBehaviour
 {
+    private AgentStateCheck _agentStateCheck = null;
 
     public UnityEvent<Vector2> OnPlayerMoveEvent;
     public UnityEvent<Vector2> OnPlayerMousePointEvent;
     public UnityEvent<Vector2> OnPlayerDashButtonPressEvent;
     public UnityEvent OnPlayerMousePressEvent;
     public UnityEvent OnESkillButtonPressEvent;
+    public UnityEvent OnChangeCharacterEvent;
 
+    private void Awake()
+    {
+        _agentStateCheck = GetComponent<AgentStateCheck>();
+    }
 
     private void Update()
     {
         if (GameManager.Inst.OnUI || GameManager.Inst.GameEnd) return;
-
 
         GetMoveInput();
         GetMousePointInput();
         GetDashButtonInput();
         GetMouseButtonInput();
         GetESkillButtonInput();
+        GetChangeCharacterInput();
     }
 
     private void GetMoveInput()
@@ -54,6 +60,16 @@ public class AgentInput : MonoBehaviour
         {
             OnESkillButtonPressEvent?.Invoke();
             SkillCoolDown.StartTimer();
+        }
+    }
+
+    private void GetChangeCharacterInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            OnChangeCharacterEvent?.Invoke();
+            _agentStateCheck.StateReset();
+            GameManager.Inst.ChangeCharacter();
         }
     }
 }

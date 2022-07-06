@@ -49,7 +49,7 @@ public class TurtleSkill : AgentSkill, INormalSkill
 
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         isOn = false;
     }

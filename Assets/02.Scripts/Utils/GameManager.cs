@@ -44,6 +44,8 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    private Queue<String> _changePlayers = new Queue<String>();
+
     private void Awake()
     {
 
@@ -52,6 +54,8 @@ public class GameManager : MonoSingleton<GameManager>
         _uiManager = GetComponentInChildren<UIManager>();
         _dataManager = GetComponentInChildren<DataManager>();
         CreatePool();
+        _changePlayers.Enqueue("River");
+        _changePlayers.Enqueue("Sun");
     }
 
     private void Start()
@@ -143,6 +147,30 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetPlayerableCardInfo(string id)
     {
         _dataManager.CurrentPlayer.playerableCardInfoList.Add(id);
+        _changePlayers.Enqueue(id);
+    }
+
+    public void ChangeCharacter()
+    {
+        GameObject player = PlayerRef.gameObject;
+
+        GameObject changePlayer = Resources.Load($"Players/{_changePlayers.Peek()}") as GameObject;
+
+        //GameObject nameChangePlayer =  GameObject.Instantiate(changePlayer, PlayerTrm.position, Quaternion.identity);
+
+        GameObject obj = GameObject.Instantiate(changePlayer, PlayerTrm.position, Quaternion.identity);
+        obj.gameObject.name = obj.gameObject.name.Replace("(Clone)", "");
+
+        //int index = nameChangePlayer.name.IndexOf("(Clone)");
+
+        //if (index > 0)
+        //    nameChangePlayer.name = nameChangePlayer.name.Substring(0, index);
+
+        //Instantiate(nameChangePlayer, PlayerTrm.position, Quaternion.identity);
+
+        Destroy(player);
+
+        _changePlayers.Enqueue(_changePlayers.Dequeue());
     }
 
     public void SpawnCardGauge(Vector3 pos, float  amout)

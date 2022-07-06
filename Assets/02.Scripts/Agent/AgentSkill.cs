@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AgentSkill : MonoBehaviour
 {
-    protected virtual void Reset()
+    public virtual void Reset()
     {
 
     }
