@@ -33,6 +33,12 @@ public class UIManager : MonoBehaviour
         _uiAudio = GetComponent<UIAudio>();
     }
 
+    private void Start()
+    {
+        _musicSlider.value = 0f;
+        _effectSlider.value = 0f;
+    }
+
     public void TriggerMessage(string message, ButtonStyle btnStyle, ButtonStyle btnStyle2 = null)
     {
         _messagePanal.ShowMessagePanal(message, btnStyle, btnStyle2);
@@ -53,7 +59,17 @@ public class UIManager : MonoBehaviour
         _panalStack.Push(panal);
         OnUI?.Invoke(true);
     }
-
+    public void UnActivePanel(GameObject obj)
+    {
+        obj.transform.DOScale(Vector3.zero, 0.6f)
+              .SetUpdate(true)
+              .SetEase(Ease.InOutElastic)
+              .OnComplete(() =>
+              {
+                  obj.SetActive(false);
+              }
+              );
+    }
     private void UnActiveUI(GameObject obj, System.Action action = null)
     {
         obj.transform.DOScale(Vector3.zero, 0.6f)
