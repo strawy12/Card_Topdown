@@ -1083,6 +1083,8 @@ MonoBehaviour:
   OnVectorChange:
     m_PersistentCalls:
       m_Calls: []
+  _dashTime: 1
+  dashTimeCheck: 0
   _isKnockback: 0
 --- !u!50 &8620321401439369766
 Rigidbody2D:
@@ -1178,7 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: f9d0f193e32f7c64aadb7493b9b9fcb4, type: 2}
   _hpBar: {fileID: 0}
-  <OnDie>k__BackingField:
+  <OnDieFeedback>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 171299433}
@@ -1233,6 +1235,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _waterStack: 0
+  _isHitCloud: 0
 --- !u!70 &8620321400849458374
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

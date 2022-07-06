@@ -48,6 +48,7 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         if (Health <= 0)
         { 
             _agentMove.StopImmediatelly();
+            OnDieFeedback?.Invoke();
             Die();
         }
     }
@@ -107,7 +108,6 @@ public class Enemy : PoolableMono, IHittable, IKnockback, IStaff
         if (_agentStateCheck.IsDead) return;
         _agentStateCheck.IsDead = true;
         _waveController.RemainEnemy--;
-        OnDieFeedback?.Invoke();
         PoolManager.Inst.Push(this);
         GameManager.Inst.SpawnCardGauge(transform.position, _enemyData.cardGague);
     }
